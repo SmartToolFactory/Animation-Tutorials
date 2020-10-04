@@ -18,6 +18,9 @@
         </activity>
         <activity android:name=".chapter1_basics.Activity1_1Basics" />
         <activity android:name=".chapter1_basics.Activity1_2AnimatorInflater" />
+        <activity android:name=".chapter2_animate_views.Activity2_1PulseView" />
+        <activity android:name=".chapter2_animate_views.Activity2_2RevealHideCrossFade" />
+        <activity android:name=".chapter2_animate_views.Activity2_3CircularReveal" />
     </application>
 
 </manifest>

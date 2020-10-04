@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tutorial1_1basics.chapter1_basics.Activity1_1Basics
 import com.example.tutorial1_1basics.chapter1_basics.Activity1_2AnimatorInflater
+import com.example.tutorial1_1basics.chapter2_animate_views.Activity2_1PulseView
+import com.example.tutorial1_1basics.chapter2_animate_views.Activity2_2RevealHideCrossFade
+import com.example.tutorial1_1basics.chapter2_animate_views.Activity2_3CircularReveal
 
 import com.example.tutorial1_1basics.chapter_adapter.BaseAdapter
 import com.example.tutorial1_1basics.chapter_adapter.ChapterSelectionAdapter
@@ -28,20 +31,7 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
         val activityMainBinding =
             DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
-        // Add Activities to list to be displayed on RecyclerView
-        activityClassModels.add(
-            ActivityClassModel(
-                Activity1_1Basics::class.java,
-                "Animation with ObjectAnimator"
-            )
-        )
-
-        activityClassModels.add(
-            ActivityClassModel(
-                Activity1_2AnimatorInflater::class.java,
-                "Animation with AnimatorInflater"
-            )
-        )
+        addChapters()
 
         val recyclerView = activityMainBinding.recyclerView
 
@@ -66,6 +56,45 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
                 setOnItemClickListener(this@MainActivity)
             }
         }
+    }
+
+    private fun addChapters() {
+
+        // Add Activities to list to be displayed on RecyclerView
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity1_1Basics::class.java,
+                "Animation with ObjectAnimator"
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity1_2AnimatorInflater::class.java,
+                "Animation with AnimatorInflater"
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity2_1PulseView::class.java,
+                "Animation with Custom View"
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity2_2RevealHideCrossFade::class.java,
+                "Animation Hide/Reveal crossFade"
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity2_3CircularReveal::class.java,
+                "Animation Circular Reveal"
+            )
+        )
     }
 
     @Override
