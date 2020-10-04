@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:repeatCount="1"
+    android:repeatMode="reverse">
+    <propertyValuesHolder
+        android:propertyName="scaleX"
+        android:valueTo="4" />
+    <propertyValuesHolder
+        android:propertyName="scaleY"
+        android:valueTo="4" />
+</objectAnimator>

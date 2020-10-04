@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Tutorial 1-1Basics</string>
+    <string name="rotate">Rotate</string>
+    <string name="translate">Translate</string>
+    <string name="scale">Scale</string>
+    <string name="fade">Fade</string>
+    <string name="sequential">Sequential</string>
+    <string name="shower">Shower</string>
+    <string name="sky_color">Sky Color</string>
+</resources>
