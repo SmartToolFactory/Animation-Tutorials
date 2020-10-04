@@ -21,6 +21,7 @@
         <activity android:name=".chapter2_animate_views.Activity2_1PulseView" />
         <activity android:name=".chapter2_animate_views.Activity2_2RevealHideCrossFade" />
         <activity android:name=".chapter2_animate_views.Activity2_3CircularReveal" />
+        <activity android:name=".chapter2_animate_views.Activity2_4CardFlipAnimation" />
     </application>
 
 </manifest>

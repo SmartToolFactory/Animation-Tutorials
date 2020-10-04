@@ -12,6 +12,7 @@ import com.example.tutorial1_1basics.chapter1_basics.Activity1_2AnimatorInflater
 import com.example.tutorial1_1basics.chapter2_animate_views.Activity2_1PulseView
 import com.example.tutorial1_1basics.chapter2_animate_views.Activity2_2RevealHideCrossFade
 import com.example.tutorial1_1basics.chapter2_animate_views.Activity2_3CircularReveal
+import com.example.tutorial1_1basics.chapter2_animate_views.Activity2_4CardFlipAnimation
 
 import com.example.tutorial1_1basics.chapter_adapter.BaseAdapter
 import com.example.tutorial1_1basics.chapter_adapter.ChapterSelectionAdapter
@@ -64,35 +65,42 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
         activityClassModels.add(
             ActivityClassModel(
                 Activity1_1Basics::class.java,
-                "Animation with ObjectAnimator"
+                "1-1 Animation with ObjectAnimator"
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity1_2AnimatorInflater::class.java,
-                "Animation with AnimatorInflater"
+                "1-2 Animation with AnimatorInflater"
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_1PulseView::class.java,
-                "Animation with Custom View"
+                "2-1 Animation with Custom View"
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_2RevealHideCrossFade::class.java,
-                "Animation Hide/Reveal crossFade"
+                "2-2 Animation Hide/Reveal crossFade"
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_3CircularReveal::class.java,
-                "Animation Circular Reveal"
+                "2-3 Animation Circular Reveal"
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity2_4CardFlipAnimation::class.java,
+                "2-4 Rotation X/Y and Flip"
             )
         )
     }
