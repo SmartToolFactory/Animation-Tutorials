@@ -137,6 +137,13 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
                 "2-8 Counter TextView"
             )
         )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity2_9CounterSurfaceView::class.java,
+                "2-9 Counter SurfaceView"
+            )
+        )
     }
 
     @Override

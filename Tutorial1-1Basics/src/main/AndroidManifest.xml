@@ -29,6 +29,7 @@
         <activity android:name=".chapter2_animate_views.Activity2_7GradientAnimations" />
         <activity android:name=".chapter2_animate_views.Activity2_8CounterAnimation" />
         <activity android:name=".chapter1_basics.Activity1_3TranslationVsPosition" />
+        <activity android:name=".chapter2_animate_views.Activity2_9CounterSurfaceView" />
     </application>
 
 </manifest>

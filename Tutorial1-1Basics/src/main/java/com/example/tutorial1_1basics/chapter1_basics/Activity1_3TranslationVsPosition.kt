@@ -16,7 +16,7 @@ class Activity1_3TranslationVsPosition : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_1_3translation_vs_position)
+        setContentView(R.layout.activity1_3translation_vs_position)
 
         val buttonTranslate = findViewById<Button>(R.id.buttonTranslationY)
         val buttonPosition = findViewById<Button>(R.id.buttonPositionY)
