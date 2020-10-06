@@ -1,0 +1,13 @@
+<!-- Animation frames are wheel0.png through wheel5.png
+    files inside the res/drawable/ folder -->
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/selected"
+    android:oneshot="true">
+    <item
+        android:drawable="@drawable/gradient_red_blue"
+        android:duration="0" />
+    <item
+        android:drawable="@drawable/gradient_green_yellow"
+        android:duration="0" />
+
+</animation-list>

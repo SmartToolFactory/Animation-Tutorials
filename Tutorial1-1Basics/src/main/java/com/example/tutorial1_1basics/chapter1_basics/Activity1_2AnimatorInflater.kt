@@ -1,8 +1,6 @@
 package com.example.tutorial1_1basics.chapter1_basics
 
-import android.animation.Animator
-import android.animation.AnimatorInflater
-import android.animation.AnimatorListenerAdapter
+import android.animation.*
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -12,6 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.tutorial1_1basics.R
 
 
+/**
+ * [AnimatorInflater] inflates animation from **animator** folder's [ObjectAnimator], [Animator],
+ * or [AnimatorSet]
+ */
 class Activity1_2AnimatorInflater : AppCompatActivity() {
 
     lateinit var star: ImageView

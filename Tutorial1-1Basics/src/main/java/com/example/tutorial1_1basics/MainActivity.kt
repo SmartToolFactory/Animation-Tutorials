@@ -9,10 +9,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tutorial1_1basics.chapter1_basics.Activity1_1Basics
 import com.example.tutorial1_1basics.chapter1_basics.Activity1_2AnimatorInflater
-import com.example.tutorial1_1basics.chapter2_animate_views.Activity2_1PulseView
-import com.example.tutorial1_1basics.chapter2_animate_views.Activity2_2RevealHideCrossFade
-import com.example.tutorial1_1basics.chapter2_animate_views.Activity2_3CircularReveal
-import com.example.tutorial1_1basics.chapter2_animate_views.Activity2_4CardFlipAnimation
+import com.example.tutorial1_1basics.chapter2_animate_views.*
 
 import com.example.tutorial1_1basics.chapter_adapter.BaseAdapter
 import com.example.tutorial1_1basics.chapter_adapter.ChapterSelectionAdapter
@@ -101,6 +98,34 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
             ActivityClassModel(
                 Activity2_4CardFlipAnimation::class.java,
                 "2-4 Rotation X/Y and Flip"
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity2_5CurvedMotionAnimation::class.java,
+                "2-5 Curved motion Animation"
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity2_6ZoomAnimation::class.java,
+                "2-6 Zoom Animation"
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity2_7GradientAnimation::class.java,
+                "2-7 Gradient Animation 1"
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity2_8AnimationDrawableGradient::class.java,
+                "2-8 AnimationDrawable Gradient"
             )
         )
     }

@@ -22,6 +22,11 @@
         <activity android:name=".chapter2_animate_views.Activity2_2RevealHideCrossFade" />
         <activity android:name=".chapter2_animate_views.Activity2_3CircularReveal" />
         <activity android:name=".chapter2_animate_views.Activity2_4CardFlipAnimation" />
+        <activity android:name=".chapter2_animate_views.Activity2_5CurvedMotionAnimation" />
+        <activity android:name=".chapter2_animate_views.Activity2_6ZoomAnimation" />
+        <activity android:name=".chapter2_animate_views.Activity2_7GradientAnimation" />
+        <activity android:name=".chapter2_animate_views.Activity2_8AnimationDrawableGradient" />
+        <activity android:name=".chapter2_animate_views.Activity2_9ViewPagerAsInterpolator" />
     </application>
 
 </manifest>
