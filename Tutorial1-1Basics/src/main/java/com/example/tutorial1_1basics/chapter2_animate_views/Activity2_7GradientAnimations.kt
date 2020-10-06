@@ -20,7 +20,7 @@ import com.example.tutorial1_1basics.R
  *
  * * Second fragment uses [AnimationDrawable] and <anim-list> in xml to create same animation.
  */
-class Activity2_9ViewPagerAsInterpolator : AppCompatActivity() {
+class Activity2_7GradientAnimations : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

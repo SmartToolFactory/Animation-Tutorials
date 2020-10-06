@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tutorial1_1basics.chapter1_basics.Activity1_1Basics
 import com.example.tutorial1_1basics.chapter1_basics.Activity1_2AnimatorInflater
+import com.example.tutorial1_1basics.chapter1_basics.Activity1_3TranslationVsPosition
 import com.example.tutorial1_1basics.chapter2_animate_views.*
 
 import com.example.tutorial1_1basics.chapter_adapter.BaseAdapter
@@ -75,6 +76,14 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
 
         activityClassModels.add(
             ActivityClassModel(
+                Activity1_3TranslationVsPosition::class.java,
+                "1-3 Animating Translation vs Position"
+            )
+        )
+
+
+        activityClassModels.add(
+            ActivityClassModel(
                 Activity2_1PulseView::class.java,
                 "2-1 Animation with Custom View"
             )
@@ -117,8 +126,15 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
 
         activityClassModels.add(
             ActivityClassModel(
-                Activity2_9ViewPagerAsInterpolator::class.java,
+                Activity2_7GradientAnimations::class.java,
                 "2-7 Gradient Animations"
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity2_8CounterAnimation::class.java,
+                "2-8 Counter TextView"
             )
         )
     }
