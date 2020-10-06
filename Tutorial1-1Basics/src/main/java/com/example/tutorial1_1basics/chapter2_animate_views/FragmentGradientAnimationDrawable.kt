@@ -2,23 +2,19 @@ package com.example.tutorial1_1basics.chapter2_animate_views
 
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.tutorial1_1basics.R
 
-/**
- * This tutorial uses list of animations from drawable folder with [AnimationDrawable]
- * to set animation
- */
-class Activity2_8AnimationDrawableGradient : AppCompatActivity() {
+class FragmentGradientAnimationDrawable : Fragment(R.layout.fragment_gradient_animation_drawable) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity2_8_animation_drawable_gradient)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val buttonGradientAnim = findViewById<Button>(R.id.buttonGradientAnimation)
-        val imageView = findViewById<ImageView>(R.id.ivGradient)
+        val buttonGradientAnim = view.findViewById<Button>(R.id.buttonGradientAnimation)
+        val imageView = view.findViewById<ImageView>(R.id.ivGradient)
 
         buttonGradientAnim.setOnClickListener {
             val animationDrawable = imageView.background as AnimationDrawable
@@ -31,4 +27,5 @@ class Activity2_8AnimationDrawableGradient : AppCompatActivity() {
             animationDrawable.start()
         }
     }
+
 }

@@ -117,15 +117,8 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
 
         activityClassModels.add(
             ActivityClassModel(
-                Activity2_7GradientAnimation::class.java,
-                "2-7 Gradient Animation 1"
-            )
-        )
-
-        activityClassModels.add(
-            ActivityClassModel(
-                Activity2_8AnimationDrawableGradient::class.java,
-                "2-8 AnimationDrawable Gradient"
+                Activity2_9ViewPagerAsInterpolator::class.java,
+                "2-7 Gradient Animations"
             )
         )
     }

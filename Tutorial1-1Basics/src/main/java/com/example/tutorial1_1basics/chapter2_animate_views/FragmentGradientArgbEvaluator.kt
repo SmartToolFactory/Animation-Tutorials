@@ -5,21 +5,20 @@ import android.animation.TimeAnimator
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import com.example.tutorial1_1basics.R
 
-class Activity2_7GradientAnimation : AppCompatActivity() {
+class FragmentGradientArgbEvaluator : Fragment(R.layout.fragment_gradient_argb_evaluator) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity2_7gradient_animation)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val buttonGradientAnim = findViewById<Button>(R.id.buttonGradientAnimation)
-        val imageView = findViewById<ImageView>(R.id.ivGradient)
-
+        val buttonGradientAnim = view.findViewById<Button>(R.id.buttonGradientAnimation)
+        val imageView = view.findViewById<ImageView>(R.id.ivGradient)
 
         val startColor = Color.RED
         val endColor = Color.BLUE
@@ -51,4 +50,5 @@ class Activity2_7GradientAnimation : AppCompatActivity() {
             animator.start()
         }
     }
+
 }
