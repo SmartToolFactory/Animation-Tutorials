@@ -17,6 +17,7 @@ abstract class CoroutineSurfaceView : SurfaceView, SurfaceHolder.Callback,
         println("🤬 Parent Caught $throwable in thread ${Thread.currentThread().name}, and coroutineContext: $coroutineContext")
     }
 
+    internal lateinit var canvas: Canvas
     var framePerSecond = 60
 
     private var renderTime = 100L / framePerSecond
@@ -62,7 +63,7 @@ abstract class CoroutineSurfaceView : SurfaceView, SurfaceHolder.Callback,
                     continue
                 }
 
-                val canvas = surfaceHolder.lockCanvas()
+                canvas = surfaceHolder.lockCanvas()
                 update()
                 render(canvas)
                 holder.unlockCanvasAndPost(canvas)

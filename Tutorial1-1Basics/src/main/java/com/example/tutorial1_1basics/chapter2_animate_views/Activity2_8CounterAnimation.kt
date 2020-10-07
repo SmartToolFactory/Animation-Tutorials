@@ -1,7 +1,6 @@
 package com.example.tutorial1_1basics.chapter2_animate_views
 
 import android.os.Bundle
-import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tutorial1_1basics.R
@@ -15,17 +14,20 @@ class Activity2_8CounterAnimation : AppCompatActivity() {
 
         val etStartValue = findViewById<EditText>(R.id.etStartValue)
         val etEndValue = findViewById<EditText>(R.id.etEndValue)
-        val counterTextView = findViewById<CounterTextView>(R.id.counterTextView)
+        val counter = findViewById<CounterTextView>(R.id.counterTextView)
 
-        counterTextView.setOnClickListener {
+        etStartValue.setText("${counter.startValue}")
+        etEndValue.setText("${counter.endValue}")
 
-            counterTextView.startValue =
-                etStartValue.text.toString().toIntOrNull() ?: counterTextView.startValue
+        counter.setOnClickListener {
 
-            counterTextView.endValue =
-                etEndValue.text.toString().toIntOrNull() ?: counterTextView.endValue
+            counter.startValue =
+                etStartValue.text.toString().toIntOrNull() ?: counter.startValue
 
-            counterTextView.startAnimation()
+            counter.endValue =
+                etEndValue.text.toString().toIntOrNull() ?: counter.endValue
+
+            counter.startAnimation()
         }
 
     }
