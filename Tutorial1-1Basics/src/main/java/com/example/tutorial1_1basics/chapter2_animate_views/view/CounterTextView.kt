@@ -22,7 +22,7 @@ class CounterTextView : FrameLayout {
     var startValue = 0
         set(value) {
             field = value
-            currentText.text = "${value}"
+            currentText.text = "$value"
         }
 
     var endValue = 30

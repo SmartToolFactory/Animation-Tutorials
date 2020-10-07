@@ -11,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.tutorial1_1basics.R
 
+/**
+ * In this tutorial flips an imageView using **TranslationY** animation
+ */
 class Activity2_4CardFlipAnimation : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

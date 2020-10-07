@@ -58,7 +58,6 @@ class Activity2_7GradientAnimations : AppCompatActivity() {
                     evaluator.evaluate(positionOffset, startColor, Color.GREEN) as Int
                 } else {
                     evaluator.evaluate(1 - positionOffset, startColor, Color.GREEN) as Int
-
                 }
 
                 val updatedEndColor = if (position == 0) {

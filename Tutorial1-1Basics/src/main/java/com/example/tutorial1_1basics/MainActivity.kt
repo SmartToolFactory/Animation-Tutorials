@@ -12,10 +12,10 @@ import com.example.tutorial1_1basics.chapter1_basics.Activity1_2AnimatorInflater
 import com.example.tutorial1_1basics.chapter1_basics.Activity1_3TranslationVsPosition
 import com.example.tutorial1_1basics.chapter2_animate_views.*
 
-import com.example.tutorial1_1basics.chapter_adapter.BaseAdapter
-import com.example.tutorial1_1basics.chapter_adapter.ChapterSelectionAdapter
+import com.example.tutorial1_1basics.adapter_chapter_selection.BaseAdapter
+import com.example.tutorial1_1basics.adapter_chapter_selection.ChapterSelectionAdapter
 import com.example.tutorial1_1basics.databinding.ActivityMainBinding
-import com.example.tutorial1_1basics.model.ActivityClassModel
+import com.example.tutorial1_1basics.adapter_chapter_selection.model.ActivityClassModel
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickListener {

@@ -1,4 +1,4 @@
-package com.example.tutorial1_1basics.chapter_adapter
+package com.example.tutorial1_1basics.adapter_chapter_selection
 
 import android.view.LayoutInflater
 import android.view.View

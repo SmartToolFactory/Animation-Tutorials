@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.tutorial1_1basics.R
 
 /**
- * [StateListAnimator] inflates animations for states of views such as pressed
+ * This tutorial shows difference between animating TranslationY and Y.
+ *
+ * [TranslationY] is relative to initial position of the View.
  */
 class Activity1_3TranslationVsPosition : AppCompatActivity() {
 

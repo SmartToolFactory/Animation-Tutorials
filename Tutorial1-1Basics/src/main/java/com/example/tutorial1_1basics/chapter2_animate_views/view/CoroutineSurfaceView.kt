@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import kotlinx.coroutines.*
 
@@ -18,7 +17,9 @@ abstract class CoroutineSurfaceView : SurfaceView, SurfaceHolder.Callback,
         println("🤬 Parent Caught $throwable in thread ${Thread.currentThread().name}, and coroutineContext: $coroutineContext")
     }
 
-    var framePerSecond = 100/60L
+    var framePerSecond = 60
+
+    private var renderTime = 100L / framePerSecond
 
     private val coroutineScope = CoroutineScope(handler + SupervisorJob() + Dispatchers.Default)
 
@@ -66,7 +67,7 @@ abstract class CoroutineSurfaceView : SurfaceView, SurfaceHolder.Callback,
                 render(canvas)
                 holder.unlockCanvasAndPost(canvas)
 
-                delay(framePerSecond)
+                delay(renderTime)
             }
         }
     }

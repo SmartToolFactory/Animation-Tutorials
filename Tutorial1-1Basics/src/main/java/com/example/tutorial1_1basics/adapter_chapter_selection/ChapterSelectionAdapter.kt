@@ -1,8 +1,8 @@
-package com.example.tutorial1_1basics.chapter_adapter
+package com.example.tutorial1_1basics.adapter_chapter_selection
 
 
 import com.example.tutorial1_1basics.R
-import com.example.tutorial1_1basics.model.ActivityClassModel
+import com.example.tutorial1_1basics.adapter_chapter_selection.model.ActivityClassModel
 
 
 /**
