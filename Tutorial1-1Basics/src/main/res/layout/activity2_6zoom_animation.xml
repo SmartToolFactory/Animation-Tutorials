@@ -13,9 +13,11 @@
         android:layout_marginRight="1dp"
         android:contentDescription="Image"
         android:scaleType="centerCrop"
-        android:src="@drawable/mountains"
+        android:src="@drawable/landscape"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
     <ImageView
@@ -24,9 +26,10 @@
         android:layout_height="wrap_content"
         android:contentDescription="Touch to close"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:visibility="visible" />
 
 

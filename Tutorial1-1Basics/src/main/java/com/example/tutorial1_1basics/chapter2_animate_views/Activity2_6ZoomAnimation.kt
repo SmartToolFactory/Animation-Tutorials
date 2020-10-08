@@ -33,7 +33,7 @@ class Activity2_6ZoomAnimation : AppCompatActivity() {
 
         val thumb1View: View = findViewById(R.id.thumb_button_1)
         thumb1View.setOnClickListener {
-            zoomImageFromThumb(thumb1View, R.drawable.mountains)
+            zoomImageFromThumb(thumb1View, R.drawable.landscape)
         }
 
         // Retrieve and cache the system's default "short" animation time.
