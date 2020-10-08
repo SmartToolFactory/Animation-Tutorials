@@ -55,6 +55,7 @@ abstract class CoroutineSurfaceView : SurfaceView, SurfaceHolder.Callback,
     }
 
     private fun startCoroutineRendering() {
+
         job = coroutineScope.launch {
 
             while (isActive) {

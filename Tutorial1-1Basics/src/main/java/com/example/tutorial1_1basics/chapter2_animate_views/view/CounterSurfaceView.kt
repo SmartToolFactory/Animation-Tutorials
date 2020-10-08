@@ -4,6 +4,8 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.SurfaceHolder
+import kotlin.math.abs
+import kotlin.math.min
 
 class CounterSurfaceView : CoroutineSurfaceView {
 
@@ -135,13 +137,13 @@ class CounterSurfaceView : CoroutineSurfaceView {
         currentTextY = positionInitialCurrent
         nextTextY = positionInitialNext
 
-        animationSpeed = height / 12f
+        animationSpeed = height / 10f
 
-        debugMode = true
+        debugMode = false
     }
 
     private fun getDynamicTextSize(textHeight: Float) {
-        val sampleText = "H"
+        val sampleText = "1"
         while (rectTextBounds.height() <= textHeight) {
             paintText.textSize += 0.1f
             paintText.getTextBounds(sampleText, 0, sampleText.length, rectTextBounds)
@@ -275,17 +277,38 @@ class CounterSurfaceView : CoroutineSurfaceView {
         canvas.drawColor(Color.LTGRAY)
 
         // Draw current value
-        drawText("$counterCurrent", currentTextY, canvas)
+        var alpha = getAlpha(currentTextY)
+        drawText("$counterCurrent", alpha, currentTextY, canvas)
+
+        println("🔥 currentTextY: $currentTextY, percent: ${(height - currentTextY) / height}, alpha: $alpha")
 
         if (debugMode) {
             drawDebug(canvas)
         }
 
         // Draw next value
-        paintText.color = Color.RED
-        drawText("$counterNext", nextTextY, canvas)
+        alpha = getAlpha(nextTextY)
+        drawText("$counterNext", alpha, nextTextY, canvas)
+    }
 
+    /**
+     * Change alpha based on how much of View is visible
+     */
+    private fun getAlpha(position: Float): Int {
 
+        return when {
+            // Top position
+            position < textHeight * 0.5f -> {
+                255 - (255 * ((textHeight - position) / textHeight)).toInt()
+            }
+            // Bottom position
+            height + textHeight - position < textHeight * 0.5f -> {
+                255 - (255 * ((height + textHeight - position) / textHeight)).toInt()
+            }
+            else -> {
+                255
+            }
+        }
     }
 
     /**
@@ -347,19 +370,20 @@ class CounterSurfaceView : CoroutineSurfaceView {
         canvas.drawLine(width / 2f, 0f, width / 2f, height.toFloat(), paintDebug)
         canvas.drawText(
             "Vertical margin: $verticalMargin, " +
-                    "textHeight: $textHeight",
+                    "textHeight: $textHeight, " +
+                    "animationSpeed: $animationSpeed",
             0f,
             70f,
             paintDebugText
         )
     }
 
-    private fun drawText(text: String, y: Float, canvas: Canvas) {
+    private fun drawText(text: String, alpha: Int, y: Float, canvas: Canvas) {
 
         val horizontalCenter = centerX - paintText.measureText(text) / 2
 
         // Draw border text
-        paintText.color = Color.DKGRAY
+        paintText.color = Color.argb(alpha, 120, 120, 120)
         paintText.style = Paint.Style.STROKE
         canvas.drawText(
             text,
@@ -369,7 +393,7 @@ class CounterSurfaceView : CoroutineSurfaceView {
         )
 
         // Draw text
-        paintText.color = Color.WHITE
+        paintText.color = Color.argb(alpha, 255, 255, 255)
         paintText.style = Paint.Style.FILL
         canvas.drawText(
             text,
