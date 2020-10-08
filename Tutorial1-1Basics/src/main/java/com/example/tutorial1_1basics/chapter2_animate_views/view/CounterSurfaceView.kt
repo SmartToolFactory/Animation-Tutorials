@@ -4,8 +4,6 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.SurfaceHolder
-import kotlin.math.abs
-import kotlin.math.min
 
 class CounterSurfaceView : CoroutineSurfaceView {
 
@@ -70,6 +68,8 @@ class CounterSurfaceView : CoroutineSurfaceView {
 
     private var counterCurrent = 0
     private var counterNext = 1
+
+    private val backgroundColor = Color.parseColor("#9b928b")
 
     private val paintText = Paint().apply {
         style = Paint.Style.FILL
@@ -274,7 +274,7 @@ class CounterSurfaceView : CoroutineSurfaceView {
     }
 
     override fun render(canvas: Canvas) {
-        canvas.drawColor(Color.LTGRAY)
+        canvas.drawColor(backgroundColor)
 
         // Draw current value
         var alpha = getAlpha(currentTextY)

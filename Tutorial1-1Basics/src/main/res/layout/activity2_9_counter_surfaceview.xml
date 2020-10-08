@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Debug mode is deliberately left on, set debugMode to false"
+        android:text="Set debugMode flag true to debug"
         app:layout_constraintBottom_toTopOf="@id/tvTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tvTitle"
