@@ -18,6 +18,7 @@ abstract class CoroutineSurfaceView : SurfaceView, SurfaceHolder.Callback,
     }
 
     internal lateinit var canvas: Canvas
+
     var framePerSecond = 60
 
     private var renderTime = 100L / framePerSecond

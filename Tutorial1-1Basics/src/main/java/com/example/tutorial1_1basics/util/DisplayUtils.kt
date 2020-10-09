@@ -56,7 +56,7 @@ object DisplayUtils {
     }
 
     fun px2Dp(context: Context, px: Int): Int {
-        val displayMetrics: DisplayMetrics = context.getResources().getDisplayMetrics()
+        val displayMetrics: DisplayMetrics = context.resources.displayMetrics
         return (px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT)).roundToInt()
     }
 }

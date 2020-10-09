@@ -16,6 +16,7 @@ import com.example.tutorial1_1basics.adapter_chapter_selection.BaseAdapter
 import com.example.tutorial1_1basics.adapter_chapter_selection.ChapterSelectionAdapter
 import com.example.tutorial1_1basics.databinding.ActivityMainBinding
 import com.example.tutorial1_1basics.adapter_chapter_selection.model.ActivityClassModel
+import com.example.tutorial1_1basics.chapter3_physics.Activity3_1PhysicsBasics
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickListener {
@@ -142,6 +143,13 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
             ActivityClassModel(
                 Activity2_9CounterSurfaceView::class.java,
                 "2-9 Counter SurfaceView"
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity3_1PhysicsBasics::class.java,
+                "3-1 Physics Basics"
             )
         )
     }

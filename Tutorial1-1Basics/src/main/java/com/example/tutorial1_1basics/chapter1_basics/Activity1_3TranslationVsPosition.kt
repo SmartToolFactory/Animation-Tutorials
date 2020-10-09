@@ -13,6 +13,11 @@ import com.example.tutorial1_1basics.R
  * This tutorial shows difference between animating TranslationY and Y.
  *
  * [TranslationY] is relative to initial position of the View.
+ *
+ * * X is a sum of the left value and TRANSLATION_X.
+ * * Y is a sum of the top value and TRANSLATION_Y.
+ * * Z is a sum of the elevation value and TRANSLATION_Z.
+ *
  */
 class Activity1_3TranslationVsPosition : AppCompatActivity() {
 
@@ -27,7 +32,7 @@ class Activity1_3TranslationVsPosition : AppCompatActivity() {
         imageView.setOnClickListener {
             Toast.makeText(
                 applicationContext,
-                "Position y: ${imageView.y}, translationY: ${imageView.translationY}",
+                "Position y: ${imageView.y}, top: ${imageView.top}, translationY: ${imageView.translationY}",
                 Toast.LENGTH_SHORT
             ).show()
         }

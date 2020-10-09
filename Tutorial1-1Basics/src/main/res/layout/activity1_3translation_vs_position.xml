@@ -28,7 +28,7 @@
         app:layout_constraintStart_toEndOf="@+id/buttonTranslationY"
         app:layout_constraintTop_toTopOf="@+id/buttonTranslationY" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivAvatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
