@@ -15,6 +15,7 @@
         app:cardCornerRadius="5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="?android:selectableItemBackground"
             android:layout_width="120dp"
             android:layout_height="120dp">
 
