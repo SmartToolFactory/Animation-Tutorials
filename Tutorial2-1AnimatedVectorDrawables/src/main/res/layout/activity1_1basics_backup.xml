@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/heartAVD"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/avd_likes"
+        app:layout_constraintBottom_toTopOf="@id/imageViewHourglass"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewCompass"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:max="100"
+        app:layout_constraintBottom_toTopOf="@id/imageViewCompass"
+        app:layout_constraintEnd_toEndOf="@id/imageViewCompass"
+        app:layout_constraintStart_toStartOf="@id/imageViewCompass" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewCompass"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/avd_compass_rotation"
+        app:layout_constraintBottom_toBottomOf="@+id/heartAVD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/heartAVD"
+        app:layout_constraintTop_toTopOf="@+id/heartAVD" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewHourglass"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/avd_hourglass"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewDayToNight"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heartAVD" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewDayToNight"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/avd_share"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewHourglass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageViewHourglass"
+        app:layout_constraintTop_toTopOf="@+id/imageViewHourglass" />
+</androidx.constraintlayout.widget.ConstraintLayout>

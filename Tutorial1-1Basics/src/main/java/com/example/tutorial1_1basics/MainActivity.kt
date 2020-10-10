@@ -64,21 +64,21 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
         activityClassModels.add(
             ActivityClassModel(
                 Activity1_1Basics::class.java,
-                "1-1 Animation with ObjectAnimator"
+                "Ch1-1 Animation with ObjectAnimator"
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity1_2AnimatorInflater::class.java,
-                "1-2 Animation with AnimatorInflater"
+                "Ch1-2 Animation with AnimatorInflater"
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity1_3TranslationVsPosition::class.java,
-                "1-3 Animating Translation vs Position"
+                "Ch1-3 Animating Translation vs Position"
             )
         )
 
@@ -93,63 +93,63 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_2RevealHideCrossFade::class.java,
-                "2-2 Animation Hide/Reveal crossFade"
+                "Ch2-2 Animation Hide/Reveal crossFade"
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_3CircularReveal::class.java,
-                "2-3 Animation Circular Reveal"
+                "Ch2-3 Animation Circular Reveal"
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_4CardFlipAnimation::class.java,
-                "2-4 Rotation X/Y and Flip"
+                "Ch2-4 Rotation X/Y and Flip"
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_5CurvedMotionAnimation::class.java,
-                "2-5 Curved motion Animation"
+                "Ch2-5 Curved motion Animation"
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_6ZoomAnimation::class.java,
-                "2-6 Zoom Animation"
+                "Ch2-6 Zoom Animation"
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_7GradientAnimations::class.java,
-                "2-7 Gradient Animations"
+                "Ch2-7 Gradient Animations"
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_8CounterAnimation::class.java,
-                "2-8 Counter TextView"
+                "Ch2-8 Counter TextView"
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_9CounterSurfaceView::class.java,
-                "2-9 Counter SurfaceView"
+                "Ch2-9 Counter SurfaceView"
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity3_1PhysicsBasics::class.java,
-                "3-1 Physics Basics"
+                "Ch3-1 Physics Basics"
             )
         )
     }
