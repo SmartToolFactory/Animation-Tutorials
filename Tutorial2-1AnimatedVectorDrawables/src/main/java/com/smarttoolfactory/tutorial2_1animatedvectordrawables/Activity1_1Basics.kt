@@ -78,7 +78,7 @@ class Activity1_1Basics : AppCompatActivity() {
             add(AVDModel(R.drawable.avd_no_connection))
             add(AVDModel(R.drawable.avd_add_to_comment))
             add(AVDModel(R.drawable.avd_comment_to_add))
-
+            add(AVDModel(R.drawable.avd_profile))
 
         }
 
