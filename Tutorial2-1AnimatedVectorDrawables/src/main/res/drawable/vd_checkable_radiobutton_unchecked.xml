@@ -1,0 +1,28 @@
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:width="32dp"
+  android:height="32dp"
+  android:tint="?attr/colorControlNormal"
+  android:viewportHeight="32"
+  android:viewportWidth="32">
+  <group
+    android:translateX="16"
+    android:translateY="16">
+    <group android:name="ring_outer">
+      <path
+        android:name="ring_outer_path"
+        android:pathData="@string/checkable_radiobutton_ring_outer_path"
+        android:strokeColor="@android:color/white"
+        android:strokeWidth="2"/>
+    </group>
+    <group
+      android:name="dot_group"
+      android:scaleX="0"
+      android:scaleY="0">
+      <path
+        android:name="dot_path"
+        android:fillColor="@android:color/white"
+        android:pathData="@string/checkable_radiobutton_dot_path"/>
+    </group>
+  </group>
+</vector>

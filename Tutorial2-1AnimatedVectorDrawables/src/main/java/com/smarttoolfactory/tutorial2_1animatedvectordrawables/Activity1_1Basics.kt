@@ -99,7 +99,6 @@ class Activity1_1Basics : AppCompatActivity() {
             add(AVDModel(R.drawable.avd_profile))
             add(AVDModel(R.drawable.avd_notifications_ring))
             add(AVDModel(R.drawable.avd_settings))
-            add(AVDModel(R.drawable.avd_house))
 
             add(HeaderModel("Seekable Vector Drawable"))
             add(SeekableVDModel(R.drawable.avd_compass_rotation))
@@ -110,6 +109,27 @@ class Activity1_1Basics : AppCompatActivity() {
             add(AVDModel(R.drawable.avd_clock_alarm))
             add(AVDModel(R.drawable.avd_clock_clock))
             add(AVDModel(R.drawable.avd_clock_stopwatch))
+
+            add(HeaderModel("Path Morph"))
+            add(AVDModel(R.drawable.avd_house))
+            add(AVDModel(R.drawable.avd_pathmorph_arrowoverflow_arrow_to_overflow))
+            add(AVDModel(R.drawable.avd_pathmorph_arrowoverflow_overflow_to_arrow))
+            add(AVDModel(R.drawable.avd_pathmorph_crosstick_cross_to_tick))
+            add(AVDModel(R.drawable.avd_pathmorph_crosstick_tick_to_cross))
+            add(AVDModel(R.drawable.avd_pathmorph_drawer_arrow_to_hamburger))
+            add(AVDModel(R.drawable.avd_pathmorph_drawer_hamburger_to_arrow))
+            add(AVDModel(R.drawable.avd_pathmorph_plusminus_minus_to_plus))
+            add(AVDModel(R.drawable.avd_pathmorph_plusminus_plus_to_minus))
+
+            add(AVDModel(R.drawable.avd_checkable_checkbox_checked_to_unchecked))
+            add(AVDModel(R.drawable.avd_checkable_checkbox_unchecked_to_checked))
+            add(AVDModel(R.drawable.avd_checkable_expandcollapse_collapsed_to_expanded))
+            add(AVDModel(R.drawable.avd_checkable_expandcollapse_expanded_to_collapsed))
+            add(AVDModel(R.drawable.avd_checkable_radiobutton_checked_to_unchecked))
+            add(AVDModel(R.drawable.avd_checkable_radiobutton_unchecked_to_checked))
+
+            add(HeaderModel("Trims, clips & fills"))
+
 
         }
 

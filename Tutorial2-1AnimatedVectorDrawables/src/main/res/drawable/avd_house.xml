@@ -38,7 +38,7 @@
                 android:valueFrom="M 10 14 L 10 20 L 14 20 L 14 14 L 10 14"
                 android:valueTo="M 10 14 L 10 20 L 10 20 L 10 15 L 10 14"
                 android:valueType="pathType"
-                android:interpolator="@android:interpolator/fast_out_slow_in"/>
+                android:interpolator="@android:interpolator/fast_out_linear_in"/>
         </aapt:attr>
     </target>
 </animated-vector>
