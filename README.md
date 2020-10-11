@@ -15,10 +15,26 @@ fragment transitions and image to ViewPager transitions and more.
 | Ch2-7 Gradient | Ch2-8 Counter TextViews   | Ch2-9 Counter SurfaceView |
 | ----------|----------------| --------|
 | <img src="./screenshots/chapter2_7gradient.gif"/> | <img src="./screenshots/chapter2_8counter_textview.gif"/> | <img src="./screenshots/chapter2_9_counter_surfaceview.gif"/> |
+| Ch3-1 Physics | Ch3-2 Scale and Chained   | Ch3-3 Fling |
+| ----------|----------------| --------|
+| <img src="./screenshots/chapter3_1physics_basics.gif"/> | <img src="./screenshots/chapter3_2scale_and_chain.gif"/> | <img src="./screenshots/chapter3_fling_animation.gif"/> |
+
+
 
 * [Tutorial2-1Animated Vector Drawables](https://github.com/SmartToolFactory/Animation-Tutorials/tree/master/Tutorial2-1AnimatedVectorDrawables)
    * Tutorials about Vector drawables, AnimatedVectorDrawables, and animation transitions for Animated Drawables
-   
+
+## Coverage
+
+
+## Animations
+This section includes different type of animations.
+
+### Physic Base Animations
+
+
+## Drawable Animations   
+
 ### XML for the VectorDrawable containing properties to be animated
 A VectorDrawable can be represented in xml with
 

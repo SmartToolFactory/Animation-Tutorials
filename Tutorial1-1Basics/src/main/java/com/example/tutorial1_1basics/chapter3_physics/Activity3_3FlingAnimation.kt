@@ -17,6 +17,8 @@ class Activity3_3FlingAnimation : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity3_3fling_animation)
+        title = getString(R.string.activity3_3)
+
         constraintLayout.doOnLayout {
             createFlingAnimWithLimit()
             createFlingAnimWithNoLimit()
