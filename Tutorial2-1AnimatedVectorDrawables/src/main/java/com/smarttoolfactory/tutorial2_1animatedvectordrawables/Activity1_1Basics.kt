@@ -97,10 +97,17 @@ class Activity1_1Basics : AppCompatActivity() {
             add(AVDModel(R.drawable.avd_add_to_comment))
             add(AVDModel(R.drawable.avd_comment_to_add))
             add(AVDModel(R.drawable.avd_profile))
+            add(AVDModel(R.drawable.avd_notifications_ring))
+
             add(HeaderModel("Seekable Vector Drawable"))
             add(SeekableVDModel(R.drawable.avd_compass_rotation))
             add(SeekableVDModel(R.drawable.avd_views))
             add(SeekableVDModel(R.drawable.avd_hourglass))
+
+            add(HeaderModel("Clocks"))
+            add(AVDModel(R.drawable.avd_clock_alarm))
+            add(AVDModel(R.drawable.avd_clock_clock))
+            add(AVDModel(R.drawable.avd_clock_stopwatch))
 
         }
 
