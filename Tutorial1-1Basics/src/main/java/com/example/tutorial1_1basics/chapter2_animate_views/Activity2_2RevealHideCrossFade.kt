@@ -16,6 +16,7 @@ class Activity2_2RevealHideCrossFade : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity2_2reveal_hide_crossfade)
+        title = getString(R.string.activity2_2)
 
         content = findViewById(R.id.content)
         loadingView = findViewById(R.id.loading_spinner)

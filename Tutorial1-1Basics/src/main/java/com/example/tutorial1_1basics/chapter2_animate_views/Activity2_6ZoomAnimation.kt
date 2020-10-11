@@ -28,6 +28,7 @@ class Activity2_6ZoomAnimation : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity2_6zoom_animation)
+        title = getString(R.string.activity2_6)
 
         // Hook up clicks on the thumbnail views.
 

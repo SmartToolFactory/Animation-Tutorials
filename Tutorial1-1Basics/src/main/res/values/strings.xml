@@ -7,4 +7,19 @@
     <string name="sequential">Sequential</string>
     <string name="shower">Shower</string>
     <string name="sky_color">Sky Color</string>
+    <string name="activity1_1">Ch1-1 Animation with ObjectAnimator</string>
+    <string name="activity1_2">Ch1-2 Animation with AnimatorInflater</string>
+    <string name="activity1_3">Ch1-3 Animating Translation vs Position</string>
+    <string name="activity2_1">2-1 Animation with Custom View</string>
+    <string name="activity2_2">Ch2-2 Animation Hide/Reveal crossFade</string>
+    <string name="activity2_3">Ch2-3 Animation Circular Reveal</string>
+    <string name="activity2_4">Ch2-4 Rotation X/Y and Flip</string>
+    <string name="activity2_5">Ch2-5 Curved motion Animation</string>
+    <string name="activity2_6">Ch2-6 Zoom Animation</string>
+    <string name="activity2_7">Ch2-7 Gradient Animations</string>
+    <string name="activity2_8">Ch2-8 Counter TextView</string>
+    <string name="activity2_9">Ch2-9 Counter SurfaceView</string>
+    <string name="activity3_1">Ch3-1 Physics Basics</string>
+    <string name="activity3_2">Ch3-2 Scale and Chained Animations</string>
+    <string name="activity3_3">Ch3-3 Fling Animations</string>
 </resources>

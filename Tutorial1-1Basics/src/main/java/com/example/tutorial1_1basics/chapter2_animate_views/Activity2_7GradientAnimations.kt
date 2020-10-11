@@ -25,6 +25,8 @@ class Activity2_7GradientAnimations : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity2_7gradient_animations)
+        title = getString(R.string.activity2_7)
+
 
         val viewPager2 = findViewById<ViewPager2>(R.id.viewPager2)
         val imageView = findViewById<ImageView>(R.id.image)

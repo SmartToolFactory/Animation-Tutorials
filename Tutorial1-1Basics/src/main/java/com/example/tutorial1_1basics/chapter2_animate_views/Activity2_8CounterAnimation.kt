@@ -11,6 +11,7 @@ class Activity2_8CounterAnimation : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity2_8counter_animation)
+        title = getString(R.string.activity2_8)
 
         val etStartValue = findViewById<EditText>(R.id.etStartValue)
         val etEndValue = findViewById<EditText>(R.id.etEndValue)

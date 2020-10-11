@@ -19,6 +19,7 @@ class Activity2_4CardFlipAnimation : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity2_4card_flip)
+        title = getString(R.string.activity2_4)
 
         val imageView = findViewById<ImageView>(R.id.imageView)
 

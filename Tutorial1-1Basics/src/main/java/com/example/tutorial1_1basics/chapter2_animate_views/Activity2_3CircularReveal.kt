@@ -15,6 +15,7 @@ class Activity2_3CircularReveal : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity2_3circular_reveal)
+        title = getString(R.string.activity2_3)
 
         val imageView = findViewById<ImageView>(R.id.imageView).apply {
             visibility = View.INVISIBLE

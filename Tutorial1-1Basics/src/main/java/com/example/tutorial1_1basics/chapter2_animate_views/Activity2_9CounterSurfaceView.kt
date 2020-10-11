@@ -12,6 +12,7 @@ class Activity2_9CounterSurfaceView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity2_9_counter_surfaceview)
+        title = getString(R.string.activity2_9)
 
         val etStartValue = findViewById<EditText>(R.id.etStartValue)
         val etEndValue = findViewById<EditText>(R.id.etEndValue)

@@ -28,7 +28,6 @@ class Activity3_1PhysicsBasics : AppCompatActivity() {
     private var stiffness = SpringForce.STIFFNESS_LOW
     private var dampingRatio = SpringForce.DAMPING_RATIO_MEDIUM_BOUNCY
 
-
     private val springAnimX by lazy {
         SpringAnimation(imageView, DynamicAnimation.X, initialX)
             .apply {
@@ -50,7 +49,7 @@ class Activity3_1PhysicsBasics : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity3_1physics_basics)
-        title = "Ch3-1 Physics Basics"
+        title = getString(R.string.activity3_1)
 
         val pixelPerSecond: Float =
             TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100f, resources.displayMetrics)

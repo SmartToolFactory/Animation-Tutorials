@@ -17,6 +17,8 @@ import com.example.tutorial1_1basics.adapter_chapter_selection.ChapterSelectionA
 import com.example.tutorial1_1basics.databinding.ActivityMainBinding
 import com.example.tutorial1_1basics.adapter_chapter_selection.model.ActivityClassModel
 import com.example.tutorial1_1basics.chapter3_physics.Activity3_1PhysicsBasics
+import com.example.tutorial1_1basics.chapter3_physics.Activity3_2ScaleAndChainedAnimations
+import com.example.tutorial1_1basics.chapter3_physics.Activity3_3FlingAnimation
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickListener {
@@ -64,21 +66,21 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
         activityClassModels.add(
             ActivityClassModel(
                 Activity1_1Basics::class.java,
-                "Ch1-1 Animation with ObjectAnimator"
+                getString(R.string.activity1_1)
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity1_2AnimatorInflater::class.java,
-                "Ch1-2 Animation with AnimatorInflater"
+                getString(R.string.activity1_2)
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity1_3TranslationVsPosition::class.java,
-                "Ch1-3 Animating Translation vs Position"
+                getString(R.string.activity1_3)
             )
         )
 
@@ -86,70 +88,84 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_1PulseView::class.java,
-                "2-1 Animation with Custom View"
+                getString(R.string.activity2_1)
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_2RevealHideCrossFade::class.java,
-                "Ch2-2 Animation Hide/Reveal crossFade"
+                getString(R.string.activity2_2)
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_3CircularReveal::class.java,
-                "Ch2-3 Animation Circular Reveal"
+                getString(R.string.activity2_3)
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_4CardFlipAnimation::class.java,
-                "Ch2-4 Rotation X/Y and Flip"
+                getString(R.string.activity2_4)
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_5CurvedMotionAnimation::class.java,
-                "Ch2-5 Curved motion Animation"
+                getString(R.string.activity2_5)
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_6ZoomAnimation::class.java,
-                "Ch2-6 Zoom Animation"
+                getString(R.string.activity2_6)
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_7GradientAnimations::class.java,
-                "Ch2-7 Gradient Animations"
+                getString(R.string.activity2_7)
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_8CounterAnimation::class.java,
-                "Ch2-8 Counter TextView"
+                getString(R.string.activity2_8)
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity2_9CounterSurfaceView::class.java,
-                "Ch2-9 Counter SurfaceView"
+                getString(R.string.activity2_9)
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
                 Activity3_1PhysicsBasics::class.java,
-                "Ch3-1 Physics Basics"
+                getString(R.string.activity3_1)
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity3_2ScaleAndChainedAnimations::class.java,
+                getString(R.string.activity3_2)
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity3_3FlingAnimation::class.java,
+                getString(R.string.activity3_3)
             )
         )
     }

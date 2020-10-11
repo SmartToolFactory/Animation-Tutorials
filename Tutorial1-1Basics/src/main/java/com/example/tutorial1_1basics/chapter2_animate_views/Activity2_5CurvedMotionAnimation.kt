@@ -14,6 +14,7 @@ class Activity2_5CurvedMotionAnimation : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity2_5curved_motion)
+        title = getString(R.string.activity2_5)
 
         val circleView = findViewById<CircleView>(R.id.circleView)
 

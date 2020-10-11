@@ -9,5 +9,6 @@ class Activity2_1PulseView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity2_1pulseview)
+        title = getString(R.string.activity2_1)
     }
 }

@@ -26,6 +26,7 @@ class Activity1_2AnimatorInflater : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity1_2animatorinflater)
+        title = getString(R.string.activity1_2)
 
         star = findViewById(R.id.star)
         rotateButton = findViewById(R.id.rotateButton)

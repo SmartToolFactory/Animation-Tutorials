@@ -33,6 +33,8 @@ class Activity1_1Basics : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity1_1basics)
+        title = getString(R.string.activity1_1)
+
 
         star = findViewById(R.id.star)
         rotateButton = findViewById(R.id.rotateButton)

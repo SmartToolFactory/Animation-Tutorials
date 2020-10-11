@@ -8,7 +8,6 @@ import com.smarttoolfactory.tutorial2_1animatedvectordrawables.model.HeaderModel
 class GridSpacingItemDecoration(
     private val spanCount: Int,
     private val spacing: Int,
-    private val includeEdge: Boolean,
     private val data: List<Any>
 ) : RecyclerView.ItemDecoration() {
 
@@ -20,26 +19,18 @@ class GridSpacingItemDecoration(
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
-        val position = parent.getChildAdapterPosition(view) // item position
-
+        val position = parent.getChildAdapterPosition(view)
 
         if ((data[position] is HeaderModel)) {
             previousHeaderPosition = position
             return
         }
 
-
         val column = if (previousHeaderPosition >= 0) {
             (position - (previousHeaderPosition + 1)) % spanCount
         } else {
-            position % spanCount  // item column
+            position % spanCount
         }
-
-        println(
-            "🔥GridSpacingItemDecoration position:$position, " +
-                    "header pos: $previousHeaderPosition, " +
-                    "column: $column"
-        )
 
         if (previousHeaderPosition < 0) {
             if (position < spanCount) { // top edge
@@ -53,7 +44,6 @@ class GridSpacingItemDecoration(
 
         outRect.left = spacing - column * spacing / spanCount
         outRect.right = (column + 1) * spacing / spanCount
-
-        outRect.bottom = spacing // item bottom
+        outRect.bottom = spacing
     }
 }

@@ -38,7 +38,7 @@ class Activity1_1Basics : AppCompatActivity() {
         recyclerView.apply {
             this.adapter = adapter
             addItemDecoration(
-                GridSpacingItemDecoration(3, 30, true, dataList)
+                GridSpacingItemDecoration(3, 30, dataList)
             )
             val gridLayoutManager = GridLayoutManager(this@Activity1_1Basics, 6)
 
