@@ -25,7 +25,7 @@ fragment transitions and image to ViewPager transitions and more.
 * [Tutorial2-1Animated Vector Drawables](https://github.com/SmartToolFactory/Animation-Tutorials/tree/master/Tutorial2-1AnimatedVectorDrawables)
    * Tutorials about Vector drawables, AnimatedVectorDrawables, and animation transitions for Animated Drawables
 
-| Ch1-1 Animated Vector Drawables | Ch1-2 State Change   | Ch1-3 BottomNavigationBar Icons |
+| Ch1-1 Animated VDs | Ch1-2 State Change   | Ch1-3 BNV Icons |
 | ----------|----------------| --------|
 | <img src="./screenshots/avd_chapter1_1.gif"/> | <img src="./screenshots/avd_chapter1_1.gif"/> | <img src="./screenshots/avd_chapter1_1.gif"/> |
 
@@ -97,6 +97,9 @@ The ObjectAnimator's target can be the root element, a group element or a path e
  Elements without animation do not need to be named.
  
  For more details you check out [here](https://www.androiddesignpatterns.com/2016/11/introduction-to-icon-animation-techniques.html)
+
+🔥 [ShapeShifter](https://shapeshifter.design) by **Alex Lockwood** makes it so easy to create animations for Vector Drawables,
+wonderful and very easy to use tool.
 
 ### XML for AnimatedVectorDrawable
 An AnimatedVectorDrawable element has a VectorDrawable attribute, and one or more target element(s). 
