@@ -98,6 +98,8 @@ class Activity1_1Basics : AppCompatActivity() {
             add(AVDModel(R.drawable.avd_comment_to_add))
             add(AVDModel(R.drawable.avd_profile))
             add(AVDModel(R.drawable.avd_notifications_ring))
+            add(AVDModel(R.drawable.avd_settings))
+            add(AVDModel(R.drawable.avd_house))
 
             add(HeaderModel("Seekable Vector Drawable"))
             add(SeekableVDModel(R.drawable.avd_compass_rotation))

@@ -6,7 +6,7 @@ fragment transitions and image to ViewPager transitions and more.
 ## Overview
 
 * [Tutorial1-1Basics](https://github.com/SmartToolFactory/Animation-Tutorials/tree/master/Tutorial1-1Basics)
-    * Tutorials about animators, animation basics and using coroutine based SurfaceView to create a counter up down motion
+<br>Tutorials about animators, animation basics and using coroutine based SurfaceView to create a counter up down motion
 
 | Ch2-3 Circular Reveal      | Ch2-4 Rotate X/Y Flip   | Ch2-6 Zoom |
 | ----------|-----------| -----------|
@@ -23,7 +23,7 @@ fragment transitions and image to ViewPager transitions and more.
 <br>
 
 * [Tutorial2-1Animated Vector Drawables](https://github.com/SmartToolFactory/Animation-Tutorials/tree/master/Tutorial2-1AnimatedVectorDrawables)
-   * Tutorials about Vector drawables, AnimatedVectorDrawables, and animation transitions for Animated Drawables
+<br>Tutorials about Vector drawables, AnimatedVectorDrawables, and animation transitions for Animated Drawables
 
 | Ch1-1 Animated VDs | Ch1-2 State Change   | Ch1-3 BNV Icons |
 | ----------|----------------| --------|
@@ -98,16 +98,18 @@ The ObjectAnimator's target can be the root element, a group element or a path e
  
  For more details you check out [here](https://www.androiddesignpatterns.com/2016/11/introduction-to-icon-animation-techniques.html)
 
-🔥 [ShapeShifter](https://shapeshifter.design) by **Alex Lockwood** makes it so easy to create animations for Vector Drawables,
-wonderful and very easy to use tool.
+
 
 ### XML for AnimatedVectorDrawable
+
 An AnimatedVectorDrawable element has a VectorDrawable attribute, and one or more target element(s). 
 The target element can specify its target by android:name attribute, 
 and link the target with the proper ObjectAnimator or AnimatorSet by android:animation attribute.
 
-### XML for Animations defined using ObjectAnimator or AnimatorSet
+🔥😍 [ShapeShifter](https://shapeshifter.design) by **Alex Lockwood** makes it so easy to create animations for Vector Drawables.
+Wonderful and very easy to use tool to create Animated Vector Drawables.
 
+### XML for Animations defined using ObjectAnimator or AnimatorSet
 ```
 <set xmlns:android="http://schemas.android.com/apk/res/android">
       <objectAnimator
