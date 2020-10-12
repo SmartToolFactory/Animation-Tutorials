@@ -27,7 +27,7 @@ fragment transitions and image to ViewPager transitions and more.
 
 | Ch1-1 Animated VDs | Ch1-2 State Change   | Ch1-3 BNV Icons |
 | ----------|----------------| --------|
-| <img src="./screenshots/avd_chapter1_1.gif"/> | <img src="./screenshots/avd_chapter1_1.gif"/> | <img src="./screenshots/avd_chapter1_1.gif"/> |
+| <img src="./screenshots/avd_chapter1_1.gif"/> | <img src="./screenshots/avd_chapter1_2.gif"/> | <img src="./screenshots/avd_chapter1_3.gif"/> |
 
 
 ## Physics Based Animations

@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".Activity1_1Basics" />
         <activity android:name=".Activity1_2StateChange" />
+        <activity android:name=".Activity1_3BottomNavIcons" />
     </application>
 
 </manifest>

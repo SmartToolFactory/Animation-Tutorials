@@ -94,8 +94,8 @@ class Activity1_1Basics : AppCompatActivity() {
             add(AVDModel(R.drawable.avd_no_connection))
             add(AVDModel(R.drawable.avd_add_to_comment))
             add(AVDModel(R.drawable.avd_comment_to_add))
-            add(AVDModel(R.drawable.avd_profile))
-            add(AVDModel(R.drawable.avd_notifications_ring))
+            add(AVDModel(R.drawable.avd_account2))
+            add(AVDModel(R.drawable.avd_notification_ring))
             add(AVDModel(R.drawable.avd_settings))
 
             add(HeaderModel("Seekable Vector Drawable"))
@@ -109,7 +109,7 @@ class Activity1_1Basics : AppCompatActivity() {
             add(AVDModel(R.drawable.avd_clock_stopwatch))
 
             add(HeaderModel("Path Morph"))
-            add(AVDModel(R.drawable.avd_house))
+            add(AVDModel(R.drawable.avd_home))
             add(AVDModel(R.drawable.avd_pathmorph_arrowoverflow_arrow_to_overflow))
             add(AVDModel(R.drawable.avd_pathmorph_arrowoverflow_overflow_to_arrow))
             add(AVDModel(R.drawable.avd_pathmorph_crosstick_cross_to_tick))

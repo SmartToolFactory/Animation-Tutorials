@@ -68,6 +68,13 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
                 getString(R.string.activity1_2)
             )
         )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity1_3BottomNavIcons::class.java,
+                getString(R.string.activity1_3)
+            )
+        )
     }
 
     @Override
