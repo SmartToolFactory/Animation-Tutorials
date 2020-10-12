@@ -46,5 +46,11 @@ class ImageButtonViewHolder(private val binding: ItemImageButtonBinding) :
         )
 
         imageButton.setImageDrawable(drawable)
+
+        imageButton.setOnClickListener {
+            imageButton.isSelected = !imageButton.isSelected
+            val stateSet = intArrayOf(android.R.attr.state_checked * if ( imageButton.isSelected) 1 else -1)
+            imageButton.setImageState(stateSet, true)
+        }
     }
 }

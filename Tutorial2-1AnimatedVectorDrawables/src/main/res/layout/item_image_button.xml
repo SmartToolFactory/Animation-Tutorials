@@ -12,23 +12,31 @@
     </data>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="120dp"
-        android:layout_height="120dp">
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="5dp">
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".7"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".7"
-            android:background="?android:selectableItemBackgroundBorderless"
-            tools:src="@drawable/avd_likes" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="120dp"
+            android:layout_height="120dp">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageButton"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".7"
+                tools:src="@drawable/asl_heart_break" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 </layout>

@@ -126,9 +126,9 @@ class Activity1_1Basics : AppCompatActivity() {
             add(AVDModel(R.drawable.avd_checkable_radiobutton_unchecked_to_checked))
 
             add(HeaderModel("Trims, clips & fills"))
-            add(AVDModel(R.drawable.avd_heart_fill))
-            add(AVDModel(R.drawable.avd_heart_unfill))
-            add(AVDModel(R.drawable.avd_heart_break))
+            add(AVDModel(R.drawable.avd_heart_empty_to_filled))
+            add(AVDModel(R.drawable.avd_heart_filled_to_unfilled))
+            add(AVDModel(R.drawable.avd_heart_filled_to_broken))
             add(AVDModel(R.drawable.avd_trimclip_airplane_disabled_to_enabled))
             add(AVDModel(R.drawable.avd_trimclip_airplane_enabled_to_disabled))
             add(AVDModel(R.drawable.avd_trimclip_searchback_back_to_search))

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/enable"
+        android:drawable="@drawable/vd_heart_filled"
+        android:state_checked="true" />
+
+    <item
+        android:id="@+id/disable"
+        android:drawable="@drawable/vd_heart_empty" />
+
+    <transition
+        android:drawable="@drawable/avd_heart_empty_to_filled"
+        android:fromId="@id/disable"
+        android:toId="@id/enable" />
+
+    <transition
+        android:drawable="@drawable/avd_heart_filled_to_broken"
+        android:fromId="@id/enable"
+        android:toId="@id/disable" />
+
+</animated-selector>

@@ -56,22 +56,24 @@ class Activity1_2StateChange : AppCompatActivity() {
             recyclerView.layoutManager = gridLayoutManager
         }
 
-        imageButton.setOnClickListener {
-
-            imageButton.isSelected = !imageButton.isSelected
-            Toast.makeText(
-                applicationContext,
-                "Button drawableState: ${imageButton.drawableState}, selected: ${imageButton.isSelected}",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-
-        var isChecked = false
-        imageView.setOnClickListener {
-            isChecked = !isChecked
-            val stateSet = intArrayOf(android.R.attr.state_checked * if (isChecked) 1 else -1)
-            imageView.setImageState(stateSet, true)
-        }
+//        imageButton.setOnClickListener {
+//
+//            imageButton.isSelected = !imageButton.isSelected
+//            Toast.makeText(
+//                applicationContext,
+//                "Button drawableState: ${imageButton.drawableState}, selected: ${imageButton.isSelected}",
+//                Toast.LENGTH_SHORT
+//            ).show()
+//            val stateSet =
+//                intArrayOf(android.R.attr.state_checked * if (imageButton.isSelected) 1 else -1)
+//            imageButton.setImageState(stateSet, true)
+//        }
+//
+//        imageView.setOnClickListener {
+//            imageView.isSelected = !imageView.isSelected
+//            val stateSet = intArrayOf(android.R.attr.state_checked * if ( imageView.isSelected) 1 else -1)
+//            imageView.setImageState(stateSet, true)
+//        }
     }
 
     private fun createViewBinders(): HashMap<ItemClazz, MappableItemBinder> {
@@ -98,7 +100,24 @@ class Activity1_2StateChange : AppCompatActivity() {
 
         val data = mutableListOf<Any>().apply {
             add(HeaderModel("Animated State Change"))
-            add(ImageButtonModel(R.drawable.asl_trimclip_heart))
+            add(ImageButtonModel(R.drawable.asl_heart_break))
+            add(ImageButtonModel(R.drawable.asl_heart_unfill))
+
+            add(HeaderModel("Trims, clips & fills"))
+            add(ImageButtonModel(R.drawable.asl_trimclip_searchback))
+            add(ImageButtonModel(R.drawable.asl_trimclip_airplane))
+            add(ImageButtonModel(R.drawable.asl_trimclip_flashlight))
+
+            add(HeaderModel("Path Morph"))
+            add(ImageButtonModel(R.drawable.asl_pathmorph_drawer))
+            add(ImageButtonModel(R.drawable.asl_pathmorph_arrowoverflow))
+            add(ImageButtonModel(R.drawable.asl_pathmorph_crosstick))
+            add(ImageButtonModel(R.drawable.asl_pathmorph_plusminus))
+
+            add(HeaderModel("Checkable"))
+            add(ImageButtonModel(R.drawable.asl_checkable_checkbox))
+            add(ImageButtonModel(R.drawable.asl_checkable_radiobutton))
+            add(ImageButtonModel(R.drawable.asl_checkable_expandcollapse))
         }
 
         return data.toList()
