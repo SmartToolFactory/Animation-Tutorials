@@ -3,15 +3,13 @@
 package com.smarttoolfactory.tutorial2_1animatedvectordrawables
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.smarttoolfactory.tutorial2_1animatedvectordrawables.chapter1_vector_drawables.adapter.*
-import com.smarttoolfactory.tutorial2_1animatedvectordrawables.chapter1_vector_drawables.adapter.itemdecoration.GridSpacingItemDecoration
-import com.smarttoolfactory.tutorial2_1animatedvectordrawables.chapter1_vector_drawables.adapter.viewholder.HeaderViewBinder
-import com.smarttoolfactory.tutorial2_1animatedvectordrawables.chapter1_vector_drawables.adapter.viewholder.ItemClazz
-import com.smarttoolfactory.tutorial2_1animatedvectordrawables.chapter1_vector_drawables.adapter.viewholder.MappableItemBinder
-import com.smarttoolfactory.tutorial2_1animatedvectordrawables.chapter1_vector_drawables.adapter.viewholder.SeekableVDViewBinder
+import com.smarttoolfactory.tutorial2_1animatedvectordrawables.adapter.MultipleViewBinderListAdapter
+import com.smarttoolfactory.tutorial2_1animatedvectordrawables.adapter.itemdecoration.GridSpacingItemDecoration
+import com.smarttoolfactory.tutorial2_1animatedvectordrawables.adapter.viewholder.*
 import com.smarttoolfactory.tutorial2_1animatedvectordrawables.model.AVDModel
 import com.smarttoolfactory.tutorial2_1animatedvectordrawables.model.HeaderModel
 import com.smarttoolfactory.tutorial2_1animatedvectordrawables.model.SeekableVDModel
@@ -86,6 +84,7 @@ class Activity1_1Basics : AppCompatActivity() {
     private fun getVectorDrawableItemList(): List<Any> {
 
         val data = mutableListOf<Any>().apply {
+
             // Add Vector Drawables
             add(HeaderModel("Animated Vector Drawable"))
             add(AVDModel(R.drawable.avd_likes))
@@ -120,17 +119,12 @@ class Activity1_1Basics : AppCompatActivity() {
             add(AVDModel(R.drawable.avd_pathmorph_drawer_hamburger_to_arrow))
             add(AVDModel(R.drawable.avd_pathmorph_plusminus_minus_to_plus))
             add(AVDModel(R.drawable.avd_pathmorph_plusminus_plus_to_minus))
-
             add(AVDModel(R.drawable.avd_checkable_checkbox_checked_to_unchecked))
             add(AVDModel(R.drawable.avd_checkable_checkbox_unchecked_to_checked))
             add(AVDModel(R.drawable.avd_checkable_expandcollapse_collapsed_to_expanded))
             add(AVDModel(R.drawable.avd_checkable_expandcollapse_expanded_to_collapsed))
             add(AVDModel(R.drawable.avd_checkable_radiobutton_checked_to_unchecked))
             add(AVDModel(R.drawable.avd_checkable_radiobutton_unchecked_to_checked))
-
-            add(HeaderModel("Trims, clips & fills"))
-
-
         }
 
         return data.toList()

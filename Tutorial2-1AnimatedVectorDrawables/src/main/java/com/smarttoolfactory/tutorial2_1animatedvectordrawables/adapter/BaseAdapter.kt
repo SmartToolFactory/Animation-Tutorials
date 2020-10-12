@@ -1,4 +1,4 @@
-package com.smarttoolfactory.tutorial2_1animatedvectordrawables.adapter_chapter_selection
+package com.smarttoolfactory.tutorial2_1animatedvectordrawables.adapter
 
 import android.view.LayoutInflater
 import android.view.View

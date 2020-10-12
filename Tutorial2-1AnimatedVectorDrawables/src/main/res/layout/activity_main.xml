@@ -4,7 +4,7 @@
     <data>
         <variable
             name="obj"
-            type="com.smarttoolfactory.tutorial2_1animatedvectordrawables.adapter_chapter_selection.model.ActivityClassModel" />
+            type="com.smarttoolfactory.tutorial2_1animatedvectordrawables.adapter.model.ActivityClassModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"

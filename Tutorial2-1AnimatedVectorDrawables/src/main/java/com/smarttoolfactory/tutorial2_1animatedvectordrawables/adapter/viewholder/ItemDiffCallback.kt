@@ -1,4 +1,4 @@
-package com.smarttoolfactory.tutorial2_1animatedvectordrawables.chapter1_vector_drawables.adapter.viewholder
+package com.smarttoolfactory.tutorial2_1animatedvectordrawables.adapter.viewholder
 
 import androidx.recyclerview.widget.DiffUtil
 

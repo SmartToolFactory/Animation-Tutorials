@@ -1,4 +1,4 @@
-package com.smarttoolfactory.tutorial2_1animatedvectordrawables.chapter1_vector_drawables.adapter.itemdecoration
+package com.smarttoolfactory.tutorial2_1animatedvectordrawables.adapter.itemdecoration
 
 import android.graphics.Rect
 import android.view.View
@@ -11,7 +11,17 @@ class GridSpacingItemDecoration(
     private val data: List<Any>
 ) : RecyclerView.ItemDecoration() {
 
-    var previousHeaderPosition = -100
+    private val headerPositions = mutableListOf<Int>()
+
+    init {
+        data.forEachIndexed { index, item ->
+            if (item is HeaderModel) {
+                headerPositions.add(index)
+            }
+        }
+    }
+
+    var headerPosition = -1
 
     override fun getItemOffsets(
         outRect: Rect,
@@ -21,23 +31,29 @@ class GridSpacingItemDecoration(
     ) {
         val position = parent.getChildAdapterPosition(view)
 
+
         if ((data[position] is HeaderModel)) {
-            previousHeaderPosition = position
             return
         }
 
-        val column = if (previousHeaderPosition >= 0) {
-            (position - (previousHeaderPosition + 1)) % spanCount
+        if (headerPositions.isEmpty()) {
+            headerPosition = -1
         } else {
-            position % spanCount
+            headerPositions.forEach {
+                if (position >= it) {
+                    headerPosition = it
+                }
+            }
         }
 
-        if (previousHeaderPosition < 0) {
+        val column = (position - (headerPosition + 1)) % spanCount
+
+        if (headerPosition < 0) {
             if (position < spanCount) { // top edge
                 outRect.top = spacing
             }
-        }else if(previousHeaderPosition < spanCount) {
-            if (position - (previousHeaderPosition +1) < spanCount) {
+        } else if (headerPosition < spanCount) {
+            if (position - (headerPosition + 1) < spanCount) {
                 outRect.top = spacing
             }
         }
@@ -46,4 +62,5 @@ class GridSpacingItemDecoration(
         outRect.right = (column + 1) * spacing / spanCount
         outRect.bottom = spacing
     }
+
 }

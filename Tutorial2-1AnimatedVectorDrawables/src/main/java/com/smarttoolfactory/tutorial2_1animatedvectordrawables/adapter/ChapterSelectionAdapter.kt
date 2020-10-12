@@ -1,7 +1,7 @@
-package com.smarttoolfactory.tutorial2_1animatedvectordrawables.adapter_chapter_selection
+package com.smarttoolfactory.tutorial2_1animatedvectordrawables.adapter
 
 import com.smarttoolfactory.tutorial2_1animatedvectordrawables.R
-import com.smarttoolfactory.tutorial2_1animatedvectordrawables.adapter_chapter_selection.model.ActivityClassModel
+import com.smarttoolfactory.tutorial2_1animatedvectordrawables.adapter.model.ActivityClassModel
 
 
 /**

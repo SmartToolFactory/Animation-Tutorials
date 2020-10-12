@@ -1,11 +1,11 @@
-package com.smarttoolfactory.tutorial2_1animatedvectordrawables.chapter1_vector_drawables.adapter
+package com.smarttoolfactory.tutorial2_1animatedvectordrawables.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.smarttoolfactory.tutorial2_1animatedvectordrawables.chapter1_vector_drawables.adapter.viewholder.ItemClazz
-import com.smarttoolfactory.tutorial2_1animatedvectordrawables.chapter1_vector_drawables.adapter.viewholder.ItemDiffCallback
-import com.smarttoolfactory.tutorial2_1animatedvectordrawables.chapter1_vector_drawables.adapter.viewholder.MappableItemBinder
+import com.smarttoolfactory.tutorial2_1animatedvectordrawables.adapter.viewholder.ItemClazz
+import com.smarttoolfactory.tutorial2_1animatedvectordrawables.adapter.viewholder.ItemDiffCallback
+import com.smarttoolfactory.tutorial2_1animatedvectordrawables.adapter.viewholder.MappableItemBinder
 
 /**
  * RecyclerView adapter for setting list with different layouts using [MappableItemViewBinder].
