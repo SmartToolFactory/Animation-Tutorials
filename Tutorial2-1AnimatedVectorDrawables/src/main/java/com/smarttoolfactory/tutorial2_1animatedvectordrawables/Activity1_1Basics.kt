@@ -3,7 +3,6 @@
 package com.smarttoolfactory.tutorial2_1animatedvectordrawables
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +19,7 @@ class Activity1_1Basics : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity1_1basics)
-        title = "Ch1-1 AnimatedVectorDrawables"
+        title = getString(R.string.activity1_1)
 
         val dataList = getVectorDrawableItemList()
 
@@ -125,6 +124,18 @@ class Activity1_1Basics : AppCompatActivity() {
             add(AVDModel(R.drawable.avd_checkable_expandcollapse_expanded_to_collapsed))
             add(AVDModel(R.drawable.avd_checkable_radiobutton_checked_to_unchecked))
             add(AVDModel(R.drawable.avd_checkable_radiobutton_unchecked_to_checked))
+
+            add(HeaderModel("Trims, clips & fills"))
+            add(AVDModel(R.drawable.avd_heart_fill))
+            add(AVDModel(R.drawable.avd_heart_unfill))
+            add(AVDModel(R.drawable.avd_heart_break))
+            add(AVDModel(R.drawable.avd_trimclip_airplane_disabled_to_enabled))
+            add(AVDModel(R.drawable.avd_trimclip_airplane_enabled_to_disabled))
+            add(AVDModel(R.drawable.avd_trimclip_searchback_back_to_search))
+            add(AVDModel(R.drawable.avd_trimclip_searchback_search_to_back))
+            add(AVDModel(R.drawable.avd_trimclip_flashlight_disabled_to_enabled))
+            add(AVDModel(R.drawable.avd_trimclip_flashlight_enabled_to_disabled))
+
         }
 
         return data.toList()

@@ -4,3 +4,4 @@ import androidx.annotation.DrawableRes
 
 data class AVDModel(@DrawableRes val drawableRes: Int)
 data class SeekableVDModel(@DrawableRes val drawableRes: Int)
+data class ImageButtonModel(@DrawableRes val drawableRes: Int)

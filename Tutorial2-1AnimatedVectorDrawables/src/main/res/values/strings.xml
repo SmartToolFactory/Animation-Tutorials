@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Tutorial2-1AnimatedVectorDrawables</string>
+    <string name="activity1_1">Ch1-1 AnimatedVectorDrawables</string>
+    <string name="activity1_2">Ch1-2 State Change</string>
+    <string name="activity1_3">Ch1-3 BottomNavigationView Icons</string>
 </resources>

@@ -58,7 +58,14 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
         activityClassModels.add(
             ActivityClassModel(
                 Activity1_1Basics::class.java,
-                "Ch1-1 AnimatedVectorDrawables"
+                getString(R.string.activity1_1)
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity1_2StateChange::class.java,
+                getString(R.string.activity1_2)
             )
         )
     }

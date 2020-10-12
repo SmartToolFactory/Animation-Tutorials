@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity1_1Basics" />
+        <activity android:name=".Activity1_2StateChange" />
     </application>
 
 </manifest>
