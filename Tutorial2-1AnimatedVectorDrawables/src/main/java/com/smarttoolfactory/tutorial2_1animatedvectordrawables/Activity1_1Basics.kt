@@ -21,7 +21,7 @@ class Activity1_1Basics : AppCompatActivity() {
         setContentView(R.layout.activity1_1basics)
         title = getString(R.string.activity1_1)
 
-        val dataList = getVectorDrawableItemList()
+        val dataList:List<Any> = getVectorDrawableItemList()
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 

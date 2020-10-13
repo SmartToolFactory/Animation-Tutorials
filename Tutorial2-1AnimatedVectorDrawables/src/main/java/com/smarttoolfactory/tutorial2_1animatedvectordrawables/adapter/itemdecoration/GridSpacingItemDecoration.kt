@@ -36,6 +36,7 @@ class GridSpacingItemDecoration(
             return
         }
 
+        // After scroll check for the closest header above this position
         if (headerPositions.isEmpty()) {
             headerPosition = -1
         } else {

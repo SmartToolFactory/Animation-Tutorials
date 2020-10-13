@@ -1,5 +1,6 @@
 package com.smarttoolfactory.tutorial3_1transitions.adapter
 
+import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.ActivityClassModel
 
 
