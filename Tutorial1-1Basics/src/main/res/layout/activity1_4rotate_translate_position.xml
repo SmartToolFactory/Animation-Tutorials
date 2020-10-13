@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textColor="#f00"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="TX:0, TY:0, TZ: 0 Top:0, Left:0, Right:0, Bottom:0, X:0, Y:0, Z:0" />
+
+    <!-- Rotate -->
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.443"
+        app:srcCompat="@drawable/ic_baseline_sports_basketball_24"
+        app:tint="#FFA000" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonRotate"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Rotate"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRotateY"
+        app:layout_constraintStart_toStartOf="@id/buttonRotateX"
+        app:layout_goneMarginBottom="16dp"
+        app:strokeColor="@color/design_default_color_primary" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonRotateY"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="RotateY"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRotateX"
+        app:layout_constraintStart_toStartOf="@id/buttonRotateX"
+        app:layout_goneMarginBottom="16dp"
+        app:strokeColor="@color/design_default_color_primary" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonRotateX"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="RotateX"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonTranslateX"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_goneMarginBottom="48dp"
+        app:strokeColor="@color/design_default_color_primary" />
+
+    <!-- Translate -->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonTranslateZ"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="TranslateZ"
+        app:layout_constraintBottom_toTopOf="@+id/buttonTranslateY"
+        app:layout_constraintStart_toStartOf="@id/buttonTranslateX"
+        app:layout_goneMarginBottom="16dp"
+        app:strokeColor="@color/design_default_color_primary" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonTranslateY"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="TranslateY"
+        app:layout_constraintBottom_toTopOf="@+id/buttonTranslateX"
+        app:layout_constraintStart_toStartOf="@id/buttonTranslateX"
+        app:layout_goneMarginBottom="16dp"
+        app:strokeColor="@color/design_default_color_primary" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonTranslateX"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TranslateX"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonRotateX"
+        app:layout_constraintEnd_toStartOf="@+id/buttonPositionX"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonRotateX"
+        app:layout_constraintTop_toTopOf="@+id/buttonRotateX"
+        app:layout_goneMarginBottom="48dp"
+        app:strokeColor="@color/design_default_color_primary" />
+
+    <!-- Position -->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonPositionZ"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="PosZ"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPositionY"
+        app:layout_constraintStart_toStartOf="@id/buttonPositionX"
+        app:layout_goneMarginBottom="16dp"
+        app:strokeColor="@color/design_default_color_primary" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonPositionY"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="PosY"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPositionX"
+        app:layout_constraintStart_toStartOf="@id/buttonPositionX"
+        app:layout_goneMarginBottom="16dp"
+        app:strokeColor="@color/design_default_color_primary" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonPositionX"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PosX"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonRotateX"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonTranslateX"
+        app:layout_constraintTop_toTopOf="@+id/buttonRotateX"
+        app:layout_goneMarginBottom="48dp"
+        app:strokeColor="@color/design_default_color_primary" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

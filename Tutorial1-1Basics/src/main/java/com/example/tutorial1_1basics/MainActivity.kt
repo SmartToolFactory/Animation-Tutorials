@@ -16,6 +16,7 @@ import com.example.tutorial1_1basics.adapter_chapter_selection.BaseAdapter
 import com.example.tutorial1_1basics.adapter_chapter_selection.ChapterSelectionAdapter
 import com.example.tutorial1_1basics.databinding.ActivityMainBinding
 import com.example.tutorial1_1basics.adapter_chapter_selection.model.ActivityClassModel
+import com.example.tutorial1_1basics.chapter1_basics.Activity1_4RotationTranslationPosition
 import com.example.tutorial1_1basics.chapter3_physics.Activity3_1PhysicsBasics
 import com.example.tutorial1_1basics.chapter3_physics.Activity3_2ScaleAndChainedAnimations
 import com.example.tutorial1_1basics.chapter3_physics.Activity3_3FlingAnimation
@@ -81,6 +82,13 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
             ActivityClassModel(
                 Activity1_3TranslationVsPosition::class.java,
                 getString(R.string.activity1_3)
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity1_4RotationTranslationPosition::class.java,
+                getString(R.string.activity1_4)
             )
         )
 

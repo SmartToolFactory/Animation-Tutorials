@@ -245,8 +245,8 @@
         <aapt:attr name="android:animation">
             <objectAnimator
                 android:propertyName="fillAlpha"
-                android:startOffset="990"
-                android:duration="10"
+                android:startOffset="1000"
+                android:duration="100"
                 android:valueFrom="1"
                 android:valueTo="0"
                 android:valueType="floatType"
@@ -257,8 +257,8 @@
         <aapt:attr name="android:animation">
             <objectAnimator
                 android:propertyName="fillAlpha"
-                android:startOffset="990"
-                android:duration="10"
+                android:startOffset="1000"
+                android:duration="100"
                 android:valueFrom="1"
                 android:valueTo="0"
                 android:valueType="floatType"

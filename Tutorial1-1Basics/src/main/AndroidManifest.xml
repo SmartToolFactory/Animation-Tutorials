@@ -18,18 +18,19 @@
         </activity>
         <activity android:name=".chapter1_basics.Activity1_1Basics" />
         <activity android:name=".chapter1_basics.Activity1_2AnimatorInflater" />
+        <activity android:name=".chapter1_basics.Activity1_3TranslationVsPosition" />
+        <activity android:name=".chapter1_basics.Activity1_4RotationTranslationPosition" />
+
         <activity android:name=".chapter2_animate_views.Activity2_1PulseView" />
         <activity android:name=".chapter2_animate_views.Activity2_2RevealHideCrossFade" />
         <activity android:name=".chapter2_animate_views.Activity2_3CircularReveal" />
         <activity android:name=".chapter2_animate_views.Activity2_4CardFlipAnimation" />
         <activity android:name=".chapter2_animate_views.Activity2_5CurvedMotionAnimation" />
         <activity android:name=".chapter2_animate_views.Activity2_6ZoomAnimation" />
-        <activity android:name=".chapter2_animate_views.Activity2_7GradientAnimation" />
-        <activity android:name=".chapter2_animate_views.Activity2_8AnimationDrawableGradient" />
         <activity android:name=".chapter2_animate_views.Activity2_7GradientAnimations" />
         <activity android:name=".chapter2_animate_views.Activity2_8CounterAnimation" />
-        <activity android:name=".chapter1_basics.Activity1_3TranslationVsPosition" />
         <activity android:name=".chapter2_animate_views.Activity2_9CounterSurfaceView" />
+
         <activity android:name=".chapter3_physics.Activity3_1PhysicsBasics" />
         <activity android:name=".chapter3_physics.Activity3_2ScaleAndChainedAnimations" />
         <activity android:name=".chapter3_physics.Activity3_3FlingAnimation" />

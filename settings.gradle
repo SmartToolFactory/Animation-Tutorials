@@ -1,3 +1,4 @@
 rootProject.name = "Animation Tutorials"
 include ':Tutorial1-1Basics'
 include ':Tutorial2-1AnimatedVectorDrawables'
+include ':Tutorial3-1Transitions'

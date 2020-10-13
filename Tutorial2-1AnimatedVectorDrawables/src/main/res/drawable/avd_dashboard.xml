@@ -76,28 +76,26 @@
                     android:propertyName="scaleX"
                     android:valueFrom="1"
                     android:valueTo="1.2"
-                    android:startOffset="850"
+                    android:startOffset="900"
                     android:duration="100" />
                 <objectAnimator
                     android:propertyName="scaleY"
                     android:valueFrom="1"
                     android:valueTo="1.2"
-                    android:startOffset="850"
+                    android:startOffset="900"
                     android:duration="100" />
                 <objectAnimator
                     android:propertyName="scaleX"
                     android:valueFrom="1.2"
                     android:valueTo="1"
-                    android:startOffset="950"
+                    android:startOffset="1000"
                     android:duration="150"  />
                 <objectAnimator
                     android:propertyName="scaleY"
                     android:valueFrom="1.2"
                     android:valueTo="1"
-                    android:startOffset="950"
+                    android:startOffset="1000"
                     android:duration="150" />
-
-
             </set>
         </aapt:attr>
     </target>
