@@ -6,21 +6,24 @@ import android.transition.Transition
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.smarttoolfactory.tutorial3_1transitions.R
+import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
 import kotlinx.android.synthetic.main.activity1_1details.*
 
 
-class Activity1_1DetailPage : AppCompatActivity() {
+class Activity1_2DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity1_1details)
+        setContentView(R.layout.activity1_2details)
         title = "Detail Activity"
 
-        val imageRes = intent.getIntExtra("imageRes", -1)
-        if (imageRes != -1) {
-            ivImage.setImageResource(imageRes)
-        }
+        val postCardModel = intent.extras?.getParcelable<PostCardModel>(KEY_POST_MODEL)
 
+        postCardModel?.let {
+            ivImage.setImageResource(it.drawableRes)
+            tvTitle.text = it.post.title
+            tvBody.text = it.post.body
+        }
 
         // 🔥 Prevents status bar blinking issue
         val fade: Transition = Fade()

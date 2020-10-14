@@ -94,6 +94,7 @@ public class GridFragment extends Fragment {
    * that affect the flow.
    */
   private void prepareTransitions() {
+
     setExitTransition(TransitionInflater.from(getContext())
         .inflateTransition(R.transition.grid_exit_transition));
 
@@ -102,6 +103,7 @@ public class GridFragment extends Fragment {
         new SharedElementCallback() {
           @Override
           public void onMapSharedElements(List<String> names, Map<String, View> sharedElements) {
+
             // Locate the ViewHolder for the clicked position.
             RecyclerView.ViewHolder selectedViewHolder = recyclerView
                 .findViewHolderForAdapterPosition(MainActivity.currentPosition);

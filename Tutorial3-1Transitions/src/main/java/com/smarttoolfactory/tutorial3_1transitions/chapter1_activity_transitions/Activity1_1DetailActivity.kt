@@ -1,57 +1,86 @@
 package com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions
 
-import android.app.ActivityOptions
 import android.app.SharedElementCallback
-import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.transition.Fade
 import android.transition.Transition
-import android.transition.TransitionInflater
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.smarttoolfactory.tutorial3_1transitions.R
-import kotlinx.android.synthetic.main.activity1_1basics.*
+import kotlinx.android.synthetic.main.activity1_1details.*
 
-/*
-        Activity1 ---> Activity2
-        Exit    ----> Enter
 
-        Activity1 <-- Activity2
-        ReEnter <--- Return
-
-        onMapSharedElements() does exact same thing in makeSceneTransitionAnimation
-        mapping string to view or
-        with Pair<View, String>
- */
-class Activity1_1Basics : AppCompatActivity() {
+class Activity1_1DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity1_1basics)
-        title = getString(R.string.activity1_1)
-
-        val imageRes = R.drawable.avatar_1_raster
-        ivAvatar.setImageResource(imageRes)
-
-        cardView.setOnClickListener {
-            val intent = Intent(this, Activity1_1DetailActivity::class.java)
-            intent.putExtra("imageRes", imageRes)
-
-            // create the transition animation - the images in the layouts
-            // of both activities are defined with android:transitionName="robot"
-            val options = ActivityOptions
-                .makeSceneTransitionAnimation(
-                    this,
-                    ivAvatar,
-                    ViewCompat.getTransitionName(ivAvatar)
-                )
-            // start the new activity
-            startActivity(intent, options.toBundle())
-        }
+        setContentView(R.layout.activity1_1details)
+        title = "Detail Activity"
 
         addTransitionListeners()
+
+        // Postpones the transition
+        postponeEnterTransition()
+
+        val imageRes = intent.getIntExtra("imageRes", -1)
+        if (imageRes != -1) {
+
+            Glide
+                .with(this)
+                .load(imageRes)
+                .listener(object : RequestListener<Drawable> {
+
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        Toast.makeText(applicationContext, "Glide onLoadFailed()", Toast.LENGTH_SHORT).show()
+
+                        startPostponedEnterTransition()
+                        return false
+                    }
+
+                    override fun onResourceReady(
+                        resource: Drawable?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        dataSource: DataSource?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        Toast.makeText(applicationContext, "Glide onResourceReady()", Toast.LENGTH_SHORT).show()
+                        startPostponedEnterTransition()
+                        return false
+                    }
+
+                })
+                .into(ivImage)
+        }
+
+
+        // 🔥 Prevent status bar blinking issue
+        val fade: Transition = Fade()
+        val decor = window.decorView
+
+        val view = decor.findViewById<View>(R.id.action_bar_container)
+        fade.excludeTarget(view, true)
+        fade.excludeTarget(android.R.id.statusBarBackground, true)
+        fade.excludeTarget(android.R.id.navigationBarBackground, true)
+
+        // Set transition type for entering and exiting this fragment
+        window.enterTransition = fade
+        window.exitTransition = fade
+
     }
+
 
     /**
      * Listeners for enter, exit transitions fo this Activity
@@ -63,7 +92,7 @@ class Activity1_1Basics : AppCompatActivity() {
             override fun onTransitionStart(transition: Transition?) {
                 Toast.makeText(
                     applicationContext,
-                    "Activity1_1Basics Exit onTransitionStart() $transition",
+                    "Detail Exit onTransitionStart() $transition",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -71,7 +100,7 @@ class Activity1_1Basics : AppCompatActivity() {
             override fun onTransitionEnd(transition: Transition?) {
                 Toast.makeText(
                     applicationContext,
-                    "Activity1_1Basics Exit onTransitionEnd() $transition",
+                    "Detail Exit onTransitionEnd() $transition",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -86,7 +115,7 @@ class Activity1_1Basics : AppCompatActivity() {
             override fun onTransitionStart(transition: Transition?) {
                 Toast.makeText(
                     applicationContext,
-                    "Activity1_1Basics Enter onTransitionStart() $transition",
+                    "Detail Enter onTransitionStart() $transition",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -94,7 +123,7 @@ class Activity1_1Basics : AppCompatActivity() {
             override fun onTransitionEnd(transition: Transition?) {
                 Toast.makeText(
                     applicationContext,
-                    "Activity1_1Basics Enter onTransitionEnd() $transition",
+                    "Detail Enter onTransitionEnd() $transition",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -109,7 +138,7 @@ class Activity1_1Basics : AppCompatActivity() {
             override fun onTransitionStart(transition: Transition?) {
                 Toast.makeText(
                     applicationContext,
-                    "Activity1_1Basics ReEnter onTransitionStart() $transition",
+                    "Detail ReEnter onTransitionStart() $transition",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -117,7 +146,7 @@ class Activity1_1Basics : AppCompatActivity() {
             override fun onTransitionEnd(transition: Transition?) {
                 Toast.makeText(
                     applicationContext,
-                    "Activity1_1Basics ReEnter onTransitionEnd() $transition",
+                    "Detail ReEnter onTransitionEnd() $transition",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -132,7 +161,7 @@ class Activity1_1Basics : AppCompatActivity() {
             override fun onTransitionStart(transition: Transition?) {
                 Toast.makeText(
                     applicationContext,
-                    "Activity1_1Basics Return onTransitionStart() $transition",
+                    "Detail Return onTransitionStart() $transition",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -140,7 +169,7 @@ class Activity1_1Basics : AppCompatActivity() {
             override fun onTransitionEnd(transition: Transition?) {
                 Toast.makeText(
                     applicationContext,
-                    "Activity1_1Basics Return onTransitionEnd() $transition",
+                    "Detail Return onTransitionEnd() $transition",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -167,7 +196,5 @@ class Activity1_1Basics : AppCompatActivity() {
                 super.onMapSharedElements(names, sharedElements)
             }
         })
-
     }
-
 }
