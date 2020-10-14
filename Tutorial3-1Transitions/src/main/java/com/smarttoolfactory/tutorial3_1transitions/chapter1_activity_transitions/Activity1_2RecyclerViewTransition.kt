@@ -60,14 +60,16 @@ class Activity1_2RecyclerViewTransition : AppCompatActivity() {
 
         // create the transition animation using image, title and body
         val pairIvAvatar = Pair<View, String>(binding.ivAvatar, binding.ivAvatar.transitionName)
-//        val pairTvTitle = Pair<View, String>(binding.tvTitle, binding.tvTitle.transitionName)
-//        val pairTvBody = Pair<View, String>(binding.tvBody, binding.tvBody.transitionName)
+        val pairTvTitle = Pair<View, String>(binding.tvTitle, binding.tvTitle.transitionName)
+        val pairTvBody = Pair<View, String>(binding.tvBody, binding.tvBody.transitionName)
 
         val options = ActivityOptions
             .makeSceneTransitionAnimation(
                 this,
+//                pairTvTitle,
                 pairIvAvatar
             )
+
         // start the new activity
         startActivity(intent, options.toBundle())
     }
