@@ -16,8 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".chapter1_basics.Activity1_1Basics" />
-        <activity android:name=".chapter1_basics.Activity1_1DetailPage" />
+        <activity android:name=".chapter1_activity_transitions.Activity1_1Basics" />
+        <activity android:name=".chapter1_activity_transitions.Activity1_1DetailPage" />
+        <activity android:name=".chapter1_activity_transitions.Activity1_2RecyclerViewTransition" />
+        <activity android:name=".chapter1_activity_transitions.Activity1_2DetailPage" />
     </application>
 
 </manifest>

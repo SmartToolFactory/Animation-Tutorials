@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarttoolfactory.tutorial3_1transitions.adapter.BaseAdapter
 import com.smarttoolfactory.tutorial3_1transitions.adapter.ChapterSelectionAdapter
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.ActivityClassModel
-import com.smarttoolfactory.tutorial3_1transitions.chapter1_basics.Activity1_1Basics
+import com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions.Activity1_1Basics
+import com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions.Activity1_2RecyclerViewTransition
 import com.smarttoolfactory.tutorial3_1transitions.databinding.ActivityMainBinding
 import java.util.ArrayList
 
@@ -57,13 +58,19 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
 
         // Add Activities to list to be displayed on RecyclerView
         activityClassModels.add(
+
             ActivityClassModel(
                 Activity1_1Basics::class.java,
                 getString(R.string.activity1_1)
             )
         )
 
-
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity1_2RecyclerViewTransition::class.java,
+                getString(R.string.activity1_2)
+            )
+        )
     }
 
     @Override

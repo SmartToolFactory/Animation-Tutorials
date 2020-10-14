@@ -33,4 +33,5 @@
         shank pork loin jerky venison tenderloin boudin ham hock ground round.</string>
 
     <string name="image_header">%1$s by %2$s</string>
+    <string name="activity1_2">Ch1-2 RecyclerView Transition</string>
 </resources>

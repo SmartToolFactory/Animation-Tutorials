@@ -1,4 +1,4 @@
-package com.smarttoolfactory.tutorial3_1transitions.chapter1_basics
+package com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions
 
 import android.app.ActivityOptions
 import android.content.Intent
@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import com.smarttoolfactory.tutorial3_1transitions.R
 import kotlinx.android.synthetic.main.activity1_1basics.*
+import kotlinx.android.synthetic.main.activity1_1basics.cardView
 
 class Activity1_1Basics : AppCompatActivity() {
 
@@ -33,7 +34,6 @@ class Activity1_1Basics : AppCompatActivity() {
             // start the new activity
             startActivity(intent, options.toBundle())
         }
-
     }
 
 }

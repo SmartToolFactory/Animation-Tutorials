@@ -105,4 +105,6 @@ abstract class BaseAdapter : RecyclerView.Adapter<BaseAdapter.MyViewHolder>() {
     fun setOnItemClickListener(listener: OnRecyclerViewItemClickListener) {
         this.listener = listener
     }
+
+
 }

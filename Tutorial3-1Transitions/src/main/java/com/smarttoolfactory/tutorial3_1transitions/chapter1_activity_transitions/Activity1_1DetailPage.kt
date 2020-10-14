@@ -1,4 +1,4 @@
-package com.smarttoolfactory.tutorial3_1transitions.chapter1_basics
+package com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions
 
 import android.os.Bundle
 import android.transition.Fade
@@ -14,6 +14,8 @@ class Activity1_1DetailPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity1_1details)
+        title = "Detail Activity"
+
         val imageRes = intent.getIntExtra("imageRes", -1)
         if (imageRes != -1) {
             ivImage.setImageResource(imageRes)
@@ -28,6 +30,8 @@ class Activity1_1DetailPage : AppCompatActivity() {
         fade.excludeTarget(view, true)
         fade.excludeTarget(android.R.id.statusBarBackground, true)
         fade.excludeTarget(android.R.id.navigationBarBackground, true)
+
+        // Set transition type for entering and exiting this fragment
         window.enterTransition = fade
         window.exitTransition = fade
 
