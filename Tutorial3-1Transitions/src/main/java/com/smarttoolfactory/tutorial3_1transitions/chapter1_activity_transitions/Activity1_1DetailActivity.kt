@@ -197,4 +197,9 @@ class Activity1_1DetailActivity : AppCompatActivity() {
             }
         })
     }
+
+    override fun onBackPressed() {
+        finishAfterTransition()
+        super.onBackPressed()
+    }
 }

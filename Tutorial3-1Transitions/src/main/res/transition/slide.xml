@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<slide xmlns:android="http://schemas.android.com/apk/res/android"
+    android:slideEdge="left"
+    android:duration="1500">
+
+    <targets>
+        <!-- Specify the status bar ID if it needs to be excluded -->
+        <target android:excludeId="@android:id/statusBarBackground"/>
+        <!-- Specify the navigation bar ID if it needs to be excluded -->
+        <target android:excludeId="@android:id/navigationBarBackground"/>
+    </targets>
+
+</slide>
