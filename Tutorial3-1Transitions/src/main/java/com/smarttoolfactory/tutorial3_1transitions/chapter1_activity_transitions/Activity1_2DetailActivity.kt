@@ -9,7 +9,6 @@ import android.view.Gravity
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.animation.addListener
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
 import kotlinx.android.synthetic.main.activity1_1details.*
@@ -34,7 +33,6 @@ class Activity1_2DetailActivity : AppCompatActivity() {
         }
 
         setUpTransitions()
-
     }
 
     private fun setUpTransitions() {
@@ -75,7 +73,7 @@ class Activity1_2DetailActivity : AppCompatActivity() {
             addTarget(tvBody)
         }
 
-
+        // Add color change to Title after slide animation is complete
         slide.addListener(object : Transition.TransitionListener {
 
             override fun onTransitionStart(transition: Transition?) = Unit
@@ -91,7 +89,7 @@ class Activity1_2DetailActivity : AppCompatActivity() {
                     tvTitle.setTextColor(animator.animatedValue as Int)
                 }
 
-                colorAnimation.duration = 300
+                colorAnimation.duration = 200
 
                 colorAnimation.start()
             }
