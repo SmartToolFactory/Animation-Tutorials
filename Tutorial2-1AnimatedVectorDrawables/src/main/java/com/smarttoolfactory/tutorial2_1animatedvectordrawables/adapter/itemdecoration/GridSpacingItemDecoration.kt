@@ -50,7 +50,7 @@ class GridSpacingItemDecoration(
         val column = (position - (headerPosition + 1)) % spanCount
 
         if (headerPosition < 0) {
-            if (position < spanCount) { // top edge
+            if (position < spanCount) {
                 outRect.top = spacing
             }
         } else if (headerPosition < spanCount) {

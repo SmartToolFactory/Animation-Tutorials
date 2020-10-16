@@ -40,40 +40,17 @@ class Activity1_2StateChange : AppCompatActivity() {
             addItemDecoration(
                 GridSpacingItemDecoration(3, 30, dataList)
             )
-            val gridLayoutManager = GridLayoutManager(this@Activity1_2StateChange, 6)
+            val gridLayoutManager = GridLayoutManager(this@Activity1_2StateChange, 3)
 
             gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
 
                 override fun getSpanSize(position: Int): Int {
-                    return if (dataList[position] is HeaderModel) {
-                        6
-                    } else {
-                        2
-                    }
+                    return if (dataList[position] is HeaderModel)
+                        3 else 1
                 }
-
             }
             recyclerView.layoutManager = gridLayoutManager
         }
-
-//        imageButton.setOnClickListener {
-//
-//            imageButton.isSelected = !imageButton.isSelected
-//            Toast.makeText(
-//                applicationContext,
-//                "Button drawableState: ${imageButton.drawableState}, selected: ${imageButton.isSelected}",
-//                Toast.LENGTH_SHORT
-//            ).show()
-//            val stateSet =
-//                intArrayOf(android.R.attr.state_checked * if (imageButton.isSelected) 1 else -1)
-//            imageButton.setImageState(stateSet, true)
-//        }
-//
-//        imageView.setOnClickListener {
-//            imageView.isSelected = !imageView.isSelected
-//            val stateSet = intArrayOf(android.R.attr.state_checked * if ( imageView.isSelected) 1 else -1)
-//            imageView.setImageState(stateSet, true)
-//        }
     }
 
     private fun createViewBinders(): HashMap<ItemClazz, MappableItemBinder> {

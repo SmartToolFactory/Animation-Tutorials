@@ -37,18 +37,13 @@ class Activity1_1Basics : AppCompatActivity() {
             addItemDecoration(
                 GridSpacingItemDecoration(3, 30, dataList)
             )
-            val gridLayoutManager = GridLayoutManager(this@Activity1_1Basics, 6)
+            val gridLayoutManager = GridLayoutManager(this@Activity1_1Basics, 3)
 
             gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-
                 override fun getSpanSize(position: Int): Int {
-                    return if (dataList[position] is HeaderModel) {
-                        6
-                    } else {
-                        2
-                    }
+                    return if (dataList[position] is HeaderModel)
+                        3 else 1
                 }
-
             }
             recyclerView.layoutManager = gridLayoutManager
         }

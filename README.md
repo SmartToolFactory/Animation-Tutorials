@@ -172,6 +172,70 @@ Since the AAPT tool supports a new format that bundles several related XML files
   </animated-vector>
 ```
 
+### Shared Transitions
+
+## Transitions
+
+To create transition between views set transition name in xml with **android:transitionName**
+```
+ <androidx.appcompat.widget.AppCompatImageView
+            // Rest of the imageView properties
+            android:transitionName="ivAvatar"/>
+```
+
+or in Kotlin/Java with
+```
+iv.setTransitionName(""SOME_TRANSITION_NAME)
+```
+these names should match for both Activities. To start transition after a click
+
+```
+ val intent = Intent(this, Activity1_1DetailActivity::class.java)
+        intent.putExtra("imageRes", imageRes)
+
+        // create the transition animation - the images in the layouts
+        // of both activities are defined with android:transitionName="robot"
+        val options = ActivityOptions
+            .makeSceneTransitionAnimation(
+                this,
+                ivAvatar,
+                ViewCompat.getTransitionName(ivAvatar)
+            )
+        // start the new activity
+        startActivity(intent, options.toBundle())
+```
+
+For custom transitions create **transition** folder inside **res** folder and add
+
+```
+<slide xmlns:android="http://schemas.android.com/apk/res/android"
+    android:slideEdge="left"
+    android:duration="1500">
+
+    <targets>
+        <!-- Specify the status bar ID if it needs to be excluded -->
+        <target android:excludeId="@android:id/statusBarBackground"/>
+        <!-- Specify the navigation bar ID if it needs to be excluded -->
+        <target android:excludeId="@android:id/navigationBarBackground"/>
+    </targets>
+
+</slide>
+```
+
+default transition for Android system is
+
+```
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- This is the systems default transition -->
+    <changeBounds />
+    <changeTransform />
+    <changeClipBounds />
+    <changeImageTransform />
+</transitionSet>
+```
+
+
+
 ### TODOs:
 - [ ] Add fragment transitions, and image to ViewPager transitions
 - [ ] Add RecyclerView, ViewPager animations

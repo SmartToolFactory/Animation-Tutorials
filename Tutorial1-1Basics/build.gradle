@@ -63,7 +63,7 @@ dependencies {
     implementation "androidx.dynamicanimation:dynamicanimation:1.0.0"
 
     // Leak Canary
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.5'
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.5'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

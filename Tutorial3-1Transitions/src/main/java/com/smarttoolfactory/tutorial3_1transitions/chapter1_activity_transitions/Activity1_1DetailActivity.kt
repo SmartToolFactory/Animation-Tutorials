@@ -43,7 +43,11 @@ class Activity1_1DetailActivity : AppCompatActivity() {
                         target: Target<Drawable>?,
                         isFirstResource: Boolean
                     ): Boolean {
-                        Toast.makeText(applicationContext, "Glide onLoadFailed()", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            applicationContext,
+                            "Glide onLoadFailed()",
+                            Toast.LENGTH_SHORT
+                        ).show()
 
                         startPostponedEnterTransition()
                         return false
@@ -56,7 +60,11 @@ class Activity1_1DetailActivity : AppCompatActivity() {
                         dataSource: DataSource?,
                         isFirstResource: Boolean
                     ): Boolean {
-                        Toast.makeText(applicationContext, "Glide onResourceReady()", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            applicationContext,
+                            "Glide onResourceReady()",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         startPostponedEnterTransition()
                         return false
                     }
@@ -179,21 +187,38 @@ class Activity1_1DetailActivity : AppCompatActivity() {
             override fun onTransitionResume(transition: Transition?) = Unit
         })
 
-        setExitSharedElementCallback(object : SharedElementCallback() {
 
-            override fun onSharedElementEnd(
-                sharedElementNames: MutableList<String>?,
-                sharedElements: MutableList<View>?,
-                sharedElementSnapshots: MutableList<View>?
-            ) {
-                super.onSharedElementEnd(sharedElementNames, sharedElements, sharedElementSnapshots)
-            }
+        setEnterSharedElementCallback(object : SharedElementCallback() {
 
             override fun onMapSharedElements(
                 names: MutableList<String>?,
                 sharedElements: MutableMap<String, View>?
             ) {
                 super.onMapSharedElements(names, sharedElements)
+                Toast.makeText(
+                    applicationContext,
+                    "🍒 Activity1_1DetailActivity setEnterSharedElementCallback() " +
+                            "names:$names, sharedElements: $sharedElements",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+
+        })
+
+        setExitSharedElementCallback(object : SharedElementCallback() {
+
+            override fun onMapSharedElements(
+                names: MutableList<String>?,
+                sharedElements: MutableMap<String, View>?
+            ) {
+                super.onMapSharedElements(names, sharedElements)
+
+                Toast.makeText(
+                    applicationContext,
+                    "🤔 Activity1_1DetailActivity setExitSharedElementCallback() " +
+                            "names:$names, sharedElements: $sharedElements",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         })
     }

@@ -22,6 +22,21 @@ import androidx.fragment.app.FragmentManager;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.samples.gridtopager.fragment.GridFragment;
 
+/*
+    Callback order from start
+
+    RecyclerView(GridFragment) -> ViewPager
+    I: 🎃  setExitSharedElementCallback()  thisFragment: GridFragment viewBefore: 174788176
+    I: viewAfter: 174788176
+    I: 👻  setEnterSharedElementCallback()  thisFragment: ImagePagerFragment viewBefore: 265398345
+    I: viewAfter: 265398345
+
+    ViewPager ->  RecyclerView(GridFragment)
+    I: 👻  setEnterSharedElementCallback()  thisFragment: ImagePagerFragment viewBefore: 265398345
+    I: viewAfter: 265398345
+    I: 🎃  setExitSharedElementCallback()  thisFragment: GridFragment viewBefore: 170537674
+    I: viewAfter: 170537674
+ */
 /**
  * Grid to pager app's main activity.
  */

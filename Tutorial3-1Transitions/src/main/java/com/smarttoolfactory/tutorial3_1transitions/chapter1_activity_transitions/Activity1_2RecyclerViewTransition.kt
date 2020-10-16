@@ -34,7 +34,6 @@ class Activity1_2RecyclerViewTransition : AppCompatActivity() {
 
         val postCardViewBinder = PostCardViewBinder { binding, postCardModel ->
             gotoDetailWithTransition(postCardModel, binding)
-
         }
 
         listAdapter = SingleViewBinderListAdapter(postCardViewBinder as ItemBinder)

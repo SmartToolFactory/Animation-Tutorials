@@ -16,9 +16,12 @@ import kotlinx.android.synthetic.main.activity1_1basics.*
 /*
         Activity1 ---> Activity2
         Exit    ----> Enter
+        SharedElementCallback Order: Activity1 Exit -> Activity2 Enter
 
         Activity1 <-- Activity2
         ReEnter <--- Return
+
+        SharedElementCallback Order: Activity2 Exit -> Activity1 Enter
 
         onMapSharedElements() does exact same thing in makeSceneTransitionAnimation
         mapping string to view or
@@ -54,7 +57,7 @@ class Activity1_1Basics : AppCompatActivity() {
     }
 
     /**
-     * Listeners for enter, exit transitions fo this Activity
+     * Listeners for enter, exit transitions for this Activity
      */
     private fun addTransitionListeners() {
 
@@ -167,7 +170,5 @@ class Activity1_1Basics : AppCompatActivity() {
                 super.onMapSharedElements(names, sharedElements)
             }
         })
-
     }
-
 }

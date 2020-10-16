@@ -33,6 +33,7 @@ class Activity1_2DetailActivity : AppCompatActivity() {
         }
 
         setUpTransitions()
+
     }
 
     private fun setUpTransitions() {
@@ -57,6 +58,7 @@ class Activity1_2DetailActivity : AppCompatActivity() {
         window.enterTransition = transitions
         window.exitTransition = transitions
 
+        // Start postponed transition
         startPostponedEnterTransition()
     }
 
@@ -73,7 +75,7 @@ class Activity1_2DetailActivity : AppCompatActivity() {
             addTarget(tvBody)
         }
 
-        // Add color change to Title after slide animation is complete
+        // Add color change to Title after Slide Transition is complete
         slide.addListener(object : Transition.TransitionListener {
 
             override fun onTransitionStart(transition: Transition?) = Unit

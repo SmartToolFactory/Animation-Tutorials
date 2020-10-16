@@ -1,20 +1,20 @@
 package com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder
 
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.smarttoolfactory.tutorial3_1transitions.R
-import com.smarttoolfactory.tutorial3_1transitions.adapter.model.Post
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
 import com.smarttoolfactory.tutorial3_1transitions.databinding.ItemPostBinding
 
+/**
+ * ViewBinder for Activity1_2
+ */
 class PostCardViewBinder(
     private val onItemClick: ((ItemPostBinding, PostCardModel) -> Unit)? = null
-) :
-    MappableItemViewBinder<PostCardModel, PostCardViewHolder>(PostCardModel::class.java) {
+) : MappableItemViewBinder<PostCardModel, PostCardViewHolder>(PostCardModel::class.java) {
 
     override fun createViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         return PostCardViewHolder(
@@ -38,7 +38,6 @@ class PostCardViewBinder(
     override fun areContentsTheSame(oldItem: PostCardModel, newItem: PostCardModel): Boolean {
         return oldItem == newItem
     }
-
 }
 
 class PostCardViewHolder(

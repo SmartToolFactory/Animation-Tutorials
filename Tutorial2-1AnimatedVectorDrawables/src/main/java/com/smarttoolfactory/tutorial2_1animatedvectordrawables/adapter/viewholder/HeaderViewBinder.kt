@@ -35,9 +35,6 @@ class HeaderViewHolder(private val binding: ItemHeaderBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(model: HeaderModel) {
-
         binding.tvHeader.text = model.header
     }
-
-
 }
