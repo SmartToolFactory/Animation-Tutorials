@@ -15,7 +15,6 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.smarttoolfactory.tutorial3_1transitions.R
-import kotlinx.android.synthetic.main.fragment_image.*
 
 /**
  * A fragment for displaying an image on ViewPager2 page.
@@ -31,7 +30,7 @@ class ImageFragment : Fragment() {
         val arguments = arguments
         @DrawableRes val imageRes = arguments!!.getInt(KEY_IMAGE_RES)
 
-        val imageView = view.findViewById<ImageView>(R.id.imageView)
+        val imageView = view.findViewById<ImageView>(R.id.ivPhoto)
 
         imageView.transitionName = "$imageRes"
 

@@ -3,22 +3,21 @@ package com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transition
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.transition.TransitionInflater
+import android.transition.*
 import android.view.View
-import android.widget.Toast
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.SharedElementCallback
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
 import com.smarttoolfactory.tutorial3_1transitions.ImageData
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.fragment.ImageFragment
 import kotlinx.android.synthetic.main.activity1_3details.*
 
 class Activity1_3DetailActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,32 +34,15 @@ class Activity1_3DetailActivity : AppCompatActivity() {
         prepareSharedElementTransition()
         postponeEnterTransition()
 
-        viewPager2.addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
-            override fun onLayoutChange(
-                v: View, left: Int, top: Int, right: Int, bottom: Int,
-                oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int
-            ) {
-                if (viewPager2.childCount > 0) {
-                    viewPager2.removeOnLayoutChangeListener(this)
-                    startPostponedEnterTransition()
-                }
-            }
-        })
+        viewPager2.doOnPreDraw {
+            startPostponedEnterTransition()
+        }
     }
-
 
     /**
      * Prepares the shared element transition from and back to the grid fragment.
      */
     private fun prepareSharedElementTransition() {
-
-        val transition = TransitionInflater.from(this@Activity1_3DetailActivity)
-            .inflateTransition(R.transition.activity3_detail_transition)
-
-        window.enterTransition = transition
-
-        val fragmentManager = supportFragmentManager
-
 
         val thisActivity = this::class.java.simpleName
 
@@ -81,14 +63,18 @@ class Activity1_3DetailActivity : AppCompatActivity() {
                                 "sharedElements: $sharedElements"
                     )
 
+                    // 🔥 This is the way to get ViewPager2 pages, "f+ID" tag
                     val fragment =
                         supportFragmentManager.findFragmentByTag("f${viewPager2.currentItem}")
                     fragment ?: return
 
                     val view = fragment.view
+
                     view?.let {
+                        val imageView = it.findViewById<ImageView>(R.id.ivPhoto)
                         // Map the first shared element name to the child ImageView.
-                        sharedElements[names[0]] = it.findViewById(R.id.imageView)
+                        sharedElements[imageView.transitionName] = imageView
+                        println()
                     }
                 }
             })
@@ -108,6 +94,17 @@ class Activity1_3DetailActivity : AppCompatActivity() {
         val intent = Intent()
         intent.putExtra(KEY_IMAGE_POSITION, viewPager2.currentItem)
         setResult(Activity.RESULT_OK, intent)
+    }
+
+    private fun createFadeTransition(): Transition {
+        val fade: Transition = Fade()
+        val decor = window.decorView
+
+        val view = decor.findViewById<View>(R.id.action_bar_container)
+        fade.excludeTarget(view, true)
+        fade.excludeTarget(android.R.id.statusBarBackground, true)
+        fade.excludeTarget(android.R.id.navigationBarBackground, true)
+        return fade
     }
 }
 

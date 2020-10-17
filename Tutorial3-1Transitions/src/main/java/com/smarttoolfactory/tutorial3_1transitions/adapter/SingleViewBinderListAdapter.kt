@@ -31,23 +31,23 @@ class SingleViewBinderListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        println("🔥 SingleViewBinderAdapter onCreateViewHolder() viewType: $viewType")
+//        println("🔥 SingleViewBinderAdapter onCreateViewHolder() viewType: $viewType")
         return viewBinder.createViewHolder(parent)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        println("🤔 SingleViewBinderAdapter onBindViewHolder() position: $position, holder: $holder")
+//        println("🤔 SingleViewBinderAdapter onBindViewHolder() position: $position, holder: $holder")
         viewBinder.bindViewHolder(currentList[position], holder)
     }
 
     override fun onViewRecycled(holder: ViewHolder) {
-        println("👻 SingleViewBinderAdapter onViewRecycled() holder: $holder")
+//        println("👻 SingleViewBinderAdapter onViewRecycled() holder: $holder")
         viewBinder.onViewRecycled(holder)
         super.onViewRecycled(holder)
     }
 
     override fun onViewDetachedFromWindow(holder: ViewHolder) {
-        println("💀 SingleViewBinderAdapter onViewDetachedFromWindow() holder $holder")
+//        println("💀 SingleViewBinderAdapter onViewDetachedFromWindow() holder $holder")
         viewBinder.onViewDetachedFromWindow(holder)
         super.onViewDetachedFromWindow(holder)
     }

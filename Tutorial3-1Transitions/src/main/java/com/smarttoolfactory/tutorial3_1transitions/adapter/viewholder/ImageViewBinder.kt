@@ -55,12 +55,12 @@ class ImageViewHolder(
 
     fun bind(model: ImageModel) {
 
-        val imageView = binding.imageView
+        val imageView = binding.ivPhoto
 
         setImageUrl(imageView, model.drawableRes)
 
         // 🔥 Set transition name to resource to drawable
-        binding.imageView.transitionName = "${model.drawableRes}"
+        binding.ivPhoto.transitionName = "${model.drawableRes}"
 
         binding.root.setOnClickListener {
             onItemClick?.invoke(imageView, model, bindingAdapterPosition)

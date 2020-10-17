@@ -8,7 +8,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.doOnPreDraw
@@ -102,7 +101,6 @@ class Activity1_3RecyclerViewToViewPager2Transition : AppCompatActivity() {
         }
 
         recyclerView.doOnPreDraw {
-            prepareSharedElementTransition()
             startPostponedEnterTransition()
         }
     }
@@ -148,11 +146,9 @@ class Activity1_3RecyclerViewToViewPager2Transition : AppCompatActivity() {
                     recyclerView.findViewHolderForAdapterPosition(currentPosition)
 
                 selectedViewHolder?.let {
-                    val iv = it.itemView.findViewById<ImageView>(R.id.imageView)
-                    sharedElements[names[0]] = iv
-
+                    val imageView = it.itemView.findViewById<ImageView>(R.id.ivPhoto)
+                    sharedElements[imageView.transitionName] = imageView
                 }
-
 
                 println(
                     "🚌 setExitSharedElementCallback() " +
