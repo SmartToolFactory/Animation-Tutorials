@@ -30,6 +30,12 @@ fragment transitions and image to ViewPager transitions and more.
 | <img src="./screenshots/avd_chapter1_1.gif"/> | <img src="./screenshots/avd_chapter1_2.gif"/> | <img src="./screenshots/avd_chapter1_3.gif"/> |
 
 * [Tutorial3-1Shared Transitions](https://github.com/SmartToolFactory/Animation-Tutorials/tree/master/Tutorial3-1Transitions)
+Tutorials about Shared Transitions from Activity to Activity, and from Fragment to Fragment
+
+| Ch1-2 RV Transition | Ch1-3 RV to VP2 Transition   | Ch1-4 Style |
+| ----------|----------------| --------|
+| <img src="./screenshots/transition_chapter1_2.gif"/> | <img src="./screenshots/transition_chapter1_3.gif"/> | <img src="./screenshots/transition_chapter1_4.gif"/> |
+
 
 ## Physics Based Animations
 Physics-based motion is driven by force. Spring force is one such force that guides interactivity and motion. A spring force has the following properties: damping and stiffness. In a spring-based animation, the value and the velocity are calculated based on the spring force that are applied on each frame.
@@ -172,9 +178,9 @@ Since the AAPT tool supports a new format that bundles several related XML files
   </animated-vector>
 ```
 
-### Shared Transitions
+## Shared Transitions
 
-## Transitions
+### Transitions
 
 To create transition between views set transition name in xml with **android:transitionName**
 ```
@@ -185,7 +191,7 @@ To create transition between views set transition name in xml with **android:tra
 
 or in Kotlin/Java with
 ```
-iv.setTransitionName(""SOME_TRANSITION_NAME)
+iv.setTransitionName("SOME_TRANSITION_NAME")
 ```
 these names should match for both Activities. To start transition after a click
 
@@ -234,7 +240,9 @@ default transition for Android system is
 </transitionSet>
 ```
 
-
+Use ```<item name="android:windowContentTransitions">true</item>``` to enable Activity transitions
+Use ```<item name="android:windowSharedElementsUseOverlay">false</item>``` for shared transition items not to be drawn
+over **NavigationBar**, or **Toolbar**
 
 ### TODOs:
 - [ ] Add fragment transitions, and image to ViewPager transitions

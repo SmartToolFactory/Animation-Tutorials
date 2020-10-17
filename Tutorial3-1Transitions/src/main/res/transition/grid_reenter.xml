@@ -1,0 +1,19 @@
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android">
+<!--    <fade>-->
+<!--        <targets>-->
+<!--            <target android:excludeId="@android:id/statusBarBackground" />-->
+<!--            <target android:excludeId="@android:id/navigationBarBackground" />-->
+<!--        </targets>-->
+<!--    </fade>-->
+    <slide
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:slideEdge="top"
+        android:duration="300"
+        android:interpolator="@android:interpolator/linear_out_slow_in">
+        <targets>
+            <target android:targetId="@id/recyclerView"/>
+            <target android:excludeId="@android:id/statusBarBackground" />
+            <target android:excludeId="@android:id/navigationBarBackground" />
+        </targets>
+    </slide>
+</transitionSet>

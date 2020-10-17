@@ -2,6 +2,7 @@
 
 package com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions
 
+import android.app.Activity
 import android.app.ActivityOptions
 import android.app.SharedElementCallback
 import android.content.Intent
@@ -23,11 +24,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 const val KEY_IMAGE_POSITION = "key-position-image"
 
-class Activity1_3RecyclerViewToViewPager2Transition : AppCompatActivity() {
+open class Activity1_3RecyclerViewToViewPager2Transition : AppCompatActivity() {
 
     private var currentPosition = 0
 
     private lateinit var listAdapter: SingleViewBinderListAdapter
+
+    open var clazzDetailActivity: Class<out Activity> = Activity1_3Details::class.java
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -107,7 +110,7 @@ class Activity1_3RecyclerViewToViewPager2Transition : AppCompatActivity() {
 
     private fun goToDetailActivity(imageView: ImageView, position: Int) {
 
-        val intent = Intent(this, Activity1_3DetailActivity::class.java)
+        val intent = Intent(this, clazzDetailActivity)
         intent.putExtra(KEY_IMAGE_POSITION, position)
 
         // create the transition animation - the images in the layouts

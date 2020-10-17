@@ -12,6 +12,21 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <!-- Transition Properties -->
         <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowSharedElementsUseOverlay">false</item>
+
+    </style>
+
+    <style name="Theme.App.Home">
+<!--        <item name="android:windowExitTransition">@transition/grid_exit</item>-->
+<!--        <item name="android:windowReenterTransition">@transition/grid_reenter</item>-->
+    </style>
+
+    <style name="Theme.App.Details">
+<!--        <item name="android:windowSharedElementEnterTransition">-->
+<!--            @transition/shared_main_detail-->
+<!--        </item>-->
     </style>
 </resources>

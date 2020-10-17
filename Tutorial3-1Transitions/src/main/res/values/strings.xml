@@ -33,4 +33,5 @@
     <string name="activity1_1">Ch1-1 Basics</string>
     <string name="activity1_2">Ch1-2 RecyclerView Transition</string>
     <string name="activity1_3">Ch1-3 RecyclerView to ViewPager2 Transition</string>
+    <string name="activity1_4">Ch1-4 RV to VP2 Animation Styles</string>
 </resources>

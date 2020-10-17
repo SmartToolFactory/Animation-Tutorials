@@ -54,7 +54,7 @@ class Activity1_2RecyclerViewTransition : AppCompatActivity() {
         binding: ItemPostBinding
     ) {
         val intent =
-            Intent(this@Activity1_2RecyclerViewTransition, Activity1_2DetailActivity::class.java)
+            Intent(this@Activity1_2RecyclerViewTransition, Activity1_2Details::class.java)
         intent.putExtra(KEY_POST_MODEL, postCardModel)
 
         // create the transition animation using image, title and body

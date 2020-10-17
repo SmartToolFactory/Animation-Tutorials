@@ -1,0 +1,19 @@
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android">
+    <transitionSet>
+        <targets>
+            <target android:targetId="@id/ivPhoto" />
+        </targets>
+        <changeBounds>
+            <arcMotion android:maximumAngle="50" />
+        </changeBounds>
+        <changeTransform />
+        <changeClipBounds />
+        <changeImageTransform />
+    </transitionSet>
+    <recolor>
+        <targets>
+            <target android:targetId="@android:id/statusBarBackground" />
+            <target android:targetId="@android:id/navigationBarBackground" />
+        </targets>
+    </recolor>
+</transitionSet>

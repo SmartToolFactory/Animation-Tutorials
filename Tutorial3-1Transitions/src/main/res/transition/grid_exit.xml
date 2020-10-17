@@ -1,0 +1,14 @@
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android">
+    <explode>
+        <targets>
+            <target android:excludeId="@android:id/statusBarBackground" />
+            <target android:excludeId="@android:id/navigationBarBackground" />
+        </targets>
+    </explode>
+<!--    <fade>-->
+<!--        <targets>-->
+<!--            <target android:excludeId="@android:id/statusBarBackground" />-->
+<!--            <target android:excludeId="@android:id/navigationBarBackground" />-->
+<!--        </targets>-->
+<!--    </fade>-->
+</transitionSet>

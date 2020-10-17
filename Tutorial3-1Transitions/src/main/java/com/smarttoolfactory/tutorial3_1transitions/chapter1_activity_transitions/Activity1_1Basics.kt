@@ -5,7 +5,6 @@ import android.app.SharedElementCallback
 import android.content.Intent
 import android.os.Bundle
 import android.transition.Transition
-import android.transition.TransitionInflater
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -38,7 +37,7 @@ class Activity1_1Basics : AppCompatActivity() {
         ivAvatar.setImageResource(imageRes)
 
         cardView.setOnClickListener {
-            val intent = Intent(this, Activity1_1DetailActivity::class.java)
+            val intent = Intent(this, Activity1_1Details::class.java)
             intent.putExtra("imageRes", imageRes)
 
             // create the transition animation - the images in the layouts
