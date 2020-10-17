@@ -3,8 +3,12 @@ package com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transition
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.transition.*
+import android.transition.Fade
+import android.transition.Slide
+import android.transition.TransitionSet
+import android.view.Gravity
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.SharedElementCallback
@@ -30,7 +34,6 @@ class Activity1_3DetailActivity : AppCompatActivity() {
             ImageFragmentStateAdapter(this, ImageData.IMAGE_DRAWABLES.toTypedArray())
         viewPager2.setCurrentItem(position, false)
 
-        // 🔥 Call this before postponeEnterTransition
         prepareSharedElementTransition()
         postponeEnterTransition()
 
@@ -94,17 +97,6 @@ class Activity1_3DetailActivity : AppCompatActivity() {
         val intent = Intent()
         intent.putExtra(KEY_IMAGE_POSITION, viewPager2.currentItem)
         setResult(Activity.RESULT_OK, intent)
-    }
-
-    private fun createFadeTransition(): Transition {
-        val fade: Transition = Fade()
-        val decor = window.decorView
-
-        val view = decor.findViewById<View>(R.id.action_bar_container)
-        fade.excludeTarget(view, true)
-        fade.excludeTarget(android.R.id.statusBarBackground, true)
-        fade.excludeTarget(android.R.id.navigationBarBackground, true)
-        return fade
     }
 }
 

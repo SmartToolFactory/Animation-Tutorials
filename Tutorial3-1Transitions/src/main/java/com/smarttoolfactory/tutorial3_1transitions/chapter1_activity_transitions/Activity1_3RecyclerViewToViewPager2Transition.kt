@@ -93,11 +93,11 @@ class Activity1_3RecyclerViewToViewPager2Transition : AppCompatActivity() {
 
         postponeEnterTransition()
 
-        val position = data?.getIntExtra(KEY_IMAGE_POSITION, 0)
+        val position = data?.getIntExtra(KEY_IMAGE_POSITION, 0) ?: currentPosition
 
-        position?.let {
-            currentPosition = it
-            recyclerView.scrollToPosition(position)
+        if (position != currentPosition) {
+            currentPosition = position
+            recyclerView.scrollToPosition(currentPosition)
         }
 
         recyclerView.doOnPreDraw {
