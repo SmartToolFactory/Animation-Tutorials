@@ -21,22 +21,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:textSize="26sp"
+        android:layout_marginTop="32dp"
+        android:textSize="28sp"
         android:textStyle="bold"
-        tools:text="SOME TITLE"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:transitionName="tvTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivImage" />
+        app:layout_constraintTop_toBottomOf="@id/ivImage"
+        tools:text="SOME TITLE" />
 
     <TextView
         android:id="@+id/tvBody"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:lineSpacingMultiplier="1.2"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
         android:text="@string/bacon_ipsum"
+        android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+        android:textColor="?android:textColorSecondary"
+        android:transitionName="tvBody"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

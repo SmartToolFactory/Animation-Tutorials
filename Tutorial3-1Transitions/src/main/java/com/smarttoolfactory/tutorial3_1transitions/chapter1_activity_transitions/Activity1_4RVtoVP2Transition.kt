@@ -10,6 +10,12 @@ import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.TransitionAdapter
 import kotlinx.android.synthetic.main.activity1_3recyclerview_to_viewpager2_transition.*
 
+/**
+ * This tutorial is for adding custom Transitions for enter, exit and reenter.
+ *
+ * * When a View is target of a Transition use ***sharedElementEnterTransition***
+ * instead of ***enterTransition***, enter is arbitrary here, it can be exit, reEnter or return
+ */
 class Activity1_4RVtoVP2Transition : Activity1_3RecyclerViewToViewPager2Transition() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,8 +24,7 @@ class Activity1_4RVtoVP2Transition : Activity1_3RecyclerViewToViewPager2Transiti
 
         clazzDetailActivity = Activity1_4Details::class.java
 
-        val decor = window.decorView
-        val view = decor.findViewById<View>(R.id.action_bar_container)
+        val view = window.decorView.findViewById<View>(R.id.action_bar_container)
 
         val fade: Transition = Fade().apply {
             excludeTarget(view, true)

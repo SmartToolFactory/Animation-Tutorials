@@ -1,43 +1,65 @@
 package com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions
 
 import android.os.Bundle
-import android.transition.Fade
-import android.transition.Transition
-import android.transition.TransitionInflater
-import android.transition.TransitionSet
+import android.transition.*
+import android.view.Gravity
 import android.view.View
+import android.view.animation.AnimationUtils
 import com.smarttoolfactory.tutorial3_1transitions.R
+import kotlinx.android.synthetic.main.fragment_image.*
 
 class Activity1_4Details : Activity1_3Details() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val transitionSet = TransitionSet()
 
-        val transition =
+        val ivArcMoveTransition =
             TransitionInflater.from(this).inflateTransition(R.transition.shared_main_detail)
-        transitionSet.addTransition(transition)
 
-        val fade = createFadeTransition()
-        transitionSet.addTransition(fade)
 
         // 🔥 This is the Arc motion for shared transition element ImageView
-        window.sharedElementEnterTransition = transitionSet
+        window.sharedElementEnterTransition = ivArcMoveTransition
 
-        // 🔥 This is for preventing statusBar + navigationBar flashing
-        window.enterTransition = createFadeTransition()
+        // 🔥 This is for preventing statusBar + navigationBar flashing, and slide for text
+        val transitions = TransitionSet()
+
+        val fade = createFadeTransition()
+        val slide = createSlideTransition()
+        transitions.addTransition(fade)
+        transitions.addTransition(slide)
+
+        window.enterTransition = transitions
 
     }
 
-    private fun createFadeTransition(): Transition {
-        val fade: Transition = Fade()
-        val decor = window.decorView
+    private fun createSlideTransition(): Slide {
 
-        val view = decor.findViewById<View>(R.id.action_bar_container)
-        fade.excludeTarget(view, true)
-        fade.excludeTarget(android.R.id.statusBarBackground, true)
-        fade.excludeTarget(android.R.id.navigationBarBackground, true)
-        return fade
+        val view = window.decorView.findViewById<View>(R.id.action_bar_container)
+
+        return Slide(Gravity.BOTTOM).apply {
+            interpolator = AnimationUtils.loadInterpolator(
+                this@Activity1_4Details,
+                android.R.interpolator.linear_out_slow_in
+            )
+
+            startDelay = 200
+            duration = resources.getInteger(android.R.integer.config_mediumAnimTime).toLong()
+
+            excludeTarget(view, true)
+            excludeTarget(android.R.id.statusBarBackground, true)
+            excludeTarget(android.R.id.navigationBarBackground, true)
+        }
+    }
+
+    private fun createFadeTransition(): Transition {
+
+        val view = window.decorView.findViewById<View>(R.id.action_bar_container)
+
+        return Fade().apply {
+            excludeTarget(view, true)
+            excludeTarget(android.R.id.statusBarBackground, true)
+            excludeTarget(android.R.id.navigationBarBackground, true)
+        }
     }
 }

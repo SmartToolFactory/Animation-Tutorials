@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.fragment.app.Fragment
@@ -31,6 +32,9 @@ class ImageFragment : Fragment() {
         @DrawableRes val imageRes = arguments!!.getInt(KEY_IMAGE_RES)
 
         val imageView = view.findViewById<ImageView>(R.id.ivPhoto)
+
+        val title = view.findViewById<TextView>(R.id.tvTitle)
+        title.text = "Issue #$imageRes"
 
         imageView.transitionName = "$imageRes"
 

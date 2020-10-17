@@ -116,6 +116,8 @@ and link the target with the proper ObjectAnimator or AnimatorSet by android:ani
 🔥😍 [ShapeShifter](https://shapeshifter.design) by **Alex Lockwood** makes it so easy to create animations for Vector Drawables.
 Wonderful and very easy to use tool to create Animated Vector Drawables.
 
+<img src="./screenshots/shape_shifter.png"/> 
+
 ### XML for Animations defined using ObjectAnimator or AnimatorSet
 ```
 <set xmlns:android="http://schemas.android.com/apk/res/android">
