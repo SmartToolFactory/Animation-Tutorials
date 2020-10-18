@@ -4,7 +4,7 @@ import android.app.ActivityOptions
 import android.app.SharedElementCallback
 import android.content.Intent
 import android.os.Bundle
-import android.transition.Transition
+import android.transition.*
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,14 +17,26 @@ import kotlinx.android.synthetic.main.activity1_1basics.*
         Exit    ----> Enter
         SharedElementCallback Order: Activity1 Exit -> Activity2 Enter
 
+        I: 🌽 Activity1_1Basics: setExitSharedElementCallback() names:[transition_image_view], sharedElements: {transition_image_view=androidx.appcompat.widget.AppCompatImageView{b3a80cf V.ED..... ...P.... 21,21-231,231 #7f0800c5 app:id/ivPhoto}}
+        I: 🔥 Activity1_1Basics: sharedElementExitTransition onTransitionStart()
+
+        I: 🍒 Activity1_1Details: setEnterSharedElementCallback() names:[transition_image_view], sharedElements: {transition_image_view=androidx.appcompat.widget.AppCompatImageView{11b033f V.ED..... ......ID 0,0-1080,810 #7f0800c4 app:id/ivImage}}
+        I: 🚌 Activity1_1Details: sharedElementEnterTransition onTransitionStart()
+
         Activity1 <-- Activity2
         ReEnter <--- Return
-
         SharedElementCallback Order: Activity2 Exit -> Activity1 Enter
+        I: 🍒 Activity1_1Details: setEnterSharedElementCallback() names:[transition_image_view], sharedElements: {transition_image_view=androidx.appcompat.widget.AppCompatImageView{11b033f V.ED..... ........ 0,0-1080,810 #7f0800c4 app:id/ivImage}}
+        I: 🌽 Activity1_1Basics: setExitSharedElementCallback() names:[transition_image_view], sharedElements: {transition_image_view=androidx.appcompat.widget.AppCompatImageView{b3a80cf V.ED..... ......ID 21,21-231,231 #7f0800c5 app:id/ivPhoto}}
+
+        I: 🚕 Activity1_1Details: sharedElementReturnTransition onTransitionStart()
+        I: 🍏 Activity1_1Basics: sharedElementReenterTransition onTransitionStart()
+
 
         onMapSharedElements() does exact same thing in makeSceneTransitionAnimation
         mapping string to view or
         with Pair<View, String>
+
  */
 class Activity1_1Basics : AppCompatActivity() {
 
@@ -34,7 +46,7 @@ class Activity1_1Basics : AppCompatActivity() {
         title = getString(R.string.activity1_1)
 
         val imageRes = R.drawable.avatar_1_raster
-        ivAvatar.setImageResource(imageRes)
+        ivPhoto.setImageResource(imageRes)
 
         cardView.setOnClickListener {
             val intent = Intent(this, Activity1_1Details::class.java)
@@ -45,8 +57,8 @@ class Activity1_1Basics : AppCompatActivity() {
             val options = ActivityOptions
                 .makeSceneTransitionAnimation(
                     this,
-                    ivAvatar,
-                    ViewCompat.getTransitionName(ivAvatar)
+                    ivPhoto,
+                    ViewCompat.getTransitionName(ivPhoto)
                 )
             // start the new activity
             startActivity(intent, options.toBundle())
@@ -60,114 +72,78 @@ class Activity1_1Basics : AppCompatActivity() {
      */
     private fun addTransitionListeners() {
 
-        window.sharedElementExitTransition.addListener(object : Transition.TransitionListener {
 
-            override fun onTransitionStart(transition: Transition?) {
-                Toast.makeText(
-                    applicationContext,
-                    "Activity1_1Basics Exit onTransitionStart() $transition",
-                    Toast.LENGTH_SHORT
-                ).show()
+        val thisActivity = this::class.java.simpleName
+
+        window.sharedElementExitTransition =
+            TransitionInflater.from(this).inflateTransition(R.transition.move)
+        window.sharedElementEnterTransition =
+            TransitionInflater.from(this).inflateTransition(R.transition.move)
+        window.sharedElementReenterTransition =
+            TransitionInflater.from(this).inflateTransition(R.transition.move)
+        window.sharedElementReturnTransition =
+            TransitionInflater.from(this).inflateTransition(R.transition.move)
+
+        window.sharedElementExitTransition.addListener(
+            object : TransitionAdapter() {
+                override fun onTransitionStart(transition: Transition?) {
+                    println("🔥 $thisActivity: sharedElementExitTransition onTransitionStart()")
+                }
             }
+        )
 
-            override fun onTransitionEnd(transition: Transition?) {
-                Toast.makeText(
-                    applicationContext,
-                    "Activity1_1Basics Exit onTransitionEnd() $transition",
-                    Toast.LENGTH_SHORT
-                ).show()
+        window.sharedElementEnterTransition.addListener(
+            object : TransitionAdapter() {
+                override fun onTransitionStart(transition: Transition?) {
+                    println("🎃 $thisActivity: sharedElementEnterTransition onTransitionStart()")
+                }
             }
+        )
 
-            override fun onTransitionCancel(transition: Transition?) = Unit
-            override fun onTransitionPause(transition: Transition?) = Unit
-            override fun onTransitionResume(transition: Transition?) = Unit
-        })
-
-        window.sharedElementEnterTransition.addListener(object : Transition.TransitionListener {
-
-            override fun onTransitionStart(transition: Transition?) {
-                Toast.makeText(
-                    applicationContext,
-                    "Activity1_1Basics Enter onTransitionStart() $transition",
-                    Toast.LENGTH_SHORT
-                ).show()
+        window.sharedElementReenterTransition.addListener(
+            object : TransitionAdapter() {
+                override fun onTransitionStart(transition: Transition?) {
+                    println("🍏 $thisActivity: sharedElementReenterTransition onTransitionStart()")
+                }
             }
+        )
 
-            override fun onTransitionEnd(transition: Transition?) {
-                Toast.makeText(
-                    applicationContext,
-                    "Activity1_1Basics Enter onTransitionEnd() $transition",
-                    Toast.LENGTH_SHORT
-                ).show()
+        window.sharedElementReturnTransition.addListener(
+            object : TransitionAdapter() {
+                override fun onTransitionStart(transition: Transition?) {
+                    println("👻 $thisActivity: sharedElementReturnTransition onTransitionStart()")
+                }
             }
-
-            override fun onTransitionCancel(transition: Transition?) = Unit
-            override fun onTransitionPause(transition: Transition?) = Unit
-            override fun onTransitionResume(transition: Transition?) = Unit
-        })
-
-        window.sharedElementReenterTransition.addListener(object : Transition.TransitionListener {
-
-            override fun onTransitionStart(transition: Transition?) {
-                Toast.makeText(
-                    applicationContext,
-                    "Activity1_1Basics ReEnter onTransitionStart() $transition",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-            override fun onTransitionEnd(transition: Transition?) {
-                Toast.makeText(
-                    applicationContext,
-                    "Activity1_1Basics ReEnter onTransitionEnd() $transition",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-            override fun onTransitionCancel(transition: Transition?) = Unit
-            override fun onTransitionPause(transition: Transition?) = Unit
-            override fun onTransitionResume(transition: Transition?) = Unit
-        })
-
-        window.sharedElementReturnTransition.addListener(object : Transition.TransitionListener {
-
-            override fun onTransitionStart(transition: Transition?) {
-                Toast.makeText(
-                    applicationContext,
-                    "Activity1_1Basics Return onTransitionStart() $transition",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-            override fun onTransitionEnd(transition: Transition?) {
-                Toast.makeText(
-                    applicationContext,
-                    "Activity1_1Basics Return onTransitionEnd() $transition",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-            override fun onTransitionCancel(transition: Transition?) = Unit
-            override fun onTransitionPause(transition: Transition?) = Unit
-            override fun onTransitionResume(transition: Transition?) = Unit
-        })
+        )
 
         setExitSharedElementCallback(object : SharedElementCallback() {
-
-            override fun onSharedElementEnd(
-                sharedElementNames: MutableList<String>?,
-                sharedElements: MutableList<View>?,
-                sharedElementSnapshots: MutableList<View>?
-            ) {
-                super.onSharedElementEnd(sharedElementNames, sharedElements, sharedElementSnapshots)
-            }
 
             override fun onMapSharedElements(
                 names: MutableList<String>?,
                 sharedElements: MutableMap<String, View>?
             ) {
                 super.onMapSharedElements(names, sharedElements)
+
+                println(
+                    "🌽 $thisActivity: setExitSharedElementCallback() " +
+                            "names:$names, sharedElements: $sharedElements"
+                )
+
+                Toast.makeText(
+                    applicationContext,
+                    "🌽 $thisActivity: setExitSharedElementCallback() " +
+                            "names:$names, sharedElements: $sharedElements",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         })
     }
+}
+
+abstract class TransitionAdapter : Transition.TransitionListener {
+    override fun onTransitionStart(transition: Transition?) = Unit
+    override fun onTransitionEnd(transition: Transition?) = Unit
+    override fun onTransitionCancel(transition: Transition?) = Unit
+    override fun onTransitionPause(transition: Transition?) = Unit
+    override fun onTransitionResume(transition: Transition?) = Unit
 }

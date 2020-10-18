@@ -51,12 +51,19 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha06'
     implementation 'io.reactivex.rxjava3:rxjava:3.0.6'
 
+    implementation "androidx.fragment:fragment-ktx:1.2.5"
+
     // LifeCycle
     implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0"
 
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.0"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.0"
+    implementation "androidx.navigation:navigation-runtime-ktx:2.3.0"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:2.3.0"
+
     // Coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
 
     // Dynamic Animation
     implementation "androidx.dynamicanimation:dynamicanimation:1.0.0"

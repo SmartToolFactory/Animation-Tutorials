@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<transitionSet xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- This is the systems default transition -->
-    <changeBounds />
-    <changeTransform />
-    <changeClipBounds />
-    <changeImageTransform />
-</transitionSet>

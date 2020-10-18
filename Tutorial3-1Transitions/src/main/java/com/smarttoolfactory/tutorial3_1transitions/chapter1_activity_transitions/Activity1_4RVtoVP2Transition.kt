@@ -5,10 +5,8 @@ import android.transition.*
 import android.view.Gravity
 import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.TransitionAdapter
-import kotlinx.android.synthetic.main.activity1_3recyclerview_to_viewpager2_transition.*
 
 /**
  * This tutorial is for adding custom Transitions for enter, exit and reenter.

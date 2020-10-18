@@ -58,7 +58,7 @@ class Activity1_2RecyclerViewTransition : AppCompatActivity() {
         intent.putExtra(KEY_POST_MODEL, postCardModel)
 
         // create the transition animation using image, title and body
-        val pairIvAvatar = Pair<View, String>(binding.ivAvatar, binding.ivAvatar.transitionName)
+        val pairIvAvatar = Pair<View, String>(binding.ivPhoto, binding.ivPhoto.transitionName)
         val pairTvTitle = Pair<View, String>(binding.tvTitle, binding.tvTitle.transitionName)
         val pairTvBody = Pair<View, String>(binding.tvBody, binding.tvBody.transitionName)
 

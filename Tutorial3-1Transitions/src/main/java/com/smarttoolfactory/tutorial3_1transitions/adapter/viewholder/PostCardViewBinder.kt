@@ -52,7 +52,7 @@ class PostCardViewHolder(
         binding.tvTitle.text = post.title
         binding.tvBody.text = post.body
 
-        setImageUrl(binding.ivAvatar, model.drawableRes)
+        setImageUrl(binding.ivPhoto, model.drawableRes)
 
         binding.constraintLayout.setOnClickListener {
             onItemClick?.invoke(binding, model)

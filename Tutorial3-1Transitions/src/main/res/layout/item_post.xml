@@ -23,17 +23,17 @@
             android:focusable="true">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivAvatar"
+                android:id="@+id/ivPhoto"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                tools:src="@tools:sample/avatars"
-                android:transitionName="ivAvatar"
+                android:transitionName="@string/transition_image_view"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -44,8 +44,8 @@
                 android:text="Some Title"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:transitionName="tvTitle"
-                app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+                android:transitionName="@string/transition_tv_title"
+                app:layout_constraintStart_toEndOf="@+id/ivPhoto"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -56,7 +56,7 @@
                 android:layout_marginEnd="8dp"
                 android:maxLines="2"
                 android:text="@string/bacon_ipsum_short"
-                android:transitionName="tvBody"
+                android:transitionName="@string/transition_tv_body"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tvTitle"
                 app:layout_constraintTop_toBottomOf="@id/tvTitle" />

@@ -17,23 +17,21 @@
 package com.google.samples.gridtopager.fragment;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.core.app.SharedElementCallback;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnLayoutChangeListener;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.google.samples.gridtopager.adapter.GridAdapter;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.SharedElementCallback;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.samples.gridtopager.MainActivity;
 import com.google.samples.gridtopager.R;
+import com.google.samples.gridtopager.adapter.GridAdapter;
 
 import java.util.List;
 import java.util.Map;

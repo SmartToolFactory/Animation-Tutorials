@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.transition.Fade
 import android.transition.Transition
+import android.transition.TransitionInflater
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -95,98 +96,48 @@ class Activity1_1Details : AppCompatActivity() {
      */
     private fun addTransitionListeners() {
 
-        window.sharedElementExitTransition.addListener(object : Transition.TransitionListener {
+        val thisActivity = this::class.java.simpleName
 
-            override fun onTransitionStart(transition: Transition?) {
-                Toast.makeText(
-                    applicationContext,
-                    "Detail Exit onTransitionStart() $transition",
-                    Toast.LENGTH_SHORT
-                ).show()
+        window.sharedElementExitTransition =
+            TransitionInflater.from(this).inflateTransition(R.transition.move)
+        window.sharedElementEnterTransition =
+            TransitionInflater.from(this).inflateTransition(R.transition.move)
+        window.sharedElementReenterTransition =
+            TransitionInflater.from(this).inflateTransition(R.transition.move)
+        window.sharedElementReturnTransition =
+            TransitionInflater.from(this).inflateTransition(R.transition.move)
+
+        window.sharedElementExitTransition.addListener(
+            object : TransitionAdapter() {
+                override fun onTransitionStart(transition: Transition?) {
+                    println("🚀 $thisActivity: sharedElementExitTransition onTransitionStart()")
+                }
             }
+        )
 
-            override fun onTransitionEnd(transition: Transition?) {
-                Toast.makeText(
-                    applicationContext,
-                    "Detail Exit onTransitionEnd() $transition",
-                    Toast.LENGTH_SHORT
-                ).show()
+        window.sharedElementEnterTransition.addListener(
+            object : TransitionAdapter() {
+                override fun onTransitionStart(transition: Transition?) {
+                    println("🚌 $thisActivity: sharedElementEnterTransition onTransitionStart()")
+                }
             }
+        )
 
-            override fun onTransitionCancel(transition: Transition?) = Unit
-            override fun onTransitionPause(transition: Transition?) = Unit
-            override fun onTransitionResume(transition: Transition?) = Unit
-        })
-
-        window.sharedElementEnterTransition.addListener(object : Transition.TransitionListener {
-
-            override fun onTransitionStart(transition: Transition?) {
-                Toast.makeText(
-                    applicationContext,
-                    "Detail Enter onTransitionStart() $transition",
-                    Toast.LENGTH_SHORT
-                ).show()
+        window.sharedElementReenterTransition.addListener(
+            object : TransitionAdapter() {
+                override fun onTransitionStart(transition: Transition?) {
+                    println("🚙 $thisActivity: sharedElementReenterTransition onTransitionStart()")
+                }
             }
+        )
 
-            override fun onTransitionEnd(transition: Transition?) {
-                Toast.makeText(
-                    applicationContext,
-                    "Detail Enter onTransitionEnd() $transition",
-                    Toast.LENGTH_SHORT
-                ).show()
+        window.sharedElementReturnTransition.addListener(
+            object : TransitionAdapter() {
+                override fun onTransitionStart(transition: Transition?) {
+                    println("🚕 $thisActivity: sharedElementReturnTransition onTransitionStart()")
+                }
             }
-
-            override fun onTransitionCancel(transition: Transition?) = Unit
-            override fun onTransitionPause(transition: Transition?) = Unit
-            override fun onTransitionResume(transition: Transition?) = Unit
-        })
-
-        window.sharedElementReenterTransition.addListener(object : Transition.TransitionListener {
-
-            override fun onTransitionStart(transition: Transition?) {
-                Toast.makeText(
-                    applicationContext,
-                    "Detail ReEnter onTransitionStart() $transition",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-            override fun onTransitionEnd(transition: Transition?) {
-                Toast.makeText(
-                    applicationContext,
-                    "Detail ReEnter onTransitionEnd() $transition",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-            override fun onTransitionCancel(transition: Transition?) = Unit
-            override fun onTransitionPause(transition: Transition?) = Unit
-            override fun onTransitionResume(transition: Transition?) = Unit
-        })
-
-        window.sharedElementReturnTransition.addListener(object : Transition.TransitionListener {
-
-            override fun onTransitionStart(transition: Transition?) {
-                Toast.makeText(
-                    applicationContext,
-                    "Detail Return onTransitionStart() $transition",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-            override fun onTransitionEnd(transition: Transition?) {
-                Toast.makeText(
-                    applicationContext,
-                    "Detail Return onTransitionEnd() $transition",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-            override fun onTransitionCancel(transition: Transition?) = Unit
-            override fun onTransitionPause(transition: Transition?) = Unit
-            override fun onTransitionResume(transition: Transition?) = Unit
-        })
-
+        )
 
         setEnterSharedElementCallback(object : SharedElementCallback() {
 
@@ -195,9 +146,13 @@ class Activity1_1Details : AppCompatActivity() {
                 sharedElements: MutableMap<String, View>?
             ) {
                 super.onMapSharedElements(names, sharedElements)
+
+                println("🍒 $thisActivity: setEnterSharedElementCallback() " +
+                        "names:$names, sharedElements: $sharedElements")
+
                 Toast.makeText(
                     applicationContext,
-                    "🍒 Activity1_1DetailActivity setEnterSharedElementCallback() " +
+                    "🍒 $thisActivity: setEnterSharedElementCallback() " +
                             "names:$names, sharedElements: $sharedElements",
                     Toast.LENGTH_LONG
                 ).show()
