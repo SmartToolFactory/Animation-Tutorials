@@ -9,24 +9,9 @@ class Activity2_3FragmentTransitions : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-//        supportFragmentManager.fragmentFactory = CustomFragmentFactory()
-
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity2_1fragment_transitions)
-        title = getString(R.string.activity2_2)
+        setContentView(R.layout.activity2_3nav_shared_transition)
+        title = getString(R.string.activity2_3)
 
-
-
-//        supportFragmentManager.commit {
-//            replace<ListFragment>(R.id.fragmentContainerView)
-//        }
-
-//        val fragment = ListFragment()
-
-        val fragment = Fragment2_3RecyclerView()
-
-        supportFragmentManager.beginTransaction()
-            .add(R.id.fragmentContainerView, fragment)
-            .commit()
     }
 }

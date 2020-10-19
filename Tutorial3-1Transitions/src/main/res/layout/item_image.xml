@@ -15,7 +15,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/avatar_1_raster" />
+            tools:src="@drawable/landscape1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

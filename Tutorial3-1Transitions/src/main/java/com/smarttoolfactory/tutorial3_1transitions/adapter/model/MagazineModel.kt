@@ -5,7 +5,7 @@ import androidx.annotation.DrawableRes
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class AvatarImageModel(
+data class MagazineModel(
     @DrawableRes val drawableRes: Int,
     val title: String,
     val body: String

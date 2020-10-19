@@ -36,7 +36,6 @@ class Fragment2_2ImageList : Fragment() {
         dataList = getImageData()
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

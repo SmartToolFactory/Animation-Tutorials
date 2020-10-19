@@ -79,6 +79,7 @@ open class Activity1_3Details : AppCompatActivity() {
                         println()
                     }
                 }
+
             })
     }
 

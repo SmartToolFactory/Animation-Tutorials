@@ -33,7 +33,9 @@
         <activity
             android:name=".chapter2_fragment_transitions.Activity2_2FragmentTransitions"
             android:theme="@style/Theme.App.NoActionBar" />
-        <activity android:name=".chapter2_fragment_transitions.Activity2_3FragmentTransitions" />
+        <activity
+            android:name=".chapter2_fragment_transitions.Activity2_3FragmentTransitions"
+            android:theme="@style/Theme.App.NoActionBar" />
     </application>
 
 </manifest>

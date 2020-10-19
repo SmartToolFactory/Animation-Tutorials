@@ -169,6 +169,11 @@ open class Activity1_3RecyclerViewToViewPager2Transition : AppCompatActivity() {
                 )
             }
 
+            override fun onRejectSharedElements(rejectedSharedElements: MutableList<View>?) {
+                super.onRejectSharedElements(rejectedSharedElements)
+                println("❌ setExitSharedElementCallback() rejectedSharedElements: $rejectedSharedElements")
+            }
+
         })
     }
 }

@@ -17,6 +17,7 @@ import com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions
 import com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Activity2_1FragmentTransitions
 import com.smarttoolfactory.tutorial3_1transitions.databinding.ActivityMainBinding
 import com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Activity2_2FragmentTransitions
+import com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Activity2_3FragmentTransitions
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickListener {
@@ -101,6 +102,13 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
             ActivityClassModel(
                 Activity2_2FragmentTransitions::class.java,
                 getString(R.string.activity2_2)
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity2_3FragmentTransitions::class.java,
+                getString(R.string.activity2_3)
             )
         )
     }

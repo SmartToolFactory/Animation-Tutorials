@@ -20,4 +20,22 @@ object ImageData {
         R.drawable.landscape9,
         R.drawable.landscape10
     )
+
+
+    @DrawableRes
+    val MAGAZINE_DRAWABLES = intArrayOf(
+        R.drawable.mag1,
+        R.drawable.mag2,
+        R.drawable.mag3,
+        R.drawable.mag4,
+        R.drawable.mag5,
+        R.drawable.mag6,
+        R.drawable.mag7,
+        R.drawable.mag1,
+        R.drawable.mag2,
+        R.drawable.mag3,
+        R.drawable.mag4,
+        R.drawable.mag5
+
+    )
 }

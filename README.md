@@ -248,16 +248,17 @@ over **NavigationBar**, or **Toolbar**
 
 ### Transition Callbacks and Lifecycles
 
-
 * **Note** Exit-ReEnter transitions, and ReEnter-Return transitions for Activity are same transition
   by default. 
 * Exit, Enter, ReEnter and Return transitions are **NULL* for fragments by default
 * ***setExitSharedElementCallback***, and ***sharedElementExitTransition*** useful for
-changing shared transition elements that are mapped for situations like transition from RecyclerView
-to ViewPager or another RecyclerView and changing selected item in second **Activity** or **Fragment**
+changing shared transition elements that are mapped with String and View. For instance, after transition from RecyclerView
+to ViewPager or another RecyclerView, user changes the selected page/element and we remap the shared element for
+the next imageView in ViewPager's current page.
 
 #### Transition change states and ordering for transitions Between Activities
-ExitCallback is only set in first Activity, in second Activity EnterSharedElementCallback is set
+ExitSharedElementCallback is triggered in first Activity, in second Activity EnterSharedElementCallback is triggered
+
 ```
         Activity1 ---> Activity2
         Exit    ----> Enter
@@ -284,6 +285,5 @@ ExitCallback is only set in first Activity, in second Activity EnterSharedElemen
 ``` 
 
 ### TODOs:
-- [ ] Add fragment transitions, and image to ViewPager transitions
 - [ ] Add RecyclerView, ViewPager animations
 - [ ] Add custom Views with animations
