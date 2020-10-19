@@ -32,9 +32,9 @@ fragment transitions and image to ViewPager transitions and more.
 * [Tutorial3-1Shared Transitions](https://github.com/SmartToolFactory/Animation-Tutorials/tree/master/Tutorial3-1Transitions)
 Tutorials about Shared Transitions from Activity to Activity, and from Fragment to Fragment
 
-| Ch1-2 RV Transition | Ch1-3 RV to VP2 Transition   | Ch1-4 Style |
+| Ch1-2 RV Transition | Ch1-4 RV to VP2 Transition   | Ch2-3 Nav Components |
 | ----------|----------------| --------|
-| <img src="./screenshots/transition_chapter1_2.gif"/> | <img src="./screenshots/transition_chapter1_3.gif"/> | <img src="./screenshots/transition_chapter1_4.gif"/> |
+| <img src="./screenshots/transition_chapter1_2.gif"/> | <img src="./screenshots/transition_chapter1_4.gif"/> | <img src="./screenshots/transition_chapter2_3.gif"/> |
 
 
 ## Physics Based Animations
@@ -283,6 +283,26 @@ ExitSharedElementCallback is triggered in first Activity, in second Activity Ent
         onMapSharedElements() does exact same thing in makeSceneTransitionAnimation
         mapping string to view or with Pair<View, String>
 ``` 
+
+### Fragment Shared Element Transitions
+
+* exitTransition, enterTransition, returnTransition and reEnterTransitions are null for fragments by default.
+*  🔥🔥 Setting createReturnTransition to false lets this fragment's reenterTransition to wait previous fragment's returnTransition to finish
+* add sharedElement to fragments with ```addSharedElement(ivPhoto, ivPhoto.transitionName)```
+and use ```setReorderingAllowed(true)``` to optimize for shared element transition
+* With Navigation Components set shared elements as
+```
+val direction: NavDirections =
+    Fragment2_3MagazineListDirections.actionFragment23MagazineListToFragment23MagazineDetail(
+        magazineModel
+    )
+
+val extras = FragmentNavigatorExtras(
+    binding.ivMagazineCover to binding.ivMagazineCover.transitionName,
+)
+
+findNavController().navigate(direction, extras)
+```
 
 ### TODOs:
 - [ ] Add RecyclerView, ViewPager animations

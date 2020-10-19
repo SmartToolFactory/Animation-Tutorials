@@ -30,14 +30,15 @@ class Activity2_3CircularReveal : AppCompatActivity() {
             val circularReveal = ViewAnimationUtils.createCircularReveal(
                 imageView,
                 0,
-                0, 0f,
+                0,
+                0f,
                 hypot(imageView.width.toDouble(), imageView.height.toDouble()).toFloat()
             )
             circularReveal.interpolator = AccelerateDecelerateInterpolator()
             circularReveal.duration = 700
 
             imageView.visibility = View.VISIBLE
-            // Finally start the animation
+
             // Finally start the animation
             circularReveal.start()
         }

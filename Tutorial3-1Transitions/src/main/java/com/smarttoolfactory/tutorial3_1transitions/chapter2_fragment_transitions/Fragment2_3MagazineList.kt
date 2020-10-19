@@ -1,17 +1,19 @@
 package com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.app.SharedElementCallback
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import androidx.transition.Fade
+import androidx.transition.*
 import com.google.android.material.appbar.AppBarLayout
 import com.smarttoolfactory.tutorial3_1transitions.ImageData
 import com.smarttoolfactory.tutorial3_1transitions.R
@@ -20,6 +22,7 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.model.MagazineModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.MagazineViewViewBinder
 import com.smarttoolfactory.tutorial3_1transitions.databinding.ItemMagazineBinding
+import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 
 class Fragment2_3MagazineList : Fragment() {
 
@@ -46,32 +49,66 @@ class Fragment2_3MagazineList : Fragment() {
     private fun prepareTransitions(view: View) {
 
         val appBarLayout: AppBarLayout = view.findViewById(R.id.appbar)
-        val constraintLayout:ConstraintLayout = view.findViewById(R.id.constraintLayout)
+        val constraintLayout: ConstraintLayout = view.findViewById(R.id.constraintLayout)
 
-//        val transition = Fade().apply {
-//            excludeTarget(appBarLayout, true)
-//            duration = 300
-//        }
-//
-//        val move =  TransitionInflater.from(context).inflateTransition(android.R.transition.move)
-//
-//        exitTransition =
-//            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
-//
-//        reenterTransition =
-//            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
 
-//        val fade = Fade()
-//            .apply {
-//                duration = 500
-//                addTarget(constraintLayout)
-//                excludeTarget(appBarLayout, true)
-//            }
-//        reenterTransition = fade
-//        exitTransition= fade
-
+        /*
+            🔥🔥 Setting createReturnTransition to false lets this fragment's
+            reenterTransition to wait previous fragment's returnTransition to finish
+         */
 //        allowEnterTransitionOverlap = false
 //        allowReturnTransitionOverlap = false
+
+        reenterTransition =
+            Fade(Fade.MODE_IN)
+                .apply {
+                    duration = 900
+                }
+
+        returnTransition =
+//            Slide(Gravity.BOTTOM)
+            Fade(Fade.MODE_IN)
+                .apply {
+                    duration = 900
+                }
+
+        (reenterTransition as Transition).addListener(object : TransitionXAdapter() {
+
+            var startTime = 0L
+
+            override fun onTransitionStart(transition: Transition) {
+                super.onTransitionStart(transition)
+                println("🚀 List reenterTransition START")
+                startTime = System.currentTimeMillis()
+            }
+
+            override fun onTransitionEnd(transition: Transition) {
+                super.onTransitionEnd(transition)
+                println(
+                    "🚀 List reenterTransition END" +
+                            " in ms: ${System.currentTimeMillis() - startTime}"
+                )
+            }
+        })
+
+        (returnTransition as Transition).addListener(object : TransitionXAdapter() {
+
+            var startTime = 0L
+
+            override fun onTransitionStart(transition: Transition) {
+                super.onTransitionStart(transition)
+                println("😍 List returnTransition START")
+                startTime = System.currentTimeMillis()
+            }
+
+            override fun onTransitionEnd(transition: Transition) {
+                super.onTransitionEnd(transition)
+                println(
+                    "😍 List returnTransition END" +
+                            " in ms: ${System.currentTimeMillis() - startTime}"
+                )
+            }
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -109,7 +146,7 @@ class Fragment2_3MagazineList : Fragment() {
 
         val extras = FragmentNavigatorExtras(
             binding.ivMagazineCover to binding.ivMagazineCover.transitionName,
-            binding.tvMagazineTitle to binding.tvMagazineTitle.transitionName
+//            binding.tvMagazineTitle to binding.tvMagazineTitle.transitionName
         )
 
         findNavController().navigate(direction, extras)
