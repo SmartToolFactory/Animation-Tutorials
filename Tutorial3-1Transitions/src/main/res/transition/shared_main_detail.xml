@@ -1,5 +1,4 @@
-<transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
-    android:startDelay="300">
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android">
     <transitionSet>
         <targets>
             <target android:targetId="@id/ivPhoto" />

@@ -27,15 +27,29 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivMagazineCover"
+
+        <View
+            android:id="@+id/viewImageBackground"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:scaleType="fitXY"
-            app:layout_constraintDimensionRatio="3:3"
+            android:background="#000"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".5"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivMagazineCover"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent=".32"
+            android:scaleType="fitXY"
+            app:layout_constraintDimensionRatio="3:4"
+            app:layout_constraintTop_toTopOf="@+id/viewImageBackground"
+            app:layout_constraintStart_toStartOf="@id/viewImageBackground"
+            app:layout_constraintEnd_toEndOf="@id/viewImageBackground"
+            app:layout_constraintBottom_toBottomOf="@id/viewImageBackground"
             tools:src="@drawable/mag1" />
 
         <TextView
@@ -43,28 +57,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:layout_marginTop="32dp"
             android:text="SOME TITLE"
-            android:textColor="#555"
-            android:textSize="26sp"
-            android:textStyle="bold"
+            android:textColor="#fff"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/ivMagazineCover"
+            app:layout_constraintBottom_toBottomOf="@id/viewImageBackground"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivMagazineCover"
+            tools:layout_editor_absoluteY="354dp"
             tools:text="SOME TITLE" />
 
         <TextView
             android:id="@+id/tvBody"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:lineSpacingMultiplier="1.2"
-            android:paddingStart="16dp"
-            android:paddingTop="16dp"
-            android:paddingEnd="16dp"
+            android:padding="16dp"
             android:text="@string/bacon_ipsum"
             android:textAppearance="@android:style/TextAppearance.Material.Subhead"
             android:textColor="?android:textColorSecondary"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvMagazineTitle" />
 

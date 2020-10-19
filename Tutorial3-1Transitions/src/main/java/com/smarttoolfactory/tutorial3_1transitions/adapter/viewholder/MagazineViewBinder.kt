@@ -60,8 +60,10 @@ class MagazineViewHolder(
 
         // 🔥 Set transition name to resource to drawable
         binding.ivMagazineCover.transitionName = "${model.drawableRes}"
-        binding.tvMagazineTitle.text = model.title
         setImageUrl(binding.ivMagazineCover, model.drawableRes)
+
+        binding.tvMagazineTitle.transitionName = model.title
+        binding.tvMagazineTitle.text = model.title
 
         binding.root.setOnClickListener {
             onItemClick?.invoke(binding, model)

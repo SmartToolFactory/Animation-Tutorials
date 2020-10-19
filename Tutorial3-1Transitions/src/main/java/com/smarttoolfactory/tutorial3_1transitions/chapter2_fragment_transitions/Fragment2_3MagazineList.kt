@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.Fade
+import com.google.android.material.appbar.AppBarLayout
 import com.smarttoolfactory.tutorial3_1transitions.ImageData
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.SingleViewBinderListAdapter
@@ -35,13 +38,40 @@ class Fragment2_3MagazineList : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment2_3magazine_list, container, false)
 
-        prepareTransitions()
+        prepareTransitions(view)
         postponeEnterTransition()
         return view
     }
 
-    private fun prepareTransitions() {
+    private fun prepareTransitions(view: View) {
 
+        val appBarLayout: AppBarLayout = view.findViewById(R.id.appbar)
+        val constraintLayout:ConstraintLayout = view.findViewById(R.id.constraintLayout)
+
+//        val transition = Fade().apply {
+//            excludeTarget(appBarLayout, true)
+//            duration = 300
+//        }
+//
+//        val move =  TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+//
+//        exitTransition =
+//            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+//
+//        reenterTransition =
+//            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+
+//        val fade = Fade()
+//            .apply {
+//                duration = 500
+//                addTarget(constraintLayout)
+//                excludeTarget(appBarLayout, true)
+//            }
+//        reenterTransition = fade
+//        exitTransition= fade
+
+//        allowEnterTransitionOverlap = false
+//        allowReturnTransitionOverlap = false
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -78,7 +108,8 @@ class Fragment2_3MagazineList : Fragment() {
             )
 
         val extras = FragmentNavigatorExtras(
-            binding.ivMagazineCover to binding.ivMagazineCover.transitionName
+            binding.ivMagazineCover to binding.ivMagazineCover.transitionName,
+            binding.tvMagazineTitle to binding.tvMagazineTitle.transitionName
         )
 
         findNavController().navigate(direction, extras)
@@ -88,7 +119,11 @@ class Fragment2_3MagazineList : Fragment() {
 
         val magazineList = ArrayList<MagazineModel>()
         repeat(12) {
-            val magazineModel = MagazineModel(ImageData.MAGAZINE_DRAWABLES[it], "Issue #$it", "")
+            val magazineModel = MagazineModel(
+                ImageData.MAGAZINE_DRAWABLES[it],
+                "Issue #${ImageData.MAGAZINE_DRAWABLES[it]}",
+                ""
+            )
             magazineList.add(magazineModel)
         }
 

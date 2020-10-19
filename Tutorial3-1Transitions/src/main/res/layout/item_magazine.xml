@@ -7,8 +7,8 @@
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:paddingBottom="24dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="6dp"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="2dp"
         app:cardUseCompatPadding="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
