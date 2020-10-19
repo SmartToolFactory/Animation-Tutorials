@@ -29,9 +29,11 @@
         <activity
             android:name=".chapter1_activity_transitions.Activity1_4Details"
             android:theme="@style/Theme.App.Details" />
+        <activity android:name=".chapter2_fragment_transitions.Activity2_1FragmentTransitions" />
         <activity
-            android:name=".chapter2_fragment_transitions.Activity2_1FragmentTransitions"
+            android:name=".chapter2_fragment_transitions.Activity2_2FragmentTransitions"
             android:theme="@style/Theme.App.NoActionBar" />
+        <activity android:name=".chapter2_fragment_transitions.Activity2_3FragmentTransitions" />
     </application>
 
 </manifest>

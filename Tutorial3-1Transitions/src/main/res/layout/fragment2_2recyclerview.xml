@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".chapter2_fragment_transitions.Activity2_1FragmentTransitions">
+    tools:context=".chapter2_fragment_transitions.Activity2_2FragmentTransitions">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -32,7 +32,6 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="16dp"
             tools:listitem="@layout/item_avatar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

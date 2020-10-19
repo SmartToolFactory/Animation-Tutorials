@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--  Titles  -->
+    <string name="title_rugby">Rugby</string>
+    <string name="title_cricket">Cricket</string>
+    <string name="title_basketball">Basketball</string>
+    <string name="title_hockey">Hockey</string>
+    <string name="title_volleyball">Volleyball</string>
+    <string name="title_esports">Esports</string>
+    <string name="title_kabbadi">Kabaddi</string>
+    <string name="title_baseball">Baseball</string>
+    <string name="title_mma">MMA</string>
+    <string name="title_soccer">Soccer</string>
+    <string name="title_handball">Handball</string>
+    <string name="title_tennis">Tennis</string>
+
+    <!--  About  -->
+    <string name="about_rugby">
+        Rugby union, widely known simply as rugby, is a full contact team sport that originated in
+        England in the first half of the 19th century. One of the two codes of rugby football, it is
+        based on running with the ball in hand. In its most common form, a game is played between two
+        teams of 15 players using an oval-shaped ball on a rectangular field called a pitch. The field
+        has H-shaped goalposts at both ends.
+        Rugby union is a popular sport around the world, played by male and female players of all ages.
+        Rules do not differ between the sexes. In 2014, there were more than 6 million people playing
+        worldwide, of whom 2.36 million were registered players. World Rugby, previously called the
+        International Rugby Football Board (IRFB) and the International Rugby Board (IRB), has been
+        the governing body for rugby union since 1886, and currently has 101 countries as full members
+        and 18 associate members.
+    </string>
+
+    <string name="about_cricket">
+        Cricket is a bat-and-ball game played between two teams of eleven players on a field at the
+        centre of which is a 20-metre (22-yard) pitch with a wicket at each end, each comprising two
+        bails balanced on three stumps. The batting side scores runs by striking the ball bowled at
+        the wicket with the bat, while the bowling and fielding side tries to prevent this and dismiss
+        each player (so they are "out"). Means of dismissal include being bowled, when the ball hits
+        the stumps and dislodges the bails, and by the fielding side catching the ball after it is
+        hit by the bat, but before it hits the ground. When ten players have been dismissed, the
+        innings ends and the teams swap roles. The game is adjudicated by two umpires, aided by a
+        third umpire and match referee in international matches. They communicate with two off-field
+        scorers who record the matches statistical information.
+    </string>
+
+    <string name="about_basketball">
+        Basketball is a team sport in which two teams, most commonly of five players each, opposing
+        one another on a rectangular court, compete with the primary objective of shooting a basketball
+        (approximately 9.4 inches (24 cm) in diameter) through the defenders hoop (a basket 18 inches
+        (46 cm) in diameter mounted 10 feet (3.048 m) high to a backboard at each end of the court)
+        while preventing the opposing team from shooting through their own hoop. A field goal is worth
+        two points, unless made from behind the three-point line, when it is worth three. After a foul,
+        timed play stops and the player fouled or designated to shoot a technical foul is given one
+        or more one-point free throws. The team with the most points at the end of the game wins,
+        but if regulation play expires with the score tied, an additional period of play (overtime)
+        is mandated.
+        Players advance the ball by bouncing it while walking or running (dribbling) or by passing
+        it to a teammate, both of which require considerable skill. On offense, players may use a
+        variety of shots—the lay-up, the jump shot, or a dunk; on defense, they may steal the ball
+        from a dribbler, intercept passes, or block shots; either offense or defense may collect a
+        rebound, that is, a missed shot that bounces from rim or backboard. It is a violation to lift
+        or drag ones pivot foot without dribbling the ball, to carry it, or to hold the ball with
+        both hands then resume dribbling.
+    </string>
+
+    <string name="about_hockey">
+        Hockey is a sport in which two teams play against each other by trying to manoeuvre a ball
+        or a puck into the opponents goal using a hockey stick. There are many types of hockey such
+        as bandy, field hockey, ice hockey and rink hockey.
+        In most of the world, the term hockey by itself refers to field hockey, while in Canada, the
+        United States, Russia and most of Eastern and Northern Europe, the term usually refers to ice
+        hockey.
+    </string>
+
+    <string name="about_volleyball">
+        Volleyball is a team sport in which two teams of six players are separated by a net. Each
+        team tries to score points by grounding a ball on the other teams court under organized
+        rules. It has been a part of the official program of the Summer Olympic Games since Tokyo
+        1964.
+        The complete set of rules are extensive, but play essentially proceeds as follows: a
+        player on one of the teams begins a rally by serving the ball (tossing or releasing it
+        and then hitting it with a hand or arm), from behind the back boundary line of the court,
+        over the net, and into the receiving teams court. The receiving team must not let the
+        ball be grounded within their court. The team may touch the ball up to 3 times, but individual
+        players may not touch the ball twice consecutively. Typically, the first two touches are
+        used to set up for an attack, an attempt to direct the ball back over the net in such a way
+        that the serving team is unable to prevent it from being grounded in their court.
+    </string>
+
+    <string name="about_esports">
+        Esports (also known as electronic sports, e-sports, or eSports) is a form of sport competition
+        using video games. Esports often takes the form of organized, multiplayer video game
+        competitions, particularly between professional players, individually or as teams. Although
+        organized competitions have long been a part of video game culture, these were largely between
+        amateurs until the late 2000s, when participation by professional gamers and spectatorship in
+        these events through live streaming saw a large surge in popularity. By the 2010s,
+        esports was a significant factor in the video game industry, with many game developers actively
+        designing and providing funding for tournaments and other events.
+        The most common video game genres associated with esports are multiplayer online battle arena
+        (MOBA), first-person shooter (FPS), fighting, card games, battle royales, and real-time strategy
+        (RTS). Popular esport franchises include League of Legends, Dota, Counter-Strike, Overwatch,
+        Super Smash Bros., and StarCraft, among many others. Tournaments such as the League of Legends
+        World Championship, Dota 2s International, the fighting game-specific Evolution Championship
+        Series (EVO) and Intel Extreme Masters are among the most popular in esports. Many other
+        competitions use a series of league play with sponsored teams, such as the Overwatch League.
+        Although the legitimacy of esports as a true sporting competition remains in question, they
+        have been featured alongside traditional sports in some multinational events in Asia, with
+        the International Olympic Committee also having discussed their inclusion into future Olympic
+        events.
+    </string>
+
+    <string name="about_kabbadi">
+        Kabaddi is a contact team sport, native to the Indian subcontinent, played between two
+        teams of seven players each. The objective of the game is for a single player on offense,
+        referred to as a "raider", to run into the opposing teams half of a court, tag out as many
+        of their defenders as possible, and return to their own half of the court, all without being
+        tackled by the defenders, and in a single breath. Points are scored tagged by the raider,
+        while the opposing team earns a point for stopping the raider. Players are taken out of the
+        game if they are tagged or tackled, but are brought back in for each point scored by their
+        team from a tag or tackle.
+        It is popular in South Asia and other surrounding Asian countries. Although accounts of
+        kabaddi appear in the histories of ancient India, the game was popularised as a competitive
+        sport in the 20th century. It is the national sport of Bangladesh. It is the state game
+        of the Indian states of Andhra Pradesh, Bihar, Haryana, Karnataka, Kerala, Maharashtra, Odisha,
+        Punjab, Tamil Nadu, Telangana, and Uttar Pradesh.
+        There are two major disciplines of kabaddi: so-called Punjabi kabaddi, also referred to as
+        circle style, comprises traditional forms of the sport that are played on a circular field
+        outdoors, while the standard style, played on a rectangular court indoors, is the discipline
+        played in major professional leagues and international competitions such as the Asian Games.
+    </string>
+
+    <string name="about_baseball">
+        Baseball is a bat-and-ball game played between two opposing teams who take turns batting and
+        fielding. The game proceeds when a player on the fielding team, called the pitcher, throws a
+        ball which a player on the batting team tries to hit with a bat. The objective of the offensive
+        team (batting team) is to hit the ball into the field of play, allowing its players to run the
+        bases, having them advance counter-clockwise around four bases to score what are called "runs".
+        The objective of the defensive team (fielding team) is to prevent batters from becoming runners,
+        and to prevent runners advance around the bases. A run is scored when a runner legally
+        advances around the bases in order and touches home plate (the place where the player started
+        as a batter). The team that scores the most runs by the end of the game is the winner.
+        The first objective of the batting team is to have a player reach first base safely. A player
+        on the batting team who reaches first base without being called "out" can attempt to advance
+        to subsequent bases as a runner, either immediately or during teammates turns batting. The
+        fielding team tries to prevent runs by getting batters or runners "out", which forces them
+        out of the field of play. Both the pitcher and fielders have methods of getting the batting
+        teams players out. The opposing teams switch back and forth between batting and fielding;
+        the batting teams turn to bat is over once the fielding team records three outs. One turn
+        batting for each team constitutes an inning. A game is usually composed of nine innings, and
+        the team with the greater number of runs at the end of the game wins. If scores are tied at
+        the end of nine innings, extra innings are usually played. Baseball has no game clock, although
+        most games end in the ninth inning.
+    </string>
+
+    <string name="about_mma">
+        Mixed martial arts (MMA), sometimes referred to as cage fighting, is a full-contact combat sport
+        based on striking, grappling and ground fighting, made up from various combat sports and martial
+        arts from around the world, The first documented use of the term mixed martial arts was in a
+        review of UFC 1 by television critic Howard Rosenberg in 1993. The term gained popularity
+        when newfullcontact.com, then one of the largest websites covering the sport, hosted and
+        republished the article. The question of who actually coined the term is subject to debate.
+        During the early 20th century, various interstylistic contests took place throughout Japan
+        and in the countries of the Four Asian Tigers. In Brazil, there was the sport of Vale Tudo,
+        in which fighters from various styles fought with little to no rules. The Gracie family was
+        known to promote Vale Tudo matches as a way to promote their own Brazilian jiu-jitsu style.
+        An early high-profile mixed martial arts bout was fought in 1951, between the judoka Masahiko
+        Kimura and Brazilian jiu-jitsu founder Hélio Gracie in Brazil. In the West, the concept of
+        combining elements of multiple martial arts was popularized by Bruce Lees Jeet Kune Do during
+        the late 1960s to early 1970s. A precursor to modern MMA was the 1976 Muhammad Ali vs. Antonio
+        Inoki bout, fought between boxer Muhammad Ali and wrestler Antonio Inoki in Japan, where it
+        later inspired the foundation of Pancrase in 1993 and Pride Fighting Championships in 1997.
+    </string>
+
+    <string name="about_soccer">
+        Association football, more commonly known as football or soccer, is a team sport played
+        with a spherical ball between two teams of 11 players. It is played by approximately 250
+        million players in over 200 countries and dependencies, making it the worlds most popular
+        sport. The game is played on a rectangular field called a pitch with a goal at each end.
+        The object of the game is to score by moving the ball beyond the goal line into the opposing
+        goal.
+        Football is played in accordance with a set of rules known as the Laws of the Game. The ball
+        is 68–70 cm (27–28 in) in circumference and known as the football. The two teams each compete
+        to get the ball into the other teams goal (between the posts and under the bar), thereby
+        scoring a goal. The team that has scored more goals at the end of the game is the winner;
+        if both teams have scored an equal number of goals then the game is a draw. Each team is led
+        by a captain who has only one official responsibility as mandated by the Laws of the Game:
+        to represent their team in the coin toss prior to kick-off or penalty kicks.
+        Players are not allowed to touch the ball with hands or arms while it is in play, except for
+        the goalkeepers within the penalty area. Other players mainly use their feet to strike or pass
+        the ball, but may also use any other part of their body except the hands and the arms. The
+        team that scores most goals by the end of the match wins. If the score is level at the end of
+        the game, either a draw is declared or the game goes into extra time or a penalty shootout
+        depending on the format of the competition.
+    </string>
+
+    <string name="about_handball">
+        Handball (also known as team handball, European handball or Olympic handball) is a team
+        sport in which two teams of seven players each (six outcourt players and a goalkeeper) pass
+        a ball using their hands with the aim of throwing it into the goal of the other team. A
+        standard match consists of two periods of 30 minutes, and the team that scores more goals wins.
+        Modern handball is played on a court of 40 by 20 metres (131 by 66 ft), with a goal in the
+        middle of each end. The goals are surrounded by a 6-meter (20 ft) zone where only the defending
+        goalkeeper is allowed; goals must be scored by throwing the ball from outside the zone or while
+        "diving" into it. The sport is usually played indoors, but outdoor variants exist in the forms
+        of field handball, Czech handball (which were more common in the past) and beach handball.
+        The game is fast and high-scoring: professional teams now typically score between 20 and 35
+        goals each, though lower scores were not uncommon until a few decades ago. Some players may
+        score hat tricks. Body contact is permitted: the defenders trying to stop the attackers from
+        approaching the goal. No protective equipment is mandated, but players may wear soft protective
+        bands, pads and mouth guards.
+    </string>
+
+    <string name="about_tennis">
+        Tennis is a racket sport that can be played individually against a single opponent (singles)
+        or between two teams of two players each (doubles). Each player uses a tennis racket that is
+        strung with cord to strike a hollow rubber ball covered with felt over or around a net and
+        into the opponents court. The object of the game is to maneuver the ball in such a way that
+        the opponent is not able to play a valid return. The player who is unable to return the ball
+        will not gain a point, while the opposite player will.
+        Tennis is an Olympic sport and is played at all levels of society and at all ages. The sport
+        can be played by anyone who can hold a racket, including wheelchair users. The modern game of
+        tennis originated in Birmingham, England, in the late 19th century as lawn tennis. It had
+        close connections both to various field (lawn) games such as croquet and bowls as well as to
+        the older racket sport today called real tennis. During most of the 19th century, in fact,
+        the term tennis referred to real tennis, not lawn tennis.
+        The rules of modern tennis have changed little since the 1890s. Two exceptions are that from
+        1908 to 1961 the server had to keep one foot on the ground at all times, and the adoption of
+        the tiebreak in the 1970s. A recent addition to professional tennis has been the adoption of
+        electronic review technology coupled with a point-challenge system, which allows a player to
+        contest the line call of a point, a system known as Hawk-Eye.
+    </string>
+
+
+</resources>

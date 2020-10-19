@@ -9,10 +9,11 @@ import android.view.Gravity
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
-import kotlinx.android.synthetic.main.activity1_1details.*
 
 
 class Activity1_2Details : AppCompatActivity() {
@@ -22,13 +23,18 @@ class Activity1_2Details : AppCompatActivity() {
         setContentView(R.layout.activity1_2details)
         title = "Detail Activity"
 
+        val ivPhoto = findViewById<ImageView>(R.id.ivPhoto)
+        val tvTitle = findViewById<TextView>(R.id.tvTitle)
+        val tvBody = findViewById<TextView>(R.id.tvBody)
+
+
         // Postpone transition after layout is laid
         postponeEnterTransition()
 
         val postCardModel = intent.extras?.getParcelable<PostCardModel>(KEY_POST_MODEL)
 
         postCardModel?.let {
-            ivImage.setImageResource(it.drawableRes)
+            ivPhoto.setImageResource(it.drawableRes)
             tvTitle.text = it.post.title
             tvBody.text = it.post.body
         }
@@ -67,6 +73,9 @@ class Activity1_2Details : AppCompatActivity() {
     }
 
     private fun createSlideTransition(): Transition {
+
+        val tvTitle = findViewById<TextView>(R.id.tvTitle)
+        val tvBody = findViewById<TextView>(R.id.tvBody)
 
         val slide = Slide(Gravity.BOTTOM).apply {
             interpolator = AnimationUtils.loadInterpolator(

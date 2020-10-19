@@ -5,24 +5,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.app.SharedElementCallback
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionInflater
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.SingleViewBinderListAdapter
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.AvatarImageModel
-import com.smarttoolfactory.tutorial3_1transitions.adapter.model.Post
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.AvatarImageViewBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
-import kotlinx.android.synthetic.main.fragment2_1recyclerview.*
 import java.util.*
 import kotlin.collections.ArrayList
 
 @Suppress("UNCHECKED_CAST")
-class Fragment2_1RecyclerView : Fragment() {
+class Fragment2_3RecyclerView : Fragment() {
+
+    lateinit var dataList: List<AvatarImageModel>
+
+    private var currentPosition = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        dataList = generateMockPosts()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,10 +38,10 @@ class Fragment2_1RecyclerView : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view =  inflater.inflate(R.layout.fragment2_1recyclerview, container, false)
+        val view = inflater.inflate(R.layout.fragment2_2recyclerview, container, false)
 
-        exitTransition =
-            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+        prepareTransitions()
+        postponeEnterTransition()
 
         return view
     }
@@ -41,8 +49,11 @@ class Fragment2_1RecyclerView : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+
         val avatarImageViewBinder = AvatarImageViewBinder(
             { imageView, avatarImageModel, position ->
+                currentPosition = position
                 goToDetail(imageView, avatarImageModel)
             },
             { imageView: ImageView, position: Int ->
@@ -58,26 +69,62 @@ class Fragment2_1RecyclerView : Fragment() {
         }
 
         // When user hits back button transition takes backward
-        postponeEnterTransition()
+
         recyclerView.doOnPreDraw {
             startPostponedEnterTransition()
         }
 
-        listAdapter.submitList(generateMockPosts())
+        listAdapter.submitList(dataList)
+    }
+
+    private fun prepareTransitions() {
+
+        exitTransition = TransitionInflater.from(context)
+            .inflateTransition(R.transition.grid_exit_transition)
+
+        setExitSharedElementCallback(object : SharedElementCallback() {
+
+            override fun onMapSharedElements(
+                names: MutableList<String>?,
+                sharedElements: MutableMap<String, View>?
+            ) {
+                super.onMapSharedElements(names, sharedElements)
+                println(
+                    "🚌 setExitSharedElementCallback() " +
+                            "names:$names, " +
+                            "sharedElements: $sharedElements"
+                )
+            }
+
+        })
 
     }
 
-    private fun goToDetail(view: ImageView, imageAvatarImageModel: AvatarImageModel) {
 
-        val args = Bundle().apply { putParcelable(KEY_AVATAR, imageAvatarImageModel) }
+    private fun goToDetail(imageView: ImageView, imageAvatarImageModel: AvatarImageModel) {
 
-        requireActivity().supportFragmentManager.commit {
+//        val args = Bundle().apply { putParcelable(KEY_AVATAR, imageAvatarImageModel) }
+//        requireActivity().supportFragmentManager.commit {
+//
+//            replace<Fragment2_1Details>(R.id.fragmentContainerView, null, args)
+//                .addToBackStack(null)
+//                .setReorderingAllowed(true)
+//                .addSharedElement(view, view.transitionName)
+//        }
 
-            replace<Fragment2_1Details>(R.id.fragmentContainerView, null, args)
-                .addToBackStack(null)
-                .setReorderingAllowed(true)
-                .addSharedElement(view, view.transitionName)
-        }
+
+        val tvTitle = requireView().findViewById<TextView>(R.id.tvTitle)
+
+        val fragment = Fragment2_3Details.newInstance(imageAvatarImageModel)
+
+        requireActivity().supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainerView, fragment)
+            .setReorderingAllowed(true)
+            .addSharedElement(imageView, imageView.transitionName)
+//            .addSharedElement(tvTitle, tvTitle.transitionName)
+            .addToBackStack(null)
+            .commit()
     }
 
 
@@ -90,7 +137,6 @@ class Fragment2_1RecyclerView : Fragment() {
             val drawableRes = getDrawableRes(randomNum)
             val title = "Issue #$drawableRes"
             val postBody = getString(R.string.bacon_ipsum)
-            val post = Post(it, it, title, postBody)
             postList.add(AvatarImageModel(drawableRes, title, postBody))
         }
 
@@ -119,11 +165,4 @@ class Fragment2_1RecyclerView : Fragment() {
             }
         }
     }
-
-    private fun prepareTransitions() {
-
-
-    }
-
-
 }

@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.doOnPreDraw
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.smarttoolfactory.tutorial3_1transitions.ImageData
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.SingleViewBinderListAdapter
@@ -20,7 +21,6 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.itemdecoration.GridMa
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.ImageModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ImageViewBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
-import kotlinx.android.synthetic.main.activity_main.*
 
 const val KEY_IMAGE_POSITION = "key-position-image"
 
@@ -38,7 +38,7 @@ open class Activity1_3RecyclerViewToViewPager2Transition : AppCompatActivity() {
 
         title = getString(R.string.activity1_3)
 
-        prepareSharedElementTransition()
+        prepareTransitions()
 
         val imageViewBinder = ImageViewBinder(
             // onClick
@@ -68,6 +68,8 @@ open class Activity1_3RecyclerViewToViewPager2Transition : AppCompatActivity() {
             }
         }
 
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+
         recyclerView?.apply {
             this.adapter = listAdapter
             this.layoutManager = gridLayoutManager
@@ -94,6 +96,9 @@ open class Activity1_3RecyclerViewToViewPager2Transition : AppCompatActivity() {
     override fun onActivityReenter(resultCode: Int, data: Intent?) {
         super.onActivityReenter(resultCode, data)
 
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+
+        println("‼️ Activity1_3RecyclerViewToViewPager2Transition onActivityReenter()")
         postponeEnterTransition()
 
         val position = data?.getIntExtra(KEY_IMAGE_POSITION, 0) ?: currentPosition
@@ -126,7 +131,7 @@ open class Activity1_3RecyclerViewToViewPager2Transition : AppCompatActivity() {
 
     }
 
-    private fun prepareSharedElementTransition() {
+    private fun prepareTransitions() {
 
         val thisActivity = this::class.java.simpleName
 
@@ -144,6 +149,8 @@ open class Activity1_3RecyclerViewToViewPager2Transition : AppCompatActivity() {
                             "names: $names," +
                             "sharedElements: $sharedElements"
                 )
+
+                val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
                 val selectedViewHolder =
                     recyclerView.findViewHolderForAdapterPosition(currentPosition)

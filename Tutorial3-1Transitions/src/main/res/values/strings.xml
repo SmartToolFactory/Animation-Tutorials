@@ -34,5 +34,7 @@
     <string name="activity1_2">Ch1-2 RecyclerView Transition</string>
     <string name="activity1_3">Ch1-3 RecyclerView to ViewPager2 Transition</string>
     <string name="activity1_4">Ch1-4 RV to VP2 Animation Styles</string>
-    <string name="activity2_1">Ch2-1 Fragment Transition and CircularReveal</string>
+    <string name="activity2_1">Ch2-1 Fragment Transition Sample</string>
+    <string name="activity2_2">Ch2-2 Fragment Transition Sample2</string>
+    <string name="activity2_3">Ch2-2 Fragment Transition and CircularReveal</string>
 </resources>

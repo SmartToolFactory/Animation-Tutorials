@@ -14,8 +14,9 @@ import com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions
 import com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions.Activity1_2RecyclerViewTransition
 import com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions.Activity1_3RecyclerViewToViewPager2Transition
 import com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions.Activity1_4RVtoVP2Transition
-import com.smarttoolfactory.tutorial3_1transitions.databinding.ActivityMainBinding
 import com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Activity2_1FragmentTransitions
+import com.smarttoolfactory.tutorial3_1transitions.databinding.ActivityMainBinding
+import com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Activity2_2FragmentTransitions
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickListener {
@@ -93,6 +94,13 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
             ActivityClassModel(
                 Activity2_1FragmentTransitions::class.java,
                 getString(R.string.activity2_1)
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity2_2FragmentTransitions::class.java,
+                getString(R.string.activity2_2)
             )
         )
     }

@@ -7,6 +7,7 @@ import android.util.Pair
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.SingleViewBinderListAdapter
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.Post
@@ -14,7 +15,6 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostCardViewBinder
 import com.smarttoolfactory.tutorial3_1transitions.databinding.ItemPostBinding
-import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -37,6 +37,8 @@ class Activity1_2RecyclerViewTransition : AppCompatActivity() {
         }
 
         listAdapter = SingleViewBinderListAdapter(postCardViewBinder as ItemBinder)
+
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
         recyclerView?.apply {
             this.adapter = listAdapter

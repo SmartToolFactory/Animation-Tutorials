@@ -7,6 +7,7 @@ import android.transition.Fade
 import android.transition.Transition
 import android.transition.TransitionInflater
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -15,7 +16,6 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.smarttoolfactory.tutorial3_1transitions.R
-import kotlinx.android.synthetic.main.activity1_1details.*
 
 
 class Activity1_1Details : AppCompatActivity() {
@@ -24,6 +24,8 @@ class Activity1_1Details : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity1_1details)
         title = "Detail Activity"
+
+        val ivPhoto = findViewById<ImageView>(R.id.ivPhoto)
 
         addTransitionListeners()
 
@@ -71,7 +73,7 @@ class Activity1_1Details : AppCompatActivity() {
                     }
 
                 })
-                .into(ivImage)
+                .into(ivPhoto)
         }
 
 
@@ -92,7 +94,7 @@ class Activity1_1Details : AppCompatActivity() {
 
 
     /**
-     * Listeners for enter, exit transitions fo this Activity
+     * Listeners for enter, exit transitions for this Activity
      */
     private fun addTransitionListeners() {
 
@@ -147,8 +149,10 @@ class Activity1_1Details : AppCompatActivity() {
             ) {
                 super.onMapSharedElements(names, sharedElements)
 
-                println("🍒 $thisActivity: setEnterSharedElementCallback() " +
-                        "names:$names, sharedElements: $sharedElements")
+                println(
+                    "🍒 $thisActivity: setEnterSharedElementCallback() " +
+                            "names:$names, sharedElements: $sharedElements"
+                )
 
                 Toast.makeText(
                     applicationContext,

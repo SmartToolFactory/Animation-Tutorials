@@ -10,10 +10,10 @@
         <changeClipBounds />
         <changeImageTransform />
     </transitionSet>
-    <recolor>
-        <targets>
-            <target android:targetId="@android:id/statusBarBackground" />
-            <target android:targetId="@android:id/navigationBarBackground" />
-        </targets>
-    </recolor>
+<!--    <recolor>-->
+<!--        <targets>-->
+<!--            <target android:targetId="@android:id/statusBarBackground" />-->
+<!--            <target android:targetId="@android:id/navigationBarBackground" />-->
+<!--        </targets>-->
+<!--    </recolor>-->
 </transitionSet>

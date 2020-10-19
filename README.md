@@ -246,6 +246,43 @@ Use ```<item name="android:windowContentTransitions">true</item>``` to enable Ac
 Use ```<item name="android:windowSharedElementsUseOverlay">false</item>``` for shared transition items not to be drawn
 over **NavigationBar**, or **Toolbar**
 
+### Transition Callbacks and Lifecycles
+
+
+* **Note** Exit-ReEnter transitions, and ReEnter-Return transitions for Activity are same transition
+  by default. 
+* Exit, Enter, ReEnter and Return transitions are **NULL* for fragments by default
+* ***setExitSharedElementCallback***, and ***sharedElementExitTransition*** useful for
+changing shared transition elements that are mapped for situations like transition from RecyclerView
+to ViewPager or another RecyclerView and changing selected item in second **Activity** or **Fragment**
+
+#### Transition change states and ordering for transitions Between Activities
+ExitCallback is only set in first Activity, in second Activity EnterSharedElementCallback is set
+```
+        Activity1 ---> Activity2
+        Exit    ----> Enter
+        SharedElementCallback Order: Activity1 Exit -> Activity2 Enter
+
+        I: 🌽 Activity1_1Basics: setExitSharedElementCallback() names:[transition_image_view], sharedElements: {transition_image_view=androidx.appcompat.widget.AppCompatImageView{b3a80cf V.ED..... ...P.... 21,21-231,231 #7f0800c5 app:id/ivPhoto}}
+        I: 🔥 Activity1_1Basics: sharedElementExitTransition onTransitionStart()
+
+        I: 🍒 Activity1_1Details: setEnterSharedElementCallback() names:[transition_image_view], sharedElements: {transition_image_view=androidx.appcompat.widget.AppCompatImageView{11b033f V.ED..... ......ID 0,0-1080,810 #7f0800c4 app:id/ivPhoto}}
+        I: 🚌 Activity1_1Details: sharedElementEnterTransition onTransitionStart()
+
+        Activity1 <-- Activity2
+        ReEnter <--- Return
+        SharedElementCallback Order: Activity2 Exit -> Activity1 Enter
+        I: 🍒 Activity1_1Details: setEnterSharedElementCallback() names:[transition_image_view], sharedElements: {transition_image_view=androidx.appcompat.widget.AppCompatImageView{11b033f V.ED..... ........ 0,0-1080,810 #7f0800c4 app:id/ivPhoto}}
+        I: 🌽 Activity1_1Basics: setExitSharedElementCallback() names:[transition_image_view], sharedElements: {transition_image_view=androidx.appcompat.widget.AppCompatImageView{b3a80cf V.ED..... ......ID 21,21-231,231 #7f0800c5 app:id/ivPhoto}}
+
+        I: 🚕 Activity1_1Details: sharedElementReturnTransition onTransitionStart()
+        I: 🍏 Activity1_1Basics: sharedElementReenterTransition onTransitionStart()
+
+
+        onMapSharedElements() does exact same thing in makeSceneTransitionAnimation
+        mapping string to view or with Pair<View, String>
+``` 
+
 ### TODOs:
 - [ ] Add fragment transitions, and image to ViewPager transitions
 - [ ] Add RecyclerView, ViewPager animations

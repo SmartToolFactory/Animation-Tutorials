@@ -3,12 +3,7 @@ package com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transition
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.transition.Fade
-import android.transition.Slide
-import android.transition.TransitionSet
-import android.view.Gravity
 import android.view.View
-import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.SharedElementCallback
@@ -16,10 +11,10 @@ import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.smarttoolfactory.tutorial3_1transitions.ImageData
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.fragment.ImageFragment
-import kotlinx.android.synthetic.main.activity1_3details.*
 
 open class Activity1_3Details : AppCompatActivity() {
 
@@ -29,6 +24,8 @@ open class Activity1_3Details : AppCompatActivity() {
         title = "DetailActivity"
 
         val position = intent.getIntExtra(KEY_IMAGE_POSITION, 0)
+
+        val viewPager2 = findViewById<ViewPager2>(R.id.viewPager2)
 
         viewPager2.adapter =
             ImageFragmentStateAdapter(this, ImageData.IMAGE_DRAWABLES.toTypedArray())
@@ -46,6 +43,8 @@ open class Activity1_3Details : AppCompatActivity() {
      * Prepares the shared element transition from and back to the grid fragment.
      */
     private fun prepareSharedElementTransition() {
+
+        val viewPager2 = findViewById<ViewPager2>(R.id.viewPager2)
 
         val thisActivity = this::class.java.simpleName
 
@@ -94,6 +93,7 @@ open class Activity1_3Details : AppCompatActivity() {
     }
 
     private fun setActivityResult() {
+        val viewPager2 = findViewById<ViewPager2>(R.id.viewPager2)
         val intent = Intent()
         intent.putExtra(KEY_IMAGE_POSITION, viewPager2.currentItem)
         setResult(Activity.RESULT_OK, intent)

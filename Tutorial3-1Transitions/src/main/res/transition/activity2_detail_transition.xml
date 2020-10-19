@@ -1,6 +1,6 @@
 <transitionSet xmlns:android="http://schemas.android.com/apk/res/android">
     <targets>
-        <target android:targetId="@id/ivImage" />
+        <target android:targetId="@id/ivPhoto" />
     </targets>
     <changeBounds>
         <arcMotion

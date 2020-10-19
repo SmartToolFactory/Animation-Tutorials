@@ -7,7 +7,6 @@ import androidx.annotation.DrawableRes
  */
 object ImageData {
 
-
     @DrawableRes
     val IMAGE_DRAWABLES = intArrayOf(
         R.drawable.landscape1,

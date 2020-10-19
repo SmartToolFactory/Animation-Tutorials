@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/ivImage"
+        android:id="@+id/ivPhoto"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:src="@drawable/avatar_2_raster"
@@ -26,7 +26,7 @@
         android:textStyle="bold"
         android:transitionName="@string/transition_tv_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivImage"
+        app:layout_constraintTop_toBottomOf="@id/ivPhoto"
         tools:text="SOME TITLE" />
 
     <TextView
