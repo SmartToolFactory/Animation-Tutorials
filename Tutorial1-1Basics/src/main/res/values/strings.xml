@@ -23,4 +23,5 @@
     <string name="activity3_1">Ch3-1 Physics Basics</string>
     <string name="activity3_2">Ch3-2 Scale and Chained Animations</string>
     <string name="activity3_3">Ch3-3 Fling Animations</string>
+    <string name="activity3_4">Ch3-4 BNV and TabLayout with Springs</string>
 </resources>

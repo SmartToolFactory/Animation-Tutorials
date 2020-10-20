@@ -16,9 +16,9 @@ fragment transitions and image to ViewPager transitions and more.
 | ----------|----------------| --------|
 | <img src="./screenshots/chapter2_7gradient.gif"/> | <img src="./screenshots/chapter2_8counter_textview.gif"/> | <img src="./screenshots/chapter2_9_counter_surfaceview.gif"/> |
 
-| Ch3-1 Physics | Ch3-2 Scale and Chained   | Ch3-3 Fling |
-| ----------|----------------| --------|
-| <img src="./screenshots/chapter3_1physics_basics.gif"/> | <img src="./screenshots/chapter3_2scale_and_chain.gif"/> | <img src="./screenshots/chapter3_fling_animation.gif"/> |
+| Ch3-1 Physics | Ch3-2 Scale and Chained   | Ch3-3 Fling | Ch3-4 BNV+TabLayout Physics|
+| ----------|----------------| --------| --------|
+| <img src="./screenshots/chapter3_1physics_basics.gif"/> | <img src="./screenshots/chapter3_2scale_and_chain.gif"/> | <img src="./screenshots/chapter3_fling_animation.gif"/> | <img src="./screenshots/chapter3_4_bnv_tablayout_animation.gif"/> |
 
 <br>
 
@@ -94,7 +94,7 @@ where width and height are the actual dimensions of while viewportWidth, and vie
 
 **Z** Close the path by drawing a line back to the beginning of the current subpath
 
-**'<group>'**  tag is used for grouping sections of drawable to be able to be animated together. And some animations such as
+**group** tag is used for grouping sections of drawable to be able to be animated together. And some animations such as
 rotation, and translation can only be applied to groups.
 
 Animations can be performed on the animatable attributes in android.graphics.drawable.VectorDrawable. 
@@ -250,7 +250,7 @@ over **NavigationBar**, or **Toolbar**
 
 * **Note** Exit-ReEnter transitions, and ReEnter-Return transitions for Activity are same transition
   by default. 
-* Exit, Enter, ReEnter and Return transitions are **NULL* for fragments by default
+* Exit, Enter, ReEnter and Return transitions are **NULL** for fragments by default
 * ***setExitSharedElementCallback***, and ***sharedElementExitTransition*** useful for
 changing shared transition elements that are mapped with String and View. For instance, after transition from RecyclerView
 to ViewPager or another RecyclerView, user changes the selected page/element and we remap the shared element for
@@ -287,7 +287,7 @@ ExitSharedElementCallback is triggered in first Activity, in second Activity Ent
 ### Fragment Shared Element Transitions
 
 * exitTransition, enterTransition, returnTransition and reEnterTransitions are null for fragments by default.
-*  🔥🔥 Setting createReturnTransition to false lets this fragment's reenterTransition to wait previous fragment's returnTransition to finish
+*  🔥🔥 Setting allowReturnTransitionOverlap to false lets this fragment's reenterTransition to wait previous fragment's returnTransition to finish
 * add sharedElement to fragments with ```addSharedElement(ivPhoto, ivPhoto.transitionName)```
 and use ```setReorderingAllowed(true)``` to optimize for shared element transition
 * With Navigation Components set shared elements as

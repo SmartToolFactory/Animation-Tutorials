@@ -20,6 +20,7 @@ import com.example.tutorial1_1basics.chapter1_basics.Activity1_4RotationTranslat
 import com.example.tutorial1_1basics.chapter3_physics.Activity3_1PhysicsBasics
 import com.example.tutorial1_1basics.chapter3_physics.Activity3_2ScaleAndChainedAnimations
 import com.example.tutorial1_1basics.chapter3_physics.Activity3_3FlingAnimation
+import com.example.tutorial1_1basics.chapter3_physics.Activity3_4BNV_TabLayoutPhysics
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickListener {
@@ -174,6 +175,13 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
             ActivityClassModel(
                 Activity3_3FlingAnimation::class.java,
                 getString(R.string.activity3_3)
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity3_4BNV_TabLayoutPhysics::class.java,
+                getString(R.string.activity3_4)
             )
         )
     }

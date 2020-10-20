@@ -53,7 +53,7 @@ class Fragment2_3MagazineList : Fragment() {
 
 
         /*
-            🔥🔥 Setting createReturnTransition to false lets this fragment's
+            🔥🔥 Setting allowReturnTransitionOverlap  to false lets this fragment's
             reenterTransition to wait previous fragment's returnTransition to finish
          */
 //        allowEnterTransitionOverlap = false

@@ -34,6 +34,7 @@
         <activity android:name=".chapter3_physics.Activity3_1PhysicsBasics" />
         <activity android:name=".chapter3_physics.Activity3_2ScaleAndChainedAnimations" />
         <activity android:name=".chapter3_physics.Activity3_3FlingAnimation" />
+        <activity android:name=".chapter3_physics.Activity3_4BNV_TabLayoutPhysics" />
     </application>
 
 </manifest>
