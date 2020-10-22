@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CustomAlphaTransition">
+        <attr name="startAlpha" format="float" />
+        <attr name="endAlpha" format="float" />
+    </declare-styleable>
+</resources>

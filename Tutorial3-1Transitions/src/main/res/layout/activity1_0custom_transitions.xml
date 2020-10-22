@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/constraintLayout"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/tvTvView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="View1"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/view1"
+        app:layout_constraintEnd_toEndOf="@id/view1"
+        app:layout_constraintStart_toStartOf="@id/view1" />
 
     <View
         android:id="@+id/view1"
@@ -21,6 +32,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent=".3" />
 
+    <TextView
+        android:id="@+id/tvTvView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="View2"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/view2"
+        app:layout_constraintEnd_toEndOf="@id/view2"
+        app:layout_constraintStart_toStartOf="@id/view2" />
+
     <View
         android:id="@+id/view2"
         android:layout_width="0dp"
@@ -31,6 +54,18 @@
         app:layout_constraintStart_toEndOf="@id/view1"
         app:layout_constraintTop_toTopOf="@id/view1"
         app:layout_constraintWidth_percent=".3" />
+
+    <TextView
+        android:id="@+id/tvTvView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="View3"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/view3"
+        app:layout_constraintEnd_toEndOf="@id/view3"
+        app:layout_constraintStart_toStartOf="@id/view3" />
 
     <View
         android:id="@+id/view3"
@@ -45,6 +80,18 @@
         app:layout_constraintTop_toBottomOf="@+id/view1"
         app:layout_constraintWidth_percent=".3" />
 
+    <TextView
+        android:id="@+id/tvTvView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="View4"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/view4"
+        app:layout_constraintEnd_toEndOf="@id/view4"
+        app:layout_constraintStart_toStartOf="@id/view4" />
+
     <View
         android:id="@+id/view4"
         android:layout_width="0dp"
@@ -57,8 +104,9 @@
         app:layout_constraintTop_toTopOf="@+id/view3"
         app:layout_constraintWidth_percent=".3" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button1"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -66,35 +114,42 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button2"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/design_default_color_primary" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button2"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Anim2"
         app:layout_constraintEnd_toStartOf="@+id/button3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button1"
-        app:layout_constraintTop_toTopOf="@+id/button1" />
+        app:layout_constraintTop_toTopOf="@+id/button1"
+        app:strokeColor="@color/design_default_color_primary" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button3"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Anim3"
         app:layout_constraintEnd_toStartOf="@+id/button4"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toTopOf="@+id/button1" />
+        app:layout_constraintTop_toTopOf="@+id/button1"
+        app:strokeColor="@color/design_default_color_primary" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button4"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Anim4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button3"
-        app:layout_constraintTop_toTopOf="@+id/button1" />
+        app:layout_constraintTop_toTopOf="@+id/button1"
+        app:strokeColor="@color/design_default_color_primary" />
 </androidx.constraintlayout.widget.ConstraintLayout>

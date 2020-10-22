@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CustomRotationTransition">
+        <attr name="startRotation" format="float" />
+        <attr name="endRotation" format="float" />
+    </declare-styleable>
+</resources>

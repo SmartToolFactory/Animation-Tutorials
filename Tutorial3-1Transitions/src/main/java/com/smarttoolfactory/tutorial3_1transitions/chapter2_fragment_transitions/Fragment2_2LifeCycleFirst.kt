@@ -12,11 +12,9 @@ import androidx.cardview.widget.CardView
 import androidx.core.app.SharedElementCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.transition.Fade
-import androidx.transition.Slide
-import androidx.transition.Transition
-import androidx.transition.TransitionInflater
+import androidx.transition.*
 import com.smarttoolfactory.tutorial3_1transitions.R
+import com.smarttoolfactory.tutorial3_1transitions.transition.CustomTextColorTransition
 import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 
 
@@ -45,6 +43,11 @@ class Fragment2_2LifeCycleFirst : Fragment() {
             tvLifeCycle.text = "$it\n"
         })
 
+        val tvExitTransition = view.findViewById<TextView>(R.id.tvExitTransition)
+        val tvEnterTransition = view.findViewById<TextView>(R.id.tvEnterTransition)
+        val tvReturnTransition = view.findViewById<TextView>(R.id.tvReturnTransition)
+        val tvReEnterTransition = view.findViewById<TextView>(R.id.tvReEnterTransition)
+
 
         /*
             🔥🔥 Setting allowReturnTransitionOverlap  to false lets this fragment's
@@ -55,46 +58,48 @@ class Fragment2_2LifeCycleFirst : Fragment() {
         allowEnterTransitionOverlap = false
         allowReturnTransitionOverlap = false
 
-        val ivPhoto2 = view.findViewById<ImageView>(R.id.ivPhoto2)
 
-        exitTransition = Slide(Gravity.RIGHT)
-//        exitTransition = Fade()
-            .apply {
-                addTarget(ivPhoto2)
-                duration = 1000
-            }
+        val exitTransitions = TransitionSet()
 
-        enterTransition = Slide(Gravity.LEFT)
-//        enterTransition = Fade()
-            .apply {
-                addTarget(ivPhoto2)
-                duration = 1000
-            }
+        val exitTextTransition =
+            CustomTextColorTransition(tvExitTransition.currentTextColor, Color.MAGENTA, true)
+                .apply {
+                    addTarget(tvExitTransition)
+                    duration = 500
+                }
 
-        reenterTransition = Slide(Gravity.TOP)
-//        reenterTransition = Fade()
-            .apply {
-                addTarget(ivPhoto2)
-                duration = 1000
-            }
-        returnTransition = Slide(Gravity.BOTTOM)
-//        returnTransition = Fade()
-            .apply {
-                addTarget(ivPhoto2)
-                duration = 1000
-            }
+        exitTransitions.addTransition(exitTextTransition)
 
+        exitTransition = exitTransitions
+
+        enterTransition =
+            CustomTextColorTransition(tvEnterTransition.currentTextColor, Color.MAGENTA, true)
+                .apply {
+                    addTarget(tvEnterTransition)
+                    duration = 500
+                }
+
+        reenterTransition =
+            CustomTextColorTransition(tvReEnterTransition.currentTextColor, Color.MAGENTA, true)
+                .apply {
+                    addTarget(tvReEnterTransition)
+                    duration = 500
+                }
+        returnTransition =
+            CustomTextColorTransition(tvReturnTransition.currentTextColor, Color.MAGENTA, true)
+                .apply {
+                    addTarget(tvReturnTransition)
+                    duration = 500
+                }
 
         (exitTransition as Transition).addListener(object : TransitionXAdapter() {
-
-            val tvExitTransition = view.findViewById<TextView>(R.id.tvExitTransition)
 
 
             val currentTextColor = tvExitTransition.currentTextColor
 
             override fun onTransitionStart(transition: Transition) {
                 super.onTransitionStart(transition)
-                tvExitTransition.setTextColor(Color.YELLOW)
+//                tvExitTransition.setTextColor(Color.YELLOW)
                 viewModel.appendText("🤔 First exitTransition onTransitionStart() ${transition::class.java.simpleName}\n")
 
             }
@@ -109,14 +114,11 @@ class Fragment2_2LifeCycleFirst : Fragment() {
 
         (enterTransition as Transition).addListener(object : TransitionXAdapter() {
 
-            val tvEnterTransition = view.findViewById<TextView>(R.id.tvEnterTransition)
-
-
             val currentTextColor = tvEnterTransition.currentTextColor
 
             override fun onTransitionStart(transition: Transition) {
                 super.onTransitionStart(transition)
-                tvEnterTransition.setTextColor(Color.YELLOW)
+//                tvEnterTransition.setTextColor(Color.YELLOW)
                 viewModel.appendText("🍏 First enterTransition onTransitionStart() ${transition::class.java.simpleName}\n")
 
             }
@@ -130,12 +132,11 @@ class Fragment2_2LifeCycleFirst : Fragment() {
 
         (returnTransition as Transition).addListener(object : TransitionXAdapter() {
 
-            val tvReturnTransition = view.findViewById<TextView>(R.id.tvReturnTransition)
             val currentTextColor = tvReturnTransition.currentTextColor
 
             override fun onTransitionStart(transition: Transition) {
                 super.onTransitionStart(transition)
-                tvReturnTransition.setTextColor(Color.YELLOW)
+//                tvReturnTransition.setTextColor(Color.YELLOW)
                 viewModel.appendText("🎃 First returnTransition onTransitionStart() ${transition::class.java.simpleName}\n")
 
             }
@@ -149,13 +150,11 @@ class Fragment2_2LifeCycleFirst : Fragment() {
 
         (reenterTransition as Transition).addListener(object : TransitionXAdapter() {
 
-            val tvReEnterTransition = view.findViewById<TextView>(R.id.tvReEnterTransition)
-
             val currentTextColor = tvReEnterTransition.currentTextColor
 
             override fun onTransitionStart(transition: Transition) {
                 super.onTransitionStart(transition)
-                tvReEnterTransition.setTextColor(Color.YELLOW)
+//                tvReEnterTransition.setTextColor(Color.YELLOW)
                 viewModel.appendText("😫 First reenterTransition onTransitionStart() ${transition::class.java.simpleName}\n")
 
             }

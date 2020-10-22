@@ -12,12 +12,10 @@ import androidx.cardview.widget.CardView
 import androidx.core.app.SharedElementCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.transition.Fade
-import androidx.transition.Slide
-import androidx.transition.Transition
-import androidx.transition.TransitionInflater
+import androidx.transition.*
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.transition.ChangeOutlineRadiusTransition
+import com.smarttoolfactory.tutorial3_1transitions.transition.CustomTextColorTransition
 import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 
 class Fragment2_2LifeCycleSecond : Fragment() {
@@ -45,37 +43,54 @@ class Fragment2_2LifeCycleSecond : Fragment() {
             tvLifeCycle.text = "$it\n"
         })
 
+        val tvExitTransition = view.findViewById<TextView>(R.id.tvExitTransition)
+        val tvEnterTransition = view.findViewById<TextView>(R.id.tvEnterTransition)
+        val tvReturnTransition = view.findViewById<TextView>(R.id.tvReturnTransition)
+        val tvReEnterTransition = view.findViewById<TextView>(R.id.tvReEnterTransition)
+
+        /*
+            🔥🔥 Setting allowEnterTransitionOverlap
+        */
         allowEnterTransitionOverlap = false
         allowReturnTransitionOverlap = false
 
-        val ivPhoto2 = view.findViewById<ImageView>(R.id.ivPhoto2)
+        exitTransition =
+            CustomTextColorTransition(tvExitTransition.currentTextColor, Color.RED, true)
+                .apply {
+                    addTarget(tvExitTransition)
+                    duration = 500
+                }
 
-        exitTransition = Slide(Gravity.LEFT)
-//        exitTransition = Fade()
-            .apply {
-//                addTarget(ivPhoto2)
-                duration = 1000
-            }
+        enterTransition =
+            CustomTextColorTransition(tvEnterTransition.currentTextColor, Color.RED, true)
+                .apply {
+                    addTarget(tvEnterTransition)
+                    duration = 500
+                }
 
-        enterTransition = Slide(Gravity.RIGHT)
-//        enterTransition = Fade()
-            .apply {
-//                addTarget(ivPhoto2)
-                duration = 1000
-            }
+        reenterTransition =
+            CustomTextColorTransition(tvReEnterTransition.currentTextColor, Color.RED, true)
+                .apply {
+                    addTarget(tvReEnterTransition)
+                    duration = 500
+                }
 
-        reenterTransition = Slide(Gravity.BOTTOM)
-//        reenterTransition = Fade()
-            .apply {
-//                addTarget(ivPhoto2)
-                duration = 1000
-            }
-        returnTransition = Slide(Gravity.TOP)
-//        returnTransition = Fade()
-            .apply {
-//                addTarget(ivPhoto2)
-                duration = 1000
-            }
+
+        val returnTransitions = TransitionSet()
+
+        val returnTextTransition =
+            CustomTextColorTransition(tvReturnTransition.currentTextColor, Color.RED, true)
+                .apply {
+                    addTarget(tvReturnTransition)
+                    duration = 500
+                }
+
+
+        returnTransitions.addTransition(returnTextTransition)
+
+        returnTransition = returnTransitions
+
+
 
 
         (exitTransition as Transition).addListener(object : TransitionXAdapter() {
@@ -87,7 +102,7 @@ class Fragment2_2LifeCycleSecond : Fragment() {
 
             override fun onTransitionStart(transition: Transition) {
                 super.onTransitionStart(transition)
-                tvExitTransition.setTextColor(Color.RED)
+//                tvExitTransition.setTextColor(Color.RED)
                 viewModel.appendText("🤔 Second exitTransition onTransitionStart() ${transition::class.java.simpleName}\n")
 
             }
@@ -109,7 +124,7 @@ class Fragment2_2LifeCycleSecond : Fragment() {
 
             override fun onTransitionStart(transition: Transition) {
                 super.onTransitionStart(transition)
-                tvEnterTransition.setTextColor(Color.RED)
+//                tvEnterTransition.setTextColor(Color.RED)
                 viewModel.appendText("🍏 Second enterTransition onTransitionStart() ${transition::class.java.simpleName}\n")
 
             }
@@ -129,7 +144,7 @@ class Fragment2_2LifeCycleSecond : Fragment() {
 
             override fun onTransitionStart(transition: Transition) {
                 super.onTransitionStart(transition)
-                tvReturnTransition.setTextColor(Color.RED)
+//                tvReturnTransition.setTextColor(Color.RED)
                 viewModel.appendText("🎃 Second returnTransition onTransitionStart() ${transition::class.java.simpleName}\n")
             }
 
@@ -148,7 +163,7 @@ class Fragment2_2LifeCycleSecond : Fragment() {
 
             override fun onTransitionStart(transition: Transition) {
                 super.onTransitionStart(transition)
-                tvReEnterTransition.setTextColor(Color.RED)
+//                tvReEnterTransition.setTextColor(Color.RED)
                 viewModel.appendText("😫 Second reenterTransition onTransitionStart() ${transition::class.java.simpleName}\n")
 
             }

@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import androidx.transition.Transition
 import androidx.transition.TransitionValues
 
-open class BackgroundTransition(private val startColor: Int, private val endColor: Int) : Transition() {
+open class BackgroundTransitionOld(private val startColor: Int, private val endColor: Int) : Transition() {
 
     private val PROPNAME_BACKGROUND = "customtransition:change_color:background"
 
     override fun captureStartValues(transitionValues: TransitionValues) {
 //        transitionValues.view?.setBackgroundColor(startColor)
         captureValues(transitionValues)
-        println("⚠️ CustomFade captureStartValues() view: ${transitionValues.view} ")
+        println("⚠️ ${this::class.java.simpleName}  captureStartValues() view: ${transitionValues.view} ")
         transitionValues.values.forEach { (key, value) ->
             println("Key: $key, value: $value")
         }
@@ -23,7 +23,7 @@ open class BackgroundTransition(private val startColor: Int, private val endColo
     override fun captureEndValues(transitionValues: TransitionValues) {
 //        transitionValues.view?.setBackgroundColor(endColor)
         captureValues(transitionValues)
-        println("🔥 CustomFade captureEndValues() view: ${transitionValues.view} ")
+        println("🔥 ${this::class.java.simpleName}  captureEndValues() view: ${transitionValues.view} ")
 
         transitionValues.values.forEach { (key, value) ->
             println("Key: $key, value: $value")
@@ -42,7 +42,7 @@ open class BackgroundTransition(private val startColor: Int, private val endColo
         endValues: TransitionValues?
     ): Animator? {
 
-        println("🎃 CustomFade createAnimator() startValues: $startValues endValues: $endValues ")
+        println("🎃 ${this::class.java.simpleName}  createAnimator() startValues: $startValues endValues: $endValues ")
 
         // Store a convenient reference to the target. Both the starting and ending layout have the
         // same target.

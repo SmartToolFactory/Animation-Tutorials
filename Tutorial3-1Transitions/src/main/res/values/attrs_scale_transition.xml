@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomScaleTransition">
+        <attr name="startScaleX" format="float" />
+        <attr name="startScaleY" format="float" />
+        <attr name="endScaleX" format="float" />
+        <attr name="endScaleY" format="float" />
+    </declare-styleable>
+</resources>
