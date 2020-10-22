@@ -99,7 +99,6 @@ class Fragment2_2LifeCycleFirst : Fragment() {
 
             override fun onTransitionStart(transition: Transition) {
                 super.onTransitionStart(transition)
-//                tvExitTransition.setTextColor(Color.YELLOW)
                 viewModel.appendText("🤔 First exitTransition onTransitionStart() ${transition::class.java.simpleName}\n")
 
             }
@@ -118,7 +117,6 @@ class Fragment2_2LifeCycleFirst : Fragment() {
 
             override fun onTransitionStart(transition: Transition) {
                 super.onTransitionStart(transition)
-//                tvEnterTransition.setTextColor(Color.YELLOW)
                 viewModel.appendText("🍏 First enterTransition onTransitionStart() ${transition::class.java.simpleName}\n")
 
             }
@@ -136,7 +134,6 @@ class Fragment2_2LifeCycleFirst : Fragment() {
 
             override fun onTransitionStart(transition: Transition) {
                 super.onTransitionStart(transition)
-//                tvReturnTransition.setTextColor(Color.YELLOW)
                 viewModel.appendText("🎃 First returnTransition onTransitionStart() ${transition::class.java.simpleName}\n")
 
             }
@@ -154,7 +151,6 @@ class Fragment2_2LifeCycleFirst : Fragment() {
 
             override fun onTransitionStart(transition: Transition) {
                 super.onTransitionStart(transition)
-//                tvReEnterTransition.setTextColor(Color.YELLOW)
                 viewModel.appendText("😫 First reenterTransition onTransitionStart() ${transition::class.java.simpleName}\n")
 
             }

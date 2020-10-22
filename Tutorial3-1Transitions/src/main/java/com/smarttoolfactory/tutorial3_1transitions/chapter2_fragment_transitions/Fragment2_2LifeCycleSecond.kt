@@ -85,13 +85,8 @@ class Fragment2_2LifeCycleSecond : Fragment() {
                     duration = 500
                 }
 
-
         returnTransitions.addTransition(returnTextTransition)
-
         returnTransition = returnTransitions
-
-
-
 
         (exitTransition as Transition).addListener(object : TransitionXAdapter() {
 
@@ -102,7 +97,6 @@ class Fragment2_2LifeCycleSecond : Fragment() {
 
             override fun onTransitionStart(transition: Transition) {
                 super.onTransitionStart(transition)
-//                tvExitTransition.setTextColor(Color.RED)
                 viewModel.appendText("🤔 Second exitTransition onTransitionStart() ${transition::class.java.simpleName}\n")
 
             }
@@ -124,7 +118,6 @@ class Fragment2_2LifeCycleSecond : Fragment() {
 
             override fun onTransitionStart(transition: Transition) {
                 super.onTransitionStart(transition)
-//                tvEnterTransition.setTextColor(Color.RED)
                 viewModel.appendText("🍏 Second enterTransition onTransitionStart() ${transition::class.java.simpleName}\n")
 
             }
@@ -144,7 +137,6 @@ class Fragment2_2LifeCycleSecond : Fragment() {
 
             override fun onTransitionStart(transition: Transition) {
                 super.onTransitionStart(transition)
-//                tvReturnTransition.setTextColor(Color.RED)
                 viewModel.appendText("🎃 Second returnTransition onTransitionStart() ${transition::class.java.simpleName}\n")
             }
 
@@ -163,7 +155,6 @@ class Fragment2_2LifeCycleSecond : Fragment() {
 
             override fun onTransitionStart(transition: Transition) {
                 super.onTransitionStart(transition)
-//                tvReEnterTransition.setTextColor(Color.RED)
                 viewModel.appendText("😫 Second reenterTransition onTransitionStart() ${transition::class.java.simpleName}\n")
 
             }

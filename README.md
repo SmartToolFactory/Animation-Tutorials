@@ -307,16 +307,27 @@ findNavController().navigate(direction, extras)
 ### Resources and References
 Wonderful and very helpful resources, check them out 🤩😍
 [CodeLab Property Animation](https://codelabs.developers.google.com/codelabs/advanced-android-kotlin-training-property-animation/#0)
+
 [Android Design Patterns](https://www.androiddesignpatterns.com)
+
 [android/animation-samples: Multiple samples showing the best practices in animation on Android](https://github.com/android/animation-samples)
+
 [Playing with Material Design Transitions ✨ | by Philippe BOISNEY | ProAndroidDev](https://proandroiddev.com/playing-with-material-design-transitions-b3ea90c5794c)
+
 [Meaningful Motion: Circular Reveal & Shared Elements | by Jossi Wolf | Snapp Mobile | Medium](https://medium.com/snapp-mobile/meaningful-motion-circular-reveal-shared-elements-ea495b99adf4)
+
 [Custom Transitions in Android. Since Android API 19 Google provides a… | by Roman Bielokon | Medium](https://medium.com/@belokon.roman/custom-transitions-in-android-f8949870bd63)
+
 [Propagating Transitions in Android | by Nick Cruz | ProAndroidDev](https://proandroiddev.com/propagating-transitions-1a18b647ba71)
+
 [Shared Element Transition using fragments Android | Developers Breach](https://developersbreach.com/shared-element-transition-android/)
+
 [Fragment Transitions](https://medium.com/google-developers/fragment-transitions-ea2726c3f36f)
+
 [Circular reveal animation between Fragments | by Gabor Novak | Medium](https://medium.com/@gabornovak/circular-reveal-animation-between-fragments-d8ed9011aec)
+
 [Reveal Transition](https://halfthought.wordpress.com/2014/11/07/reveal-transition/)
+
 [Plaid App](https://github.com/android/plaid)
 
 ### TODOs:
