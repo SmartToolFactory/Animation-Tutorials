@@ -54,14 +54,12 @@ class Activity3_1PhysicsBasics : AppCompatActivity() {
         val pixelPerSecond: Float =
             TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100f, resources.displayMetrics)
 
-
         stiffnessSeekBar.max = (MAX_STIFFNESS - MIN_STIFFNESS).toInt()
         stiffnessSeekBar.onProgressChange { stiffness ->
             val actualStiffness = stiffness + MIN_STIFFNESS
             tvStiffness.text = "Stiffness:\n$actualStiffness"
             setStiffness(actualStiffness.toFloat())
         }
-
 
         dampingRatioSeekBar.max = (MAX_DAMPING_RATIO - MIN_DAMPING_RATIO) * 100
         dampingRatioSeekBar.onProgressChange { dampingRatio ->

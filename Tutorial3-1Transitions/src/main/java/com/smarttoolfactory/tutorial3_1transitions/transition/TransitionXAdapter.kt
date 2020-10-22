@@ -4,9 +4,15 @@ import androidx.transition.Transition
 
 abstract class TransitionXAdapter : Transition.TransitionListener {
 
-    override fun onTransitionStart(transition: Transition) = Unit
+    var animationDuration = 0L
 
-    override fun onTransitionEnd(transition: Transition) = Unit
+    override fun onTransitionStart(transition: Transition) {
+        animationDuration = System.currentTimeMillis()
+    }
+
+    override fun onTransitionEnd(transition: Transition) {
+        animationDuration = System.currentTimeMillis() - animationDuration
+    }
 
     override fun onTransitionCancel(transition: Transition) = Unit
 

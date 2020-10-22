@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#64B5F6">
+
+    <TextView
+        android:id="@+id/tvExitTransition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exit Trs"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvEnterTransition"
+        app:layout_constraintHorizontal_bias="0.2"
+        android:textColor="#fff"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <TextView
+        android:id="@+id/tvEnterTransition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Trs"
+        app:layout_constraintEnd_toStartOf="@+id/tvReturnTransition"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:textColor="#fff"
+
+        app:layout_constraintStart_toEndOf="@+id/tvExitTransition"
+        app:layout_constraintTop_toTopOf="@+id/tvExitTransition" />
+
+    <TextView
+        android:id="@+id/tvReturnTransition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Return Trs"
+        android:textColor="#fff"
+        app:layout_constraintEnd_toStartOf="@+id/tvReEnterTransition"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvEnterTransition"
+        app:layout_constraintTop_toTopOf="@+id/tvExitTransition" />
+
+    <TextView
+        android:id="@+id/tvReEnterTransition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ReEnter Trs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:textColor="#fff"
+        app:layout_constraintStart_toEndOf="@+id/tvReturnTransition"
+        app:layout_constraintTop_toTopOf="@+id/tvExitTransition" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvExitTransition"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tvLifeCycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hello World" />
+    </ScrollView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:transitionName="@string/transition_card_view"
+        app:cardCornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPhoto"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:transitionName="@string/transition_image_view"
+            app:srcCompat="@drawable/avatar_1_raster" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivPhoto2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="4dp"
+        android:transitionName="@string/transition_image_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvReEnterTransition"
+        app:srcCompat="@drawable/avatar_2_raster" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

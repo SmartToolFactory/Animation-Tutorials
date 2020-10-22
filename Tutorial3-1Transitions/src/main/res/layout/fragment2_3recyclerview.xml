@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#dce6f1"
-    tools:context=".chapter2_fragment_transitions.Activity2_4FragmentTransitionsWithNavComponents">
+    tools:context=".chapter2_fragment_transitions.Activity2_3FragmentTransitions">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -20,12 +19,11 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:title="@string/activity2_4" />
+            app:title="@string/activity2_1" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -33,16 +31,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.848"
-            tools:listitem="@layout/item_magazine" />
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_avatar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

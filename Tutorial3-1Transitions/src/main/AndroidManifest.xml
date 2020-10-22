@@ -16,6 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".chapter1_activity_transitions.Activity1_0CustomTransitions" />
         <activity android:name=".chapter1_activity_transitions.Activity1_1Basics" />
         <activity android:name=".chapter1_activity_transitions.Activity1_1Details" />
         <activity android:name=".chapter1_activity_transitions.Activity1_2RecyclerViewTransition" />
@@ -29,13 +30,15 @@
         <activity
             android:name=".chapter1_activity_transitions.Activity1_4Details"
             android:theme="@style/Theme.App.Details" />
-        <activity android:name=".chapter2_fragment_transitions.Activity2_1FragmentTransitions" />
-        <activity
-            android:name=".chapter2_fragment_transitions.Activity2_2FragmentTransitions"
-            android:theme="@style/Theme.App.NoActionBar" />
+        <activity android:name=".chapter2_fragment_transitions.Activity2_1FragmentTransitionsBasics" />
+        <activity android:name=".chapter2_fragment_transitions.Activity2_2FragmentTransitionLifeCycles" />
         <activity
             android:name=".chapter2_fragment_transitions.Activity2_3FragmentTransitions"
             android:theme="@style/Theme.App.NoActionBar" />
+        <activity
+            android:name=".chapter2_fragment_transitions.Activity2_4FragmentTransitionsWithNavComponents"
+            android:theme="@style/Theme.App.NoActionBar" />
+        <activity android:name=".chapter2_fragment_transitions.Activity2_5FragmentTransitionsWithToolbar" />
     </application>
 
 </manifest>

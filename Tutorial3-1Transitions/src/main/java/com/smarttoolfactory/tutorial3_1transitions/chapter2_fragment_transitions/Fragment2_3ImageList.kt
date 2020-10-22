@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -25,7 +24,7 @@ import com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions
 
 
 @Suppress("UNCHECKED_CAST")
-class Fragment2_2ImageList : Fragment() {
+class Fragment2_3ImageList : Fragment() {
 
     lateinit var dataList: List<ImageModel>
 
@@ -41,7 +40,7 @@ class Fragment2_2ImageList : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment2_2recyclerview, container, false)
+        val view = inflater.inflate(R.layout.fragment2_3recyclerview, container, false)
 
         prepareTransitions(view)
         postponeEnterTransition()
@@ -137,7 +136,7 @@ class Fragment2_2ImageList : Fragment() {
         val args = Bundle()
         args.putInt(KEY_IMAGE_POSITION, position)
 
-        val fragment = Fragment2_2ImageDetail()
+        val fragment = Fragment2_3ImageDetail()
         fragment.arguments = args
 
         requireActivity().supportFragmentManager

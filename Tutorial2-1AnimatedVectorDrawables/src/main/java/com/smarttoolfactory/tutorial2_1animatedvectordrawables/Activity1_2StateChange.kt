@@ -15,7 +15,6 @@ import com.smarttoolfactory.tutorial2_1animatedvectordrawables.adapter.viewholde
 import com.smarttoolfactory.tutorial2_1animatedvectordrawables.adapter.viewholder.MappableItemBinder
 import com.smarttoolfactory.tutorial2_1animatedvectordrawables.model.HeaderModel
 import com.smarttoolfactory.tutorial2_1animatedvectordrawables.model.ImageButtonModel
-import kotlinx.android.synthetic.main.activity1_2state_change.*
 
 class Activity1_2StateChange : AppCompatActivity() {
 

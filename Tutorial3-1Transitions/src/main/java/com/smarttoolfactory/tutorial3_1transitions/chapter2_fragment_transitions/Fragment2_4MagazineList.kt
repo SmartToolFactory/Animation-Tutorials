@@ -5,6 +5,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.SharedElementCallback
 import androidx.core.view.doOnPreDraw
@@ -24,7 +25,7 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.MagazineVi
 import com.smarttoolfactory.tutorial3_1transitions.databinding.ItemMagazineBinding
 import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 
-class Fragment2_3MagazineList : Fragment() {
+class Fragment2_4MagazineList : Fragment() {
 
     lateinit var data: List<MagazineModel>
 
@@ -55,24 +56,34 @@ class Fragment2_3MagazineList : Fragment() {
         /*
             🔥🔥 Setting allowReturnTransitionOverlap  to false lets this fragment's
             reenterTransition to wait previous fragment's returnTransition to finish
+
+            On the other hand allowEnterTransitionOverlap does nothing for THIS fragment.
+
          */
 //        allowEnterTransitionOverlap = false
 //        allowReturnTransitionOverlap = false
 
+
+        exitTransition =
+            Fade(Fade.MODE_OUT)
+                .apply {
+                    duration = 500
+                }
+
         reenterTransition =
             Fade(Fade.MODE_IN)
                 .apply {
-                    duration = 900
+                    duration = 500
                 }
+
 
         returnTransition =
-//            Slide(Gravity.BOTTOM)
             Fade(Fade.MODE_IN)
                 .apply {
-                    duration = 900
+                    duration = 500
                 }
 
-        (reenterTransition as Transition).addListener(object : TransitionXAdapter() {
+        (reenterTransition as? Transition)?.addListener(object : TransitionXAdapter() {
 
             var startTime = 0L
 
@@ -91,7 +102,7 @@ class Fragment2_3MagazineList : Fragment() {
             }
         })
 
-        (returnTransition as Transition).addListener(object : TransitionXAdapter() {
+        (returnTransition as? Transition)?.addListener(object : TransitionXAdapter() {
 
             var startTime = 0L
 
@@ -140,7 +151,7 @@ class Fragment2_3MagazineList : Fragment() {
     private fun goToDetailPage(binding: ItemMagazineBinding, magazineModel: MagazineModel) {
 
         val direction: NavDirections =
-            Fragment2_3MagazineListDirections.actionFragment23MagazineListToFragment23MagazineDetail(
+            Fragment2_4MagazineListDirections.actionFragment23MagazineListToFragment23MagazineDetail(
                 magazineModel
             )
 

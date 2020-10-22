@@ -27,6 +27,12 @@ class Activity3_4BNV_TabLayoutPhysics : AppCompatActivity() {
 
         setUpTabLayout()
 
+        val swipeRefreshLayout = findViewById<SwipeRefreshLayout>(R.id.swipeRefreshLayout)
+
+        val bottomNavigationView =
+            findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+
+        val tabLayout: TabLayout = findViewById(R.id.tabLayout)
 
         val floatProperty = object : FloatPropertyCompat<View>("") {
 
@@ -40,27 +46,19 @@ class Activity3_4BNV_TabLayoutPhysics : AppCompatActivity() {
             }
         }
 
-        val swipeRefreshLayout = findViewById<SwipeRefreshLayout>(R.id.swipeRefreshLayout)
-
         swipeRefreshLayout.setOnRefreshListener {
             swipeRefreshLayout.isRefreshing = false
             setUpBottomNavigationViewSpringAnimation(floatProperty)
             setUpTabLayoutAnimation(floatProperty)
         }
 
-
-        val bottomNavigationView =
-            findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.post {
             setUpBottomNavigationViewSpringAnimation(floatProperty)
         }
 
-        val tabLayout: TabLayout = findViewById(R.id.tabLayout)
-
         tabLayout.post {
             setUpTabLayoutAnimation(floatProperty)
         }
-
     }
 
     private fun setUpTabLayout() {
@@ -134,23 +132,17 @@ class Activity3_4BNV_TabLayoutPhysics : AppCompatActivity() {
 
 /**
  * This is a mock class for ViewPager2 adapter, without adapter TabLayoutMediator crashes.
- * Not relevant with this tutorial.
+ * Not relevant for this tutorial.
  */
 class MockViewpagerAdapter : RecyclerView.Adapter<MockViewpagerAdapter.MockViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MockViewHolder {
-
         val view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.mock_layout, parent, false)
         return MockViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MockViewHolder, position: Int) {
-
-    }
-
-    override fun getItemCount(): Int {
-        return 4
-    }
+    override fun onBindViewHolder(holder: MockViewHolder, position: Int)= Unit
+    override fun getItemCount(): Int= 4
 
     class MockViewHolder internal constructor(view: View) :
         RecyclerView.ViewHolder(view)

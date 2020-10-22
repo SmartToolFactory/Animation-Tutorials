@@ -6,7 +6,6 @@ import android.view.Gravity
 import android.view.View
 import android.view.animation.AnimationUtils
 import com.smarttoolfactory.tutorial3_1transitions.R
-import kotlinx.android.synthetic.main.fragment_image.*
 
 class Activity1_4Details : Activity1_3Details() {
 

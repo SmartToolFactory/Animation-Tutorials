@@ -50,12 +50,16 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha06'
-    implementation 'io.reactivex.rxjava3:rxjava:3.0.6'
-
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation "androidx.fragment:fragment-ktx:1.2.5"
+
+    // RxJava3
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.6'
 
     // LifeCycle
     implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-beta01'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
     // Navigation Components
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.0"

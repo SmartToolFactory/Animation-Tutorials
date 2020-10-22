@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.transition.*
@@ -21,7 +20,7 @@ import com.smarttoolfactory.tutorial3_1transitions.ImageData
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions.KEY_IMAGE_POSITION
 
-class Fragment2_2ImageDetail : Fragment() {
+class Fragment2_3ImageDetail : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +28,7 @@ class Fragment2_2ImageDetail : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment2_2details, container, false)
+        val view = inflater.inflate(R.layout.fragment2_3details, container, false)
 
         prepareSharedElementTransition(view)
         postponeEnterTransition()

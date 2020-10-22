@@ -4,12 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.smarttoolfactory.tutorial3_1transitions.R
 
-class Activity2_1FragmentTransitions : AppCompatActivity() {
+class Activity2_1FragmentTransitionsBasics : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity2_1fragment_transitions)
+        setContentView(R.layout.activity2_1fragment_transitions_bacis)
         title = getString(R.string.activity2_1)
 
         val fragment = Fragment2_1Basics()

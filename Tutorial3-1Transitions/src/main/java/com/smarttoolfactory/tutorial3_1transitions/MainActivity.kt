@@ -10,14 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarttoolfactory.tutorial3_1transitions.adapter.BaseAdapter
 import com.smarttoolfactory.tutorial3_1transitions.adapter.ChapterSelectionAdapter
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.ActivityClassModel
-import com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions.Activity1_1Basics
-import com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions.Activity1_2RecyclerViewTransition
-import com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions.Activity1_3RecyclerViewToViewPager2Transition
-import com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions.Activity1_4RVtoVP2Transition
-import com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Activity2_1FragmentTransitions
+import com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions.*
+import com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Activity2_1FragmentTransitionsBasics
+import com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Activity2_2FragmentTransitionLifeCycles
 import com.smarttoolfactory.tutorial3_1transitions.databinding.ActivityMainBinding
-import com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Activity2_2FragmentTransitions
 import com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Activity2_3FragmentTransitions
+import com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Activity2_4FragmentTransitionsWithNavComponents
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickListener {
@@ -65,6 +63,14 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
         activityClassModels.add(
 
             ActivityClassModel(
+                Activity1_0CustomTransitions::class.java,
+                getString(R.string.activity1_0)
+            )
+        )
+
+        activityClassModels.add(
+
+            ActivityClassModel(
                 Activity1_1Basics::class.java,
                 getString(R.string.activity1_1)
             )
@@ -93,14 +99,14 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
 
         activityClassModels.add(
             ActivityClassModel(
-                Activity2_1FragmentTransitions::class.java,
+                Activity2_1FragmentTransitionsBasics::class.java,
                 getString(R.string.activity2_1)
             )
         )
 
         activityClassModels.add(
             ActivityClassModel(
-                Activity2_2FragmentTransitions::class.java,
+                Activity2_2FragmentTransitionLifeCycles::class.java,
                 getString(R.string.activity2_2)
             )
         )
@@ -109,6 +115,13 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
             ActivityClassModel(
                 Activity2_3FragmentTransitions::class.java,
                 getString(R.string.activity2_3)
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity2_4FragmentTransitionsWithNavComponents::class.java,
+                getString(R.string.activity2_4)
             )
         )
     }

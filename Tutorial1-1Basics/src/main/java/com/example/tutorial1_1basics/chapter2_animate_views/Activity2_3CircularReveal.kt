@@ -25,7 +25,7 @@ class Activity2_3CircularReveal : AppCompatActivity() {
 
             imageView.visibility = View.INVISIBLE
 
-            // Create a reveal {@link Animator} that starts clipping the view from
+            // Create a reveal Animator that starts clipping the view from
             // the top left corner until the whole view is covered.
             val circularReveal = ViewAnimationUtils.createCircularReveal(
                 imageView,

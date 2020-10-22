@@ -1,29 +1,33 @@
 package com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions
 
 import android.animation.Animator
+import android.animation.AnimatorInflater
 import android.os.Bundle
 import android.view.*
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.SharedElementCallback
 import androidx.fragment.app.Fragment
 import androidx.transition.*
 import com.google.android.material.appbar.AppBarLayout
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.MagazineModel
+import com.smarttoolfactory.tutorial3_1transitions.transition.CircularReveal
 import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 import kotlin.math.hypot
 
-class Fragment2_3MagazineDetail : Fragment() {
+class Fragment2_4MagazineDetail : Fragment() {
 
     lateinit var magazineModel: MagazineModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val args = requireArguments()
-        magazineModel = Fragment2_3MagazineDetailArgs.fromBundle(args).magazineArgs
+        magazineModel = Fragment2_4MagazineDetailArgs.fromBundle(args).magazineArgs
     }
 
     override fun onCreateView(
@@ -33,8 +37,6 @@ class Fragment2_3MagazineDetail : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment2_3magazine_detail, container, false)
 
-        val toolbar: Toolbar = view.findViewById(R.id.toolbar)
-        toolbar.title = "Details"
         prepareSharedElementTransition(view)
         postponeEnterTransition()
 
@@ -56,17 +58,10 @@ class Fragment2_3MagazineDetail : Fragment() {
 //        allowReturnTransitionOverlap = false
 
         reenterTransition =
-           Slide(Gravity.LEFT)
+            Slide(Gravity.LEFT)
                 .apply {
                     duration = 1000
                 }
-
-//        returnTransition =
-//            Slide(Gravity.LEFT)
-//                .apply {
-//                    duration = 1000
-//                }
-
 
         (reenterTransition as Transition).addListener(object : TransitionXAdapter() {
 
@@ -80,8 +75,10 @@ class Fragment2_3MagazineDetail : Fragment() {
 
             override fun onTransitionEnd(transition: Transition) {
                 super.onTransitionEnd(transition)
-                println("🔥 Detail reenterTransition END" +
-                        " in ms: ${System.currentTimeMillis() - startTime}")
+                println(
+                    "🔥 Detail reenterTransition END" +
+                            " in ms: ${System.currentTimeMillis() - startTime}"
+                )
             }
         })
 
@@ -97,8 +94,10 @@ class Fragment2_3MagazineDetail : Fragment() {
 
             override fun onTransitionEnd(transition: Transition) {
                 super.onTransitionEnd(transition)
-                println("🍏 Detail returnTransition END" +
-                        " in ms: ${System.currentTimeMillis() - startTime}")
+                println(
+                    "🍏 Detail returnTransition END" +
+                            " in ms: ${System.currentTimeMillis() - startTime}"
+                )
             }
         })
 
@@ -112,7 +111,8 @@ class Fragment2_3MagazineDetail : Fragment() {
         /*
             🔥 Set sharedElementReturnTransition, because both
             shared return and enter transitions are the same and
-            app crashes when fragment exits because of return trying to animate reveal
+            app crashes when fragment exits because of
+            sharedElementReturnTransition trying to animate reveal
          */
         sharedElementReturnTransition =
             TransitionInflater.from(context).inflateTransition(android.R.transition.move)
@@ -156,7 +156,6 @@ class Fragment2_3MagazineDetail : Fragment() {
     private fun createEnterTransition(view: View): Transition {
 
         val tvBody = view.findViewById<TextView>(R.id.tvBody)
-        val appBarLayout = view.findViewById<AppBarLayout>(R.id.appbar)
 
         val transitionSetEnter = TransitionSet()
 
@@ -168,11 +167,28 @@ class Fragment2_3MagazineDetail : Fragment() {
             startDelay = 400
             duration = 600
             addTarget(tvBody)
-            excludeTarget(appBarLayout, true)
+//            excludeTarget(appBarLayout, true)
         }
 
-        transitionSetEnter.addTransition(slideFromBottom)
+        val viewImageBackground: View = view.findViewById(R.id.viewImageBackground)
 
+        val endRadius = hypot(
+            viewImageBackground.width.toDouble(),
+            viewImageBackground.height.toDouble()
+        ).toFloat()
+
+        val circularReveal = CircularReveal().apply {
+            addTarget(viewImageBackground)
+            setStartRadius(0f)
+            setEndRadius(endRadius)
+            interpolator = AccelerateDecelerateInterpolator()
+            duration = 700
+        }
+
+        viewImageBackground.visibility = View.VISIBLE
+
+        transitionSetEnter.addTransition(slideFromBottom)
+//        transitionSetEnter.addTransition(circularReveal)
 
         return transitionSetEnter
     }
@@ -181,7 +197,6 @@ class Fragment2_3MagazineDetail : Fragment() {
 
         val viewTop = view.findViewById<View>(R.id.viewImageBackground)
         val tvBody = view.findViewById<TextView>(R.id.tvBody)
-        val appBarLayout = view.findViewById<AppBarLayout>(R.id.appbar)
 
         val transitionSetReturn = TransitionSet()
 
@@ -203,7 +218,7 @@ class Fragment2_3MagazineDetail : Fragment() {
             )
             duration = 900
             addTarget(tvBody)
-            excludeTarget(appBarLayout, true)
+//            excludeTarget(appBarLayout, true)
         }
 
         transitionSetReturn.addTransition(slideToTop)
