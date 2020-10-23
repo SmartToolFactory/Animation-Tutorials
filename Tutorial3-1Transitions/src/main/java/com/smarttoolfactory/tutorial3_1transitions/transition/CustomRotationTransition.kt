@@ -17,7 +17,7 @@ class CustomRotationTransition : Transition {
     private var endRotation: Float = 0f
     var forceValues: Boolean = false
 
-    constructor(startRotation: Float, endRotation: Float, forceValues: Boolean) {
+    constructor(startRotation: Float, endRotation: Float, forceValues: Boolean=false) {
         this.startRotation = startRotation
         this.endRotation = endRotation
         this.forceValues = forceValues

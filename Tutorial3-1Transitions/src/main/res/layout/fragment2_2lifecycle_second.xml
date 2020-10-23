@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#81C784">
@@ -78,7 +79,7 @@
         <TextView
             android:id="@+id/tvLifeCycle"
             android:layout_width="match_parent"
-            android:text="Hello World"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Hello World" />
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

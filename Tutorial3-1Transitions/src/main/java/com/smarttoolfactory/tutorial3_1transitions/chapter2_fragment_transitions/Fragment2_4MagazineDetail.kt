@@ -2,6 +2,7 @@ package com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transition
 
 import android.animation.Animator
 import android.animation.AnimatorInflater
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -17,6 +18,8 @@ import com.google.android.material.appbar.AppBarLayout
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.MagazineModel
 import com.smarttoolfactory.tutorial3_1transitions.transition.CircularReveal
+import com.smarttoolfactory.tutorial3_1transitions.transition.CustomBackgroundTransition
+import com.smarttoolfactory.tutorial3_1transitions.transition.CustomBackgroundVisibility
 import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 import kotlin.math.hypot
 
@@ -106,7 +109,7 @@ class Fragment2_4MagazineDetail : Fragment() {
     private fun setUpSharedElementTransition(view: View) {
 
         val viewImageBackground: View = view.findViewById(R.id.viewImageBackground)
-        viewImageBackground.visibility = View.INVISIBLE
+//        viewImageBackground.visibility = View.INVISIBLE
 
         /*
             🔥 Set sharedElementReturnTransition, because both
@@ -123,34 +126,35 @@ class Fragment2_4MagazineDetail : Fragment() {
 
         sharedElementEnterTransition = moveTransition
 
-        moveTransition.addListener(object : TransitionXAdapter() {
-
-            override fun onTransitionStart(transition: Transition) {
-                super.onTransitionStart(transition)
-
-                val centerX = viewImageBackground.x + viewImageBackground.width / 2
-                val centerY = viewImageBackground.y + viewImageBackground.height / 2
-
-                val endRadius = hypot(
-                    viewImageBackground.width.toDouble(),
-                    viewImageBackground.height.toDouble()
-                ).toFloat()
-
-                val circularReveal = ViewAnimationUtils.createCircularReveal(
-                    viewImageBackground,
-                    centerX.toInt(),
-                    centerY.toInt(),
-                    0f,
-                    endRadius
-                )
-
-                circularReveal.interpolator = AccelerateDecelerateInterpolator()
-                circularReveal.duration = 700
-
-                viewImageBackground.visibility = View.VISIBLE
-                circularReveal.start()
-            }
-        })
+        // ‼️ Alternative to CircularReveal Transition
+//        moveTransition.addListener(object : TransitionXAdapter() {
+//
+//            override fun onTransitionStart(transition: Transition) {
+//                super.onTransitionStart(transition)
+//
+//                val centerX = viewImageBackground.x + viewImageBackground.width / 2
+//                val centerY = viewImageBackground.y + viewImageBackground.height / 2
+//
+//                val endRadius = hypot(
+//                    viewImageBackground.width.toDouble(),
+//                    viewImageBackground.height.toDouble()
+//                ).toFloat()
+//
+//                val circularReveal = ViewAnimationUtils.createCircularReveal(
+//                    viewImageBackground,
+//                    centerX.toInt(),
+//                    centerY.toInt(),
+//                    0f,
+//                    endRadius
+//                )
+//
+//                circularReveal.interpolator = AccelerateDecelerateInterpolator()
+//                circularReveal.duration = 700
+//
+//                viewImageBackground.visibility = View.VISIBLE
+//                circularReveal.start()
+//            }
+//        })
     }
 
     private fun createEnterTransition(view: View): Transition {
@@ -167,7 +171,6 @@ class Fragment2_4MagazineDetail : Fragment() {
             startDelay = 400
             duration = 600
             addTarget(tvBody)
-//            excludeTarget(appBarLayout, true)
         }
 
         val viewImageBackground: View = view.findViewById(R.id.viewImageBackground)
@@ -185,10 +188,8 @@ class Fragment2_4MagazineDetail : Fragment() {
             duration = 700
         }
 
-        viewImageBackground.visibility = View.VISIBLE
-
         transitionSetEnter.addTransition(slideFromBottom)
-//        transitionSetEnter.addTransition(circularReveal)
+        transitionSetEnter.addTransition(circularReveal)
 
         return transitionSetEnter
     }
@@ -218,7 +219,6 @@ class Fragment2_4MagazineDetail : Fragment() {
             )
             duration = 900
             addTarget(tvBody)
-//            excludeTarget(appBarLayout, true)
         }
 
         transitionSetReturn.addTransition(slideToTop)

@@ -17,7 +17,7 @@ class CustomAlphaTransition : Transition {
     private var endAlpha: Float = 1f
      var forceValues: Boolean = false
 
-    constructor(startAlpha: Float, endAlpha: Float, forceValues: Boolean) {
+    constructor(startAlpha: Float, endAlpha: Float, forceValues: Boolean= false) {
         this.startAlpha = startAlpha
         this.endAlpha = endAlpha
         this.forceValues = forceValues

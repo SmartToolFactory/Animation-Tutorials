@@ -6,15 +6,12 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.core.app.SharedElementCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.transition.*
 import com.smarttoolfactory.tutorial3_1transitions.R
-import com.smarttoolfactory.tutorial3_1transitions.transition.ChangeOutlineRadiusTransition
 import com.smarttoolfactory.tutorial3_1transitions.transition.CustomTextColorTransition
 import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 
@@ -58,21 +55,22 @@ class Fragment2_2LifeCycleSecond : Fragment() {
             CustomTextColorTransition(tvExitTransition.currentTextColor, Color.RED, true)
                 .apply {
                     addTarget(tvExitTransition)
-                    duration = 500
+                    duration = 800
                 }
+
 
         enterTransition =
             CustomTextColorTransition(tvEnterTransition.currentTextColor, Color.RED, true)
                 .apply {
                     addTarget(tvEnterTransition)
-                    duration = 500
+                    duration = 800
                 }
 
         reenterTransition =
             CustomTextColorTransition(tvReEnterTransition.currentTextColor, Color.RED, true)
                 .apply {
                     addTarget(tvReEnterTransition)
-                    duration = 500
+                    duration = 800
                 }
 
 
@@ -82,10 +80,16 @@ class Fragment2_2LifeCycleSecond : Fragment() {
             CustomTextColorTransition(tvReturnTransition.currentTextColor, Color.RED, true)
                 .apply {
                     addTarget(tvReturnTransition)
-                    duration = 500
+                    duration = 800
                 }
 
+        val slide = Slide(Gravity.BOTTOM)
+            .apply {
+                duration = 2000
+            }
+
         returnTransitions.addTransition(returnTextTransition)
+        returnTransitions.addTransition(slide)
         returnTransition = returnTransitions
 
         (exitTransition as Transition).addListener(object : TransitionXAdapter() {

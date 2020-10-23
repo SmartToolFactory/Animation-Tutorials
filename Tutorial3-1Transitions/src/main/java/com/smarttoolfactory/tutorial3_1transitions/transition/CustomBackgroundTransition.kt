@@ -20,7 +20,7 @@ class CustomBackgroundTransition : Transition {
     private var endColor: Int = Color.BLACK
     var forceValues: Boolean = false
 
-    constructor(startColor: Int, endColor: Int, forceValues: Boolean) {
+    constructor(startColor: Int, endColor: Int, forceValues: Boolean = false) {
         this.startColor = startColor
         this.endColor = endColor
         this.forceValues = forceValues

@@ -19,11 +19,22 @@ import com.smarttoolfactory.tutorial3_1transitions.R
  * ***transitionValues*** which is helpful not to set for before and after transition values
  * to trigger [TransitionManager.beginDelayedTransition]
  *
+ * 🔥 In exit and Return transitions [endValues] return null, in that case use [startValues] view
+ * to create text color change transition
+ * ```
+ * I: 🎃 CustomTextColorTransition  createAnimator() startValues: TransitionValues@81e92016:
+ * I:     view = com.google.android.material.textview.MaterialTextView{21ec9e5 V.ED..... ........ 531,1737-716,1791 #7f080190 app:id/tvReturnTransition}
+ * I:     values:    android:visibilityPropagation:center: [I@19de9fc
+ * I:     android:visibilityPropagation:visibility: 0
+ * I:     PROPNAME_TEXT_COLOR: -1979711488
+ * I:  endValues: null
+ * ```
+ *
  */
 class CustomTextColorTransition : Transition {
 
     private var startColor: Int = Color.BLACK
-    private var endColor: Int = Color.BLACK
+    private var endColor: Int = Color.WHITE
     var forceValues: Boolean = false
 
 
@@ -88,18 +99,36 @@ class CustomTextColorTransition : Transition {
 
         println("🎃 ${this::class.java.simpleName}  createAnimator() startValues: $startValues endValues: $endValues ")
 
-        if (endValues == null || startValues == null) return null // no values
+        val view = when {
+            startValues?.view != null && startValues.view is TextView -> {
+                startValues.view
+            }
+            endValues?.view != null && endValues.view is TextView -> {
+                endValues.view
+            }
+            else -> {
+                return null
+            }
+        }
 
-        val view = (startValues.view as? TextView) ?: return null
+        val textView = (view as? TextView) ?: return null
 
+        val startTextColor = if (forceValues) {
+            startColor
+        } else {
+            (startValues?.values?.get(PROPNAME_TEXT_COLOR) as? Int) ?: startColor
+        }
 
-        val startTextColor = startValues.values[PROPNAME_TEXT_COLOR] as Int
-        val endTextColor = endValues.values[PROPNAME_TEXT_COLOR] as Int
+        val endTextColor = if (forceValues) {
+            endColor
+        } else {
+            (endValues?.values?.get(PROPNAME_TEXT_COLOR) as? Int) ?: endColor
+        }
 
         val animator: ValueAnimator =
             ValueAnimator.ofObject(ArgbEvaluator(), startTextColor, endTextColor)
-        animator.addUpdateListener { animator ->
-            view.setTextColor(animator.animatedValue as Int)
+        animator.addUpdateListener { animation ->
+            textView.setTextColor(animation.animatedValue as Int)
         }
 
         return animator

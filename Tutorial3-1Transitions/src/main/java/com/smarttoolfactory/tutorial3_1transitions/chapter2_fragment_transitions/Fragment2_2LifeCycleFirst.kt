@@ -1,6 +1,7 @@
 package com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions
 
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -9,13 +10,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.SharedElementCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.transition.*
 import com.smarttoolfactory.tutorial3_1transitions.R
-import com.smarttoolfactory.tutorial3_1transitions.transition.CustomTextColorTransition
-import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
+import com.smarttoolfactory.tutorial3_1transitions.transition.*
 
 
 class Fragment2_2LifeCycleFirst : Fragment() {
@@ -36,6 +37,8 @@ class Fragment2_2LifeCycleFirst : Fragment() {
     }
 
     private fun prepareTransitions(view: View) {
+
+        val constraintLayout = view.findViewById<ConstraintLayout>(R.id.constraintLayout)
 
         val tvLifeCycle = view.findViewById<TextView>(R.id.tvLifeCycle)
 
@@ -59,37 +62,44 @@ class Fragment2_2LifeCycleFirst : Fragment() {
         allowReturnTransitionOverlap = false
 
 
-        val exitTransitions = TransitionSet()
+        val slide = Slide(Gravity.TOP)
+            .apply {
+                duration = 3000
+            }
+        val transitionSet = TransitionSet()
 
-        val exitTextTransition =
-            CustomTextColorTransition(tvExitTransition.currentTextColor, Color.MAGENTA, true)
+        val textTransition = Slide(Gravity.START)
+//            CustomRotationTransition(-360f,0f, true)
                 .apply {
                     addTarget(tvExitTransition)
-                    duration = 500
+                    duration = 800
                 }
 
-        exitTransitions.addTransition(exitTextTransition)
+        transitionSet.addTransition(slide)
+        transitionSet.addTransition(textTransition)
 
-        exitTransition = exitTransitions
+        exitTransition = transitionSet
+
 
         enterTransition =
             CustomTextColorTransition(tvEnterTransition.currentTextColor, Color.MAGENTA, true)
                 .apply {
                     addTarget(tvEnterTransition)
-                    duration = 500
+                    duration = 800
                 }
 
         reenterTransition =
             CustomTextColorTransition(tvReEnterTransition.currentTextColor, Color.MAGENTA, true)
                 .apply {
                     addTarget(tvReEnterTransition)
-                    duration = 500
+                    duration = 800
                 }
+
         returnTransition =
             CustomTextColorTransition(tvReturnTransition.currentTextColor, Color.MAGENTA, true)
                 .apply {
                     addTarget(tvReturnTransition)
-                    duration = 500
+                    duration = 800
                 }
 
         (exitTransition as Transition).addListener(object : TransitionXAdapter() {
