@@ -10,7 +10,7 @@ import androidx.transition.Transition
 import androidx.transition.TransitionValues
 import com.smarttoolfactory.tutorial3_1transitions.R
 
-class CustomScaleTransition : Transition {
+class CustomScaleTransition2 : Transition {
 
     private var startScaleX: Float = 1f
     private var startScaleY: Float = 1f
@@ -53,13 +53,7 @@ class CustomScaleTransition : Transition {
 
     override fun captureStartValues(transitionValues: TransitionValues) {
 
-        if (forceValues) {
-            transitionValues.values[PROPNAME_SCALE_X] = startScaleX
-            transitionValues.values[PROPNAME_SCALE_Y] = startScaleY
-
-        } else {
-            captureValues(transitionValues)
-        }
+        captureValues(transitionValues)
 
         if (debugMode) {
             println("⚠️ ${this::class.java.simpleName}  captureStartValues() view: ${transitionValues.view} ")
@@ -68,16 +62,16 @@ class CustomScaleTransition : Transition {
             }
         }
 
+        if (forceValues) {
+            transitionValues.view?.scaleX = endScaleX
+            transitionValues.view?.scaleY = endScaleY
+        }
+
     }
 
     override fun captureEndValues(transitionValues: TransitionValues) {
-        if (forceValues) {
-            transitionValues.values[PROPNAME_SCALE_X] = endScaleX
-            transitionValues.values[PROPNAME_SCALE_Y] = endScaleY
 
-        } else {
-            captureValues(transitionValues)
-        }
+        captureValues(transitionValues)
 
         if (debugMode) {
             println("🔥 ${this::class.java.simpleName}  captureEndValues() view: ${transitionValues.view} ")
@@ -92,46 +86,21 @@ class CustomScaleTransition : Transition {
         transitionValues.values[PROPNAME_SCALE_Y] = transitionValues.view.scaleY
     }
 
-    private fun createForcedAnimator(
+
+    override fun createAnimator(
         sceneRoot: ViewGroup,
         startValues: TransitionValues?,
         endValues: TransitionValues?
     ): Animator? {
 
-
-        if (startScaleX == endScaleX && startScaleY == endScaleY) return null // no scale to run
-
-        val view = when {
-            startValues?.view != null -> {
-                startValues.view
-            }
-            endValues?.view != null -> {
-                endValues.view
-            }
-            else -> {
-                return null
-            }
+        if (debugMode) {
+            println(
+                "🎃 ${this::class.java.simpleName}  createAnimator() " +
+                        "forceValues: $forceValues" +
+                        "\nSTART VALUES: $startValues" +
+                        "\nEND VALUES: $endValues "
+            )
         }
-        val propX = PropertyValuesHolder.ofFloat(PROPNAME_SCALE_X, 0f, 1f)
-        val propY = PropertyValuesHolder.ofFloat(PROPNAME_SCALE_Y, 0f, 1f)
-
-        val animator = ValueAnimator.ofPropertyValuesHolder(propX, propY)
-
-        animator.addUpdateListener { valueAnimator ->
-            view.pivotX = view.width / 2f
-            view.pivotY = view.height / 2f
-            view.scaleX = valueAnimator.getAnimatedValue(PROPNAME_SCALE_X) as Float
-            view.scaleY = valueAnimator.getAnimatedValue(PROPNAME_SCALE_Y) as Float
-        }
-
-        return animator
-    }
-
-    private fun createTransitionAnimator(
-        sceneRoot: ViewGroup,
-        startValues: TransitionValues?,
-        endValues: TransitionValues?
-    ): Animator? {
 
         if (endValues == null || startValues == null) return null // no values
 
@@ -156,28 +125,6 @@ class CustomScaleTransition : Transition {
             view.scaleY = valueAnimator.getAnimatedValue(PROPNAME_SCALE_Y) as Float
         }
         return animator
-    }
-
-    override fun createAnimator(
-        sceneRoot: ViewGroup,
-        startValues: TransitionValues?,
-        endValues: TransitionValues?
-    ): Animator? {
-
-        if (debugMode) {
-            println(
-                "🎃 ${this::class.java.simpleName}  createAnimator() " +
-                        "forceValues: $forceValues" +
-                        "\nSTART VALUES: $startValues" +
-                        "\nEND VALUES: $endValues "
-            )
-        }
-
-        return if (forceValues) {
-            createForcedAnimator(sceneRoot, startValues, endValues)
-        } else {
-            createTransitionAnimator(sceneRoot, startValues, endValues)
-        }
 
     }
 

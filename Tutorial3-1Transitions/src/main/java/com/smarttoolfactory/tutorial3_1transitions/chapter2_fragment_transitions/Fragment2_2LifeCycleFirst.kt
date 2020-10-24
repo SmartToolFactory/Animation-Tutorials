@@ -1,7 +1,6 @@
 package com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions
 
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -14,9 +13,12 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.SharedElementCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.transition.*
+import androidx.transition.Slide
+import androidx.transition.Transition
+import androidx.transition.TransitionSet
 import com.smarttoolfactory.tutorial3_1transitions.R
-import com.smarttoolfactory.tutorial3_1transitions.transition.*
+import com.smarttoolfactory.tutorial3_1transitions.transition.CustomTextColorTransition
+import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 
 
 class Fragment2_2LifeCycleFirst : Fragment() {
@@ -64,12 +66,12 @@ class Fragment2_2LifeCycleFirst : Fragment() {
 
         val slide = Slide(Gravity.TOP)
             .apply {
-                duration = 3000
+                duration = 2000
             }
         val transitionSet = TransitionSet()
 
-        val textTransition = Slide(Gravity.START)
-//            CustomRotationTransition(-360f,0f, true)
+        val textTransition =
+            CustomTextColorTransition(tvEnterTransition.currentTextColor, Color.MAGENTA, true)
                 .apply {
                     addTarget(tvExitTransition)
                     duration = 800
@@ -302,6 +304,7 @@ class Fragment2_2LifeCycleFirst : Fragment() {
             viewModel.clearText()
 
             val fragment = Fragment2_2LifeCycleSecond()
+
 
             requireActivity().supportFragmentManager
                 .beginTransaction()

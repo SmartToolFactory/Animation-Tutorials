@@ -10,7 +10,10 @@ import android.widget.TextView
 import androidx.core.app.SharedElementCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.transition.*
+import androidx.transition.Slide
+import androidx.transition.Transition
+import androidx.transition.TransitionInflater
+import androidx.transition.TransitionSet
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.transition.CustomTextColorTransition
 import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
@@ -58,7 +61,6 @@ class Fragment2_2LifeCycleSecond : Fragment() {
                     duration = 800
                 }
 
-
         enterTransition =
             CustomTextColorTransition(tvEnterTransition.currentTextColor, Color.RED, true)
                 .apply {
@@ -66,13 +68,12 @@ class Fragment2_2LifeCycleSecond : Fragment() {
                     duration = 800
                 }
 
-        reenterTransition =
+            reenterTransition =
             CustomTextColorTransition(tvReEnterTransition.currentTextColor, Color.RED, true)
                 .apply {
                     addTarget(tvReEnterTransition)
                     duration = 800
                 }
-
 
         val returnTransitions = TransitionSet()
 
@@ -83,7 +84,7 @@ class Fragment2_2LifeCycleSecond : Fragment() {
                     duration = 800
                 }
 
-        val slide = Slide(Gravity.BOTTOM)
+        val slide = Slide(Gravity.TOP)
             .apply {
                 duration = 2000
             }
@@ -93,10 +94,6 @@ class Fragment2_2LifeCycleSecond : Fragment() {
         returnTransition = returnTransitions
 
         (exitTransition as Transition).addListener(object : TransitionXAdapter() {
-
-            val tvExitTransition = view.findViewById<TextView>(R.id.tvExitTransition)
-
-
             val currentTextColor = tvExitTransition.currentTextColor
 
             override fun onTransitionStart(transition: Transition) {
@@ -115,9 +112,6 @@ class Fragment2_2LifeCycleSecond : Fragment() {
 
         (enterTransition as Transition).addListener(object : TransitionXAdapter() {
 
-            val tvEnterTransition = view.findViewById<TextView>(R.id.tvEnterTransition)
-
-
             val currentTextColor = tvEnterTransition.currentTextColor
 
             override fun onTransitionStart(transition: Transition) {
@@ -134,9 +128,6 @@ class Fragment2_2LifeCycleSecond : Fragment() {
         })
 
         (returnTransition as Transition).addListener(object : TransitionXAdapter() {
-
-            val tvReturnTransition = view.findViewById<TextView>(R.id.tvReturnTransition)
-
             val currentTextColor = tvReturnTransition.currentTextColor
 
             override fun onTransitionStart(transition: Transition) {
@@ -152,9 +143,6 @@ class Fragment2_2LifeCycleSecond : Fragment() {
         })
 
         (reenterTransition as Transition).addListener(object : TransitionXAdapter() {
-
-            val tvReEnterTransition = view.findViewById<TextView>(R.id.tvReEnterTransition)
-
             val currentTextColor = tvReEnterTransition.currentTextColor
 
             override fun onTransitionStart(transition: Transition) {

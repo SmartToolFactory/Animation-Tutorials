@@ -1,25 +1,22 @@
 package com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions
 
-import android.animation.Animator
-import android.animation.AnimatorInflater
-import android.graphics.Color
 import android.os.Bundle
-import android.view.*
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
-import androidx.core.app.SharedElementCallback
 import androidx.fragment.app.Fragment
-import androidx.transition.*
-import com.google.android.material.appbar.AppBarLayout
+import androidx.transition.Slide
+import androidx.transition.Transition
+import androidx.transition.TransitionInflater
+import androidx.transition.TransitionSet
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.MagazineModel
 import com.smarttoolfactory.tutorial3_1transitions.transition.CircularReveal
-import com.smarttoolfactory.tutorial3_1transitions.transition.CustomBackgroundTransition
-import com.smarttoolfactory.tutorial3_1transitions.transition.CustomBackgroundVisibility
 import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 import kotlin.math.hypot
 

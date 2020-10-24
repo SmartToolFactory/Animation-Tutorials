@@ -28,10 +28,13 @@ import android.view.ViewGroup;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.transition.TransitionValues;
 import androidx.transition.Visibility;
 
 import com.smarttoolfactory.tutorial3_1transitions.R;
+
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A transition which shows/hides a view with a circular clipping mask. Callers should provide the
@@ -44,7 +47,8 @@ public class CircularReveal extends Visibility {
     private Point center;
     private float startRadius;
     private float endRadius;
-    private @IdRes int centerOnId = View.NO_ID;
+    private @IdRes
+    int centerOnId = View.NO_ID;
     private View centerOn;
 
     public CircularReveal() {
@@ -143,6 +147,21 @@ public class CircularReveal extends Visibility {
         if (center == null) {
             center = new Point(Math.round(view.getPivotX()), Math.round(view.getPivotY()));
         }
+    }
+
+    @Nullable
+    @org.jetbrains.annotations.Nullable
+    @Override
+    public Animator createAnimator(
+            @NonNull @NotNull ViewGroup sceneRoot,
+            @Nullable @org.jetbrains.annotations.Nullable TransitionValues startValues,
+            @Nullable @org.jetbrains.annotations.Nullable TransitionValues endValues) {
+
+        System.out.println("🎃 " + this.getClass().getSimpleName() + "createAnimator() " +
+                "\nSTART VALUES: " + startValues +
+                "\nEND VALUES: " + endValues);
+
+        return super.createAnimator(sceneRoot, startValues, endValues);
     }
 
     private float getFullyRevealedRadius(@NonNull View view) {

@@ -9,15 +9,19 @@ import android.view.ViewGroup
 import androidx.transition.Transition
 import androidx.transition.TransitionValues
 import com.smarttoolfactory.tutorial3_1transitions.R
-import java.util.jar.Attributes
 
 class CustomAlphaTransition : Transition {
 
     private var startAlpha: Float = 0f
     private var endAlpha: Float = 1f
-     var forceValues: Boolean = false
+    var forceValues: Boolean = false
 
-    constructor(startAlpha: Float, endAlpha: Float, forceValues: Boolean= false) {
+    /**
+     * Logs lifecycle and parameters to console wheb set to true
+     */
+    var debugMode = false
+
+    constructor(startAlpha: Float, endAlpha: Float, forceValues: Boolean = false) {
         this.startAlpha = startAlpha
         this.endAlpha = endAlpha
         this.forceValues = forceValues
@@ -32,7 +36,6 @@ class CustomAlphaTransition : Transition {
         a.recycle()
     }
 
-
     override fun captureStartValues(transitionValues: TransitionValues) {
         if (forceValues) {
             transitionValues.values[PROP_NAME_ALPHA] = startAlpha
@@ -40,10 +43,12 @@ class CustomAlphaTransition : Transition {
             captureValues(transitionValues)
         }
 
-        println("⚠️ ${this::class.java.simpleName}  captureStartValues() view: ${transitionValues.view} ")
-        transitionValues.values.forEach { (key, value) ->
-            println("Key: $key, value: $value")
-        }
+      if (debugMode) {
+          println("⚠️ ${this::class.java.simpleName}  captureStartValues() view: ${transitionValues.view} ")
+          transitionValues.values.forEach { (key, value) ->
+              println("Key: $key, value: $value")
+          }
+      }
     }
 
     override fun captureEndValues(transitionValues: TransitionValues) {
@@ -53,25 +58,53 @@ class CustomAlphaTransition : Transition {
             captureValues(transitionValues)
         }
 
-        println("🔥 ${this::class.java.simpleName}  captureEndValues() view: ${transitionValues.view} ")
-        transitionValues.values.forEach { (key, value) ->
-            println("Key: $key, value: $value")
-        }
+      if (debugMode) {
+          println("🔥 ${this::class.java.simpleName}  captureEndValues() view: ${transitionValues.view} ")
+          transitionValues.values.forEach { (key, value) ->
+              println("Key: $key, value: $value")
+          }
+      }
     }
 
     private fun captureValues(transitionValues: TransitionValues) {
         transitionValues.values[PROP_NAME_ALPHA] = transitionValues.view.alpha
     }
 
-
-    override fun createAnimator(
+    private fun createForcedAnimator(
         sceneRoot: ViewGroup,
         startValues: TransitionValues?,
         endValues: TransitionValues?
     ): Animator? {
 
-        println("🎃 ${this::class.java.simpleName}  createAnimator() startValues: $startValues endValues: $endValues ")
+        if (startAlpha == endAlpha) return null // no rotation to run
 
+        val view = when {
+            startValues?.view != null -> {
+                startValues.view
+            }
+            endValues?.view != null -> {
+                endValues.view
+            }
+            else -> {
+                return null
+            }
+        }
+
+        val propRotation =
+            PropertyValuesHolder.ofFloat(PROP_NAME_ALPHA, 0f, 1f)
+
+        val valAnim = ValueAnimator.ofPropertyValuesHolder(propRotation)
+        valAnim.addUpdateListener { valueAnimator ->
+            view.alpha = valueAnimator.getAnimatedValue(PROP_NAME_ALPHA) as Float
+        }
+        return valAnim
+    }
+
+    private fun createTransitionAnimator(
+        sceneRoot: ViewGroup,
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
+    ): Animator? {
         if (endValues == null || startValues == null) return null // no values
 
         val startAlpha = startValues.values[PROP_NAME_ALPHA] as Float
@@ -91,6 +124,29 @@ class CustomAlphaTransition : Transition {
         return valAnim
     }
 
+    override fun createAnimator(
+        sceneRoot: ViewGroup,
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
+    ): Animator? {
+
+        if (debugMode) {
+            println(
+                "🎃 ${this::class.java.simpleName}  createAnimator() " +
+                        "forceValues: $forceValues" +
+                        "\nSTART VALUES: $startValues" +
+                        "\nEND VALUES: $endValues "
+            )
+        }
+
+        return if (forceValues) {
+            createForcedAnimator(sceneRoot, startValues, endValues)
+        } else {
+            createTransitionAnimator(sceneRoot, startValues, endValues)
+        }
+
+
+    }
 
     companion object {
         private const val PROP_NAME_ALPHA = "android:custom:alpha"

@@ -37,6 +37,10 @@ class CustomTextColorTransition : Transition {
     private var endColor: Int = Color.WHITE
     var forceValues: Boolean = false
 
+    /**
+     * Logs lifecycle and parameters to console wheb set to true
+     */
+    var debugMode = false
 
     constructor(startColor: Int, endColor: Int, forceValues: Boolean) {
         this.startColor = startColor
@@ -62,9 +66,11 @@ class CustomTextColorTransition : Transition {
             captureValues(transitionValues)
         }
 
-        println("⚠️ ${this::class.java.simpleName}  captureStartValues() view: ${transitionValues.view} ")
-        transitionValues.values.forEach { (key, value) ->
-            println("Key: $key, value: $value")
+        if (debugMode) {
+            println("⚠️ ${this::class.java.simpleName}  captureStartValues() view: ${transitionValues.view} ")
+            transitionValues.values.forEach { (key, value) ->
+                println("Key: $key, value: $value")
+            }
         }
     }
 
@@ -78,26 +84,30 @@ class CustomTextColorTransition : Transition {
             captureValues(transitionValues)
         }
 
-        println("🔥 ${this::class.java.simpleName}  captureEndValues() view: ${transitionValues.view} ")
-        transitionValues.values.forEach { (key, value) ->
-            println("Key: $key, value: $value")
+        if (debugMode) {
+            println("🔥 ${this::class.java.simpleName}  captureEndValues() view: ${transitionValues.view} ")
+            transitionValues.values.forEach { (key, value) ->
+                println("Key: $key, value: $value")
+            }
         }
     }
 
     private fun captureValues(transitionValues: TransitionValues) {
-        if (transitionValues.view is TextView) {
-            transitionValues.values[PROPNAME_TEXT_COLOR] =
-                (transitionValues.view as TextView).currentTextColor
+        (transitionValues.view as? TextView)?.apply {
+            transitionValues.values[PROPNAME_TEXT_COLOR] = this.currentTextColor
         }
     }
 
-    override fun createAnimator(
+    /**
+     * This animator runs with the values entered as start and end values, if we know the view
+     * which these values will be applied to we don't need a valid value and end view from
+     * [captureEndValues] method.
+     */
+    private fun createForceValueAnimator(
         sceneRoot: ViewGroup,
         startValues: TransitionValues?,
         endValues: TransitionValues?
     ): Animator? {
-
-        println("🎃 ${this::class.java.simpleName}  createAnimator() startValues: $startValues endValues: $endValues ")
 
         val view = when {
             startValues?.view != null && startValues.view is TextView -> {
@@ -113,25 +123,68 @@ class CustomTextColorTransition : Transition {
 
         val textView = (view as? TextView) ?: return null
 
-        val startTextColor = if (forceValues) {
-            startColor
-        } else {
-            (startValues?.values?.get(PROPNAME_TEXT_COLOR) as? Int) ?: startColor
-        }
-
-        val endTextColor = if (forceValues) {
-            endColor
-        } else {
-            (endValues?.values?.get(PROPNAME_TEXT_COLOR) as? Int) ?: endColor
-        }
-
         val animator: ValueAnimator =
-            ValueAnimator.ofObject(ArgbEvaluator(), startTextColor, endTextColor)
+            ValueAnimator.ofObject(ArgbEvaluator(), startColor, endColor)
         animator.addUpdateListener { animation ->
             textView.setTextColor(animation.animatedValue as Int)
         }
 
         return animator
+    }
+
+    /**
+     * This animator is for transitions that has different starting and ending scenes in shared transitions or
+     * by setting initial text color, and changing text color after  transition.
+     *
+     * * For this transition to work [captureEndValues] should return values and non-null view
+     * from both [startValues] and [endValues] both corresponding same view
+     */
+    private fun createTransitionAnimator(
+        sceneRoot: ViewGroup,
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
+    ): Animator? {
+
+
+        // This transition can only be applied to views that are on both starting and ending scenes.
+        if (endValues == null || startValues == null) return null // no values
+
+        // Store a convenient reference to the target. Both the starting and ending layout have the
+        // same target.
+        val view = (startValues.view as? TextView) ?: return null
+
+        val startTextColor = startValues.values[PROPNAME_TEXT_COLOR] as Int
+        val endTextColor = endValues.values[PROPNAME_TEXT_COLOR] as Int
+
+        val animator: ValueAnimator =
+            ValueAnimator.ofObject(ArgbEvaluator(), startTextColor, endTextColor)
+        animator.addUpdateListener { animation ->
+            view.setTextColor(animation.animatedValue as Int)
+        }
+
+        return animator
+    }
+
+    override fun createAnimator(
+        sceneRoot: ViewGroup,
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
+    ): Animator? {
+
+        if (debugMode) {
+            println(
+                "🎃 ${this::class.java.simpleName}  createAnimator() " +
+                        "forceValues: $forceValues" +
+                        "\nSTART VALUES: $startValues" +
+                        "\nEND VALUES: $endValues "
+            )
+        }
+
+        return if (forceValues) {
+            createForceValueAnimator(sceneRoot, startValues, endValues)
+        } else {
+            createTransitionAnimator(sceneRoot, startValues, endValues)
+        }
     }
 
     companion object {
