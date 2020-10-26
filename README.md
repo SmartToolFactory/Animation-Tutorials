@@ -287,6 +287,7 @@ ExitSharedElementCallback is triggered in first Activity, in second Activity Ent
 * 🔥🔥🔥 Make sure that you are importing  ```androidx.transition```, do NOT import *android.transition* components,
 mixing different import packages causes ***Wrong Transition Exception***
 * exitTransition, enterTransition, returnTransition and reEnterTransitions are null for fragments by default.
+
 *  🔥🔥 Setting allowReturnTransitionOverlap to false lets this fragment's reenterTransition to wait previous fragment's returnTransition to finish
 * add sharedElement to fragments with ```addSharedElement(ivPhoto, ivPhoto.transitionName)```
 and use ```setReorderingAllowed(true)``` to optimize for shared element transition
@@ -303,6 +304,17 @@ val extras = FragmentNavigatorExtras(
 
 findNavController().navigate(direction, extras)
 ```
+
+* 🔥🔥🔥 With transitions, it's required for start and end values to be different from each other to call
+```createAnimator``` method. 
+
+To make sure that it gets called, either set **captureStartValues**
+and **captureEndValues** manually, or in fragment transitioned to, create ** setEnterSharedElementCallback**
+and override **onSharedElementStart** and **onSharedElementEnd** methods and set properties of
+objects that are not shared in both fragments.
+ 
+ Without doing this enter or exit might not work because
+of ***Transition*** start and end point to same value.
 
 ### Resources and References
 Wonderful and very helpful resources, check them out 🤩😍

@@ -10,11 +10,11 @@
         android:label="Toolbar List">
         <action
             android:id="@+id/action_fragment2_5ToolbarList_to_fragment2_1Details"
-            app:destination="@id/fragment2_1Details" />
+            app:destination="@id/fragment2_5Details" />
     </fragment>
     <fragment
-        android:id="@+id/fragment2_1Details"
-        android:name="com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Fragment2_1Details"
+        android:id="@+id/fragment2_5Details"
+        android:name="com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Fragment2_5ToolbarDetail"
         android:label="Toolbar Detail">
         <argument
             android:name="magazineArgs"

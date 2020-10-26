@@ -35,7 +35,7 @@ import com.smarttoolfactory.tutorial3_1transitions.transition.AnimUtils.NoPauseA
  * [specifying][.centerOn] another view to center on; otherwise the target `view`'s
  * pivot point will be used.
  */
-class CircularReveal : Visibility {
+open class CircularReveal : Visibility {
     private var center: Point? = null
     private var startRadius = 0f
     private var endRadius = 0f
@@ -111,6 +111,9 @@ class CircularReveal : Visibility {
         endValues: TransitionValues
     ): Animator? {
 
+        println("‼️ ${this.javaClass.simpleName} onDisappear() VIEW: $view" +
+                "\n START VALUES: $startValues")
+
         if (view == null || view.height == 0 || view.width == 0) return null
 
         ensureCenterPoint(sceneRoot, view)
@@ -150,21 +153,6 @@ class CircularReveal : Visibility {
         if (center == null) {
             center = Point(Math.round(view.pivotX), Math.round(view.pivotY))
         }
-    }
-
-    override fun createAnimator(
-        sceneRoot: ViewGroup,
-        startValues: TransitionValues?,
-        endValues: TransitionValues?
-    ): Animator? {
-
-        println(
-            "🎃 ${this.javaClass.simpleName} createAnimator() " +
-                    "START VALUES: $startValues " +
-                    "END VALUES: $endValues"
-        )
-
-        return super.createAnimator(sceneRoot, startValues, endValues)
     }
 
     private fun getFullyRevealedRadius(view: View): Float {

@@ -9,14 +9,25 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.app.SharedElementCallback
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.Slide
 import androidx.transition.Transition
 import androidx.transition.TransitionInflater
 import androidx.transition.TransitionSet
 import com.smarttoolfactory.tutorial3_1transitions.R
+import com.smarttoolfactory.tutorial3_1transitions.adapter.SingleViewBinderListAdapter
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.MagazineModel
-import com.smarttoolfactory.tutorial3_1transitions.transition.CircularReveal
+import com.smarttoolfactory.tutorial3_1transitions.adapter.model.Post
+import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
+import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
+import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostCardViewBinder
+import com.smarttoolfactory.tutorial3_1transitions.transition.CustomCircularReveal
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.hypot
 
 class Fragment2_5ToolbarDetail : Fragment() {
@@ -34,7 +45,7 @@ class Fragment2_5ToolbarDetail : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment2_4magazine_detail, container, false)
+        val view = inflater.inflate(R.layout.fragment2_5toolbar_detail, container, false)
 
         prepareSharedElementTransition(view)
         postponeEnterTransition()
@@ -44,23 +55,22 @@ class Fragment2_5ToolbarDetail : Fragment() {
 
     private fun prepareSharedElementTransition(view: View) {
 
+//        allowEnterTransitionOverlap = false
         setUpSharedElementTransition(view)
+
+        // 🔥🔥🔥 This is for circular reveal to have different start and end values
+//        setSharedElementCallback(view)
 
         // Enter transition for non-shared Views
         enterTransition = createEnterTransition(view)
 
         // Return(When fragment is popped up) transition for non-shared Views
         returnTransition = createReturnTransition(view)
-
-//        // 🔥 Set up Transition Overlapping
-//        allowEnterTransitionOverlap = false
-//        allowReturnTransitionOverlap = false
     }
 
     private fun setUpSharedElementTransition(view: View) {
 
         val viewImageBackground: View = view.findViewById(R.id.viewImageBackground)
-//        viewImageBackground.visibility = View.INVISIBLE
 
         /*
             🔥 Set sharedElementReturnTransition, because both
@@ -74,14 +84,54 @@ class Fragment2_5ToolbarDetail : Fragment() {
         // This is shared transition for imageView and title
         val moveTransition =
             TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+                .apply {
+                    duration = 500
+                }
 
         sharedElementEnterTransition = moveTransition
 
+
+    }
+
+    /**
+     *   Overriding onSharedElementStart, and onSharedElementEnd
+     *  creates start and end values for circularReveal. Without this start and end values
+     *  are same for view background.
+     */
+    private fun setSharedElementCallback(view: View) {
+
+        val viewImageBackground = view.findViewById<View>(R.id.viewImageBackground)
+
+        setEnterSharedElementCallback(object : SharedElementCallback() {
+
+            override fun onSharedElementStart(
+                sharedElementNames: MutableList<String>?,
+                sharedElements: MutableList<View>?,
+                sharedElementSnapshots: MutableList<View>?
+            ) {
+                super.onSharedElementStart(
+                    sharedElementNames,
+                    sharedElements,
+                    sharedElementSnapshots
+                )
+                viewImageBackground.visibility = View.INVISIBLE
+            }
+
+            override fun onSharedElementEnd(
+                sharedElementNames: MutableList<String>?,
+                sharedElements: MutableList<View>?,
+                sharedElementSnapshots: MutableList<View>?
+            ) {
+                super.onSharedElementEnd(sharedElementNames, sharedElements, sharedElementSnapshots)
+                viewImageBackground.visibility = View.VISIBLE
+            }
+
+        })
     }
 
     private fun createEnterTransition(view: View): Transition {
 
-        val tvBody = view.findViewById<TextView>(R.id.tvBody)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
 
         val transitionSetEnter = TransitionSet()
 
@@ -92,7 +142,7 @@ class Fragment2_5ToolbarDetail : Fragment() {
             )
             startDelay = 400
             duration = 600
-            addTarget(tvBody)
+            addTarget(recyclerView)
         }
 
         val viewImageBackground: View = view.findViewById(R.id.viewImageBackground)
@@ -102,13 +152,14 @@ class Fragment2_5ToolbarDetail : Fragment() {
             viewImageBackground.height.toDouble()
         ).toFloat()
 
-        val circularReveal = CircularReveal().apply {
-            addTarget(viewImageBackground)
-            setStartRadius(0f)
-            setEndRadius(endRadius)
-            interpolator = AccelerateDecelerateInterpolator()
-            duration = 700
-        }
+        val circularReveal = CustomCircularReveal(View.INVISIBLE, View.VISIBLE)
+            .apply {
+                addTarget(viewImageBackground)
+                setStartRadius(0f)
+                setEndRadius(endRadius)
+                interpolator = AccelerateDecelerateInterpolator()
+                duration = 700
+            }
 
         transitionSetEnter.addTransition(slideFromBottom)
         transitionSetEnter.addTransition(circularReveal)
@@ -119,7 +170,7 @@ class Fragment2_5ToolbarDetail : Fragment() {
     private fun createReturnTransition(view: View): Transition {
 
         val viewTop = view.findViewById<View>(R.id.viewImageBackground)
-        val tvBody = view.findViewById<TextView>(R.id.tvBody)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
 
         val transitionSetReturn = TransitionSet()
 
@@ -140,7 +191,7 @@ class Fragment2_5ToolbarDetail : Fragment() {
                 android.R.interpolator.linear_out_slow_in
             )
             duration = 900
-            addTarget(tvBody)
+            addTarget(recyclerView)
         }
 
         transitionSetReturn.addTransition(slideToTop)
@@ -155,11 +206,65 @@ class Fragment2_5ToolbarDetail : Fragment() {
         val ivMagazineCover = view.findViewById<ImageView>(R.id.ivMagazineCover)
         val tvMagazineTitle = view.findViewById<TextView>(R.id.tvMagazineTitle)
 
-        ivMagazineCover.transitionName = "${magazineModel.drawableRes}"
+        ivMagazineCover.transitionName = magazineModel.transitionName
         ivMagazineCover.setImageResource(magazineModel.drawableRes)
         tvMagazineTitle.text = magazineModel.title
         tvMagazineTitle.transitionName = magazineModel.title
-        startPostponedEnterTransition()
 
+        val postCardViewBinder = PostCardViewBinder()
+
+        val listAdapter = SingleViewBinderListAdapter(postCardViewBinder as ItemBinder)
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+
+        recyclerView?.apply {
+            this.adapter = listAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
+
+        listAdapter.submitList(generateMockPosts())
+
+        recyclerView.doOnPreDraw {
+            startPostponedEnterTransition()
+        }
+
+    }
+
+    private fun generateMockPosts(): List<PostCardModel> {
+        val postList = ArrayList<PostCardModel>()
+        val random = Random()
+
+        repeat(30) {
+            val randomNum = random.nextInt(5)
+            val title = "Title $randomNum"
+            val postBody = getString(R.string.bacon_ipsum)
+            val post = Post(it, it, title, postBody)
+            postList.add(PostCardModel(post, getDrawableRes(randomNum)))
+        }
+
+        return postList
+    }
+
+    private fun getDrawableRes(userId: Int): Int {
+        return when {
+            userId % 6 == 0 -> {
+                R.drawable.avatar_1_raster
+            }
+            userId % 6 == 1 -> {
+                R.drawable.avatar_2_raster
+            }
+            userId % 6 == 2 -> {
+                R.drawable.avatar_3_raster
+            }
+            userId % 6 == 3 -> {
+                R.drawable.avatar_4_raster
+            }
+            userId % 6 == 4 -> {
+                R.drawable.avatar_5_raster
+            }
+            else -> {
+                R.drawable.avatar_6_raster
+            }
+        }
     }
 }

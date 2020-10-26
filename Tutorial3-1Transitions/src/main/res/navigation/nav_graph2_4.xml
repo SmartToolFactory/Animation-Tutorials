@@ -2,19 +2,19 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragment2_3MagazineList">
+    app:startDestination="@id/fragment2_4MagazineList">
 
     <fragment
-        android:id="@+id/fragment2_3MagazineList"
+        android:id="@+id/fragment2_4MagazineList"
         android:name="com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Fragment2_4MagazineList"
         android:label="Magazine List">
         <action
             android:id="@+id/action_fragment2_3MagazineList_to_fragment2_3MagazineDetail"
-            app:destination="@id/fragment2_3MagazineDetail" />
+            app:destination="@id/fragment2_4MagazineDetail" />
     </fragment>
 
     <fragment
-        android:id="@+id/fragment2_3MagazineDetail"
+        android:id="@+id/fragment2_4MagazineDetail"
         android:name="com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Fragment2_4MagazineDetail"
         android:label="Magazine Details">
         <argument

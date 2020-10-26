@@ -125,7 +125,8 @@ public class GridFragment extends Fragment {
 
                         System.out.println("🎃  setExitSharedElementCallback() " +
                                 " thisFragment: " + thisFragment.getClass().getSimpleName() +
-                                " viewBefore: " + (viewBefore != null ? viewBefore.hashCode() : -1) +
+                                "\nMainActivity.currentPosition: " +  MainActivity.currentPosition+
+                                "\nviewBefore: " + (viewBefore != null ? viewBefore.hashCode() : -1) +
                                 "\nviewAfter: " + (viewAfter != null ? viewAfter.hashCode() : -1));
                     }
                 });

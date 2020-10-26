@@ -70,7 +70,7 @@ class MagazineListViewHolder(
                     false,
                     3,
                     0f,
-                    ratio = 2f
+                    ratio = 1.8f
                 )
         }
 

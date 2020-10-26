@@ -17,12 +17,6 @@
 package com.google.samples.gridtopager.fragment;
 
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.core.app.SharedElementCallback;
-import androidx.viewpager.widget.ViewPager;
-
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
@@ -30,9 +24,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.core.app.SharedElementCallback;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
 import com.google.samples.gridtopager.MainActivity;
-import com.google.samples.gridtopager.adapter.ImagePagerAdapter;
 import com.google.samples.gridtopager.R;
+import com.google.samples.gridtopager.adapter.ImagePagerAdapter;
 
 import java.util.List;
 import java.util.Map;
@@ -113,7 +112,8 @@ public class ImagePagerFragment extends Fragment {
 
                         System.out.println("👻  setEnterSharedElementCallback() " +
                                 " thisFragment: " + thisFragment.getClass().getSimpleName() +
-                                " viewBefore: " + (viewBefore != null ? viewBefore.hashCode() : -1) +
+                                "\nMainActivity.currentPosition: " +  MainActivity.currentPosition+
+                                "\nviewBefore: " + (viewBefore != null ? viewBefore.hashCode() : -1) +
                                 "\nviewAfter: " + (viewAfter != null ? viewAfter.hashCode() : -1));
                     }
                 });

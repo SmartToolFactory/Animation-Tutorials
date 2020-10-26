@@ -55,7 +55,7 @@ class CustomAlphaTransition2 : Transition {
         }
 
         if (forceValues) {
-            transitionValues.view?.alpha = startAlpha
+            transitionValues.view?.alpha = endAlpha
         }
     }
 

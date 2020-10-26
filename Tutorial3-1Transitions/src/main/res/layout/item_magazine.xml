@@ -38,18 +38,22 @@
 
                 <TextView
                     android:id="@+id/tvMagazineTitle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:maxLines="1"
                     android:layout_marginTop="8dp"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                     android:textColor="?attr/colorOnSurface"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="4dp"
+                    app:layout_constraintEnd_toStartOf="@+id/appCompatImageButton"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ivMagazineCover"
                     tools:text="Title" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/appCompatImageButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?android:selectableItemBackground"
@@ -63,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.92" />
+                    app:layout_constraintGuide_percent="0.95" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

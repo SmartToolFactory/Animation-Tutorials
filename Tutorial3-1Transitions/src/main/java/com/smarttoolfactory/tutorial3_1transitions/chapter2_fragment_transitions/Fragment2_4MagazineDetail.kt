@@ -9,6 +9,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.app.SharedElementCallback
 import androidx.fragment.app.Fragment
 import androidx.transition.Slide
 import androidx.transition.Transition
@@ -74,6 +75,9 @@ class Fragment2_4MagazineDetail : Fragment() {
         // This is shared transition for imageView and title
         val moveTransition =
             TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+                .apply {
+                    duration = 500
+                }
 
         sharedElementEnterTransition = moveTransition
 
@@ -106,6 +110,55 @@ class Fragment2_4MagazineDetail : Fragment() {
 //                circularReveal.start()
 //            }
 //        })
+
+        setEnterSharedElementCallback(object : SharedElementCallback() {
+
+            var startTime = 0L
+
+            override fun onMapSharedElements(
+                names: MutableList<String>?,
+                sharedElements: MutableMap<String, View>?
+            ) {
+                super.onMapSharedElements(names, sharedElements)
+                println("🔥 DetailFragment setEnterSharedElementCallback() onMapSharedElements() names: $names, sharedElements: $sharedElements")
+            }
+
+            override fun onRejectSharedElements(rejectedSharedElements: MutableList<View>?) {
+                super.onRejectSharedElements(rejectedSharedElements)
+                println("👻 DetailFragment setEnterSharedElementCallback() onRejectSharedElements() $rejectedSharedElements")
+            }
+
+            override fun onSharedElementStart(
+                sharedElementNames: MutableList<String>?,
+                sharedElements: MutableList<View>?,
+                sharedElementSnapshots: MutableList<View>?
+            ) {
+                super.onSharedElementStart(
+                    sharedElementNames,
+                    sharedElements,
+                    sharedElementSnapshots
+                )
+
+                println("🚙 DetailFragment setEnterSharedElementCallback() onSharedElementStart sharedElementNames: $sharedElementNames")
+                startTime = System.currentTimeMillis()
+            }
+
+            override fun onSharedElementEnd(
+                sharedElementNames: MutableList<String>?,
+                sharedElements: MutableList<View>?,
+                sharedElementSnapshots: MutableList<View>?
+            ) {
+                super.onSharedElementEnd(sharedElementNames, sharedElements, sharedElementSnapshots)
+
+                println(
+                    "🚙 DetailFragment onSharedElementStart " +
+                            "sharedElementNames: $sharedElementNames, " +
+                            "duration: ${System.currentTimeMillis() - startTime}"
+                )
+
+            }
+
+        })
     }
 
     private fun createEnterTransition(view: View): Transition {
@@ -184,7 +237,7 @@ class Fragment2_4MagazineDetail : Fragment() {
         val ivMagazineCover = view.findViewById<ImageView>(R.id.ivMagazineCover)
         val tvMagazineTitle = view.findViewById<TextView>(R.id.tvMagazineTitle)
 
-        ivMagazineCover.transitionName = "${magazineModel.drawableRes}"
+        ivMagazineCover.transitionName = magazineModel.transitionName
         ivMagazineCover.setImageResource(magazineModel.drawableRes)
         tvMagazineTitle.text = magazineModel.title
         tvMagazineTitle.transitionName = magazineModel.title

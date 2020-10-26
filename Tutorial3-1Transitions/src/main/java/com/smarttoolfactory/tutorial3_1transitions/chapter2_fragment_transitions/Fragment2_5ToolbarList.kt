@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.Fade
+import androidx.transition.Transition
 import com.smarttoolfactory.tutorial3_1transitions.ImageData
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.SingleViewBinderListAdapter
@@ -23,13 +25,14 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.HeaderView
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.MagazineListViewViewBinder
 import com.smarttoolfactory.tutorial3_1transitions.databinding.ItemMagazineBinding
+import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 
+/*
+    🔥‼️ Added transition id to MagazineModel because giving same resource id as transition name to multiple
+    imageview causes shared transition to NOT know which one is shared element
+ */
 @Suppress("UNCHECKED_CAST")
 class Fragment2_5ToolbarList : Fragment() {
-
-    val data: List<MagazineModel> by lazy {
-        getMagazineList()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,13 +71,12 @@ class Fragment2_5ToolbarList : Fragment() {
 
         val listAdapter1 = SingleViewBinderListAdapter(magazineListViewBinder as ItemBinder)
             .apply {
-                submitList(listOf(MagazineListModel(data)))
+                submitList(listOf(MagazineListModel(getMagazineList(0))))
             }
         val listAdapter2 = SingleViewBinderListAdapter(magazineListViewBinder as ItemBinder)
             .apply {
-                submitList(listOf(MagazineListModel(data)))
+                submitList(listOf(MagazineListModel(getMagazineList(1))))
             }
-
 
         // Create a ConcatAdapter to add adapters sequentially order in vertical orientation
         val concatAdapter =
@@ -102,17 +104,28 @@ class Fragment2_5ToolbarList : Fragment() {
         exitTransition =
             Fade(Fade.MODE_OUT)
                 .apply {
+                    addTarget(view)
                     duration = 500
                 }
+
+        (exitTransition as? Transition)?.addListener(object : TransitionXAdapter() {
+
+            override fun onTransitionEnd(transition: Transition) {
+                super.onTransitionEnd(transition)
+                Toast.makeText(
+                    requireContext(),
+                    "EXIT onTransitionEnd time: $animationDuration",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
 
         reenterTransition =
             Fade(Fade.MODE_IN)
                 .apply {
                     duration = 500
                 }
-
     }
-
 
     private fun goToDetailPage(binding: ItemMagazineBinding, magazineModel: MagazineModel) {
 
@@ -129,14 +142,15 @@ class Fragment2_5ToolbarList : Fragment() {
         findNavController().navigate(direction, extras)
     }
 
-    private fun getMagazineList(): ArrayList<MagazineModel> {
+    private fun getMagazineList(id: Int): ArrayList<MagazineModel> {
 
         val magazineList = ArrayList<MagazineModel>()
         repeat(12) {
             val magazineModel = MagazineModel(
                 ImageData.MAGAZINE_DRAWABLES[it],
-                "#${ImageData.MAGAZINE_DRAWABLES[it]}",
-                ""
+                "#tr$id-${ImageData.MAGAZINE_DRAWABLES[it]}",
+                "",
+                transitionId = id
             )
             magazineList.add(magazineModel)
         }

@@ -8,5 +8,8 @@ import kotlinx.android.parcel.Parcelize
 data class MagazineModel(
     @DrawableRes val drawableRes: Int,
     val title: String,
-    val body: String
-) : Parcelable
+    val body: String,
+    val transitionId: Int = 0
+) : Parcelable {
+    var transitionName = "tr$drawableRes$transitionId"
+}
