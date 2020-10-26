@@ -19,7 +19,7 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.model.MagazineModel
 import com.smarttoolfactory.tutorial3_1transitions.transition.CircularReveal
 import kotlin.math.hypot
 
-class Fragment2_4MagazineDetail : Fragment() {
+class Fragment2_5ToolbarDetail : Fragment() {
 
     lateinit var magazineModel: MagazineModel
 
@@ -77,35 +77,6 @@ class Fragment2_4MagazineDetail : Fragment() {
 
         sharedElementEnterTransition = moveTransition
 
-        // ‼️ Alternative to CircularReveal Transition
-//        moveTransition.addListener(object : TransitionXAdapter() {
-//
-//            override fun onTransitionStart(transition: Transition) {
-//                super.onTransitionStart(transition)
-//
-//                val centerX = viewImageBackground.x + viewImageBackground.width / 2
-//                val centerY = viewImageBackground.y + viewImageBackground.height / 2
-//
-//                val endRadius = hypot(
-//                    viewImageBackground.width.toDouble(),
-//                    viewImageBackground.height.toDouble()
-//                ).toFloat()
-//
-//                val circularReveal = ViewAnimationUtils.createCircularReveal(
-//                    viewImageBackground,
-//                    centerX.toInt(),
-//                    centerY.toInt(),
-//                    0f,
-//                    endRadius
-//                )
-//
-//                circularReveal.interpolator = AccelerateDecelerateInterpolator()
-//                circularReveal.duration = 700
-//
-//                viewImageBackground.visibility = View.VISIBLE
-//                circularReveal.start()
-//            }
-//        })
     }
 
     private fun createEnterTransition(view: View): Transition {

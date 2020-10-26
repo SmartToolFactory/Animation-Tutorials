@@ -38,7 +38,9 @@
         <activity
             android:name=".chapter2_fragment_transitions.Activity2_4FragmentTransitionsWithNavComponents"
             android:theme="@style/Theme.App.NoActionBar" />
-        <activity android:name=".chapter2_fragment_transitions.Activity2_5FragmentTransitionsWithToolbar" />
+        <activity
+            android:name=".chapter2_fragment_transitions.Activity2_5FragmentTransitionsWithToolbar"
+            android:theme="@style/Theme.App.NoActionBar" />
     </application>
 
 </manifest>

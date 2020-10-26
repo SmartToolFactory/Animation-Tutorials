@@ -40,4 +40,10 @@
     <string name="activity2_3">Ch2-3 Fragment Transition Sample2</string>
     <string name="activity2_4">Ch2-4 Shared Elements with Nav Components</string>
     <string name="activity2_5">Ch2-5 Shared Elements with Toolbar and Propagation</string>
+
+    <string name="favorite">Favorite</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="share">Share</string>
+    <string name="search">Search</string>
+    <string name="more">More</string>
 </resources>

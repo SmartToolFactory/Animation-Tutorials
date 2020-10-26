@@ -1,7 +1,6 @@
 package com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions
 
 import android.os.Bundle
-import androidx.transition.*
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +11,7 @@ import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.*
 import com.google.android.material.appbar.AppBarLayout
 import com.smarttoolfactory.tutorial3_1transitions.ImageData
 import com.smarttoolfactory.tutorial3_1transitions.R

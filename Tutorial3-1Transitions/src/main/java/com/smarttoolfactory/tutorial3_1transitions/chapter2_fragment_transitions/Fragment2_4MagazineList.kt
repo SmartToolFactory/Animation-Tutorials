@@ -1,29 +1,26 @@
 package com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.app.SharedElementCallback
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import androidx.transition.*
+import androidx.transition.Fade
 import com.google.android.material.appbar.AppBarLayout
 import com.smarttoolfactory.tutorial3_1transitions.ImageData
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.SingleViewBinderListAdapter
+import com.smarttoolfactory.tutorial3_1transitions.adapter.layoutmanager.ScaledLinearLayoutManager
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.MagazineModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.MagazineViewViewBinder
 import com.smarttoolfactory.tutorial3_1transitions.databinding.ItemMagazineBinding
-import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 
 class Fragment2_4MagazineList : Fragment() {
 
@@ -40,7 +37,7 @@ class Fragment2_4MagazineList : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment2_3magazine_list, container, false)
+        val view = inflater.inflate(R.layout.fragment2_4magazine_list, container, false)
 
         prepareTransitions(view)
         postponeEnterTransition()
@@ -76,50 +73,6 @@ class Fragment2_4MagazineList : Fragment() {
                     duration = 500
                 }
 
-
-        returnTransition =
-            Fade(Fade.MODE_IN)
-                .apply {
-                    duration = 500
-                }
-
-        (reenterTransition as? Transition)?.addListener(object : TransitionXAdapter() {
-
-            var startTime = 0L
-
-            override fun onTransitionStart(transition: Transition) {
-                super.onTransitionStart(transition)
-                println("🚀 List reenterTransition START")
-                startTime = System.currentTimeMillis()
-            }
-
-            override fun onTransitionEnd(transition: Transition) {
-                super.onTransitionEnd(transition)
-                println(
-                    "🚀 List reenterTransition END" +
-                            " in ms: ${System.currentTimeMillis() - startTime}"
-                )
-            }
-        })
-
-        (returnTransition as? Transition)?.addListener(object : TransitionXAdapter() {
-
-            var startTime = 0L
-
-            override fun onTransitionStart(transition: Transition) {
-                super.onTransitionStart(transition)
-                println("😍 List returnTransition START")
-                startTime = System.currentTimeMillis()
-            }
-
-            override fun onTransitionEnd(transition: Transition) {
-                super.onTransitionEnd(transition)
-                println(
-                    "😍 List returnTransition END" +
-                            " in ms: ${System.currentTimeMillis() - startTime}"
-                )
-            }
-        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -138,6 +91,11 @@ class Fragment2_4MagazineList : Fragment() {
 
         recyclerView.apply {
             adapter = listAdapter
+            layoutManager =
+                ScaledLinearLayoutManager(
+                    requireContext(),
+                    RecyclerView.HORIZONTAL, false, 2, 0f
+                )
         }
 
         recyclerView.doOnPreDraw {

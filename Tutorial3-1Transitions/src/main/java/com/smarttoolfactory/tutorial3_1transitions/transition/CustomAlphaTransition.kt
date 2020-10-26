@@ -51,6 +51,7 @@ class CustomAlphaTransition : Transition {
       }
     }
 
+    // Capture the value of property for a target in the ending Scene.
     override fun captureEndValues(transitionValues: TransitionValues) {
         if (forceValues) {
             transitionValues.values[PROP_NAME_ALPHA] = endAlpha

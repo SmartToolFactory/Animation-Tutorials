@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/fragment2_3MagazineList"
         android:name="com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Fragment2_4MagazineList"
-        android:label="Fragment2_3MagazineList">
+        android:label="Magazine List">
         <action
             android:id="@+id/action_fragment2_3MagazineList_to_fragment2_3MagazineDetail"
             app:destination="@id/fragment2_3MagazineDetail" />
@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/fragment2_3MagazineDetail"
         android:name="com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Fragment2_4MagazineDetail"
-        android:label="Details">
+        android:label="Magazine Details">
         <argument
             android:name="magazineArgs"
             app:argType="com.smarttoolfactory.tutorial3_1transitions.adapter.model.MagazineModel" />

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph2_5"
+    app:startDestination="@id/fragment2_5ToolbarList">
+
+    <fragment
+        android:id="@+id/fragment2_5ToolbarList"
+        android:name="com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Fragment2_5ToolbarList"
+        android:label="Toolbar List">
+        <action
+            android:id="@+id/action_fragment2_5ToolbarList_to_fragment2_1Details"
+            app:destination="@id/fragment2_1Details" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment2_1Details"
+        android:name="com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Fragment2_1Details"
+        android:label="Toolbar Detail">
+        <argument
+            android:name="magazineArgs"
+            app:argType="com.smarttoolfactory.tutorial3_1transitions.adapter.model.MagazineModel" />
+    </fragment>
+</navigation>

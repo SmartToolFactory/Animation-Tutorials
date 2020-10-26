@@ -284,7 +284,7 @@ ExitSharedElementCallback is triggered in first Activity, in second Activity Ent
 
 ### Fragment Shared Element Transitions
 
-* 🔥🔥🔥 Make sure that you are importing  ```androidx.transition```, NOT import *android.transition*
+* 🔥🔥🔥 Make sure that you are importing  ```androidx.transition```, do NOT import *android.transition* components,
 mixing different import packages causes ***Wrong Transition Exception***
 * exitTransition, enterTransition, returnTransition and reEnterTransitions are null for fragments by default.
 *  🔥🔥 Setting allowReturnTransitionOverlap to false lets this fragment's reenterTransition to wait previous fragment's returnTransition to finish

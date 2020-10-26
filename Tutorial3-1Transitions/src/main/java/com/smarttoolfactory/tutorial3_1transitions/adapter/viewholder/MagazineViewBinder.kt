@@ -18,16 +18,8 @@ class MagazineViewViewBinder(
 
     override fun createViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
 
-        val binding = parent.inflate<ItemMagazineBinding>(getItemLayoutResource()).apply {
+        val binding = parent.inflate<ItemMagazineBinding>(getItemLayoutResource())
 
-            val width: Int = parent.width
-            val params: ViewGroup.LayoutParams = root.layoutParams
-            val newWidth = (width * 0.6f)
-            val newHeight = 4 * newWidth / 3f
-            params.width = newWidth.toInt()
-            params.height = newHeight.toInt()
-            root.layoutParams = params
-        }
         return MagazineViewHolder(
             binding,
             onItemClick

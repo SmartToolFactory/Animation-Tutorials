@@ -1,9 +1,9 @@
 package com.smarttoolfactory.tutorial3_1transitions
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,12 +11,9 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.BaseAdapter
 import com.smarttoolfactory.tutorial3_1transitions.adapter.ChapterSelectionAdapter
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.ActivityClassModel
 import com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transitions.*
-import com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Activity2_1FragmentTransitionsBasics
-import com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Activity2_2FragmentTransitionLifeCycles
+import com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.*
 import com.smarttoolfactory.tutorial3_1transitions.databinding.ActivityMainBinding
-import com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Activity2_3FragmentTransitions
-import com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Activity2_4FragmentTransitionsWithNavComponents
-import java.util.ArrayList
+import java.util.*
 
 class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickListener {
 
@@ -122,6 +119,13 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
             ActivityClassModel(
                 Activity2_4FragmentTransitionsWithNavComponents::class.java,
                 getString(R.string.activity2_4)
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity2_5FragmentTransitionsWithToolbar::class.java,
+                getString(R.string.activity2_5)
             )
         )
     }

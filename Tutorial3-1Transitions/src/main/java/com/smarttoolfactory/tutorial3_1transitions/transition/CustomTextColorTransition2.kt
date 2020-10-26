@@ -58,6 +58,7 @@ class CustomTextColorTransition2 : Transition {
         }
     }
 
+    // Capture the value of property for a target in the ending Scene.
     override fun captureEndValues(transitionValues: TransitionValues) {
 
         captureValues(transitionValues)
