@@ -25,7 +25,7 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.model.Post
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostCardViewBinder
-import com.smarttoolfactory.tutorial3_1transitions.transition.CustomCircularReveal
+import com.smarttoolfactory.tutorial3_1transitions.transition.CircularReveal
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.hypot
@@ -64,6 +64,7 @@ class Fragment2_5ToolbarDetail : Fragment() {
 //        setSharedElementCallback(view)
 
         // Enter transition for non-shared Views
+//        enterTransition = createEnterTransition(view)
         enterTransition = createEnterTransition(view)
 
         // Return(When fragment is popped up) transition for non-shared Views
@@ -133,7 +134,8 @@ class Fragment2_5ToolbarDetail : Fragment() {
 
     private fun createEnterTransition(view: View): Transition {
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView2)
+        val viewImageBackground: View = view.findViewById(R.id.viewImageBackground)
 
         val transitionSetEnter = TransitionSet()
 
@@ -144,24 +146,23 @@ class Fragment2_5ToolbarDetail : Fragment() {
             )
             startDelay = 400
             duration = 600
-            addTarget(recyclerView)
+            excludeTarget(viewImageBackground, true)
+//            addTarget(recyclerView)
         }
 
-        val viewImageBackground: View = view.findViewById(R.id.viewImageBackground)
 
         val endRadius = hypot(
             viewImageBackground.width.toDouble(),
             viewImageBackground.height.toDouble()
         ).toFloat()
 
-        val circularReveal = CustomCircularReveal(View.INVISIBLE, View.VISIBLE)
-            .apply {
-                addTarget(viewImageBackground)
-                setStartRadius(0f)
-                setEndRadius(endRadius)
-                interpolator = AccelerateDecelerateInterpolator()
-                duration = 700
-            }
+        val circularReveal = CircularReveal().apply {
+            addTarget(viewImageBackground)
+            setStartRadius(0f)
+            setEndRadius(endRadius)
+            interpolator = AccelerateDecelerateInterpolator()
+            duration = 700
+        }
 
         transitionSetEnter.addTransition(slideFromBottom)
         transitionSetEnter.addTransition(circularReveal)

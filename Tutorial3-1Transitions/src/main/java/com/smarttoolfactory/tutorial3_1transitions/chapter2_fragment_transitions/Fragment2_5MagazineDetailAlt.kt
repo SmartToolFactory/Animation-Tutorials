@@ -31,7 +31,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.hypot
 
-class Fragment2_4MagazineDetail : Fragment() {
+class Fragment2_5MagazineDetailAlt : Fragment() {
 
     lateinit var magazineModel: MagazineModel
 
@@ -46,7 +46,7 @@ class Fragment2_4MagazineDetail : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment2_4magazine_detail, container, false)
+        val view = inflater.inflate(R.layout.fragment2_5toolbar_detail, container, false)
 
         prepareSharedElementTransition(view)
         postponeEnterTransition()
@@ -175,7 +175,7 @@ class Fragment2_4MagazineDetail : Fragment() {
     private fun createEnterTransition(view: View): Transition {
 
 //        val tvBody = view.findViewById<TextView>(R.id.tvBody)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView2)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         val viewImageBackground: View = view.findViewById(R.id.viewImageBackground)
 
 
@@ -259,7 +259,7 @@ class Fragment2_4MagazineDetail : Fragment() {
         val postCardViewBinder = PostCardViewBinder()
         val listAdapter = SingleViewBinderListAdapter(postCardViewBinder as ItemBinder)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView2)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
 
         recyclerView?.apply {
             this.adapter = listAdapter

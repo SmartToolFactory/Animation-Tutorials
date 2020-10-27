@@ -14,7 +14,7 @@
             app:destination="@id/fragment2_5Details" />
         <action
             android:id="@+id/action_fragment2_5ToolbarList_to_fragment2_4MagazineDetail"
-            app:destination="@id/fragment2_4MagazineDetail" />
+            app:destination="@id/fragment2_MagazineDetailAlt" />
     </fragment>
 
     <fragment
@@ -27,8 +27,8 @@
     </fragment>
 
     <fragment
-        android:id="@+id/fragment2_4MagazineDetail"
-        android:name="com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Fragment2_4MagazineDetail"
+        android:id="@+id/fragment2_MagazineDetailAlt"
+        android:name="com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Fragment2_5MagazineDetailAlt"
         android:label="Fragment2_4MagazineDetail">
         <argument
             android:name="magazineArgs"
