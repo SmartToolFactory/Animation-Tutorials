@@ -124,7 +124,7 @@ class Fragment2_4MagazineList : Fragment() {
     private fun getMagazineList(): ArrayList<MagazineModel> {
 
         val magazineList = ArrayList<MagazineModel>()
-        repeat(12) {
+        repeat(ImageData.MAGAZINE_DRAWABLES.size) {
             val magazineModel = MagazineModel(
                 ImageData.MAGAZINE_DRAWABLES[it],
                 "Issue #${ImageData.MAGAZINE_DRAWABLES[it]}",

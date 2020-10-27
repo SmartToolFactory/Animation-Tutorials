@@ -34,6 +34,9 @@ import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 @Suppress("UNCHECKED_CAST")
 class Fragment2_5ToolbarList : Fragment() {
 
+    val dataList1 by lazy {getMagazineList(0)}
+    val dataList2 by lazy {getMagazineList(1)}
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -71,11 +74,11 @@ class Fragment2_5ToolbarList : Fragment() {
 
         val listAdapter1 = SingleViewBinderListAdapter(magazineListViewBinder as ItemBinder)
             .apply {
-                submitList(listOf(MagazineListModel(getMagazineList(0))))
+                submitList(listOf(MagazineListModel(dataList1)))
             }
         val listAdapter2 = SingleViewBinderListAdapter(magazineListViewBinder as ItemBinder)
             .apply {
-                submitList(listOf(MagazineListModel(getMagazineList(1))))
+                submitList(listOf(MagazineListModel(dataList2)))
             }
 
         // Create a ConcatAdapter to add adapters sequentially order in vertical orientation
@@ -150,7 +153,7 @@ class Fragment2_5ToolbarList : Fragment() {
     private fun getMagazineList(id: Int): ArrayList<MagazineModel> {
 
         val magazineList = ArrayList<MagazineModel>()
-        repeat(12) {
+        repeat(ImageData.MAGAZINE_DRAWABLES.size) {
             val magazineModel = MagazineModel(
                 ImageData.MAGAZINE_DRAWABLES[it],
                 "#tr$id-${ImageData.MAGAZINE_DRAWABLES[it]}",
@@ -159,6 +162,8 @@ class Fragment2_5ToolbarList : Fragment() {
             )
             magazineList.add(magazineModel)
         }
+
+        magazineList.shuffle()
 
         return magazineList
 

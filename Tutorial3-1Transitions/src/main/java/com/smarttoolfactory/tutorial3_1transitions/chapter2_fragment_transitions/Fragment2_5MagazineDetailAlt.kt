@@ -9,16 +9,12 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.app.SharedElementCallback
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.transition.Slide
-import androidx.transition.Transition
-import androidx.transition.TransitionInflater
-import androidx.transition.TransitionSet
+import androidx.transition.*
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.SingleViewBinderListAdapter
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.MagazineModel
@@ -26,7 +22,7 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.model.Post
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostCardViewBinder
-import com.smarttoolfactory.tutorial3_1transitions.transition.CircularReveal
+import com.smarttoolfactory.tutorial3_1transitions.transition.CustomCircularReveal
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.hypot
@@ -92,84 +88,6 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
 
         sharedElementEnterTransition = moveTransition
 
-        // ‼️ Alternative to CircularReveal Transition
-//        moveTransition.addListener(object : TransitionXAdapter() {
-//
-//            override fun onTransitionStart(transition: Transition) {
-//                super.onTransitionStart(transition)
-//
-//                val centerX = viewImageBackground.x + viewImageBackground.width / 2
-//                val centerY = viewImageBackground.y + viewImageBackground.height / 2
-//
-//                val endRadius = hypot(
-//                    viewImageBackground.width.toDouble(),
-//                    viewImageBackground.height.toDouble()
-//                ).toFloat()
-//
-//                val circularReveal = ViewAnimationUtils.createCircularReveal(
-//                    viewImageBackground,
-//                    centerX.toInt(),
-//                    centerY.toInt(),
-//                    0f,
-//                    endRadius
-//                )
-//
-//                circularReveal.interpolator = AccelerateDecelerateInterpolator()
-//                circularReveal.duration = 700
-//
-//                viewImageBackground.visibility = View.VISIBLE
-//                circularReveal.start()
-//            }
-//        })
-
-        setEnterSharedElementCallback(object : SharedElementCallback() {
-
-            var startTime = 0L
-
-            override fun onMapSharedElements(
-                names: MutableList<String>?,
-                sharedElements: MutableMap<String, View>?
-            ) {
-                super.onMapSharedElements(names, sharedElements)
-                println("🔥 DetailFragment setEnterSharedElementCallback() onMapSharedElements() names: $names, sharedElements: $sharedElements")
-            }
-
-            override fun onRejectSharedElements(rejectedSharedElements: MutableList<View>?) {
-                super.onRejectSharedElements(rejectedSharedElements)
-                println("👻 DetailFragment setEnterSharedElementCallback() onRejectSharedElements() $rejectedSharedElements")
-            }
-
-            override fun onSharedElementStart(
-                sharedElementNames: MutableList<String>?,
-                sharedElements: MutableList<View>?,
-                sharedElementSnapshots: MutableList<View>?
-            ) {
-                super.onSharedElementStart(
-                    sharedElementNames,
-                    sharedElements,
-                    sharedElementSnapshots
-                )
-
-                println("🚙 DetailFragment setEnterSharedElementCallback() onSharedElementStart sharedElementNames: $sharedElementNames")
-                startTime = System.currentTimeMillis()
-            }
-
-            override fun onSharedElementEnd(
-                sharedElementNames: MutableList<String>?,
-                sharedElements: MutableList<View>?,
-                sharedElementSnapshots: MutableList<View>?
-            ) {
-                super.onSharedElementEnd(sharedElementNames, sharedElements, sharedElementSnapshots)
-
-                println(
-                    "🚙 DetailFragment onSharedElementStart " +
-                            "sharedElementNames: $sharedElementNames, " +
-                            "duration: ${System.currentTimeMillis() - startTime}"
-                )
-
-            }
-
-        })
     }
 
     private fun createEnterTransition(view: View): Transition {
@@ -181,16 +99,19 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
 
         val transitionSetEnter = TransitionSet()
 
-        val slideFromBottom = Slide(Gravity.BOTTOM).apply {
-            interpolator = AnimationUtils.loadInterpolator(
-                requireContext(),
-                android.R.interpolator.linear_out_slow_in
-            )
-            startDelay = 400
-            duration = 600
-            excludeTarget(viewImageBackground, true)
-//            addTarget(recyclerView)
-        }
+        val slideFromBottom =
+            Explode()
+//            Slide(Gravity.BOTTOM)
+                .apply {
+                    interpolator = AnimationUtils.loadInterpolator(
+                        requireContext(),
+                        android.R.interpolator.linear_out_slow_in
+                    )
+                    startDelay = 400
+                    duration = 600
+                    excludeTarget(viewImageBackground, true)
+                    addTarget(recyclerView)
+                }
 
 
         val endRadius = hypot(
@@ -198,13 +119,15 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
             viewImageBackground.height.toDouble()
         ).toFloat()
 
-        val circularReveal = CircularReveal().apply {
-            addTarget(viewImageBackground)
-            setStartRadius(0f)
-            setEndRadius(endRadius)
-            interpolator = AccelerateDecelerateInterpolator()
-            duration = 700
-        }
+        val circularReveal = CustomCircularReveal(View.INVISIBLE, View.VISIBLE)
+
+            .apply {
+                addTarget(viewImageBackground)
+                setStartRadius(0f)
+                setEndRadius(endRadius)
+                interpolator = AccelerateDecelerateInterpolator()
+                duration = 700
+            }
 
         transitionSetEnter.addTransition(slideFromBottom)
         transitionSetEnter.addTransition(circularReveal)

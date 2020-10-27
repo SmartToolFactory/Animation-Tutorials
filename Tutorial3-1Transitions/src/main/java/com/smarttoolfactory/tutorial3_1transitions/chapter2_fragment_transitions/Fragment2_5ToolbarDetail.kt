@@ -55,9 +55,6 @@ class Fragment2_5ToolbarDetail : Fragment() {
 
     private fun prepareSharedElementTransition(view: View) {
 
-        allowEnterTransitionOverlap = false
-        allowReturnTransitionOverlap = false
-
         setUpSharedElementTransition(view)
 
         // 🔥🔥🔥 This is for circular reveal to have different start and end values
@@ -147,7 +144,7 @@ class Fragment2_5ToolbarDetail : Fragment() {
             startDelay = 400
             duration = 600
             excludeTarget(viewImageBackground, true)
-//            addTarget(recyclerView)
+            addTarget(recyclerView)
         }
 
 
