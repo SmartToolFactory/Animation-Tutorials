@@ -14,7 +14,10 @@ import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.transition.*
+import androidx.transition.Slide
+import androidx.transition.Transition
+import androidx.transition.TransitionInflater
+import androidx.transition.TransitionSet
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.SingleViewBinderListAdapter
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.MagazineModel
@@ -22,7 +25,7 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.model.Post
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostCardViewBinder
-import com.smarttoolfactory.tutorial3_1transitions.transition.CustomCircularReveal
+import com.smarttoolfactory.tutorial3_1transitions.transition.CircularReveal
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.hypot
@@ -42,7 +45,7 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment2_5toolbar_detail, container, false)
+        val view = inflater.inflate(R.layout.fragment2_5toolbar_detail_alt, container, false)
 
         prepareSharedElementTransition(view)
         postponeEnterTransition()
@@ -87,31 +90,26 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
                 }
 
         sharedElementEnterTransition = moveTransition
-
     }
 
     private fun createEnterTransition(view: View): Transition {
 
-//        val tvBody = view.findViewById<TextView>(R.id.tvBody)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+        val tvBody = view.findViewById<View>(R.id.recyclerView)
         val viewImageBackground: View = view.findViewById(R.id.viewImageBackground)
 
 
         val transitionSetEnter = TransitionSet()
 
-        val slideFromBottom =
-            Explode()
-//            Slide(Gravity.BOTTOM)
-                .apply {
-                    interpolator = AnimationUtils.loadInterpolator(
-                        requireContext(),
-                        android.R.interpolator.linear_out_slow_in
-                    )
-                    startDelay = 400
-                    duration = 600
-                    excludeTarget(viewImageBackground, true)
-                    addTarget(recyclerView)
-                }
+        val slideFromBottom = Slide(Gravity.BOTTOM).apply {
+            interpolator = AnimationUtils.loadInterpolator(
+                requireContext(),
+                android.R.interpolator.linear_out_slow_in
+            )
+            startDelay = 400
+            duration = 600
+            excludeTarget(viewImageBackground, true)
+            addTarget(tvBody)
+        }
 
 
         val endRadius = hypot(
@@ -119,15 +117,13 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
             viewImageBackground.height.toDouble()
         ).toFloat()
 
-        val circularReveal = CustomCircularReveal(View.INVISIBLE, View.VISIBLE)
-
-            .apply {
-                addTarget(viewImageBackground)
-                setStartRadius(0f)
-                setEndRadius(endRadius)
-                interpolator = AccelerateDecelerateInterpolator()
-                duration = 700
-            }
+        val circularReveal = CircularReveal().apply {
+            addTarget(viewImageBackground)
+            setStartRadius(0f)
+            setEndRadius(endRadius)
+            interpolator = AccelerateDecelerateInterpolator()
+            duration = 700
+        }
 
         transitionSetEnter.addTransition(slideFromBottom)
         transitionSetEnter.addTransition(circularReveal)
@@ -138,7 +134,7 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
     private fun createReturnTransition(view: View): Transition {
 
         val viewTop = view.findViewById<View>(R.id.viewImageBackground)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+        val tvBody = view.findViewById<View>(R.id.recyclerView)
 
         val transitionSetReturn = TransitionSet()
 
@@ -149,7 +145,6 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
             )
             duration = 900
             addTarget(viewTop)
-//            excludeTarget(appBarLayout, true)
         }
 
 
@@ -159,7 +154,7 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
                 android.R.interpolator.linear_out_slow_in
             )
             duration = 900
-            addTarget(recyclerView)
+            addTarget(tvBody)
         }
 
         transitionSetReturn.addTransition(slideToTop)
@@ -180,6 +175,7 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
         tvMagazineTitle.transitionName = magazineModel.title
 
         val postCardViewBinder = PostCardViewBinder()
+
         val listAdapter = SingleViewBinderListAdapter(postCardViewBinder as ItemBinder)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
@@ -191,29 +187,18 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
 
         listAdapter.submitList(generateMockPosts())
 
-        recyclerView.doOnPreDraw {
-            println("🎃 RecyclerView doOnPreDraw()")
-//            prepareSharedElementTransition(view)
-//            startPostponedEnterTransition()
-
-        }
-
         view?.doOnNextLayout {
             (it.parent as? ViewGroup)?.doOnPreDraw {
-                println("🎃 View doOnNextLayout() -> doOnPreDraw() ")
                 startPostponedEnterTransition()
             }
         }
-
-//        startPostponedEnterTransition()
-
     }
 
     private fun generateMockPosts(): List<PostCardModel> {
         val postList = ArrayList<PostCardModel>()
         val random = Random()
 
-        repeat(30) {
+        repeat(20) {
             val randomNum = random.nextInt(5)
             val title = "Title $randomNum"
             val postBody = getString(R.string.bacon_ipsum)
@@ -246,4 +231,5 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
             }
         }
     }
+
 }

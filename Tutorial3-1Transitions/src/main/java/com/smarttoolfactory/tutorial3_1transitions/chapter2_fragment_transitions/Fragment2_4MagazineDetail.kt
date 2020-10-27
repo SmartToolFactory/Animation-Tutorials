@@ -13,22 +13,13 @@ import androidx.core.app.SharedElementCallback
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.Slide
 import androidx.transition.Transition
 import androidx.transition.TransitionInflater
 import androidx.transition.TransitionSet
 import com.smarttoolfactory.tutorial3_1transitions.R
-import com.smarttoolfactory.tutorial3_1transitions.adapter.SingleViewBinderListAdapter
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.MagazineModel
-import com.smarttoolfactory.tutorial3_1transitions.adapter.model.Post
-import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
-import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
-import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostCardViewBinder
 import com.smarttoolfactory.tutorial3_1transitions.transition.CircularReveal
-import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.math.hypot
 
 class Fragment2_4MagazineDetail : Fragment() {
@@ -174,8 +165,7 @@ class Fragment2_4MagazineDetail : Fragment() {
 
     private fun createEnterTransition(view: View): Transition {
 
-//        val tvBody = view.findViewById<TextView>(R.id.tvBody)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView2)
+        val tvBody = view.findViewById<TextView>(R.id.tvBody)
         val viewImageBackground: View = view.findViewById(R.id.viewImageBackground)
 
 
@@ -189,7 +179,7 @@ class Fragment2_4MagazineDetail : Fragment() {
             startDelay = 400
             duration = 600
             excludeTarget(viewImageBackground, true)
-//            addTarget(recyclerView)
+            addTarget(tvBody)
         }
 
 
@@ -215,7 +205,7 @@ class Fragment2_4MagazineDetail : Fragment() {
     private fun createReturnTransition(view: View): Transition {
 
         val viewTop = view.findViewById<View>(R.id.viewImageBackground)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+        val tvBody = view.findViewById<TextView>(R.id.tvBody)
 
         val transitionSetReturn = TransitionSet()
 
@@ -226,7 +216,6 @@ class Fragment2_4MagazineDetail : Fragment() {
             )
             duration = 900
             addTarget(viewTop)
-//            excludeTarget(appBarLayout, true)
         }
 
 
@@ -236,7 +225,7 @@ class Fragment2_4MagazineDetail : Fragment() {
                 android.R.interpolator.linear_out_slow_in
             )
             duration = 900
-            addTarget(recyclerView)
+            addTarget(tvBody)
         }
 
         transitionSetReturn.addTransition(slideToTop)
@@ -256,71 +245,12 @@ class Fragment2_4MagazineDetail : Fragment() {
         tvMagazineTitle.text = magazineModel.title
         tvMagazineTitle.transitionName = magazineModel.title
 
-        val postCardViewBinder = PostCardViewBinder()
-        val listAdapter = SingleViewBinderListAdapter(postCardViewBinder as ItemBinder)
-
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView2)
-
-        recyclerView?.apply {
-            this.adapter = listAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
-
-        listAdapter.submitList(generateMockPosts())
-
-        recyclerView.doOnPreDraw {
-            println("🎃 RecyclerView doOnPreDraw()")
-//            prepareSharedElementTransition(view)
-//            startPostponedEnterTransition()
-
-        }
 
         view?.doOnNextLayout {
             (it.parent as? ViewGroup)?.doOnPreDraw {
-                println("🎃 View doOnNextLayout() -> doOnPreDraw() ")
                 startPostponedEnterTransition()
             }
         }
-
-//        startPostponedEnterTransition()
-
     }
 
-    private fun generateMockPosts(): List<PostCardModel> {
-        val postList = ArrayList<PostCardModel>()
-        val random = Random()
-
-        repeat(30) {
-            val randomNum = random.nextInt(5)
-            val title = "Title $randomNum"
-            val postBody = getString(R.string.bacon_ipsum)
-            val post = Post(it, it, title, postBody)
-            postList.add(PostCardModel(post, getDrawableRes(randomNum)))
-        }
-
-        return postList
-    }
-
-    private fun getDrawableRes(userId: Int): Int {
-        return when {
-            userId % 6 == 0 -> {
-                R.drawable.avatar_1_raster
-            }
-            userId % 6 == 1 -> {
-                R.drawable.avatar_2_raster
-            }
-            userId % 6 == 2 -> {
-                R.drawable.avatar_3_raster
-            }
-            userId % 6 == 3 -> {
-                R.drawable.avatar_4_raster
-            }
-            userId % 6 == 4 -> {
-                R.drawable.avatar_5_raster
-            }
-            else -> {
-                R.drawable.avatar_6_raster
-            }
-        }
-    }
 }

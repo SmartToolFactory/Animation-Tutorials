@@ -26,6 +26,7 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostCardViewBinder
 import com.smarttoolfactory.tutorial3_1transitions.transition.CircularReveal
+import com.smarttoolfactory.tutorial3_1transitions.transition.CustomSlide
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.hypot
@@ -58,7 +59,7 @@ class Fragment2_5ToolbarDetail : Fragment() {
         setUpSharedElementTransition(view)
 
         // 🔥🔥🔥 This is for circular reveal to have different start and end values
-//        setSharedElementCallback(view)
+        setSharedElementCallback(view)
 
         // Enter transition for non-shared Views
 //        enterTransition = createEnterTransition(view)
@@ -102,6 +103,8 @@ class Fragment2_5ToolbarDetail : Fragment() {
 
         val viewImageBackground = view.findViewById<View>(R.id.viewImageBackground)
 
+        viewImageBackground.visibility = View.INVISIBLE
+
         setEnterSharedElementCallback(object : SharedElementCallback() {
 
             override fun onSharedElementStart(
@@ -131,21 +134,22 @@ class Fragment2_5ToolbarDetail : Fragment() {
 
     private fun createEnterTransition(view: View): Transition {
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView2)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         val viewImageBackground: View = view.findViewById(R.id.viewImageBackground)
 
         val transitionSetEnter = TransitionSet()
 
-        val slideFromBottom = Slide(Gravity.BOTTOM).apply {
-            interpolator = AnimationUtils.loadInterpolator(
-                requireContext(),
-                android.R.interpolator.linear_out_slow_in
-            )
-            startDelay = 400
-            duration = 600
-            excludeTarget(viewImageBackground, true)
-            addTarget(recyclerView)
-        }
+        val slideFromBottom =
+            CustomSlide(Gravity.BOTTOM, true)
+//            CustomAlphaTransition(0.3f, 1f)
+                .apply {
+                    interpolator = AnimationUtils.loadInterpolator(
+                        requireContext(),
+                        android.R.interpolator.linear_out_slow_in
+                    )
+                    duration = 600
+                    addTarget(recyclerView)
+                }
 
 
         val endRadius = hypot(
@@ -153,15 +157,18 @@ class Fragment2_5ToolbarDetail : Fragment() {
             viewImageBackground.height.toDouble()
         ).toFloat()
 
-        val circularReveal = CircularReveal().apply {
-            addTarget(viewImageBackground)
-            setStartRadius(0f)
-            setEndRadius(endRadius)
-            interpolator = AccelerateDecelerateInterpolator()
-            duration = 700
-        }
 
-        transitionSetEnter.addTransition(slideFromBottom)
+        val circularReveal =
+            CircularReveal()
+                .apply {
+                    addTarget(viewImageBackground)
+                    setStartRadius(0f)
+                    setEndRadius(endRadius)
+                    interpolator = AccelerateDecelerateInterpolator()
+                    duration = 700
+                }
+
+//        transitionSetEnter.addTransition(slideFromBottom)
         transitionSetEnter.addTransition(circularReveal)
 
         return transitionSetEnter
@@ -174,15 +181,15 @@ class Fragment2_5ToolbarDetail : Fragment() {
 
         val transitionSetReturn = TransitionSet()
 
-        val slideToTop = Slide(Gravity.TOP).apply {
-            interpolator = AnimationUtils.loadInterpolator(
-                requireContext(),
-                android.R.interpolator.linear_out_slow_in
-            )
-            duration = 900
-            addTarget(viewTop)
-//            excludeTarget(appBarLayout, true)
-        }
+        val slideToTop = Slide(Gravity.TOP)
+            .apply {
+                interpolator = AnimationUtils.loadInterpolator(
+                    requireContext(),
+                    android.R.interpolator.linear_out_slow_in
+                )
+                duration = 900
+                addTarget(viewTop)
+            }
 
 
         val slideToBottom = Slide(Gravity.BOTTOM).apply {

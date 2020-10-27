@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#f00"
     android:layout_height="match_parent"
     tools:context=".chapter2_fragment_transitions.Activity2_4FragmentTransitionsWithNavComponents">
 
@@ -52,10 +51,15 @@
             tools:layout_editor_absoluteY="354dp"
             tools:text="SOME TITLE" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView2"
+        <TextView
+            android:id="@+id/tvBody"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:lineSpacingMultiplier="1.2"
+            android:padding="16dp"
+            android:text="@string/bacon_ipsum"
+            android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+            android:textColor="?android:textColorSecondary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".5"

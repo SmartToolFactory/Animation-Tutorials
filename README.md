@@ -309,7 +309,7 @@ findNavController().navigate(direction, extras)
 ```createAnimator``` method. 
 
 To make sure that it gets called, either set **captureStartValues**
-and **captureEndValues** manually, or in fragment transitioned to, create ** setEnterSharedElementCallback**
+and **captureEndValues** manually, or in fragment transitioned to, create **setEnterSharedElementCallback**
 and override **onSharedElementStart** and **onSharedElementEnd** methods and set properties of
 objects that are not shared in both fragments.
  
