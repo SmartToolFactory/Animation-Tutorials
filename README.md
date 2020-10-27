@@ -316,6 +316,9 @@ objects that are not shared in both fragments.
  Without doing this enter or exit might not work because
 of ***Transition*** start and end point to same value.
 
+#### Note: 
+🔥🔥🔥 In tutorial 2-4 and 2-5, having same background color for both fragments causing second fragment's enter transition(CircularReveal and Slide.BOTTOM) to not work
+
 ### Resources and References
 Wonderful and very helpful resources, check them out 🤩😍
 
