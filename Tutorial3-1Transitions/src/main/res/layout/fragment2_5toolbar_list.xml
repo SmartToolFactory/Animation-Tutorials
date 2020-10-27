@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#dce6f1"
-    tools:context=".chapter2_fragment_transitions.Activity2_4FragmentTransitionsWithNavComponents">
-
+    tools:context=".chapter2_fragment_transitions.Activity2_5FragmentTransitionsWithToolbar">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -19,7 +18,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"/>
+            app:menu="@menu/main"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:title="@string/activity2_5" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -38,8 +39,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_magazine" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

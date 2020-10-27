@@ -129,10 +129,15 @@ class Fragment2_5ToolbarList : Fragment() {
 
     private fun goToDetailPage(binding: ItemMagazineBinding, magazineModel: MagazineModel) {
 
-        val direction: NavDirections =
-            Fragment2_5ToolbarListDirections.actionFragment25ToolbarListToFragment21Details(
+        val direction: NavDirections = if (magazineModel.transitionId == 0) {
+            Fragment2_5ToolbarListDirections.actionFragment25ToolbarListToFragment25Details(
                 magazineModel
             )
+        } else {
+            Fragment2_5ToolbarListDirections.actionFragment25ToolbarListToFragment24MagazineDetail(
+                magazineModel
+            )
+        }
 
         val extras = FragmentNavigatorExtras(
             binding.ivMagazineCover to binding.ivMagazineCover.transitionName,

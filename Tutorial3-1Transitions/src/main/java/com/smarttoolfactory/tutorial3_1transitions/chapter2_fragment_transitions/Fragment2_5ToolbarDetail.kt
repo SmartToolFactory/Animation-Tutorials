@@ -55,7 +55,9 @@ class Fragment2_5ToolbarDetail : Fragment() {
 
     private fun prepareSharedElementTransition(view: View) {
 
-//        allowEnterTransitionOverlap = false
+        allowEnterTransitionOverlap = false
+        allowReturnTransitionOverlap = false
+
         setUpSharedElementTransition(view)
 
         // 🔥🔥🔥 This is for circular reveal to have different start and end values

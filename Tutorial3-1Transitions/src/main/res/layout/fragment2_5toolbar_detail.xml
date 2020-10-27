@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#dce6f1">
+    tools:context=".chapter2_fragment_transitions.Activity2_4FragmentTransitionsWithNavComponents">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,13 +26,13 @@
             android:id="@+id/ivMagazineCover"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:scaleType="fitXY"
-            app:layout_constraintBottom_toBottomOf="@id/viewImageBackground"
-            app:layout_constraintDimensionRatio="3:4"
-            app:layout_constraintEnd_toEndOf="@id/viewImageBackground"
             app:layout_constraintHeight_percent=".32"
-            app:layout_constraintStart_toStartOf="@id/viewImageBackground"
+            android:scaleType="fitXY"
+            app:layout_constraintDimensionRatio="3:4"
             app:layout_constraintTop_toTopOf="@+id/viewImageBackground"
+            app:layout_constraintStart_toStartOf="@id/viewImageBackground"
+            app:layout_constraintEnd_toEndOf="@id/viewImageBackground"
+            app:layout_constraintBottom_toBottomOf="@id/viewImageBackground"
             tools:src="@drawable/mag1" />
 
         <TextView
@@ -40,15 +40,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:gravity="center"
             android:text="SOME TITLE"
             android:textColor="#fff"
-            android:textSize="16sp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/ivMagazineCover"
             app:layout_constraintBottom_toBottomOf="@id/viewImageBackground"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivMagazineCover"
-            tools:layout_editor_absoluteY="354dp"
             tools:text="SOME TITLE" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -57,9 +56,9 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/viewImageBackground"
-            tools:listitem="@layout/item_post" />
+            app:layout_constraintTop_toBottomOf="@id/tvMagazineTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
