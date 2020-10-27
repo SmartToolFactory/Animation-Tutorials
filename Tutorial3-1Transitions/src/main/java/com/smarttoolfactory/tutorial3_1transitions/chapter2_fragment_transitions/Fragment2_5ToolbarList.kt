@@ -107,13 +107,23 @@ class Fragment2_5ToolbarList : Fragment() {
         exitTransition =
             Fade(Fade.MODE_OUT)
                 .apply {
-                    addTarget(view)
                     duration = 500
+                    addTarget(view)
                 }
 
         (exitTransition as? Transition)?.addListener(object : TransitionXAdapter() {
 
+            override fun onTransitionStart(transition: Transition) {
+                super.onTransitionStart(transition)
+                Toast.makeText(
+                    requireContext(),
+                    "EXIT onTransitionStart time: $animationDuration",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
             override fun onTransitionEnd(transition: Transition) {
+
                 super.onTransitionEnd(transition)
                 Toast.makeText(
                     requireContext(),
@@ -122,6 +132,7 @@ class Fragment2_5ToolbarList : Fragment() {
                 ).show()
             }
         })
+
 
         reenterTransition =
             Fade(Fade.MODE_IN)

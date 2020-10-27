@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#dce6f1"
+    android:background="#f6f8fb"
     tools:context=".chapter2_fragment_transitions.Activity2_5FragmentTransitionsWithToolbar">
 
     <com.google.android.material.appbar.AppBarLayout

@@ -318,6 +318,41 @@ of ***Transition*** start and end point to same value.
 
 #### Note: 
 🔥🔥🔥 In tutorial 2-4 and 2-5, having same background color for both fragments causing second fragment's enter transition(CircularReveal and Slide.BOTTOM) to not work
+So when using **Transitions** that extend ```Visiblity``` class such as Slide, or Fade be careful about background color
+Either set callback and set start and end properties for scene with
+
+```
+        setEnterSharedElementCallback(object : SharedElementCallback() {
+
+            override fun onSharedElementStart(
+                sharedElementNames: MutableList<String>?,
+                sharedElements: MutableList<View>?,
+                sharedElementSnapshots: MutableList<View>?
+            ) {
+                super.onSharedElementStart(
+                    sharedElementNames,
+                    sharedElements,
+                    sharedElementSnapshots
+                )
+                viewImageBackground.visibility = View.INVISIBLE
+                recyclerView.visibility = View.INVISIBLE
+            }
+
+            override fun onSharedElementEnd(
+                sharedElementNames: MutableList<String>?,
+                sharedElements: MutableList<View>?,
+                sharedElementSnapshots: MutableList<View>?
+            ) {
+                super.onSharedElementEnd(sharedElementNames, sharedElements, sharedElementSnapshots)
+                viewImageBackground.visibility = View.VISIBLE
+                recyclerView.visibility = View.VISIBLE
+            }
+
+        })
+    }
+```
+
+or use **custom transitions** that extend either ```Transition``` or ```Visibility```
 
 ### Resources and References
 Wonderful and very helpful resources, check them out 🤩😍

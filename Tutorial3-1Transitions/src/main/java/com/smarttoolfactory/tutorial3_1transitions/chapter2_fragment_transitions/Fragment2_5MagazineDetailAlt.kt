@@ -9,6 +9,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.app.SharedElementCallback
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
@@ -63,15 +64,13 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
         // Return(When fragment is popped up) transition for non-shared Views
         returnTransition = createReturnTransition(view)
 
-//        // 🔥 Set up Transition Overlapping
-//        allowEnterTransitionOverlap = false
-//        allowReturnTransitionOverlap = false
     }
 
     private fun setUpSharedElementTransition(view: View) {
 
-        val viewImageBackground: View = view.findViewById(R.id.viewImageBackground)
-//        viewImageBackground.visibility = View.INVISIBLE
+//        allowEnterTransitionOverlap = false
+
+        setSharedElementCallback(view)
 
         /*
             🔥 Set sharedElementReturnTransition, because both
@@ -92,6 +91,49 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
         sharedElementEnterTransition = moveTransition
     }
 
+
+    /**
+     *  Overriding onSharedElementStart, and onSharedElementEnd
+     *  creates start and end values for transitions that extend ```Visibility```.
+     *  Without this start and end values are same for view background.
+     */
+    private fun setSharedElementCallback(view: View) {
+
+        val viewImageBackground = view.findViewById<View>(R.id.viewImageBackground)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+
+        viewImageBackground.visibility = View.INVISIBLE
+        recyclerView.visibility = View.INVISIBLE
+
+        setEnterSharedElementCallback(object : SharedElementCallback() {
+
+            override fun onSharedElementStart(
+                sharedElementNames: MutableList<String>?,
+                sharedElements: MutableList<View>?,
+                sharedElementSnapshots: MutableList<View>?
+            ) {
+                super.onSharedElementStart(
+                    sharedElementNames,
+                    sharedElements,
+                    sharedElementSnapshots
+                )
+                viewImageBackground.visibility = View.INVISIBLE
+                recyclerView.visibility = View.INVISIBLE
+            }
+
+            override fun onSharedElementEnd(
+                sharedElementNames: MutableList<String>?,
+                sharedElements: MutableList<View>?,
+                sharedElementSnapshots: MutableList<View>?
+            ) {
+                super.onSharedElementEnd(sharedElementNames, sharedElements, sharedElementSnapshots)
+                viewImageBackground.visibility = View.VISIBLE
+                recyclerView.visibility = View.VISIBLE
+            }
+
+        })
+    }
+
     private fun createEnterTransition(view: View): Transition {
 
         val tvBody = view.findViewById<View>(R.id.recyclerView)
@@ -100,16 +142,17 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
 
         val transitionSetEnter = TransitionSet()
 
-        val slideFromBottom = Slide(Gravity.BOTTOM).apply {
-            interpolator = AnimationUtils.loadInterpolator(
-                requireContext(),
-                android.R.interpolator.linear_out_slow_in
-            )
-            startDelay = 400
-            duration = 600
-            excludeTarget(viewImageBackground, true)
-            addTarget(tvBody)
-        }
+        val slideFromBottom = Slide(Gravity.BOTTOM)
+            .apply {
+                interpolator = AnimationUtils.loadInterpolator(
+                    requireContext(),
+                    android.R.interpolator.linear_out_slow_in
+                )
+                startDelay = 400
+                duration = 600
+                excludeTarget(viewImageBackground, true)
+                addTarget(tvBody)
+            }
 
 
         val endRadius = hypot(
