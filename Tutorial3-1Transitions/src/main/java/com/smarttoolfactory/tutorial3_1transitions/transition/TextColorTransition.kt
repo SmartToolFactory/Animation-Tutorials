@@ -22,23 +22,23 @@ import com.smarttoolfactory.tutorial3_1transitions.R
  * 🔥 In exit and Return transitions [endValues] return null, in that case use [startValues] view
  * to create text color change transition
  * ```
- * I: 🎃 CustomTextColorTransition  createAnimator() startValues: TransitionValues@81e92016:
- * I:     view = com.google.android.material.textview.MaterialTextView{21ec9e5 V.ED..... ........ 531,1737-716,1791 #7f080190 app:id/tvReturnTransition}
- * I:     values:    android:visibilityPropagation:center: [I@19de9fc
- * I:     android:visibilityPropagation:visibility: 0
- * I:     PROPNAME_TEXT_COLOR: -1979711488
- * I:  endValues: null
+ * 🎃 CustomTextColorTransition  createAnimator() startValues: TransitionValues@81e92016:
+ *      view = com.google.android.material.textview.MaterialTextView{21ec9e5 V.ED..... ........ 531,1737-716,1791 #7f080190 app:id/tvReturnTransition}
+ *      values:    android:visibilityPropagation:center: [I@19de9fc
+ *      android:visibilityPropagation:visibility: 0
+ *      PROPNAME_TEXT_COLOR: -1979711488
+ *   endValues: null
  * ```
  *
  */
-class CustomTextColorTransition : Transition {
+class TextColorTransition : Transition {
 
     private var startColor: Int = Color.BLACK
     private var endColor: Int = Color.WHITE
     var forceValues: Boolean = false
 
     /**
-     * Logs lifecycle and parameters to console wheb set to true
+     * Logs lifecycle and parameters to console when set to true
      */
     var debugMode = false
 

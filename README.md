@@ -354,8 +354,12 @@ Either set callback and set start and end properties for scene with
 
 or use **custom transitions** that extend either ```Transition``` or ```Visibility```
 
+*** ⚠️ Transitions that extend ```Visibility``` such as ```Slide```, ```Fade```,  or ```Explode``` depends on ***visibility*** of the view. If 
+visibility is changed from ```View.INVISIBLE``` to ```View.VISIBLE``` ```onAppear``` method of ```Visibility class is called, if visibility changes
+opposite ```onDisappear``` method is called. With scene's actual visibility change, or manual visibility change it's possible to play transitions
+from backwards.
+
 ### Resources and References
-Wonderful and very helpful resources, check them out 🤩😍
 
 [CodeLab Property Animation](https://codelabs.developers.google.com/codelabs/advanced-android-kotlin-training-property-animation/#0)
 <br>

@@ -1,48 +1,67 @@
 package com.smarttoolfactory.tutorial3_1transitions.transition
 
 import android.animation.Animator
-import android.animation.ArgbEvaluator
+import android.animation.PropertyValuesHolder
 import android.animation.ValueAnimator
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.transition.Transition
 import androidx.transition.TransitionValues
 import com.smarttoolfactory.tutorial3_1transitions.R
 
 /**
- * Alternative to other version of Transition instead of setting
+ *
+ *  Transition that forces view state(property) to be set for starting and ending scenes.
+ *
  * ```  transitionValues.values[PROPERTY_NAME] = property``` directly
  * sets property on **View** after capturing start values which causes
- * [captureEndValues] to be invoked with different set of values
+ * [captureEndValues] to be invoked with different set of values.
+ *
+ * * If starting scene and ending scene is equal in alpha this transition will not start because
+ * [captureEndValues] will not capture anything.
+ *
  */
-class CustomTextColorTransition2 : Transition {
+class AlphaForcedTransition : Transition {
 
-    private var startColor: Int = Color.BLACK
-    private var endColor: Int = Color.WHITE
-    var forceValues: Boolean = false
+    private var startAlpha: Float = 0f
+    private var endAlpha: Float = 1f
 
     /**
-     * Logs lifecycle and parameters to console wheb set to true
+     * Forces start end values to be set on view such as setting a view's visibility as View.VISIBLE
+     * at start and View.INVISIBLE for the end scene which forces scenes to have different values
+     * and transition to start.
+     *
+     * * Has public visibility to debug scenes with [debugMode], with and without forced values.
+     */
+    var forceValues: Boolean = true
+
+    /**
+     * Logs lifecycle and parameters to console when set to true
      */
     var debugMode = false
 
-    constructor(startColor: Int, endColor: Int, forceValues: Boolean) {
-        this.startColor = startColor
-        this.endColor = endColor
+    constructor(startAlpha: Float, endAlpha: Float, forceValues: Boolean = true) {
+        this.startAlpha = startAlpha
+        this.endAlpha = endAlpha
         this.forceValues = forceValues
     }
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        val a = context.obtainStyledAttributes(attrs, R.styleable.TextColorChange)
-        startColor = a.getInteger(R.styleable.TextColorChange_startTextColor, startColor)
-        endColor = a.getInteger(R.styleable.TextColorChange_endTextColor, endColor)
+
+        val a = context.obtainStyledAttributes(attrs, R.styleable.CustomAlphaTransition)
+        startAlpha = a.getFloat(R.styleable.CustomAlphaTransition_startAlpha, startAlpha)
+        endAlpha = a.getFloat(R.styleable.CustomAlphaTransition_endAlpha, endAlpha)
+
         a.recycle()
     }
 
+
     override fun captureStartValues(transitionValues: TransitionValues) {
+
+        if (forceValues) {
+            transitionValues.view?.alpha = startAlpha
+        }
 
         captureValues(transitionValues)
 
@@ -54,13 +73,12 @@ class CustomTextColorTransition2 : Transition {
         }
 
         if (forceValues) {
-            (transitionValues.view as? TextView)?.setTextColor(endColor)
+            transitionValues.view?.alpha = endAlpha
         }
     }
 
     // Capture the value of property for a target in the ending Scene.
     override fun captureEndValues(transitionValues: TransitionValues) {
-
         captureValues(transitionValues)
 
         if (debugMode) {
@@ -72,9 +90,7 @@ class CustomTextColorTransition2 : Transition {
     }
 
     private fun captureValues(transitionValues: TransitionValues) {
-        (transitionValues.view as? TextView)?.apply {
-            transitionValues.values[PROPNAME_TEXT_COLOR] = this.currentTextColor
-        }
+        transitionValues.values[PROP_NAME_ALPHA] = transitionValues.view.alpha
     }
 
     override fun createAnimator(
@@ -92,27 +108,27 @@ class CustomTextColorTransition2 : Transition {
             )
         }
 
-        // This transition can only be applied to views that are on both starting and ending scenes.
         if (endValues == null || startValues == null) return null // no values
 
-        // Store a convenient reference to the target. Both the starting and ending layout have the
-        // same target.
-        val view = (startValues.view as? TextView) ?: return null
+        val startAlpha = startValues.values[PROP_NAME_ALPHA] as Float
+        val endAlpha = endValues.values[PROP_NAME_ALPHA] as Float
 
-        val startTextColor = startValues.values[PROPNAME_TEXT_COLOR] as Int
-        val endTextColor = endValues.values[PROPNAME_TEXT_COLOR] as Int
+        if (startAlpha == endAlpha) return null // no rotation to run
 
-        val animator: ValueAnimator =
-            ValueAnimator.ofObject(ArgbEvaluator(), startTextColor, endTextColor)
-        animator.addUpdateListener { animation ->
-            view.setTextColor(animation.animatedValue as Int)
+        val view = startValues.view
+
+        val propRotation =
+            PropertyValuesHolder.ofFloat(PROP_NAME_ALPHA, startAlpha, endAlpha)
+
+        val valAnim = ValueAnimator.ofPropertyValuesHolder(propRotation)
+        valAnim.addUpdateListener { valueAnimator ->
+            view.alpha = valueAnimator.getAnimatedValue(PROP_NAME_ALPHA) as Float
         }
+        return valAnim
 
-        return animator
     }
 
     companion object {
-        private const val PROPNAME_TEXT_COLOR = "PROPNAME_TEXT_COLOR"
+        private const val PROP_NAME_ALPHA = "android:custom:alpha"
     }
-
 }

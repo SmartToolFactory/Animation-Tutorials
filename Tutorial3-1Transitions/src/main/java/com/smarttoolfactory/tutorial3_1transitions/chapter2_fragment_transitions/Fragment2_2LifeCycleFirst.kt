@@ -17,7 +17,7 @@ import androidx.transition.Slide
 import androidx.transition.Transition
 import androidx.transition.TransitionSet
 import com.smarttoolfactory.tutorial3_1transitions.R
-import com.smarttoolfactory.tutorial3_1transitions.transition.CustomTextColorTransition
+import com.smarttoolfactory.tutorial3_1transitions.transition.TextColorTransition
 import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 
 
@@ -71,7 +71,7 @@ class Fragment2_2LifeCycleFirst : Fragment() {
         val transitionSet = TransitionSet()
 
         val textTransition =
-            CustomTextColorTransition(tvEnterTransition.currentTextColor, Color.MAGENTA, true)
+            TextColorTransition(tvEnterTransition.currentTextColor, Color.MAGENTA, true)
                 .apply {
                     addTarget(tvExitTransition)
                     duration = 800
@@ -84,21 +84,21 @@ class Fragment2_2LifeCycleFirst : Fragment() {
 
 
         enterTransition =
-            CustomTextColorTransition(tvEnterTransition.currentTextColor, Color.MAGENTA, true)
+            TextColorTransition(tvEnterTransition.currentTextColor, Color.MAGENTA, true)
                 .apply {
                     addTarget(tvEnterTransition)
                     duration = 800
                 }
 
         reenterTransition =
-            CustomTextColorTransition(tvReEnterTransition.currentTextColor, Color.MAGENTA, true)
+            TextColorTransition(tvReEnterTransition.currentTextColor, Color.MAGENTA, true)
                 .apply {
                     addTarget(tvReEnterTransition)
                     duration = 800
                 }
 
         returnTransition =
-            CustomTextColorTransition(tvReturnTransition.currentTextColor, Color.MAGENTA, true)
+            TextColorTransition(tvReturnTransition.currentTextColor, Color.MAGENTA, true)
                 .apply {
                     addTarget(tvReturnTransition)
                     duration = 800

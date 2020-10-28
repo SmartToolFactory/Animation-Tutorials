@@ -6,18 +6,30 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup
+import androidx.transition.Transition
 import androidx.transition.TransitionValues
-import androidx.transition.Visibility
 import com.smarttoolfactory.tutorial3_1transitions.R
 
-class CustomAlphaTransition : Visibility {
+
+/**
+ * Alpha transition that changes alpha value of views from starting to ending values if they are
+ * set on view in a scene. Scene is basically state of views in visibility and other properties.
+ *
+ * * If starting scene and ending scene is equal in alpha this transition will not start because
+ * [captureEndValues] will not capture anything
+ *
+ * * If there are no values set on view in your code, set [forceValues] flag to
+ * ***true*** and change [startAlpha] and [endAlpha] values
+ *
+ */
+class AlphaTransition : Transition {
 
     private var startAlpha: Float = 0f
     private var endAlpha: Float = 1f
     var forceValues: Boolean = false
 
     /**
-     * Logs lifecycle and parameters to console wheb set to true
+     * Logs lifecycle and parameters to console when set to true
      */
     var debugMode = false
 
@@ -37,6 +49,7 @@ class CustomAlphaTransition : Visibility {
     }
 
     override fun captureStartValues(transitionValues: TransitionValues) {
+
         if (forceValues) {
             transitionValues.values[PROP_NAME_ALPHA] = startAlpha
         } else {
@@ -53,6 +66,7 @@ class CustomAlphaTransition : Visibility {
 
     // Capture the value of property for a target in the ending Scene.
     override fun captureEndValues(transitionValues: TransitionValues) {
+
         if (forceValues) {
             transitionValues.values[PROP_NAME_ALPHA] = endAlpha
         } else {
@@ -92,7 +106,7 @@ class CustomAlphaTransition : Visibility {
         }
 
         val propRotation =
-            PropertyValuesHolder.ofFloat(PROP_NAME_ALPHA, 0f, 1f)
+            PropertyValuesHolder.ofFloat(PROP_NAME_ALPHA, startAlpha, endAlpha)
 
         val valAnim = ValueAnimator.ofPropertyValuesHolder(propRotation)
         valAnim.addUpdateListener { valueAnimator ->
@@ -116,7 +130,7 @@ class CustomAlphaTransition : Visibility {
         val view = startValues.view
 
         val propRotation =
-            PropertyValuesHolder.ofFloat(PROP_NAME_ALPHA, 0f, 1f)
+            PropertyValuesHolder.ofFloat(PROP_NAME_ALPHA, startAlpha, endAlpha)
 
         val valAnim = ValueAnimator.ofPropertyValuesHolder(propRotation)
         valAnim.addUpdateListener { valueAnimator ->

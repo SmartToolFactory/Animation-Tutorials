@@ -19,7 +19,7 @@ import androidx.transition.TransitionInflater
 import androidx.transition.TransitionSet
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.MagazineModel
-import com.smarttoolfactory.tutorial3_1transitions.transition.CircularReveal
+import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.CircularReveal
 import kotlin.math.hypot
 
 class Fragment2_4MagazineDetail : Fragment() {

@@ -10,16 +10,36 @@ import androidx.transition.Transition
 import androidx.transition.TransitionValues
 import com.smarttoolfactory.tutorial3_1transitions.R
 
-class CustomScaleTransition2 : Transition {
+/**
+ *
+ *  Transition that forces view state(property) to be set for starting and ending scenes.
+ *
+ * ```  transitionValues.values[PROPERTY_NAME] = property``` directly
+ * sets property on **View** after capturing start values which causes
+ * [captureEndValues] to be invoked with different set of values.
+ *
+ * * If starting scene and ending scene is equal in alpha this transition will not start because
+ * [captureEndValues] will not capture anything.
+ *
+ */
+class ScaleForcedTransition : Transition {
 
     private var startScaleX: Float = 1f
     private var startScaleY: Float = 1f
     private var endScaleX: Float = 1f
     private var endScaleY: Float = 1f
-    var forceValues: Boolean = false
 
     /**
-     * Logs lifecycle and parameters to console wheb set to true
+     * Forces start end values to be set on view such as setting a view's visibility as View.VISIBLE
+     * at start and View.INVISIBLE for the end scene which forces scenes to have different values
+     * and transition to start.
+     *
+     * * Has public visibility to debug scenes with [debugMode], with and without forced values.
+     */
+    var forceValues: Boolean = true
+
+    /**
+     * Logs lifecycle and parameters to console when set to true
      */
     var debugMode = false
 
@@ -28,7 +48,7 @@ class CustomScaleTransition2 : Transition {
         startScaleY: Float,
         endScaleX: Float,
         endScaleY: Float,
-        forceValues: Boolean = false
+        forceValues: Boolean = true
     ) {
         this.startScaleX = startScaleX
         this.startScaleY = startScaleY
@@ -53,8 +73,10 @@ class CustomScaleTransition2 : Transition {
 
     override fun captureStartValues(transitionValues: TransitionValues) {
 
-        captureValues(transitionValues)
-
+        if (forceValues) {
+            transitionValues.view?.scaleX = startScaleX
+            transitionValues.view?.scaleY = startScaleY
+        }
         if (debugMode) {
             println("⚠️ ${this::class.java.simpleName}  captureStartValues() view: ${transitionValues.view} ")
             transitionValues.values.forEach { (key, value) ->

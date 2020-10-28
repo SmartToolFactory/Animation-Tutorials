@@ -14,7 +14,7 @@
  *   limitations under the License.
  *
  */
-package com.smarttoolfactory.tutorial3_1transitions.transition
+package com.smarttoolfactory.tutorial3_1transitions.transition.visibility
 
 import android.animation.Animator
 import android.content.Context

@@ -1,11 +1,19 @@
-package com.smarttoolfactory.tutorial3_1transitions.transition
+package com.smarttoolfactory.tutorial3_1transitions.transition.visibility
 
 import android.animation.Animator
 import android.view.View
 import android.view.ViewGroup
 import androidx.transition.TransitionValues
 
-class CustomCircularReveal(
+/**
+ *
+ * This transition tracks changes to the visibility of target views in the
+ * start and end scenes. Visibility is determined not just by the
+ * [View.setVisibility] state of views, but also whether
+ * views exist in the current view hierarchy.
+ *
+ */
+class ForcedCircularReveal(
     private val startVisibility: Int = View.INVISIBLE,
     private val endVisibility: Int = View.VISIBLE
 ) : CircularReveal() {

@@ -25,8 +25,8 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.model.Post
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostCardViewBinder
-import com.smarttoolfactory.tutorial3_1transitions.transition.CustomCircularReveal
-import com.smarttoolfactory.tutorial3_1transitions.transition.CustomSlide
+import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ForcedCircularReveal
+import com.smarttoolfactory.tutorial3_1transitions.transition.RotationTransition
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.hypot
@@ -101,18 +101,18 @@ class Fragment2_5ToolbarDetail : Fragment() {
 
         val transitionSetEnter = TransitionSet()
 
-        val slideFromBottom = CustomSlide(Gravity.BOTTOM, true)
-            .apply {
-                interpolator = AnimationUtils.loadInterpolator(
-                    requireContext(),
-                    android.R.interpolator.linear_out_slow_in
-                )
-                startDelay = 400
-                duration = 600
-                excludeTarget(viewImageBackground, true)
-                addTarget(recyclerView)
-                debugMode = true
-            }
+        val slideFromBottom =
+            RotationTransition(-360f, 0f, true)
+                .apply {
+                    interpolator = AnimationUtils.loadInterpolator(
+                        requireContext(),
+                        android.R.interpolator.linear_out_slow_in
+                    )
+                    startDelay = 400
+                    duration = 600
+                    addTarget(recyclerView)
+                    debugMode = true
+                }
 
 
         val endRadius = hypot(
@@ -120,7 +120,7 @@ class Fragment2_5ToolbarDetail : Fragment() {
             viewImageBackground.height.toDouble()
         ).toFloat()
 
-        val circularReveal = CustomCircularReveal()
+        val circularReveal = ForcedCircularReveal(View.INVISIBLE, View.VISIBLE)
             .apply {
                 addTarget(viewImageBackground)
                 setStartRadius(0f)

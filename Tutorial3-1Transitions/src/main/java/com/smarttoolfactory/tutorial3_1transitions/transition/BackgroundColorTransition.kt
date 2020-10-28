@@ -14,19 +14,24 @@ import androidx.transition.TransitionValues
 import com.smarttoolfactory.tutorial3_1transitions.R
 
 /**
- * Alternative to other version of Transition instead of setting
- * ```  transitionValues.values[PROPERTY_NAME] = property``` directly
- * sets property on **View** after capturing start values which causes
- * [captureEndValues] to be invoked with different set of values
+ * Background color transition that changes alpha value of views from starting to ending values if they are
+ * set on view in a scene. Scene is basically state of views in visibility and other properties.
+ *
+ * * If starting scene and ending scene has equal background color this transition will not start because
+ * [captureEndValues] will not capture anything.
+ *
+ * * If there are no values set on view in your code, set [forceValues] flag to
+ * ***true*** and change [startColor] and [endColor] values
+ *
  */
-class CustomBackgroundColorTransition2 : Transition {
+class BackgroundColorTransition : Transition {
 
     private var startColor: Int = Color.BLACK
     private var endColor: Int = Color.BLACK
     var forceValues: Boolean = false
 
     /**
-     * Logs lifecycle and parameters to console wheb set to true
+     * Logs lifecycle and parameters to console when set to true
      */
     var debugMode = false
 
@@ -47,10 +52,10 @@ class CustomBackgroundColorTransition2 : Transition {
     override fun captureStartValues(transitionValues: TransitionValues) {
 
         if (forceValues) {
-            transitionValues.view.setBackgroundColor(startColor)
+            transitionValues.values[PROPNAME_BACKGROUND] = ColorDrawable(startColor)
+        } else {
+            captureValues(transitionValues)
         }
-
-        captureValues(transitionValues)
 
         if (debugMode) {
             println("⚠️ ${this::class.java.simpleName}  captureStartValues() view: ${transitionValues.view} ")
@@ -58,16 +63,17 @@ class CustomBackgroundColorTransition2 : Transition {
                 println("Key: $key, value: $value")
             }
         }
-
-        if (forceValues) {
-            transitionValues.view.setBackgroundColor(endColor)
-        }
     }
 
     // Capture the value of property for a target in the ending Scene.
     override fun captureEndValues(transitionValues: TransitionValues) {
 
-        captureValues(transitionValues)
+        if (forceValues) {
+            transitionValues.values[PROPNAME_BACKGROUND] = ColorDrawable(endColor)
+
+        } else {
+            captureValues(transitionValues)
+        }
 
         if (debugMode) {
             println("🔥 ${this::class.java.simpleName}  captureEndValues() view: ${transitionValues.view} ")
@@ -78,25 +84,53 @@ class CustomBackgroundColorTransition2 : Transition {
     }
 
     private fun captureValues(transitionValues: TransitionValues) {
+
         // Capture the property values of views for later use
         transitionValues.values[PROPNAME_BACKGROUND] = transitionValues.view.background
     }
 
-
-    override fun createAnimator(
+    private fun createForcedAnimator(
         sceneRoot: ViewGroup,
         startValues: TransitionValues?,
         endValues: TransitionValues?
     ): Animator? {
 
-        if (debugMode) {
-            println(
-                "🎃 ${this::class.java.simpleName}  createAnimator() " +
-                        "forceValues: $forceValues" +
-                        "\nSTART VALUES: $startValues" +
-                        "\nEND VALUES: $endValues "
-            )
+        val view = when {
+            startValues?.view != null -> {
+                startValues.view
+            }
+            endValues?.view != null -> {
+                endValues.view
+            }
+            else -> {
+                return null
+            }
         }
+
+        if (startColor != endColor) {
+
+            val animator = ValueAnimator.ofObject(
+                ArgbEvaluator(),
+                startColor,
+                endColor
+            )
+            // Add an update listener to the Animator object.
+            animator.addUpdateListener { animation ->
+                val value = animation.animatedValue
+                if (null != value) {
+                    view.setBackgroundColor((value as Int))
+                }
+            }
+            return animator
+        }
+        return null
+    }
+
+    private fun createTransitionAnimator(
+        sceneRoot: ViewGroup,
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
+    ): Animator? {
 
         if (null == startValues || null == endValues) {
             return null
@@ -129,6 +163,28 @@ class CustomBackgroundColorTransition2 : Transition {
             }
         }
         return null
+    }
+
+    override fun createAnimator(
+        sceneRoot: ViewGroup,
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
+    ): Animator? {
+
+        if (debugMode) {
+            println(
+                "🎃 ${this::class.java.simpleName}  createAnimator() " +
+                        "forceValues: $forceValues" +
+                        "\nSTART VALUES: $startValues" +
+                        "\nEND VALUES: $endValues "
+            )
+        }
+
+        return if (forceValues) {
+            createForcedAnimator(sceneRoot, startValues, endValues)
+        } else {
+            createTransitionAnimator(sceneRoot, startValues, endValues)
+        }
     }
 
     companion object {

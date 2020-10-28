@@ -15,7 +15,7 @@ import androidx.transition.Transition
 import androidx.transition.TransitionInflater
 import androidx.transition.TransitionSet
 import com.smarttoolfactory.tutorial3_1transitions.R
-import com.smarttoolfactory.tutorial3_1transitions.transition.CustomTextColorTransition
+import com.smarttoolfactory.tutorial3_1transitions.transition.TextColorTransition
 import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 
 class Fragment2_2LifeCycleSecond : Fragment() {
@@ -55,21 +55,21 @@ class Fragment2_2LifeCycleSecond : Fragment() {
         allowReturnTransitionOverlap = false
 
         exitTransition =
-            CustomTextColorTransition(tvExitTransition.currentTextColor, Color.RED, true)
+            TextColorTransition(tvExitTransition.currentTextColor, Color.RED, true)
                 .apply {
                     addTarget(tvExitTransition)
                     duration = 800
                 }
 
         enterTransition =
-            CustomTextColorTransition(tvEnterTransition.currentTextColor, Color.RED, true)
+            TextColorTransition(tvEnterTransition.currentTextColor, Color.RED, true)
                 .apply {
                     addTarget(tvEnterTransition)
                     duration = 800
                 }
 
             reenterTransition =
-            CustomTextColorTransition(tvReEnterTransition.currentTextColor, Color.RED, true)
+            TextColorTransition(tvReEnterTransition.currentTextColor, Color.RED, true)
                 .apply {
                     addTarget(tvReEnterTransition)
                     duration = 800
@@ -78,7 +78,7 @@ class Fragment2_2LifeCycleSecond : Fragment() {
         val returnTransitions = TransitionSet()
 
         val returnTextTransition =
-            CustomTextColorTransition(tvReturnTransition.currentTextColor, Color.RED, true)
+            TextColorTransition(tvReturnTransition.currentTextColor, Color.RED, true)
                 .apply {
                     addTarget(tvReturnTransition)
                     duration = 800

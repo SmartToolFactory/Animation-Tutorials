@@ -10,7 +10,7 @@ import androidx.transition.Transition
 import androidx.transition.TransitionValues
 import com.smarttoolfactory.tutorial3_1transitions.R
 
-class CustomScaleTransition : Transition {
+class ScaleTransition : Transition {
 
     private var startScaleX: Float = 1f
     private var startScaleY: Float = 1f
@@ -19,7 +19,7 @@ class CustomScaleTransition : Transition {
     var forceValues: Boolean = false
 
     /**
-     * Logs lifecycle and parameters to console wheb set to true
+     * Logs lifecycle and parameters to console when set to true
      */
     var debugMode = false
 

@@ -26,7 +26,7 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.model.Post
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostCardViewBinder
-import com.smarttoolfactory.tutorial3_1transitions.transition.CircularReveal
+import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.CircularReveal
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.hypot

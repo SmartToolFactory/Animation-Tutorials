@@ -43,7 +43,7 @@ class Activity1_0CustomTransitions : AppCompatActivity() {
 
             val transitions = TransitionSet()
 
-            val transition = CustomScaleTransition(
+            val transition = ScaleTransition(
                 0f,
                 0f,
                 1f,
@@ -84,7 +84,7 @@ class Activity1_0CustomTransitions : AppCompatActivity() {
 
             val transitions = TransitionSet()
 
-            val transition = CustomAlphaTransition(0f, 1f, true)
+            val transition = AlphaTransition(0f, 1f, true)
                 .apply {
                     addTarget(view2)
                     duration = 3000
@@ -117,7 +117,7 @@ class Activity1_0CustomTransitions : AppCompatActivity() {
 
             val transitions = TransitionSet()
 
-            val transition = CustomRotationTransition(
+            val transition = RotationTransition(
                 -360f,
                 0f,
                 true
@@ -154,7 +154,7 @@ class Activity1_0CustomTransitions : AppCompatActivity() {
             val transitions = TransitionSet()
 
             val transition =
-                CustomBackgroundColorTransition(
+                BackgroundColorTransition(
                     Color.YELLOW,
                     Color.MAGENTA,
                     true
@@ -187,7 +187,7 @@ class Activity1_0CustomTransitions : AppCompatActivity() {
         colorStart: Int,
         colorEnd: Int
     ): Transition {
-        return CustomTextColorTransition(colorStart, colorEnd, forceValues = true)
+        return TextColorTransition(colorStart, colorEnd, forceValues = true)
             .apply {
                 addTarget(textView)
                 duration = 3000

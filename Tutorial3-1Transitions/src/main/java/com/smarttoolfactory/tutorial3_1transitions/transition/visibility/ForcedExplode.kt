@@ -1,20 +1,37 @@
-package com.smarttoolfactory.tutorial3_1transitions.transition
+package com.smarttoolfactory.tutorial3_1transitions.transition.visibility
 
 import android.animation.Animator
 import android.view.View
 import android.view.ViewGroup
-import androidx.transition.Slide
+import androidx.transition.Explode
 import androidx.transition.TransitionValues
+import androidx.transition.Visibility
 
-class CustomSlide2(
-
-    gravity: Int,
-    private val forceValues: Boolean = false,
+/**
+ *
+ * This transition tracks changes to the visibility of target views in the
+ * start and end scenes. Visibility is determined not just by the
+ * [View.setVisibility] state of views, but also whether
+ * views exist in the current view hierarchy.
+ *
+ */
+class ForcedExplode(
     private val startVisibility: Int = View.INVISIBLE,
     private val endVisibility: Int = View.VISIBLE,
-) : Slide(gravity) {
+) : Explode() {
 
-    var debugMode: Boolean = false
+    /**
+     *
+     * Custom transition that extends [Visibility]
+     *
+     * * Has public visibility to debug scenes with [debugMode], with and without forced values.
+     */
+    var forceValues: Boolean = true
+
+    /**
+     * Logs lifecycle and parameters to console when set to true
+     */
+    var debugMode = false
 
     override fun captureStartValues(transitionValues: TransitionValues) {
 
@@ -62,7 +79,6 @@ class CustomSlide2(
         }
 
         return super.onAppear(sceneRoot, view, startValues, endValues)
-
     }
 
     override fun onDisappear(
