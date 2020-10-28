@@ -6,11 +6,11 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup
-import androidx.transition.Transition
 import androidx.transition.TransitionValues
+import androidx.transition.Visibility
 import com.smarttoolfactory.tutorial3_1transitions.R
 
-class CustomAlphaTransition : Transition {
+class CustomAlphaTransition : Visibility {
 
     private var startAlpha: Float = 0f
     private var endAlpha: Float = 1f

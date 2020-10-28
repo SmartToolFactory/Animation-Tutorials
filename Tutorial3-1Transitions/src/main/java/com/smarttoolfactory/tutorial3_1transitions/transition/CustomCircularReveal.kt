@@ -1,15 +1,14 @@
 package com.smarttoolfactory.tutorial3_1transitions.transition
 
 import android.animation.Animator
+import android.view.View
 import android.view.ViewGroup
 import androidx.transition.TransitionValues
 
 class CustomCircularReveal(
-    private val startVisibility: Int,
-    private val endVisibility: Int
+    private val startVisibility: Int = View.INVISIBLE,
+    private val endVisibility: Int = View.VISIBLE
 ) : CircularReveal() {
-
-    var debugMode = false
 
     override fun captureStartValues(transitionValues: TransitionValues) {
 
@@ -22,6 +21,7 @@ class CustomCircularReveal(
                 println("Key: $key, value: $value")
             }
         }
+
         transitionValues?.view.visibility = endVisibility
     }
 
@@ -42,11 +42,13 @@ class CustomCircularReveal(
         endValues: TransitionValues?
     ): Animator? {
 
-        println(
-            "🎃 ${this.javaClass.simpleName} createAnimator() " +
-                    "START VALUES: $startValues " +
-                    "END VALUES: $endValues"
-        )
+        if (debugMode) {
+            println(
+                "🎃 ${this.javaClass.simpleName} createAnimator() " +
+                        "START VALUES: $startValues " +
+                        "END VALUES: $endValues"
+            )
+        }
 
         return super.createAnimator(sceneRoot, startValues, endValues)
     }

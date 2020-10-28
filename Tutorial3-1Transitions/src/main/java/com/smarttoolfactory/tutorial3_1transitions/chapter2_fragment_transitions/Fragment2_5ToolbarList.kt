@@ -34,8 +34,8 @@ import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 @Suppress("UNCHECKED_CAST")
 class Fragment2_5ToolbarList : Fragment() {
 
-    val dataList1 by lazy {getMagazineList(0)}
-    val dataList2 by lazy {getMagazineList(1)}
+    val dataList1 by lazy { getMagazineList(0) }
+    val dataList2 by lazy { getMagazineList(1) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -117,7 +117,7 @@ class Fragment2_5ToolbarList : Fragment() {
                 super.onTransitionStart(transition)
                 Toast.makeText(
                     requireContext(),
-                    "EXIT onTransitionStart time: $animationDuration",
+                    "EXIT onTransitionStart()",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -164,17 +164,22 @@ class Fragment2_5ToolbarList : Fragment() {
     private fun getMagazineList(id: Int): ArrayList<MagazineModel> {
 
         val magazineList = ArrayList<MagazineModel>()
+
         repeat(ImageData.MAGAZINE_DRAWABLES.size) {
+
+            val transitionName = "#tr$id-${ImageData.MAGAZINE_DRAWABLES[it]}"
+
             val magazineModel = MagazineModel(
                 ImageData.MAGAZINE_DRAWABLES[it],
-                "#tr$id-${ImageData.MAGAZINE_DRAWABLES[it]}",
-                "",
-                transitionId = id
+                title = "$id-${ImageData.MAGAZINE_DRAWABLES[it]}",
+                body = "",
+                transitionId = id,
+                transitionName = transitionName
             )
             magazineList.add(magazineModel)
         }
 
-        magazineList.shuffle()
+//        magazineList.shuffle()
 
         return magazineList
 

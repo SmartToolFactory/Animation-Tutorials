@@ -136,7 +136,7 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
 
     private fun createEnterTransition(view: View): Transition {
 
-        val tvBody = view.findViewById<View>(R.id.recyclerView)
+        val recyclerView = view.findViewById<View>(R.id.recyclerView)
         val viewImageBackground: View = view.findViewById(R.id.viewImageBackground)
 
 
@@ -151,7 +151,7 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
                 startDelay = 400
                 duration = 600
                 excludeTarget(viewImageBackground, true)
-                addTarget(tvBody)
+                addTarget(recyclerView)
             }
 
 
@@ -177,7 +177,7 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
     private fun createReturnTransition(view: View): Transition {
 
         val viewTop = view.findViewById<View>(R.id.viewImageBackground)
-        val tvBody = view.findViewById<View>(R.id.recyclerView)
+        val recyclerView = view.findViewById<View>(R.id.recyclerView)
 
         val transitionSetReturn = TransitionSet()
 
@@ -197,7 +197,7 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
                 android.R.interpolator.linear_out_slow_in
             )
             duration = 900
-            addTarget(tvBody)
+            addTarget(recyclerView)
         }
 
         transitionSetReturn.addTransition(slideToTop)

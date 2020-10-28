@@ -9,7 +9,8 @@ data class MagazineModel(
     @DrawableRes val drawableRes: Int,
     val title: String,
     val body: String,
-    val transitionId: Int = 0
+    val transitionId:Int,
+    val transitionName: String = ""
 ) : Parcelable {
-    var transitionName = "tr$drawableRes$transitionId"
+
 }

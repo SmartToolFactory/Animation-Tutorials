@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.transition.Slide
 import androidx.transition.TransitionValues
 
-class CustomSlide(
+class CustomSlide2(
 
     gravity: Int,
     private val forceValues: Boolean = false,

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
@@ -12,7 +11,6 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.Fade
-import com.google.android.material.appbar.AppBarLayout
 import com.smarttoolfactory.tutorial3_1transitions.ImageData
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.SingleViewBinderListAdapter
@@ -45,10 +43,6 @@ class Fragment2_4MagazineList : Fragment() {
     }
 
     private fun prepareTransitions(view: View) {
-
-        val appBarLayout: AppBarLayout = view.findViewById(R.id.appbar)
-        val constraintLayout: ConstraintLayout = view.findViewById(R.id.constraintLayout)
-
 
         /*
             🔥🔥 Setting allowReturnTransitionOverlap  to false lets this fragment's
@@ -121,14 +115,20 @@ class Fragment2_4MagazineList : Fragment() {
         findNavController().navigate(direction, extras)
     }
 
-    private fun getMagazineList(): ArrayList<MagazineModel> {
+    private fun getMagazineList(id: Int = 0): ArrayList<MagazineModel> {
 
         val magazineList = ArrayList<MagazineModel>()
+
         repeat(ImageData.MAGAZINE_DRAWABLES.size) {
+
+            val transitionName = "#tr$id-${ImageData.MAGAZINE_DRAWABLES[it]}"
+
             val magazineModel = MagazineModel(
-                ImageData.MAGAZINE_DRAWABLES[it],
-                "Issue #${ImageData.MAGAZINE_DRAWABLES[it]}",
-                ""
+                drawableRes = ImageData.MAGAZINE_DRAWABLES[it],
+                title = "$id-${ImageData.MAGAZINE_DRAWABLES[it]}",
+                body = "",
+                transitionId = id,
+                transitionName = transitionName
             )
             magazineList.add(magazineModel)
         }

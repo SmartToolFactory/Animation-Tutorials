@@ -40,6 +40,8 @@ open class CircularReveal : Visibility {
     private var startRadius = 0f
     private var endRadius = 0f
 
+    var debugMode: Boolean = false
+
     @IdRes
     private var centerOnId = View.NO_ID
     private var centerOn: View? = null
@@ -88,8 +90,12 @@ open class CircularReveal : Visibility {
         endValues: TransitionValues
     ): Animator? {
 
-        println("‼️ ${this.javaClass.simpleName} onAppear() VIEW: $view" +
-                "\n START VALUES: $startValues")
+        if (debugMode) {
+            println(
+                "‼️ ${this.javaClass.simpleName} onAppear() VIEW: $view" +
+                        "\n START VALUES: $startValues"
+            )
+        }
 
         if (view == null || view.height == 0 || view.width == 0) return null
         ensureCenterPoint(sceneRoot, view)
@@ -111,8 +117,12 @@ open class CircularReveal : Visibility {
         endValues: TransitionValues
     ): Animator? {
 
-        println("‼️ ${this.javaClass.simpleName} onDisappear() VIEW: $view" +
-                "\n START VALUES: $startValues")
+        if (debugMode) {
+            println(
+                "‼️ ${this.javaClass.simpleName} onDisappear() VIEW: $view" +
+                        "\n START VALUES: $startValues"
+            )
+        }
 
         if (view == null || view.height == 0 || view.width == 0) return null
 
@@ -160,5 +170,44 @@ open class CircularReveal : Visibility {
             Math.max(center!!.x, view.width - center!!.x).toDouble(),
             Math.max(center!!.y, view.height - center!!.y).toDouble()
         ).toFloat()
+    }
+
+    override fun captureStartValues(transitionValues: TransitionValues) {
+        super.captureStartValues(transitionValues)
+
+        if (debugMode) {
+            println("⚠️ ${this::class.java.simpleName}  captureStartValues() view: ${transitionValues.view} ")
+            transitionValues.values.forEach { (key, value) ->
+                println("Key: $key, value: $value")
+            }
+        }
+    }
+
+    override fun captureEndValues(transitionValues: TransitionValues) {
+        super.captureEndValues(transitionValues)
+
+        if (debugMode) {
+            println("🔥 ${this::class.java.simpleName}  captureEndValues() view: ${transitionValues.view} ")
+            transitionValues.values.forEach { (key, value) ->
+                println("Key: $key, value: $value")
+            }
+        }
+    }
+
+    override fun createAnimator(
+        sceneRoot: ViewGroup,
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
+    ): Animator? {
+
+        if (debugMode) {
+            println(
+                "🎃 ${this.javaClass.simpleName} createAnimator() " +
+                        "START VALUES: $startValues " +
+                        "END VALUES: $endValues"
+            )
+        }
+
+        return super.createAnimator(sceneRoot, startValues, endValues)
     }
 }

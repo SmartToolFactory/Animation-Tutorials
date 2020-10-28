@@ -2,13 +2,15 @@ package com.smarttoolfactory.tutorial3_1transitions.chapter1_activity_transition
 
 import android.graphics.Color
 import android.os.Bundle
-import androidx.transition.*
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.transition.Transition
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.transition.*
 
@@ -152,7 +154,7 @@ class Activity1_0CustomTransitions : AppCompatActivity() {
             val transitions = TransitionSet()
 
             val transition =
-                CustomBackgroundTransition(
+                CustomBackgroundColorTransition(
                     Color.YELLOW,
                     Color.MAGENTA,
                     true

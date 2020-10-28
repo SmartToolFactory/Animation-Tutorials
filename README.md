@@ -318,7 +318,7 @@ of ***Transition*** start and end point to same value.
 
 #### Note: 
 🔥🔥🔥 In tutorial 2-4 and 2-5, having same background color for both fragments causing second fragment's enter transition(CircularReveal and Slide.BOTTOM) to not work
-So when using **Transitions** that extend ```Visiblity``` class such as Slide, or Fade be careful about background color
+So when using **Transitions** that extends ```Visiblity``` class such as Slide, or Fade be careful about background color
 Either set callback and set start and end properties for scene with
 
 ```

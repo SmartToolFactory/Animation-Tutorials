@@ -90,8 +90,8 @@ open class Activity1_3RecyclerViewToViewPager2Transition : AppCompatActivity() {
     }
 
     /*
-        TODO This is important for setting position of RV and getting imageView in that position
-         to set enter transition after going back from detail Activity
+        TODO It is required to set position of RV and getting imageView in that position
+         to set enter transition after coming back from detail Activity
      */
     override fun onActivityReenter(resultCode: Int, data: Intent?) {
         super.onActivityReenter(resultCode, data)

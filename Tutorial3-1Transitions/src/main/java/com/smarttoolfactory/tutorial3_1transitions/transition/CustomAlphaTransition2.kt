@@ -6,8 +6,8 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup
-import androidx.transition.Transition
 import androidx.transition.TransitionValues
+import androidx.transition.Visibility
 import com.smarttoolfactory.tutorial3_1transitions.R
 
 /**
@@ -16,7 +16,7 @@ import com.smarttoolfactory.tutorial3_1transitions.R
  * sets property on **View** after capturing start values which causes
  * [captureEndValues] to be invoked with different set of values
  */
-class CustomAlphaTransition2 : Transition {
+class CustomAlphaTransition2 : Visibility {
 
     private var startAlpha: Float = 0f
     private var endAlpha: Float = 1f
@@ -44,6 +44,11 @@ class CustomAlphaTransition2 : Transition {
 
 
     override fun captureStartValues(transitionValues: TransitionValues) {
+
+
+        if (forceValues) {
+            transitionValues.view?.alpha = startAlpha
+        }
 
         captureValues(transitionValues)
 
