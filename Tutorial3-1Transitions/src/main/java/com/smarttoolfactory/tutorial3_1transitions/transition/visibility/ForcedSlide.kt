@@ -3,6 +3,7 @@ package com.smarttoolfactory.tutorial3_1transitions.transition.visibility
 import android.animation.Animator
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.transition.Slide
 import androidx.transition.TransitionValues
 import androidx.transition.Visibility
@@ -14,6 +15,12 @@ import androidx.transition.Visibility
  * start and end scenes. Visibility is determined not just by the
  * [View.setVisibility] state of views, but also whether
  * views exist in the current view hierarchy.
+ *
+ * ### 🔥 Note: Enter or reEnter transition might not start if both scenes are same.
+ * So forcing visibility change causes second fragment's [Fragment.setEnterTransition] to start.
+ *
+ * ### Note2: For fragments' ***exitTransition*** does not call captureEndValues
+ * so using transition that extends ```Visibility``` might solve the issue.
  *
  */
 class ForcedSlide(
@@ -28,7 +35,7 @@ class ForcedSlide(
      *
      * * Has public visibility to debug scenes with [debugMode], with and without forced values.
      */
-    var forceValues: Boolean = true
+    var forceVisibilityChange: Boolean = true
 
     /**
      * Logs lifecycle and parameters to console when set to true
@@ -37,7 +44,7 @@ class ForcedSlide(
 
     override fun captureStartValues(transitionValues: TransitionValues) {
 
-        if (forceValues) {
+        if (forceVisibilityChange) {
             transitionValues.view.visibility = startVisibility
         }
 
@@ -50,7 +57,7 @@ class ForcedSlide(
             }
         }
 
-        if (forceValues) {
+        if (forceVisibilityChange) {
             transitionValues.view.visibility = endVisibility
         }
 

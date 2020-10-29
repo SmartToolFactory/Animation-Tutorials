@@ -18,7 +18,7 @@ import com.smarttoolfactory.tutorial3_1transitions.R
  * set on view in a scene. Scene is basically state of views in visibility and other properties.
  *
  * * If starting scene and ending scene has equal background color this transition will not start because
- * [captureEndValues] will not capture anything.
+ * [captureEndValues] will not capture anything other than start values.
  *
  * * If there are no values set on view in your code, set [forceValues] flag to
  * ***true*** and change [startColor] and [endColor] values

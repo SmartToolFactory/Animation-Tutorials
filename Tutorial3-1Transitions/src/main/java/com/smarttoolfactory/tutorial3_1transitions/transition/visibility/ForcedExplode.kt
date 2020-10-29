@@ -3,6 +3,7 @@ package com.smarttoolfactory.tutorial3_1transitions.transition.visibility
 import android.animation.Animator
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.transition.Explode
 import androidx.transition.TransitionValues
 import androidx.transition.Visibility
@@ -14,6 +15,11 @@ import androidx.transition.Visibility
  * [View.setVisibility] state of views, but also whether
  * views exist in the current view hierarchy.
  *
+ * ### 🔥 Note: Enter or reEnter transition might not start if both scenes are same.
+ * So forcing visibility change causes second fragment's [Fragment.setEnterTransition] to start.
+ *
+ * ### Note2: For fragments' ***exitTransition*** does not call captureEndValues
+ * so using transition that extends ```Visibility``` might solve the issue.
  */
 class ForcedExplode(
     private val startVisibility: Int = View.INVISIBLE,
@@ -26,7 +32,7 @@ class ForcedExplode(
      *
      * * Has public visibility to debug scenes with [debugMode], with and without forced values.
      */
-    var forceValues: Boolean = true
+    var forceVisibiltyChange: Boolean = true
 
     /**
      * Logs lifecycle and parameters to console when set to true
@@ -35,7 +41,7 @@ class ForcedExplode(
 
     override fun captureStartValues(transitionValues: TransitionValues) {
 
-        if (forceValues) {
+        if (forceVisibiltyChange) {
             transitionValues.view.visibility = startVisibility
         }
 
@@ -47,14 +53,13 @@ class ForcedExplode(
                 println("Key: $key, value: $value")
             }
         }
-
-        if (forceValues) {
-            transitionValues.view.visibility = endVisibility
-        }
-
     }
 
     override fun captureEndValues(transitionValues: TransitionValues) {
+        if (forceVisibiltyChange) {
+            transitionValues.view.visibility = endVisibility
+        }
+
         super.captureEndValues(transitionValues)
         if (debugMode) {
             println("🔥 ${this::class.java.simpleName}  captureEndValues() view: ${transitionValues.view} ")

@@ -22,13 +22,13 @@ import com.smarttoolfactory.tutorial3_1transitions.R
  * [captureEndValues] to be invoked with different set of values.
  *
  * * If starting scene and ending scene is equal in alpha this transition will not start because
- * [captureEndValues] will not capture anything.
+ * [captureEndValues] will not capture anything other than start values.
  *
  * Background color transition that changes background color value of views from starting to ending values if they are
  * set on view in a scene. Scene is basically state of views in visibility and other properties.
  *
  * * If starting scene and ending scene has equal background color this transition will not start because
- * [captureEndValues] will not capture anything.
+ * [captureEndValues] will not capture anything other than start values.
  *
  */
 
@@ -79,14 +79,14 @@ class BackgroundColorForcedTransition : Transition {
                 println("Key: $key, value: $value")
             }
         }
-
-        if (forceValues) {
-            transitionValues.view.setBackgroundColor(endColor)
-        }
     }
 
     // Capture the value of property for a target in the ending Scene.
     override fun captureEndValues(transitionValues: TransitionValues) {
+
+        if (forceValues) {
+            transitionValues.view.setBackgroundColor(endColor)
+        }
 
         captureValues(transitionValues)
 

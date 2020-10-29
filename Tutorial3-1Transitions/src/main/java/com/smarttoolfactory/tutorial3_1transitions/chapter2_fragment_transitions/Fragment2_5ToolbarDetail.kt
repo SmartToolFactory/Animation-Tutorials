@@ -26,14 +26,15 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostCardViewBinder
 import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ForcedCircularReveal
-import com.smarttoolfactory.tutorial3_1transitions.transition.RotationTransition
+import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ForcedSlide
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.hypot
 
 /**
- * This sample uses custom transitions to overcome visiblity change issue that
- * causing transitions to not work
+ * This sample uses custom transitions to overcome  change issue that
+ * causing ENTER transitions to not work. Having different visibility before and after
+ * ENTER transition solves the issue
  */
 class Fragment2_5ToolbarDetail : Fragment() {
 
@@ -72,7 +73,7 @@ class Fragment2_5ToolbarDetail : Fragment() {
 
     private fun setUpSharedElementTransition(view: View) {
 
-        allowEnterTransitionOverlap = false
+//        allowEnterTransitionOverlap = false
 
         /*
             🔥 Set sharedElementReturnTransition, because both
@@ -98,29 +99,28 @@ class Fragment2_5ToolbarDetail : Fragment() {
         val recyclerView = view.findViewById<View>(R.id.recyclerView)
         val viewImageBackground: View = view.findViewById(R.id.viewImageBackground)
 
+        viewImageBackground.visibility = View.INVISIBLE
 
         val transitionSetEnter = TransitionSet()
 
-        val slideFromBottom =
-            RotationTransition(-360f, 0f, true)
-                .apply {
-                    interpolator = AnimationUtils.loadInterpolator(
-                        requireContext(),
-                        android.R.interpolator.linear_out_slow_in
-                    )
-                    startDelay = 400
-                    duration = 600
-                    addTarget(recyclerView)
-                    debugMode = true
-                }
-
+        val slideFromBottom = ForcedSlide(Gravity.BOTTOM, View.INVISIBLE, View.VISIBLE)
+            .apply {
+                interpolator = AnimationUtils.loadInterpolator(
+                    requireContext(),
+                    android.R.interpolator.linear_out_slow_in
+                )
+                startDelay = 400
+                duration = 600
+                addTarget(recyclerView)
+            }
 
         val endRadius = hypot(
             viewImageBackground.width.toDouble(),
             viewImageBackground.height.toDouble()
         ).toFloat()
 
-        val circularReveal = ForcedCircularReveal(View.INVISIBLE, View.VISIBLE)
+
+        val circularReveal = ForcedCircularReveal(View.INVISIBLE, View.VISIBLE, true)
             .apply {
                 addTarget(viewImageBackground)
                 setStartRadius(0f)

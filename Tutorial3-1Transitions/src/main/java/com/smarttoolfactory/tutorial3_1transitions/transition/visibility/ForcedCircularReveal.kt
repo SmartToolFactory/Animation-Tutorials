@@ -3,6 +3,7 @@ package com.smarttoolfactory.tutorial3_1transitions.transition.visibility
 import android.animation.Animator
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.transition.TransitionValues
 
 /**
@@ -12,15 +13,26 @@ import androidx.transition.TransitionValues
  * [View.setVisibility] state of views, but also whether
  * views exist in the current view hierarchy.
  *
+ * ### 🔥 Note: Enter or reEnter transition might not start if both scenes are same.
+ * So forcing visibility change causes second fragment's [Fragment.setEnterTransition] to start.
+ *
+ * ### Note2: For fragments' ***exitTransition*** does not call captureEndValues
+ * so using transition that extends ```Visibility``` might solve the issue.
+ *
  */
 class ForcedCircularReveal(
     private val startVisibility: Int = View.INVISIBLE,
-    private val endVisibility: Int = View.VISIBLE
+    private val endVisibility: Int = View.VISIBLE,
+    var forceVisibilityChange: Boolean = true
 ) : CircularReveal() {
+
 
     override fun captureStartValues(transitionValues: TransitionValues) {
 
-        transitionValues?.view.visibility = startVisibility
+        if (forceVisibilityChange) {
+            transitionValues.view.visibility = startVisibility
+        }
+
         super.captureStartValues(transitionValues)
 
         if (debugMode) {
@@ -30,7 +42,9 @@ class ForcedCircularReveal(
             }
         }
 
-        transitionValues?.view.visibility = endVisibility
+        if (forceVisibilityChange) {
+            transitionValues.view.visibility = endVisibility
+        }
     }
 
     override fun captureEndValues(transitionValues: TransitionValues) {

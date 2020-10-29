@@ -19,7 +19,7 @@ import com.smarttoolfactory.tutorial3_1transitions.R
  * [captureEndValues] to be invoked with different set of values.
  *
  * * If starting scene and ending scene is equal in alpha this transition will not start because
- * [captureEndValues] will not capture anything.
+ * [captureEndValues] will not capture anything other than start values.
  *
  */
 class AlphaForcedTransition : Transition {

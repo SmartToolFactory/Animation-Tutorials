@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.Fade
-import androidx.transition.Transition
 import com.smarttoolfactory.tutorial3_1transitions.ImageData
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.SingleViewBinderListAdapter
@@ -25,7 +23,6 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.HeaderView
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.MagazineListViewViewBinder
 import com.smarttoolfactory.tutorial3_1transitions.databinding.ItemMagazineBinding
-import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 
 /*
     🔥‼️ Added transition id to MagazineModel because giving same resource id as transition name to multiple
@@ -111,27 +108,27 @@ class Fragment2_5ToolbarList : Fragment() {
                     addTarget(view)
                 }
 
-        (exitTransition as? Transition)?.addListener(object : TransitionXAdapter() {
-
-            override fun onTransitionStart(transition: Transition) {
-                super.onTransitionStart(transition)
-                Toast.makeText(
-                    requireContext(),
-                    "EXIT onTransitionStart()",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-            override fun onTransitionEnd(transition: Transition) {
-
-                super.onTransitionEnd(transition)
-                Toast.makeText(
-                    requireContext(),
-                    "EXIT onTransitionEnd time: $animationDuration",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        })
+//        (exitTransition as? Transition)?.addListener(object : TransitionXAdapter() {
+//
+//            override fun onTransitionStart(transition: Transition) {
+//                super.onTransitionStart(transition)
+//                Toast.makeText(
+//                    requireContext(),
+//                    "EXIT onTransitionStart()",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//
+//            override fun onTransitionEnd(transition: Transition) {
+//
+//                super.onTransitionEnd(transition)
+//                Toast.makeText(
+//                    requireContext(),
+//                    "EXIT onTransitionEnd time: $animationDuration",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//        })
 
 
         reenterTransition =

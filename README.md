@@ -317,8 +317,8 @@ objects that are not shared in both fragments.
 of ***Transition*** start and end point to same value.
 
 #### Note: 
-🔥🔥🔥 In tutorial 2-4 and 2-5, having same background color for both fragments causing second fragment's enter transition(CircularReveal and Slide.BOTTOM) to not work
-So when using **Transitions** that extends ```Visiblity``` class such as Slide, or Fade be careful about background color
+🔥🔥🔥 In tutorial 2-4 and 2-5, having same background color for both fragments causing second fragment's **ENTER TRANSITION(CircularReveal and Slide.BOTTOM)** to not work
+So when using **Transitions** that extend ```Visiblity``` class such as Slide, or Fade be careful about background color.
 Either set callback and set start and end properties for scene with
 
 ```
@@ -358,6 +358,14 @@ or use **custom transitions** that extend either ```Transition``` or ```Visibili
 visibility is changed from ```View.INVISIBLE``` to ```View.VISIBLE``` ```onAppear``` method of ```Visibility class is called, if visibility changes
 opposite ```onDisappear``` method is called. With scene's actual visibility change, or manual visibility change it's possible to play transitions
 from backwards.
+
+### ‼️ Attention
+I wasn't able to create exit and return transitions using custom transitions with classes neither
+ extend ```Transition``` nor ```Visibility```. Transitions such as Fade, Slide or Explode
+ that extend ```Visibility``` work, but when i extend ```Visibility``` and do some custom transitions
+ it does not work for **exitTransition** for first, **returnTransition** for second fragment.
+ 
+ If you figure out a solution feel free to send a PR🤩😍 
 
 ### Resources and References
 
