@@ -103,21 +103,48 @@ class BackgroundColorForcedTransition : Transition {
         transitionValues.values[PROPNAME_BACKGROUND] = transitionValues.view.background
     }
 
-
-    override fun createAnimator(
+    private fun createForcedAnimator(
         sceneRoot: ViewGroup,
         startValues: TransitionValues?,
         endValues: TransitionValues?
     ): Animator? {
 
-        if (debugMode) {
-            println(
-                "🎃 ${this::class.java.simpleName}  createAnimator() " +
-                        "forceValues: $forceValues" +
-                        "\nSTART VALUES: $startValues" +
-                        "\nEND VALUES: $endValues "
-            )
+        val view = when {
+            startValues?.view != null -> {
+                startValues.view
+            }
+            endValues?.view != null -> {
+                endValues.view
+            }
+            else -> {
+                return null
+            }
         }
+
+        if (startColor != endColor) {
+
+            val animator = ValueAnimator.ofObject(
+                ArgbEvaluator(),
+                startColor,
+                endColor
+            )
+            // Add an update listener to the Animator object.
+            animator.addUpdateListener { animation ->
+                val value = animation.animatedValue
+                if (null != value) {
+                    view.setBackgroundColor((value as Int))
+                }
+            }
+            return animator
+        }
+        return null
+    }
+
+    private fun createTransitionAnimator(
+        sceneRoot: ViewGroup,
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
+    ): Animator? {
 
         if (null == startValues || null == endValues) {
             return null
@@ -150,6 +177,29 @@ class BackgroundColorForcedTransition : Transition {
             }
         }
         return null
+    }
+
+    override fun createAnimator(
+        sceneRoot: ViewGroup,
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
+    ): Animator? {
+
+        if (debugMode) {
+            println(
+                "🎃 ${this::class.java.simpleName}  createAnimator() " +
+                        "forceValues: $forceValues" +
+                        "\nSCENE ROOT: $sceneRoot" +
+                        "\nSTART VALUES: $startValues" +
+                        "\nEND VALUES: $endValues "
+            )
+        }
+
+        return if (forceValues) {
+            createForcedAnimator(sceneRoot, startValues, endValues)
+        } else {
+            createTransitionAnimator(sceneRoot, startValues, endValues)
+        }
     }
 
     companion object {

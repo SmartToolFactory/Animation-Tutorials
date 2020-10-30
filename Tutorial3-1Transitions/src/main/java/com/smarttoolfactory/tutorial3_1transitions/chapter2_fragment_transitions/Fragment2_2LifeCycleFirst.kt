@@ -2,6 +2,7 @@ package com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transition
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +13,10 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.SharedElementCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.transition.Fade
+import androidx.transition.Slide
 import androidx.transition.Transition
 import androidx.transition.TransitionSet
 import com.smarttoolfactory.tutorial3_1transitions.R
-import com.smarttoolfactory.tutorial3_1transitions.transition.ScaleTransition
 import com.smarttoolfactory.tutorial3_1transitions.transition.TextColorTransition
 import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 
@@ -63,13 +63,12 @@ class Fragment2_2LifeCycleFirst : Fragment() {
         allowEnterTransitionOverlap = false
         allowReturnTransitionOverlap = false
 
-
-        val slide = Fade()
-            .apply {
-                duration = 30
-                startDelay = 470
-            }
         val transitionSet = TransitionSet()
+
+        val slide = Slide(Gravity.TOP)
+            .apply {
+                duration = 2000
+            }
 
         val textTransition =
             TextColorTransition(tvEnterTransition.currentTextColor, Color.MAGENTA, true)
@@ -79,16 +78,8 @@ class Fragment2_2LifeCycleFirst : Fragment() {
                     duration = 500
                 }
 
-        val scaleTransition = ScaleTransition(1f, 1f, 0.95f, 0.95f, true)
-            .apply {
-                addTarget(view)
-                debugMode = true
-                duration = 500
-            }
-
         transitionSet.addTransition(slide)
         transitionSet.addTransition(textTransition)
-        transitionSet.addTransition(scaleTransition)
 
         exitTransition = transitionSet
 

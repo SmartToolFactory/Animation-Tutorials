@@ -91,7 +91,7 @@ class AlphaTransition : Transition {
         endValues: TransitionValues?
     ): Animator? {
 
-        if (startAlpha == endAlpha) return null // no rotation to run
+        if (startAlpha == endAlpha) return null // no alpha to run
 
         val view = when {
             startValues?.view != null -> {
@@ -105,10 +105,10 @@ class AlphaTransition : Transition {
             }
         }
 
-        val propRotation =
+        val propAlpha =
             PropertyValuesHolder.ofFloat(PROP_NAME_ALPHA, startAlpha, endAlpha)
 
-        val valAnim = ValueAnimator.ofPropertyValuesHolder(propRotation)
+        val valAnim = ValueAnimator.ofPropertyValuesHolder(propAlpha)
         valAnim.addUpdateListener { valueAnimator ->
             view.alpha = valueAnimator.getAnimatedValue(PROP_NAME_ALPHA) as Float
         }
@@ -125,14 +125,14 @@ class AlphaTransition : Transition {
         val startAlpha = startValues.values[PROP_NAME_ALPHA] as Float
         val endAlpha = endValues.values[PROP_NAME_ALPHA] as Float
 
-        if (startAlpha == endAlpha) return null // no rotation to run
+        if (startAlpha == endAlpha) return null // no alpha to run
 
         val view = startValues.view
 
-        val propRotation =
+        val propAlpha =
             PropertyValuesHolder.ofFloat(PROP_NAME_ALPHA, startAlpha, endAlpha)
 
-        val valAnim = ValueAnimator.ofPropertyValuesHolder(propRotation)
+        val valAnim = ValueAnimator.ofPropertyValuesHolder(propAlpha)
         valAnim.addUpdateListener { valueAnimator ->
             view.alpha = valueAnimator.getAnimatedValue(PROP_NAME_ALPHA) as Float
         }
@@ -149,6 +149,7 @@ class AlphaTransition : Transition {
             println(
                 "🎃 ${this::class.java.simpleName}  createAnimator() " +
                         "forceValues: $forceValues" +
+                        "\nSCENE ROOT: $sceneRoot" +
                         "\nSTART VALUES: $startValues" +
                         "\nEND VALUES: $endValues "
             )
@@ -159,8 +160,6 @@ class AlphaTransition : Transition {
         } else {
             createTransitionAnimator(sceneRoot, startValues, endValues)
         }
-
-
     }
 
     companion object {

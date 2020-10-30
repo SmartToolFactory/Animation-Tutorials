@@ -95,21 +95,44 @@ class RotationForcedTransition : Transition {
         transitionValues.values[PROPNAME_ROTATION] = transitionValues.view.rotation
     }
 
-    override fun createAnimator(
+    private fun createForcedValueAnimator(
         sceneRoot: ViewGroup,
         startValues: TransitionValues?,
         endValues: TransitionValues?
     ): Animator? {
 
-        if (debugMode) {
-            println(
-                "🎃 ${this::class.java.simpleName}  createAnimator() " +
-                        "forceValues: $forceValues" +
-                        "\nSTART VALUES: $startValues" +
-                        "\nEND VALUES: $endValues "
-            )
+        val view = when {
+            startValues?.view != null -> {
+                startValues.view
+            }
+            endValues?.view != null -> {
+                endValues.view
+            }
+            else -> {
+                return null
+            }
         }
 
+        val propRotation =
+            PropertyValuesHolder.ofFloat(PROPNAME_ROTATION, startRotation, endRotation)
+
+        val animator = ValueAnimator.ofPropertyValuesHolder(propRotation)
+
+        animator.addUpdateListener { valueAnimator ->
+            view.pivotX = view.width / 2f
+            view.pivotY = view.height / 2f
+            view.rotation = valueAnimator.getAnimatedValue(PROPNAME_ROTATION) as Float
+        }
+
+        return animator
+    }
+
+
+    private fun createTransitionAnimator(
+        sceneRoot: ViewGroup,
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
+    ): Animator? {
         if (endValues == null || startValues == null) return null // no values
 
         val startRotation = startValues.values[PROPNAME_ROTATION] as Float
@@ -131,6 +154,28 @@ class RotationForcedTransition : Transition {
         }
 
         return animator
+    }
+
+    override fun createAnimator(
+        sceneRoot: ViewGroup,
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
+    ): Animator? {
+
+        if (debugMode) {
+            println(
+                "🎃 ${this::class.java.simpleName}  createAnimator() " +
+                        "forceValues: $forceValues" +
+                        "\nSCENE ROOT: $sceneRoot" +
+                        "\nSTART VALUES: $startValues" +
+                        "\nEND VALUES: $endValues "
+            )
+        }
+        return if (forceValues) {
+            createForcedValueAnimator(sceneRoot, startValues, endValues)
+        } else {
+            createTransitionAnimator(sceneRoot, startValues, endValues)
+        }
     }
 
     companion object {

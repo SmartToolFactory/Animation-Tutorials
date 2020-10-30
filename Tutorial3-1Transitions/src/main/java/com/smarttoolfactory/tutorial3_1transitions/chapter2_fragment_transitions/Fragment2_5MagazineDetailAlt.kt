@@ -33,6 +33,8 @@ import kotlin.math.hypot
 
 class Fragment2_5MagazineDetailAlt : Fragment() {
 
+    var isEntering = true
+
     lateinit var magazineModel: MagazineModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,7 +70,7 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
 
     private fun setUpSharedElementTransition(view: View) {
 
-//        allowEnterTransitionOverlap = false
+//        allowReturnTransitionOverlap = false
 
         setSharedElementCallback(view)
 
@@ -96,11 +98,19 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
      *  Overriding onSharedElementStart, and onSharedElementEnd
      *  creates start and end values for transitions that extend ```Visibility```.
      *  Without this start and end values are same for view background.
+     *
+     *  ```setEnterSharedElementCallback``` methods are called
+     *  both when entering and returning from this fragment.
+     *
+     *  **isEntering** is used to change start and end visibility of items for
+     *  transitions before this fragment appears or disappears.
      */
     private fun setSharedElementCallback(view: View) {
 
         val viewImageBackground = view.findViewById<View>(R.id.viewImageBackground)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+
+        isEntering = true
 
         viewImageBackground.visibility = View.INVISIBLE
         recyclerView.visibility = View.INVISIBLE
@@ -117,8 +127,13 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
                     sharedElements,
                     sharedElementSnapshots
                 )
-                viewImageBackground.visibility = View.INVISIBLE
-                recyclerView.visibility = View.INVISIBLE
+                if (isEntering) {
+                    viewImageBackground.visibility = View.INVISIBLE
+                    recyclerView.visibility = View.INVISIBLE
+                }else {
+                    viewImageBackground.visibility = View.VISIBLE
+                    recyclerView.visibility = View.VISIBLE
+                }
             }
 
             override fun onSharedElementEnd(
@@ -129,6 +144,16 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
                 super.onSharedElementEnd(sharedElementNames, sharedElements, sharedElementSnapshots)
                 viewImageBackground.visibility = View.VISIBLE
                 recyclerView.visibility = View.VISIBLE
+
+                if (isEntering) {
+                    viewImageBackground.visibility = View.VISIBLE
+                    recyclerView.visibility = View.VISIBLE
+                }else {
+                    viewImageBackground.visibility = View.INVISIBLE
+                    recyclerView.visibility = View.INVISIBLE
+                }
+
+                isEntering = false
             }
 
         })

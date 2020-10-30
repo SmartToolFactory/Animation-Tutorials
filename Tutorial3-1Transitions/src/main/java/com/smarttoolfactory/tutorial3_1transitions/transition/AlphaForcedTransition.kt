@@ -93,6 +93,60 @@ class AlphaForcedTransition : Transition {
         transitionValues.values[PROP_NAME_ALPHA] = transitionValues.view.alpha
     }
 
+    private fun createForcedAnimator(
+        sceneRoot: ViewGroup,
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
+    ): Animator? {
+
+        if (startAlpha == endAlpha) return null // no alpha to run
+
+        val view = when {
+            startValues?.view != null -> {
+                startValues.view
+            }
+            endValues?.view != null -> {
+                endValues.view
+            }
+            else -> {
+                return null
+            }
+        }
+
+        val propAlpha =
+            PropertyValuesHolder.ofFloat(PROP_NAME_ALPHA, startAlpha, endAlpha)
+
+        val valAnim = ValueAnimator.ofPropertyValuesHolder(propAlpha)
+        valAnim.addUpdateListener { valueAnimator ->
+            view.alpha = valueAnimator.getAnimatedValue(PROP_NAME_ALPHA) as Float
+        }
+        return valAnim
+    }
+
+    private fun createTransitionAnimator(
+        sceneRoot: ViewGroup,
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
+    ): Animator? {
+        if (endValues == null || startValues == null) return null // no values
+
+        val startAlpha = startValues.values[PROP_NAME_ALPHA] as Float
+        val endAlpha = endValues.values[PROP_NAME_ALPHA] as Float
+
+        if (startAlpha == endAlpha) return null // no alpha to run
+
+        val view = startValues.view
+
+        val propAlpha =
+            PropertyValuesHolder.ofFloat(PROP_NAME_ALPHA, startAlpha, endAlpha)
+
+        val valAnim = ValueAnimator.ofPropertyValuesHolder(propAlpha)
+        valAnim.addUpdateListener { valueAnimator ->
+            view.alpha = valueAnimator.getAnimatedValue(PROP_NAME_ALPHA) as Float
+        }
+        return valAnim
+    }
+
     override fun createAnimator(
         sceneRoot: ViewGroup,
         startValues: TransitionValues?,
@@ -103,29 +157,17 @@ class AlphaForcedTransition : Transition {
             println(
                 "🎃 ${this::class.java.simpleName}  createAnimator() " +
                         "forceValues: $forceValues" +
+                        "\nSCENE ROOT: $sceneRoot" +
                         "\nSTART VALUES: $startValues" +
                         "\nEND VALUES: $endValues "
             )
         }
 
-        if (endValues == null || startValues == null) return null // no values
-
-        val startAlpha = startValues.values[PROP_NAME_ALPHA] as Float
-        val endAlpha = endValues.values[PROP_NAME_ALPHA] as Float
-
-        if (startAlpha == endAlpha) return null // no rotation to run
-
-        val view = startValues.view
-
-        val propRotation =
-            PropertyValuesHolder.ofFloat(PROP_NAME_ALPHA, startAlpha, endAlpha)
-
-        val valAnim = ValueAnimator.ofPropertyValuesHolder(propRotation)
-        valAnim.addUpdateListener { valueAnimator ->
-            view.alpha = valueAnimator.getAnimatedValue(PROP_NAME_ALPHA) as Float
+        return if (forceValues) {
+            createForcedAnimator(sceneRoot, startValues, endValues)
+        } else {
+            createTransitionAnimator(sceneRoot, startValues, endValues)
         }
-        return valAnim
-
     }
 
     companion object {

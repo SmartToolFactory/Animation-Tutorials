@@ -99,7 +99,6 @@ class ScaleTransition : Transition {
         endValues: TransitionValues?
     ): Animator? {
 
-
         if (startScaleX == endScaleX && startScaleY == endScaleY) return null // no scale to run
 
         val view = when {
@@ -113,8 +112,8 @@ class ScaleTransition : Transition {
                 return null
             }
         }
-        val propX = PropertyValuesHolder.ofFloat(PROPNAME_SCALE_X, 0f, 1f)
-        val propY = PropertyValuesHolder.ofFloat(PROPNAME_SCALE_Y, 0f, 1f)
+        val propX = PropertyValuesHolder.ofFloat(PROPNAME_SCALE_X, startScaleX, endScaleX)
+        val propY = PropertyValuesHolder.ofFloat(PROPNAME_SCALE_Y, startScaleY, endScaleY)
 
         val animator = ValueAnimator.ofPropertyValuesHolder(propX, propY)
 
@@ -145,8 +144,8 @@ class ScaleTransition : Transition {
 
         val view = startValues.view
 
-        val propX = PropertyValuesHolder.ofFloat(PROPNAME_SCALE_X, 0f, 1f)
-        val propY = PropertyValuesHolder.ofFloat(PROPNAME_SCALE_Y, 0f, 1f)
+        val propX = PropertyValuesHolder.ofFloat(PROPNAME_SCALE_X, startX, endX)
+        val propY = PropertyValuesHolder.ofFloat(PROPNAME_SCALE_Y, startY, endY)
 
         val animator = ValueAnimator.ofPropertyValuesHolder(propX, propY)
 
@@ -169,6 +168,7 @@ class ScaleTransition : Transition {
             println(
                 "🎃 ${this::class.java.simpleName}  createAnimator() " +
                         "forceValues: $forceValues" +
+                        "\nSCENE ROOT: $sceneRoot" +
                         "\nSTART VALUES: $startValues" +
                         "\nEND VALUES: $endValues "
             )

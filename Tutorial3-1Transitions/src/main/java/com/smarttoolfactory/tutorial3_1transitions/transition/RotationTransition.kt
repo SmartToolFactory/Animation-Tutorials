@@ -141,6 +141,7 @@ class RotationTransition : Transition {
             println(
                 "🎃 ${this::class.java.simpleName}  createAnimator() " +
                         "forceValues: $forceValues" +
+                        "\nSCENE ROOT: $sceneRoot" +
                         "\nSTART VALUES: $startValues" +
                         "\nEND VALUES: $endValues "
             )

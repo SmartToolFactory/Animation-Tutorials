@@ -96,19 +96,53 @@ class TextColorForcedTransition : Transition {
         }
     }
 
-    override fun createAnimator(
+    /**
+     * This animator runs with the values entered as start and end values, if we know the view
+     * which these values will be applied to we don't need a valid value and end view from
+     * [captureEndValues] method.
+     */
+    private fun createForceValueAnimator(
         sceneRoot: ViewGroup,
         startValues: TransitionValues?,
         endValues: TransitionValues?
     ): Animator? {
 
-        if (debugMode) {
-            println(
-                "🎃 ${this::class.java.simpleName}  createAnimator() " +
-                        "\nSTART VALUES: $startValues" +
-                        "\nEND VALUES: $endValues "
-            )
+        val view = when {
+            startValues?.view != null && startValues.view is TextView -> {
+                startValues.view
+            }
+            endValues?.view != null && endValues.view is TextView -> {
+                endValues.view
+            }
+            else -> {
+                return null
+            }
         }
+
+        val textView = (view as? TextView) ?: return null
+
+        val animator: ValueAnimator =
+            ValueAnimator.ofObject(ArgbEvaluator(), startColor, endColor)
+        animator.addUpdateListener { animation ->
+            textView.setTextColor(animation.animatedValue as Int)
+        }
+
+        return animator
+    }
+
+    /**
+     * This animator is for transitions that has different starting and ending scenes in shared transitions or
+     * by setting initial text color, and changing text color after  transition.
+     *
+     * * For this transition to work [captureEndValues] should return values and non-null view
+     * from both [startValues] and [endValues] both corresponding same view
+     */
+    private fun createTransitionAnimator(
+        sceneRoot: ViewGroup,
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
+    ): Animator? {
+
 
         // This transition can only be applied to views that are on both starting and ending scenes.
         if (endValues == null || startValues == null) return null // no values
@@ -127,6 +161,29 @@ class TextColorForcedTransition : Transition {
         }
 
         return animator
+    }
+
+    override fun createAnimator(
+        sceneRoot: ViewGroup,
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
+    ): Animator? {
+
+        if (debugMode) {
+            println(
+                "🎃 ${this::class.java.simpleName}  createAnimator() " +
+                        "forceValues: $forceValues" +
+                        "\nSCENE ROOT: $sceneRoot" +
+                        "\nSTART VALUES: $startValues" +
+                        "\nEND VALUES: $endValues "
+            )
+        }
+
+        return if (forceValues) {
+            createForceValueAnimator(sceneRoot, startValues, endValues)
+        } else {
+            createTransitionAnimator(sceneRoot, startValues, endValues)
+        }
     }
 
     companion object {

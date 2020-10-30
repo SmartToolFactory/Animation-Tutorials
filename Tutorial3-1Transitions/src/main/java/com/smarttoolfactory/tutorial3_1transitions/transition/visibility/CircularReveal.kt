@@ -86,8 +86,8 @@ open class CircularReveal : Visibility {
     override fun onAppear(
         sceneRoot: ViewGroup,
         view: View?,
-        startValues: TransitionValues,
-        endValues: TransitionValues
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
     ): Animator? {
 
         if (debugMode) {
@@ -113,8 +113,8 @@ open class CircularReveal : Visibility {
     override fun onDisappear(
         sceneRoot: ViewGroup,
         view: View?,
-        startValues: TransitionValues,
-        endValues: TransitionValues
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
     ): Animator? {
 
         if (debugMode) {

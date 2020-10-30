@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
+import android.view.animation.OvershootInterpolator
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.doOnNextLayout
@@ -18,6 +19,8 @@ import androidx.transition.Slide
 import androidx.transition.Transition
 import androidx.transition.TransitionInflater
 import androidx.transition.TransitionSet
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.SingleViewBinderListAdapter
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.MagazineModel
@@ -25,10 +28,13 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.model.Post
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostCardViewBinder
+import com.smarttoolfactory.tutorial3_1transitions.transition.ScaleTransition
+import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ForcedCircularReveal
-import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ForcedSlide
+import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ScaleChange
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.abs
 import kotlin.math.hypot
 
 /**
@@ -73,7 +79,7 @@ class Fragment2_5ToolbarDetail : Fragment() {
 
     private fun setUpSharedElementTransition(view: View) {
 
-//        allowEnterTransitionOverlap = false
+        allowReturnTransitionOverlap = false
 
         /*
             🔥 Set sharedElementReturnTransition, because both
@@ -103,14 +109,24 @@ class Fragment2_5ToolbarDetail : Fragment() {
 
         val transitionSetEnter = TransitionSet()
 
-        val slideFromBottom = ForcedSlide(Gravity.BOTTOM, View.INVISIBLE, View.VISIBLE)
+        val scaleX = .8f
+        val scaleY = .8f
+
+        recyclerView.scaleX = 0f
+        recyclerView.scaleY = 0f
+        recyclerView.requestLayout()
+
+        val endRadiusRV = hypot(
+            recyclerView.width.toDouble(),
+            recyclerView.height.toDouble()
+        ).toFloat()
+
+        val scaleAnimation = ScaleTransition(scaleX, scaleY, 1f, 1f, true)
             .apply {
-                interpolator = AnimationUtils.loadInterpolator(
-                    requireContext(),
-                    android.R.interpolator.linear_out_slow_in
-                )
-                startDelay = 400
+                interpolator = OvershootInterpolator()
+                startDelay = 500
                 duration = 600
+                debugMode = true
                 addTarget(recyclerView)
             }
 
@@ -119,8 +135,9 @@ class Fragment2_5ToolbarDetail : Fragment() {
             viewImageBackground.height.toDouble()
         ).toFloat()
 
-
-        val circularReveal = ForcedCircularReveal(View.INVISIBLE, View.VISIBLE, true)
+        val circularReveal = ForcedCircularReveal(
+            View.INVISIBLE, View.VISIBLE, true
+        )
             .apply {
                 addTarget(viewImageBackground)
                 setStartRadius(0f)
@@ -129,7 +146,7 @@ class Fragment2_5ToolbarDetail : Fragment() {
                 duration = 700
             }
 
-        transitionSetEnter.addTransition(slideFromBottom)
+        transitionSetEnter.addTransition(scaleAnimation)
         transitionSetEnter.addTransition(circularReveal)
 
         return transitionSetEnter
@@ -147,22 +164,41 @@ class Fragment2_5ToolbarDetail : Fragment() {
                 requireContext(),
                 android.R.interpolator.linear_out_slow_in
             )
-            duration = 900
+            duration = 500
             addTarget(viewTop)
         }
 
 
-        val slideToBottom = Slide(Gravity.BOTTOM).apply {
-            interpolator = AnimationUtils.loadInterpolator(
-                requireContext(),
-                android.R.interpolator.linear_out_slow_in
-            )
-            duration = 900
-            addTarget(recyclerView)
-        }
+        /*
+            🔥 Values are in reverse order because this Transition will call Animator from
+            onDisappear.
+         */
+        val scaleRV =
+            ScaleChange(0.95f, 0.95f, 1f, 1f)
+                .apply {
+                    interpolator = AnimationUtils.loadInterpolator(
+                        requireContext(),
+                        android.R.interpolator.linear_out_slow_in
+                    )
+                    duration = 300
+                    debugMode = true
+                    addTarget(recyclerView)
+                }.addListener(object : TransitionXAdapter() {
+                    override fun onTransitionEnd(transition: Transition) {
+                        super.onTransitionEnd(transition)
+                        recyclerView.visibility = View.INVISIBLE
+                    }
+                })
+
+        val slide = Slide(Gravity.END)
+            .apply {
+                startDelay = 400
+                duration = 400
+            }
 
         transitionSetReturn.addTransition(slideToTop)
-        transitionSetReturn.addTransition(slideToBottom)
+        transitionSetReturn.addTransition(scaleRV)
+        transitionSetReturn.addTransition(slide)
 
         return transitionSetReturn
     }
@@ -191,23 +227,23 @@ class Fragment2_5ToolbarDetail : Fragment() {
 
         listAdapter.submitList(generateMockPosts())
 
-        view?.doOnNextLayout {
+        view.doOnNextLayout {
             (it.parent as? ViewGroup)?.doOnPreDraw {
                 startPostponedEnterTransition()
             }
         }
 
-//        val appbar = view.findViewById<AppBarLayout>(R.id.appbar)
-//        val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
-//        appbar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-//
-//            //Check if the view is collapsed
-//            if (abs(verticalOffset) >= appbar.totalScrollRange) {
-//                toolbar.title = "Collapsed"
-//            } else {
-//                toolbar.title = ""
-//            }
-//        })
+        val appbar = view.findViewById<AppBarLayout>(R.id.appbar)
+        val collapsingToolbar = view.findViewById<CollapsingToolbarLayout>(R.id.collapsingToolbar)
+        appbar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+
+            //Check if the view is collapsed
+            if (abs(verticalOffset) >= appbar.totalScrollRange) {
+                collapsingToolbar.title = "Collapsed"
+            } else {
+                collapsingToolbar.title = ""
+            }
+        })
     }
 
     private fun generateMockPosts(): List<PostCardModel> {
