@@ -1,11 +1,12 @@
 # 🍭🚀💗 Animation Tutorials
-Tutorials about animations in Android such as ObjectAnimators, ValueAnimators, translations,
-gradient animations, AnimationDrawables, AnimatedVectorDrawables with states, physics animations,
-fragment transitions and image to ViewPager transitions and more.
 
 [![Android Weekly #437](https://androidweekly.net/issues/issue-437/badge)](https://androidweekly.net/issues/issue-437)
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.4.0-blue.svg)](https://kotlinlang.org)
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
+
+Tutorials about animations in Android such as ObjectAnimators, ValueAnimators, translations,
+gradient animations, AnimationDrawables, AnimatedVectorDrawables with states, physics animations,
+fragment transitions and image to ViewPager transitions and more.
 
 ## Overview
 
