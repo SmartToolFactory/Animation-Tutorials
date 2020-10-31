@@ -7,12 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.OvershootInterpolator
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
+import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.*
@@ -28,8 +28,8 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.model.Post
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostGridViewBinder
-import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ForcedCircularReveal
+import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ForcedExplode
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.abs
@@ -102,6 +102,7 @@ class Fragment2_5ToolbarDetailAlt2 : Fragment() {
     private fun createEnterTransition(view: View): Transition {
 
         val recyclerView = view.findViewById<View>(R.id.recyclerView)
+        val appbar = view.findViewById<AppBarLayout>(R.id.appbar)
         val viewImageBackground: View = view.findViewById(R.id.viewImageBackground)
 
         val transitionSetEnter = TransitionSet()
@@ -114,13 +115,17 @@ class Fragment2_5ToolbarDetailAlt2 : Fragment() {
         // create Explode transition with epicenter
 
 
+        // 🔥 Explode  does not work, we need visibility change for Enter or ReEnter transitions
         val explode =
-//            ForcedExplode(View.INVISIBLE, View.VISIBLE)
-            Explode()
+//            Explode()
+            ForcedExplode()
                 .apply {
-                    startDelay = 500
-                    interpolator = OvershootInterpolator()
-                    addTarget(recyclerView)
+                    startDelay = 600
+                    duration = 700
+                    interpolator = LinearOutSlowInInterpolator()
+                    excludeTarget(view, true)
+                    excludeTarget(appbar, true)
+                    excludeTarget(recyclerView, false)
                 }
 
         explode.epicenterCallback = object : Transition.EpicenterCallback() {
@@ -135,7 +140,7 @@ class Fragment2_5ToolbarDetailAlt2 : Fragment() {
         ).toFloat()
 
         val circularReveal =
-            ForcedCircularReveal(true, View.VISIBLE, View.INVISIBLE)
+            ForcedCircularReveal(true, View.INVISIBLE, View.VISIBLE)
                 .apply {
                     addTarget(viewImageBackground)
                     setStartRadius(0f)
@@ -152,83 +157,28 @@ class Fragment2_5ToolbarDetailAlt2 : Fragment() {
 
     private fun createReturnTransition(view: View): Transition {
 
-        val viewTop = view.findViewById<View>(R.id.viewImageBackground)
+        val appbar = view.findViewById<AppBarLayout>(R.id.appbar)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
 
-        val transitionSetReturn = TransitionSet()
-
-//        val slideToTop = Slide(Gravity.TOP).apply {
-//            interpolator = AnimationUtils.loadInterpolator(
-//                requireContext(),
-//                android.R.interpolator.linear_out_slow_in
-//            )
-//            duration = 1000
-//            addTarget(viewTop)
-//        }
-//
-//
-//        // save rect of view in screen coordinates
-//        val viewRect = Rect()
-//        recyclerView.getGlobalVisibleRect(viewRect)
-//
-//
-//        val explode =
-//            ForcedExplode(View.INVISIBLE, View.VISIBLE)
-////            Explode()
-//                .apply {
-//                    interpolator = OvershootInterpolator()
-//                    addTarget(recyclerView)
-//                    duration = 1000
-//                    mode =Visibility.MODE_IN
-//                }
-//
-//        explode.epicenterCallback = object : Transition.EpicenterCallback() {
-//            override fun onGetEpicenter(transition: Transition): Rect {
-//                return viewRect
-//            }
-//        }
-//
-//        transitionSetReturn.addTransition(slideToTop)
-//        transitionSetReturn.addTransition(explode)
-
-        val appBarLayout: AppBarLayout = view.findViewById(R.id.appbar)
-
-        val fade: Transition = Fade().apply {
-            excludeTarget(appBarLayout, true)
-            duration = 1000
-        }
-
         // Return Transitions
-
         val viewRect = Rect()
         recyclerView.getGlobalVisibleRect(viewRect)
 
-        val explode = Explode()
+        val explode = ForcedExplode(View.VISIBLE, View.INVISIBLE)
             .apply {
-                excludeTarget(appBarLayout, true)
-                excludeTarget(viewTop, true)
+                excludeTarget(appbar, true)
                 excludeTarget(view, true)
-                excludeChildren(view, false)
-                duration = 1000
+                excludeTarget(recyclerView, false)
+                duration = 500
 
                 epicenterCallback = object : Transition.EpicenterCallback() {
                     override fun onGetEpicenter(transition: Transition): Rect {
                         return viewRect
                     }
                 }
-            }.addListener(object : TransitionXAdapter() {
-                override fun onTransitionStart(transition: Transition) {
-//                    recyclerView.adapter = null
-                }
-            })
+            }
 
-        val transitionSetExit = TransitionSet()
-
-        transitionSetExit.addTransition(fade)
-        transitionSetExit.addTransition(explode)
-        exitTransition = transitionSetExit
-
-        return transitionSetExit
+        return explode
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -262,7 +212,6 @@ class Fragment2_5ToolbarDetailAlt2 : Fragment() {
                 startPostponedEnterTransition()
             }
         }
-
 
         val appbar = view.findViewById<AppBarLayout>(R.id.appbar)
         val collapsingToolbar =

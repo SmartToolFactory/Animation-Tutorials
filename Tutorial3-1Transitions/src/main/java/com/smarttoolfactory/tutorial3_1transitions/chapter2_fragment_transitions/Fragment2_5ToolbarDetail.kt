@@ -1,5 +1,6 @@
 package com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions
 
+import android.graphics.Point
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -29,9 +30,8 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostCardViewBinder
 import com.smarttoolfactory.tutorial3_1transitions.transition.ScaleTransition
-import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
+import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.CircularReveal
 import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ForcedCircularReveal
-import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ScaleChange
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.abs
@@ -67,6 +67,9 @@ class Fragment2_5ToolbarDetail : Fragment() {
 
     private fun prepareSharedElementTransition(view: View) {
 
+        // Wait return transition to finish before showing source fragment when back pressed
+        allowReturnTransitionOverlap = false
+
         setUpSharedElementTransition(view)
 
         // Enter transition for non-shared Views
@@ -89,6 +92,9 @@ class Fragment2_5ToolbarDetail : Fragment() {
          */
         sharedElementReturnTransition =
             TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+                .apply {
+                    startDelay = 200
+                }
 
         // This is shared transition for imageView and title
         val moveTransition =
@@ -120,7 +126,6 @@ class Fragment2_5ToolbarDetail : Fragment() {
                 interpolator = OvershootInterpolator()
                 startDelay = 500
                 duration = 600
-                debugMode = true
                 addTarget(recyclerView)
             }
 
@@ -129,14 +134,16 @@ class Fragment2_5ToolbarDetail : Fragment() {
             viewImageBackground.height.toDouble()
         ).toFloat()
 
+        // 🔥 Circular reveal does not work, we need visibility change for Enter or ReEnter transitions
         val circularReveal =
+//            CircularReveal()
             ForcedCircularReveal(true, View.INVISIBLE, View.VISIBLE)
                 .apply {
                     addTarget(viewImageBackground)
                     setStartRadius(0f)
                     setEndRadius(endRadius)
                     interpolator = AccelerateDecelerateInterpolator()
-                    duration = 700
+                    duration = 500
                 }
 
         transitionSetEnter.addTransition(scaleAnimation)
@@ -147,53 +154,41 @@ class Fragment2_5ToolbarDetail : Fragment() {
 
     private fun createReturnTransition(view: View): Transition {
 
+        var recyclerViewWidth = 0
+        var transitionHeight = 0
+
         val viewTop = view.findViewById<View>(R.id.viewImageBackground)
         val recyclerView = view.findViewById<View>(R.id.recyclerView)
 
-        val transitionSetReturn = TransitionSet()
-
-        val slideToTop = Slide(Gravity.TOP).apply {
-            interpolator = AnimationUtils.loadInterpolator(
-                requireContext(),
-                android.R.interpolator.linear_out_slow_in
-            )
-            duration = 500
-            addTarget(viewTop)
+        view.post {
+            recyclerViewWidth = view.width
+            transitionHeight = view.height
         }
 
+        val transitionSetReturn = TransitionSet()
 
-        /*
-            🔥 Values are in reverse order because this Transition will call Animator from
-            onDisappear.
-         */
-        val scaleRV =
-            ScaleChange(0.95f, 0.95f, 1f, 1f)
-                .apply {
-                    interpolator = AnimationUtils.loadInterpolator(
-                        requireContext(),
-                        android.R.interpolator.linear_out_slow_in
-                    )
-                    duration = 300
-                    debugMode = true
-                    addTarget(recyclerView)
-                }
-                .addListener(object : TransitionXAdapter() {
-                    override fun onTransitionEnd(transition: Transition) {
-                        super.onTransitionEnd(transition)
-                        recyclerView.visibility = View.INVISIBLE
-                    }
-                })
-
-        val slide = Slide(Gravity.END)
+        val slideToTop = Slide(Gravity.TOP)
             .apply {
-                startDelay = 400
-                duration = 400
-                addTarget(recyclerView)
+                interpolator = AnimationUtils.loadInterpolator(
+                    requireContext(),
+                    android.R.interpolator.linear_out_slow_in
+                )
+                duration = 500
+                addTarget(viewTop)
             }
 
+        // Exit Transitions
+        val explode =
+            CircularReveal()
+                .apply {
+                    addTarget(recyclerView)
+                    startDelay = 200
+                    duration = 500
+                    setCenter(Point(recyclerViewWidth, transitionHeight))
+                }
+
         transitionSetReturn.addTransition(slideToTop)
-        transitionSetReturn.addTransition(scaleRV)
-        transitionSetReturn.addTransition(slide)
+        transitionSetReturn.addTransition(explode)
 
         return transitionSetReturn
     }

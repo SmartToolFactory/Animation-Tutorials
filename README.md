@@ -6,7 +6,7 @@
 
 Tutorials about animations in Android such as ObjectAnimators, ValueAnimators, translations,
 gradient animations, AnimationDrawables, AnimatedVectorDrawables with states, physics animations,
-fragment transitions and image to ViewPager transitions and more.
+fragment transitions, image to ViewPager transitions and more.
 
 ## Overview
 
@@ -323,13 +323,12 @@ of ***Transition*** start and end point to same value.
 
 #### Note: 
 🔥🔥🔥 In tutorial 2-4 and 2-5, having same background color for both fragments causing second fragment's **ENTER TRANSITION(CircularReveal and Slide.BOTTOM)** to not work.
-So when using **Transitions** that extend ```Visiblity``` class such as Slide, or Fade be careful about background color.
+So when using **Transitions** that extend ```Visiblity``` class such as Slide, or Fade be careful about background color. This is only for **enterTransition** for destination and **reEnterTransition** for source fragments. **exitTransition** and **returnTransition** do not need visibility change.
 
 To prevent this use one of the solutions below:
 
-* Set ```android:transitionGroup="false"``` on layout with fragments
-* Set callback and set start and end properties for starting and ending scenes with
 
+1-  Set callback and set start and end properties for starting and ending scenes with
 ```
         setEnterSharedElementCallback(object : SharedElementCallback() {
 
@@ -361,7 +360,7 @@ To prevent this use one of the solutions below:
     }
 ```
 
-* Use **custom transitions** that extend either ```Transition``` or ```Visibility``` and force value changes.
+2- Use **custom transitions** that extend either ```Transition``` or ```Visibility``` and force value changes.
 
 * ⚠️ Transitions that extend ```Visibility``` such as ```Slide```, ```Fade```,  or ```Explode``` depends on ***visibility*** of the view. If 
 visibility is changed from ```View.INVISIBLE``` to ```View.VISIBLE``` ```onAppear``` method of ```Visibility``` class is called, if visibility changes
@@ -371,11 +370,10 @@ from backwards.
 * ⚠️ When current transition is **EXIT** or **RETURN** transition  ```captureEndValues``` is not called, because of this use a transition that extends ```Visibility``` for ```exitTransition``` and ```returnTransition``` to start,
 and be aware that Animator from ```onDisAppear``` is called while current transition is exit or return.
 
-#### Note: Breaker of chains — Transition Groups
+#### 🤩 Note: Breaker of chains — Transition Groups
 
 By default all views under a parent/ancestor with a background set (even transparent ones) will be automatically deemed a group. If you need to break them up like we here with a RecyclerView as the shared-root-white-backgrounded layout with transparent child Item views. You’ll need to set the **layout with the background** to **transitionGroup=false.**
 But on the other hand, since the Items are “background-less” themselves, to prevent an out-of-body experience you’ll need to do the opposite and set transitionGroup=true on the Item layouts for all the child views in that Item to move together.
-
 
 
 ### Resources and References
