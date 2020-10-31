@@ -9,16 +9,15 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.SharedElementCallback
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.transition.Slide
-import androidx.transition.Transition
-import androidx.transition.TransitionInflater
-import androidx.transition.TransitionSet
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.transition.*
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.SingleViewBinderListAdapter
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.MagazineModel
@@ -26,12 +25,13 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.model.Post
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostCardViewBinder
+import com.smarttoolfactory.tutorial3_1transitions.transition.PropagatingTransition
 import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.CircularReveal
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.hypot
 
-class Fragment2_5MagazineDetailAlt : Fragment() {
+class Fragment2_5ToolbarDetailAlt : Fragment() {
 
     var isEntering = true
 
@@ -130,7 +130,7 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
                 if (isEntering) {
                     viewImageBackground.visibility = View.INVISIBLE
                     recyclerView.visibility = View.INVISIBLE
-                }else {
+                } else {
                     viewImageBackground.visibility = View.VISIBLE
                     recyclerView.visibility = View.VISIBLE
                 }
@@ -148,7 +148,7 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
                 if (isEntering) {
                     viewImageBackground.visibility = View.VISIBLE
                     recyclerView.visibility = View.VISIBLE
-                }else {
+                } else {
                     viewImageBackground.visibility = View.INVISIBLE
                     recyclerView.visibility = View.INVISIBLE
                 }
@@ -236,6 +236,8 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
 
         val ivMagazineCover = view.findViewById<ImageView>(R.id.ivMagazineCover)
         val tvMagazineTitle = view.findViewById<TextView>(R.id.tvMagazineTitle)
+        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefreshLayout)
+        val constraintLayout = view.findViewById<ConstraintLayout>(R.id.constraintLayout)
 
         ivMagazineCover.transitionName = magazineModel.transitionName
         ivMagazineCover.setImageResource(magazineModel.drawableRes)
@@ -259,6 +261,25 @@ class Fragment2_5MagazineDetailAlt : Fragment() {
             (it.parent as? ViewGroup)?.doOnPreDraw {
                 startPostponedEnterTransition()
             }
+        }
+
+
+        // These are inside a refresh layout so we can easily "refresh" and see the transition again.
+        swipeRefreshLayout.setOnRefreshListener {
+            PropagatingTransition(
+                sceneRoot = recyclerView,
+                startingView = recyclerView,
+                transition = TransitionSet()
+                    .addTransition(
+                        Fade(Fade.IN)
+                            .setInterpolator { (it - 0.5f) * 2 })
+                    .addTransition(Slide(Gravity.BOTTOM))
+                    .apply {
+                        duration = 1000
+                    }
+            )
+                .start()
+            swipeRefreshLayout.isRefreshing = false
         }
     }
 

@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/fragment2_MagazineDetailAlt"
-        android:name="com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Fragment2_5MagazineDetailAlt"
+        android:name="com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Fragment2_5ToolbarDetailAlt"
         android:label="Fragment2_4MagazineDetail">
         <argument
             android:name="magazineArgs"

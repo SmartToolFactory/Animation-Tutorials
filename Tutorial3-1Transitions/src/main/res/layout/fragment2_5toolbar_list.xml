@@ -1,45 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.smarttoolfactory.tutorial3_1transitions.CustomSwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#f6f8fb"
-    android:transitionGroup="false"
-    tools:context=".chapter2_fragment_transitions.Activity2_5FragmentTransitionsWithToolbar">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:liftOnScroll="true">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:menu="@menu/main"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:title="@string/activity2_5" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:background="#f6f8fb"
+        android:transitionGroup="false"
+        tools:context=".chapter2_fragment_transitions.Activity2_5FragmentTransitionsWithToolbar">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:liftOnScroll="true">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:menu="@menu/main"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
+                app:title="@string/activity2_5" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_magazine" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_magazine" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</com.smarttoolfactory.tutorial3_1transitions.CustomSwipeRefreshLayout >

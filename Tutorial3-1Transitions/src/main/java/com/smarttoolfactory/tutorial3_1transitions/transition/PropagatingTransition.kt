@@ -1,22 +1,23 @@
 package com.smarttoolfactory.tutorial3_1transitions.transition
 
 import android.graphics.Rect
-import android.transition.*
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Interpolator
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
+import androidx.transition.*
 
 /**
  * Created by Nick Cruz on 4/23/17
  */
 class PropagatingTransition(
-        val sceneRoot: ViewGroup,
-        var startingView: View? = null,
-        val transition: Transition = Fade(Fade.IN),
-        duration: Long = 600,
-        interpolator: Interpolator = LinearOutSlowInInterpolator(),
-        propagation: TransitionPropagation = CircularPropagation()) {
+    val sceneRoot: ViewGroup,
+    var startingView: View? = null,
+    val transition: Transition = Fade(Fade.IN),
+    duration: Long = 600,
+    interpolator: Interpolator = LinearOutSlowInInterpolator(),
+    propagation: TransitionPropagation = CircularPropagation()
+) {
 
     val targets: Collection<View>
 
@@ -56,11 +57,11 @@ class PropagatingTransition(
      * framework, we retrieve the global visible Rect of the View in order to establish that as the
      * starting view.
      */
-    private fun View.asEpicenter() : Transition.EpicenterCallback {
+    private fun View.asEpicenter(): Transition.EpicenterCallback {
         val viewRect = Rect()
         getGlobalVisibleRect(viewRect)
         return object : Transition.EpicenterCallback() {
-            override fun onGetEpicenter(transition: Transition?): Rect = viewRect
+            override fun onGetEpicenter(transition: Transition): Rect = viewRect
         }
     }
 }

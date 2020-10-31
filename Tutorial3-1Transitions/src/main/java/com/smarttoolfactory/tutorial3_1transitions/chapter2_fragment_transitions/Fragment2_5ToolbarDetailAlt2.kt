@@ -9,13 +9,18 @@ import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.transition.*
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.transition.Transition
+import androidx.transition.TransitionInflater
+import androidx.transition.TransitionSet
+import androidx.transition.Visibility
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.smarttoolfactory.tutorial3_1transitions.ImageData
@@ -28,6 +33,8 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.model.Post
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostGridViewBinder
+import com.smarttoolfactory.tutorial3_1transitions.transition.PropagatingTransition
+import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ExplodeFadeOut
 import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ForcedCircularReveal
 import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ForcedExplode
 import java.util.*
@@ -113,8 +120,6 @@ class Fragment2_5ToolbarDetailAlt2 : Fragment() {
         view.getGlobalVisibleRect(viewRect)
 
         // create Explode transition with epicenter
-
-
         // 🔥 Explode  does not work, we need visibility change for Enter or ReEnter transitions
         val explode =
 //            Explode()
@@ -187,6 +192,7 @@ class Fragment2_5ToolbarDetailAlt2 : Fragment() {
 
         val ivMagazineCover = view.findViewById<ImageView>(R.id.ivMagazineCover)
         val tvMagazineTitle = view.findViewById<TextView>(R.id.tvMagazineTitle)
+        val constraintLayout = view.findViewById<ConstraintLayout>(R.id.constraintLayout)
 
         ivMagazineCover.transitionName = magazineModel.transitionName
         ivMagazineCover.setImageResource(magazineModel.drawableRes)
@@ -226,24 +232,24 @@ class Fragment2_5ToolbarDetailAlt2 : Fragment() {
             }
         })
 
-        recyclerView.setOnTouchListener { v, _ -> // save rect of view in screen coordinates
-            val viewRect = Rect()
-            v.getGlobalVisibleRect(viewRect)
 
-            // create Explode transition with epicenter
-            val explode: Transition = Explode()
-            explode.epicenterCallback = object : Transition.EpicenterCallback() {
+        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefreshLayout)
 
-                override fun onGetEpicenter(transition: Transition): Rect {
-                    return viewRect
-                }
-            }
-            explode.duration = 1000
-            TransitionManager.beginDelayedTransition(recyclerView, explode)
-
-            // remove all views from Recycler View
-            recyclerView.adapter = null
-            false
+        // These are inside a refresh layout so we can easily "refresh" and see the transition again.
+        swipeRefreshLayout.setOnRefreshListener {
+            PropagatingTransition(
+                sceneRoot = recyclerView,
+                startingView = recyclerView,
+                transition = TransitionSet()
+                    .addTransition(
+                        ExplodeFadeOut()
+                            .apply {
+                                mode = Visibility.MODE_IN
+                            }),
+                duration = 1000
+            )
+                .start()
+            swipeRefreshLayout.isRefreshing = false
         }
     }
 

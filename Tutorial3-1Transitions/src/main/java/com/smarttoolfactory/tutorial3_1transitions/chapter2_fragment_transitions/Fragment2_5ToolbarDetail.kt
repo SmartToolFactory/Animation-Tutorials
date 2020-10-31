@@ -11,15 +11,14 @@ import android.view.animation.AnimationUtils
 import android.view.animation.OvershootInterpolator
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.transition.Slide
-import androidx.transition.Transition
-import androidx.transition.TransitionInflater
-import androidx.transition.TransitionSet
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.transition.*
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.smarttoolfactory.tutorial3_1transitions.R
@@ -29,8 +28,10 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.model.Post
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostCardViewBinder
+import com.smarttoolfactory.tutorial3_1transitions.transition.PropagatingTransition
 import com.smarttoolfactory.tutorial3_1transitions.transition.ScaleTransition
 import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.CircularReveal
+import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ExplodeFadeOut
 import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ForcedCircularReveal
 import java.util.*
 import kotlin.collections.ArrayList
@@ -178,7 +179,7 @@ class Fragment2_5ToolbarDetail : Fragment() {
             }
 
         // Exit Transitions
-        val explode =
+        val circularReveal =
             CircularReveal()
                 .apply {
                     addTarget(recyclerView)
@@ -188,7 +189,7 @@ class Fragment2_5ToolbarDetail : Fragment() {
                 }
 
         transitionSetReturn.addTransition(slideToTop)
-        transitionSetReturn.addTransition(explode)
+        transitionSetReturn.addTransition(circularReveal)
 
         return transitionSetReturn
     }
@@ -196,6 +197,7 @@ class Fragment2_5ToolbarDetail : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val coordinatorLayout = view.findViewById<CoordinatorLayout>(R.id.coordinatorLayout)
         val ivMagazineCover = view.findViewById<ImageView>(R.id.ivMagazineCover)
         val tvMagazineTitle = view.findViewById<TextView>(R.id.tvMagazineTitle)
 
@@ -233,6 +235,36 @@ class Fragment2_5ToolbarDetail : Fragment() {
             } else {
                 collapsingToolbar.title = ""
             }
+        })
+
+        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefreshLayout)
+
+        // These are inside a refresh layout so we can easily "refresh" and see the transition again.
+        swipeRefreshLayout.setOnRefreshListener {
+            PropagatingTransition(
+                sceneRoot = recyclerView,
+                startingView = recyclerView,
+                transition = TransitionSet()
+                    .addTransition(
+                        ExplodeFadeOut()
+                            .apply {
+                                mode = Visibility.MODE_IN
+                            }),
+                duration = 1000
+            )
+                .start()
+            swipeRefreshLayout.isRefreshing = false
+        }
+
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                val topRowVerticalPosition =
+                    if (recyclerView.childCount == 0) 0 else recyclerView.getChildAt(0).top
+                swipeRefreshLayout.isEnabled = topRowVerticalPosition >= 0
+
+            }
+
         })
     }
 
