@@ -324,7 +324,11 @@ of ***Transition*** start and end point to same value.
 #### Note: 
 🔥🔥🔥 In tutorial 2-4 and 2-5, having same background color for both fragments causing second fragment's **ENTER TRANSITION(CircularReveal and Slide.BOTTOM)** to not work.
 So when using **Transitions** that extend ```Visiblity``` class such as Slide, or Fade be careful about background color.
-Either set callback and set start and end properties for starging and ending scenes with
+
+To prevent this use one of the solutions below:
+
+* Set ```android:transitionGroup="false"``` on layout with fragments
+* Set callback and set start and end properties for starting and ending scenes with
 
 ```
         setEnterSharedElementCallback(object : SharedElementCallback() {
@@ -357,7 +361,7 @@ Either set callback and set start and end properties for starging and ending sce
     }
 ```
 
-or use **custom transitions** that extend either ```Transition``` or ```Visibility``` and force value changes.
+* Use **custom transitions** that extend either ```Transition``` or ```Visibility``` and force value changes.
 
 * ⚠️ Transitions that extend ```Visibility``` such as ```Slide```, ```Fade```,  or ```Explode``` depends on ***visibility*** of the view. If 
 visibility is changed from ```View.INVISIBLE``` to ```View.VISIBLE``` ```onAppear``` method of ```Visibility``` class is called, if visibility changes
@@ -366,6 +370,13 @@ from backwards.
 
 * ⚠️ When current transition is **EXIT** or **RETURN** transition  ```captureEndValues``` is not called, because of this use a transition that extends ```Visibility``` for ```exitTransition``` and ```returnTransition``` to start,
 and be aware that Animator from ```onDisAppear``` is called while current transition is exit or return.
+
+#### Note: Breaker of chains — Transition Groups
+
+By default all views under a parent/ancestor with a background set (even transparent ones) will be automatically deemed a group. If you need to break them up like we here with a RecyclerView as the shared-root-white-backgrounded layout with transparent child Item views. You’ll need to set the **layout with the background** to **transitionGroup=false.**
+But on the other hand, since the Items are “background-less” themselves, to prevent an out-of-body experience you’ll need to do the opposite and set transitionGroup=true on the Item layouts for all the child views in that Item to move together.
+
+
 
 ### Resources and References
 
@@ -390,6 +401,8 @@ and be aware that Animator from ```onDisAppear``` is called while current transi
 [Circular reveal animation between Fragments | by Gabor Novak | Medium](https://medium.com/@gabornovak/circular-reveal-animation-between-fragments-d8ed9011aec)
 <br>
 [Reveal Transition](https://halfthought.wordpress.com/2014/11/07/reveal-transition/)
+<br>
+[Android — Inbox Material Transitions for RecyclerView](https://medium.com/workday-engineering/android-inbox-material-transitions-for-recyclerview-7ae3cb241aed)
 <br>
 [Plaid App](https://github.com/android/plaid)
 

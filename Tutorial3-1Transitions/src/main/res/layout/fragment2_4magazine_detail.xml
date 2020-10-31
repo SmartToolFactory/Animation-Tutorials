@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--🔥 Adding background color or having same background color causing transitions to not work🤔??? -->
+<!--🔥 Set :transitionGroup="false" -->
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f6f8fb"
+    android:transitionGroup="false"
     tools:context=".chapter2_fragment_transitions.Activity2_4FragmentTransitionsWithNavComponents">
 
     <androidx.constraintlayout.widget.ConstraintLayout

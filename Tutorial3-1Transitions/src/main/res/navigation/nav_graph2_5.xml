@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_fragment2_5ToolbarList_to_fragment2_4MagazineDetail"
             app:destination="@id/fragment2_MagazineDetailAlt" />
+        <action
+            android:id="@+id/action_fragment2_5ToolbarList_to_fragment2_5ToolbarDetailAlt2"
+            app:destination="@id/fragment2_5ToolbarDetailAlt2" />
     </fragment>
 
     <fragment
@@ -30,6 +33,14 @@
         android:id="@+id/fragment2_MagazineDetailAlt"
         android:name="com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Fragment2_5MagazineDetailAlt"
         android:label="Fragment2_4MagazineDetail">
+        <argument
+            android:name="magazineArgs"
+            app:argType="com.smarttoolfactory.tutorial3_1transitions.adapter.model.MagazineModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment2_5ToolbarDetailAlt2"
+        android:name="com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Fragment2_5ToolbarDetailAlt2"
+        android:label="Fragment2_5ToolbarDetailAlt2">
         <argument
             android:name="magazineArgs"
             app:argType="com.smarttoolfactory.tutorial3_1transitions.adapter.model.MagazineModel" />

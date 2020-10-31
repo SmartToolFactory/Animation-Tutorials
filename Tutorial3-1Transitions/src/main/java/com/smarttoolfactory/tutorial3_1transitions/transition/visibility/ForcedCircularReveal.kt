@@ -21,9 +21,9 @@ import androidx.transition.TransitionValues
  *
  */
 class ForcedCircularReveal(
+    var forceVisibilityChange: Boolean = true,
     private val startVisibility: Int = View.INVISIBLE,
-    private val endVisibility: Int = View.VISIBLE,
-    var forceVisibilityChange: Boolean = true
+    private val endVisibility: Int = View.VISIBLE
 ) : CircularReveal() {
 
 

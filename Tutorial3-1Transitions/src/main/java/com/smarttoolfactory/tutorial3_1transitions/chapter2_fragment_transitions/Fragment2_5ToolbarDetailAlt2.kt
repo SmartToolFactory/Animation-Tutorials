@@ -1,48 +1,47 @@
 package com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions
 
+import android.annotation.SuppressLint
+import android.graphics.Rect
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.AnimationUtils
 import android.view.animation.OvershootInterpolator
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.transition.Slide
-import androidx.transition.Transition
-import androidx.transition.TransitionInflater
-import androidx.transition.TransitionSet
+import androidx.transition.*
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
+import com.smarttoolfactory.tutorial3_1transitions.ImageData
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.SingleViewBinderListAdapter
+import com.smarttoolfactory.tutorial3_1transitions.adapter.itemdecoration.GridSpacingItemDecoration
+import com.smarttoolfactory.tutorial3_1transitions.adapter.model.ImageModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.MagazineModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.Post
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
-import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostCardViewBinder
-import com.smarttoolfactory.tutorial3_1transitions.transition.ScaleTransition
+import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostGridViewBinder
 import com.smarttoolfactory.tutorial3_1transitions.transition.TransitionXAdapter
 import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ForcedCircularReveal
-import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ScaleChange
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.abs
 import kotlin.math.hypot
+
 
 /**
  * This sample uses custom transitions to overcome  change issue that
  * causing ENTER transitions to not work. Having different visibility before and after
  * ENTER transition solves the issue
  */
-class Fragment2_5ToolbarDetail : Fragment() {
+class Fragment2_5ToolbarDetailAlt2 : Fragment() {
 
     lateinit var magazineModel: MagazineModel
 
@@ -107,22 +106,28 @@ class Fragment2_5ToolbarDetail : Fragment() {
 
         val transitionSetEnter = TransitionSet()
 
-        val scaleX = .8f
-        val scaleY = .8f
 
-        recyclerView.scaleX = 0f
-        recyclerView.scaleY = 0f
-        recyclerView.requestLayout()
+        // save rect of view in screen coordinates
+        val viewRect = Rect()
+        view.getGlobalVisibleRect(viewRect)
+
+        // create Explode transition with epicenter
 
 
-        val scaleAnimation = ScaleTransition(scaleX, scaleY, 1f, 1f, true)
-            .apply {
-                interpolator = OvershootInterpolator()
-                startDelay = 500
-                duration = 600
-                debugMode = true
-                addTarget(recyclerView)
+        val explode =
+//            ForcedExplode(View.INVISIBLE, View.VISIBLE)
+            Explode()
+                .apply {
+                    startDelay = 500
+                    interpolator = OvershootInterpolator()
+                    addTarget(recyclerView)
+                }
+
+        explode.epicenterCallback = object : Transition.EpicenterCallback() {
+            override fun onGetEpicenter(transition: Transition): Rect {
+                return viewRect
             }
+        }
 
         val endRadius = hypot(
             viewImageBackground.width.toDouble(),
@@ -130,7 +135,7 @@ class Fragment2_5ToolbarDetail : Fragment() {
         ).toFloat()
 
         val circularReveal =
-            ForcedCircularReveal(true, View.INVISIBLE, View.VISIBLE)
+            ForcedCircularReveal(true, View.VISIBLE, View.INVISIBLE)
                 .apply {
                     addTarget(viewImageBackground)
                     setStartRadius(0f)
@@ -139,7 +144,7 @@ class Fragment2_5ToolbarDetail : Fragment() {
                     duration = 700
                 }
 
-        transitionSetEnter.addTransition(scaleAnimation)
+        transitionSetEnter.addTransition(explode)
         transitionSetEnter.addTransition(circularReveal)
 
         return transitionSetEnter
@@ -148,56 +153,85 @@ class Fragment2_5ToolbarDetail : Fragment() {
     private fun createReturnTransition(view: View): Transition {
 
         val viewTop = view.findViewById<View>(R.id.viewImageBackground)
-        val recyclerView = view.findViewById<View>(R.id.recyclerView)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
 
         val transitionSetReturn = TransitionSet()
 
-        val slideToTop = Slide(Gravity.TOP).apply {
-            interpolator = AnimationUtils.loadInterpolator(
-                requireContext(),
-                android.R.interpolator.linear_out_slow_in
-            )
-            duration = 500
-            addTarget(viewTop)
+//        val slideToTop = Slide(Gravity.TOP).apply {
+//            interpolator = AnimationUtils.loadInterpolator(
+//                requireContext(),
+//                android.R.interpolator.linear_out_slow_in
+//            )
+//            duration = 1000
+//            addTarget(viewTop)
+//        }
+//
+//
+//        // save rect of view in screen coordinates
+//        val viewRect = Rect()
+//        recyclerView.getGlobalVisibleRect(viewRect)
+//
+//
+//        val explode =
+//            ForcedExplode(View.INVISIBLE, View.VISIBLE)
+////            Explode()
+//                .apply {
+//                    interpolator = OvershootInterpolator()
+//                    addTarget(recyclerView)
+//                    duration = 1000
+//                    mode =Visibility.MODE_IN
+//                }
+//
+//        explode.epicenterCallback = object : Transition.EpicenterCallback() {
+//            override fun onGetEpicenter(transition: Transition): Rect {
+//                return viewRect
+//            }
+//        }
+//
+//        transitionSetReturn.addTransition(slideToTop)
+//        transitionSetReturn.addTransition(explode)
+
+        val appBarLayout: AppBarLayout = view.findViewById(R.id.appbar)
+
+        val fade: Transition = Fade().apply {
+            excludeTarget(appBarLayout, true)
+            duration = 1000
         }
 
+        // Return Transitions
 
-        /*
-            🔥 Values are in reverse order because this Transition will call Animator from
-            onDisappear.
-         */
-        val scaleRV =
-            ScaleChange(0.95f, 0.95f, 1f, 1f)
-                .apply {
-                    interpolator = AnimationUtils.loadInterpolator(
-                        requireContext(),
-                        android.R.interpolator.linear_out_slow_in
-                    )
-                    duration = 300
-                    debugMode = true
-                    addTarget(recyclerView)
-                }
-                .addListener(object : TransitionXAdapter() {
-                    override fun onTransitionEnd(transition: Transition) {
-                        super.onTransitionEnd(transition)
-                        recyclerView.visibility = View.INVISIBLE
-                    }
-                })
+        val viewRect = Rect()
+        recyclerView.getGlobalVisibleRect(viewRect)
 
-        val slide = Slide(Gravity.END)
+        val explode = Explode()
             .apply {
-                startDelay = 400
-                duration = 400
-                addTarget(recyclerView)
-            }
+                excludeTarget(appBarLayout, true)
+                excludeTarget(viewTop, true)
+                excludeTarget(view, true)
+                excludeChildren(view, false)
+                duration = 1000
 
-        transitionSetReturn.addTransition(slideToTop)
-        transitionSetReturn.addTransition(scaleRV)
-        transitionSetReturn.addTransition(slide)
+                epicenterCallback = object : Transition.EpicenterCallback() {
+                    override fun onGetEpicenter(transition: Transition): Rect {
+                        return viewRect
+                    }
+                }
+            }.addListener(object : TransitionXAdapter() {
+                override fun onTransitionStart(transition: Transition) {
+//                    recyclerView.adapter = null
+                }
+            })
 
-        return transitionSetReturn
+        val transitionSetExit = TransitionSet()
+
+        transitionSetExit.addTransition(fade)
+        transitionSetExit.addTransition(explode)
+        exitTransition = transitionSetExit
+
+        return transitionSetExit
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -209,7 +243,7 @@ class Fragment2_5ToolbarDetail : Fragment() {
         tvMagazineTitle.text = magazineModel.title
         tvMagazineTitle.transitionName = magazineModel.title
 
-        val postCardViewBinder = PostCardViewBinder()
+        val postCardViewBinder = PostGridViewBinder()
 
         val listAdapter = SingleViewBinderListAdapter(postCardViewBinder as ItemBinder)
 
@@ -217,7 +251,8 @@ class Fragment2_5ToolbarDetail : Fragment() {
 
         recyclerView?.apply {
             this.adapter = listAdapter
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = GridLayoutManager(requireContext(), 3)
+            addItemDecoration(GridSpacingItemDecoration(3, 25))
         }
 
         listAdapter.submitList(generateMockPosts())
@@ -228,8 +263,10 @@ class Fragment2_5ToolbarDetail : Fragment() {
             }
         }
 
+
         val appbar = view.findViewById<AppBarLayout>(R.id.appbar)
-        val collapsingToolbar = view.findViewById<CollapsingToolbarLayout>(R.id.collapsingToolbar)
+        val collapsingToolbar =
+            view.findViewById<CollapsingToolbarLayout>(R.id.collapsingToolbar)
         appbar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
 
             //Check if the view is collapsed
@@ -239,6 +276,26 @@ class Fragment2_5ToolbarDetail : Fragment() {
                 collapsingToolbar.title = ""
             }
         })
+
+        recyclerView.setOnTouchListener { v, _ -> // save rect of view in screen coordinates
+            val viewRect = Rect()
+            v.getGlobalVisibleRect(viewRect)
+
+            // create Explode transition with epicenter
+            val explode: Transition = Explode()
+            explode.epicenterCallback = object : Transition.EpicenterCallback() {
+
+                override fun onGetEpicenter(transition: Transition): Rect {
+                    return viewRect
+                }
+            }
+            explode.duration = 1000
+            TransitionManager.beginDelayedTransition(recyclerView, explode)
+
+            // remove all views from Recycler View
+            recyclerView.adapter = null
+            false
+        }
     }
 
     private fun generateMockPosts(): List<PostCardModel> {
@@ -279,4 +336,11 @@ class Fragment2_5ToolbarDetail : Fragment() {
         }
     }
 
+    private fun getImageData(): List<ImageModel> {
+        val imageList = ArrayList<ImageModel>()
+        ImageData.IMAGE_DRAWABLES.forEach {
+            imageList.add(ImageModel(it))
+        }
+        return imageList
+    }
 }

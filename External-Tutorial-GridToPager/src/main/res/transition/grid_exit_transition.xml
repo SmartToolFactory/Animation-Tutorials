@@ -21,7 +21,7 @@
     <fade>
         <targets android:targetId="@id/card_view" />
     </fade>
-<!--    <explode>-->
-<!--        <targets android:targetId="@id/recycler_view"/>-->
-<!--    </explode>-->
+    <explode>
+        <targets android:targetId="@id/recycler_view" />
+    </explode>
 </transitionSet>

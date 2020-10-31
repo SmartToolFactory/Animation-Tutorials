@@ -23,13 +23,17 @@
         <activity android:name=".chapter1_activity_transitions.Activity1_2Details" />
         <activity android:name=".chapter1_activity_transitions.Activity1_3RecyclerViewToViewPager2Transition" />
         <activity android:name=".chapter1_activity_transitions.Activity1_3Details" />
+        <activity android:name=".chapter1_activity_transitions.Activity1_5Details" />
 
+        <!-- Fragment Tutorials -->
         <activity
             android:name=".chapter1_activity_transitions.Activity1_4RVtoVP2Transition"
             android:theme="@style/Theme.App.Home" />
         <activity
             android:name=".chapter1_activity_transitions.Activity1_4Details"
             android:theme="@style/Theme.App.Details" />
+        <activity android:name=".chapter1_activity_transitions.Activity1_5RecyclerViewTransition2" />
+
         <activity android:name=".chapter2_fragment_transitions.Activity2_1FragmentTransitionsBasics" />
         <activity android:name=".chapter2_fragment_transitions.Activity2_2FragmentTransitionLifeCycles" />
         <activity

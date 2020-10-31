@@ -32,7 +32,7 @@ class PostCardViewBinder(
     }
 
     override fun areItemsTheSame(oldItem: PostCardModel, newItem: PostCardModel): Boolean {
-        return oldItem.post == newItem.post
+        return oldItem.post.id == newItem.post.id
     }
 
     override fun areContentsTheSame(oldItem: PostCardModel, newItem: PostCardModel): Boolean {
