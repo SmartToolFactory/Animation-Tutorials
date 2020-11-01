@@ -135,6 +135,13 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
                 getString(R.string.activity2_5)
             )
         )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity2_6FragmentExpandCollapseTransitions::class.java,
+                getString(R.string.activity2_6)
+            )
+        )
     }
 
     @Override

@@ -21,11 +21,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.transition.*
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
+import com.smarttoolfactory.tutorial3_1transitions.MockDataCreator
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.SingleViewBinderListAdapter
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.MagazineModel
-import com.smarttoolfactory.tutorial3_1transitions.adapter.model.Post
-import com.smarttoolfactory.tutorial3_1transitions.adapter.model.PostCardModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostCardViewBinder
 import com.smarttoolfactory.tutorial3_1transitions.transition.PropagatingTransition
@@ -33,8 +32,6 @@ import com.smarttoolfactory.tutorial3_1transitions.transition.ScaleTransition
 import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.CircularReveal
 import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ExplodeFadeOut
 import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ForcedCircularReveal
-import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.math.abs
 import kotlin.math.hypot
 
@@ -217,7 +214,7 @@ class Fragment2_5ToolbarDetail : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        listAdapter.submitList(generateMockPosts())
+        listAdapter.submitList(MockDataCreator.generateMockPosts(requireContext()))
 
         view.doOnNextLayout {
             (it.parent as? ViewGroup)?.doOnPreDraw {
@@ -268,42 +265,5 @@ class Fragment2_5ToolbarDetail : Fragment() {
         })
     }
 
-    private fun generateMockPosts(): List<PostCardModel> {
-        val postList = ArrayList<PostCardModel>()
-        val random = Random()
-
-        repeat(20) {
-            val randomNum = random.nextInt(5)
-            val title = "Title $randomNum"
-            val postBody = getString(R.string.bacon_ipsum)
-            val post = Post(it, it, title, postBody)
-            postList.add(PostCardModel(post, getDrawableRes(randomNum)))
-        }
-
-        return postList
-    }
-
-    private fun getDrawableRes(userId: Int): Int {
-        return when {
-            userId % 6 == 0 -> {
-                R.drawable.avatar_1_raster
-            }
-            userId % 6 == 1 -> {
-                R.drawable.avatar_2_raster
-            }
-            userId % 6 == 2 -> {
-                R.drawable.avatar_3_raster
-            }
-            userId % 6 == 3 -> {
-                R.drawable.avatar_4_raster
-            }
-            userId % 6 == 4 -> {
-                R.drawable.avatar_5_raster
-            }
-            else -> {
-                R.drawable.avatar_6_raster
-            }
-        }
-    }
 
 }

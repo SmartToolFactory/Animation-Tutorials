@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph2_6">
+    android:id="@+id/nav_graph2_6"
+    app:startDestination="@id/fragment2_6ExpandCollapseList">
 
+    <fragment
+        android:id="@+id/fragment2_6ExpandCollapseList"
+        android:name="com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Fragment2_6ExpandCollapseList"
+        android:label="@string/activity2_6">
+        <action
+            android:id="@+id/action_fragment2_6ExpandCollapseList_to_fragment2_6ExpandCollapseDetails"
+            app:destination="@id/fragment2_6ExpandCollapseDetails" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment2_6ExpandCollapseDetails"
+        android:name="com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Fragment2_6ExpandCollapseDetails"
+        android:label="Details">
+
+        <argument
+            android:name="travelArgs"
+            app:argType="com.smarttoolfactory.tutorial3_1transitions.adapter.model.TravelModel" />
+    </fragment>
 </navigation>

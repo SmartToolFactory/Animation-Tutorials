@@ -21,6 +21,8 @@ class RotationTransition : Transition {
      */
     var debugMode = false
 
+    constructor() : super()
+
     constructor(startRotation: Float, endRotation: Float, forceValues: Boolean = false) {
         this.startRotation = startRotation
         this.endRotation = endRotation

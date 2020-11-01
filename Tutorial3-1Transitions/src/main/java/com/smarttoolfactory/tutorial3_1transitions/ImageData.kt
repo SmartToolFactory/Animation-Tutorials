@@ -32,4 +32,27 @@ object ImageData {
         R.drawable.mag6,
         R.drawable.mag7,
     )
+
+    fun getDrawableRes(userId: Int): Int {
+        return when {
+            userId % 6 == 0 -> {
+                R.drawable.avatar_1_raster
+            }
+            userId % 6 == 1 -> {
+                R.drawable.avatar_2_raster
+            }
+            userId % 6 == 2 -> {
+                R.drawable.avatar_3_raster
+            }
+            userId % 6 == 3 -> {
+                R.drawable.avatar_4_raster
+            }
+            userId % 6 == 4 -> {
+                R.drawable.avatar_5_raster
+            }
+            else -> {
+                R.drawable.avatar_6_raster
+            }
+        }
+    }
 }
