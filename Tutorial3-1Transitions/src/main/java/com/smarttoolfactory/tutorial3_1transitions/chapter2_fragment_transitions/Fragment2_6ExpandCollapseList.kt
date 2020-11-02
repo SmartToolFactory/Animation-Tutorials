@@ -10,9 +10,9 @@ import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionSet
+import com.google.android.material.transition.MaterialElevationScale
 import com.smarttoolfactory.tutorial3_1transitions.MockDataCreator
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.TravelAdapter
@@ -43,9 +43,22 @@ class Fragment2_6ExpandCollapseList : Fragment() {
 
     private fun prepareTransitions(view: View) {
 
-        createExitTransition(view)
+//        allowReturnTransitionOverlap = false
+//        allowEnterTransitionOverlap = false
 
-        createReEnterTransition(view)
+        exitTransition = MaterialElevationScale(false)
+            .apply {
+                duration = 300
+            }
+
+        reenterTransition = MaterialElevationScale(true)
+            .apply {
+                duration = 300
+            }
+
+//        createExitTransition(view)
+//
+//        createReEnterTransition(view)
     }
 
     private fun createExitTransition(view: View) {
@@ -118,7 +131,7 @@ class Fragment2_6ExpandCollapseList : Fragment() {
 
         recyclerView.apply {
             adapter = listAdapter
-            addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.VERTICAL))
+//            addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.VERTICAL))
         }
 
         listAdapter.submitList(
@@ -136,8 +149,7 @@ class Fragment2_6ExpandCollapseList : Fragment() {
             .actionFragment26ExpandCollapseListToFragment26ExpandCollapseDetails(model)
 
         val extras = FragmentNavigatorExtras(
-            binding.ivAvatar to binding.ivAvatar.transitionName,
-//            binding.tvTitle to binding.tvTitle.transitionName,
+            binding.cardView to binding.cardView.transitionName
         )
 
         findNavController().navigate(direction, extras)

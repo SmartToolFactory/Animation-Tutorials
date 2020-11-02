@@ -405,6 +405,8 @@ But on the other hand, since the Items are “background-less” themselves, to 
 <br>
 [Reveal Transition](https://halfthought.wordpress.com/2014/11/07/reveal-transition/)
 <br>
+[Motion-Material Design](https://material.io/develop/android/theming/motion)
+<br>
 [Android — Inbox Material Transitions for RecyclerView](https://medium.com/workday-engineering/android-inbox-material-transitions-for-recyclerview-7ae3cb241aed)
 <br>
 [Plaid App](https://github.com/android/plaid)

@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.transition.*
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.transition.MaterialContainerTransform
 import com.smarttoolfactory.tutorial3_1transitions.R
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.TravelModel
 
@@ -56,12 +58,14 @@ class Fragment2_6ExpandCollapseDetails : Fragment() {
     }
 
     private fun bindViews(view: View) {
+
+        val cardView = view.findViewById<CardView>(R.id.cardView)
         val ivAvatar = view.findViewById<ImageView>(R.id.ivAvatar)
         val tvTitle = view.findViewById<TextView>(R.id.tvTitle)
         val tvDate = view.findViewById<TextView>(R.id.tvDate)
         val tvBody = view.findViewById<TextView>(R.id.tvBody)
 
-        ivAvatar.transitionName = "${travelModel.id}"
+        cardView.transitionName = "${travelModel.id}"
 
         val requestOptions = RequestOptions()
         requestOptions
@@ -82,16 +86,13 @@ class Fragment2_6ExpandCollapseDetails : Fragment() {
 
     private fun prepareSharedElementTransition(view: View) {
 
-//        allowEnterTransitionOverlap = true
+        val cardView = view.findViewById<CardView>(R.id.cardView)
 
-        setUpSharedElementTransition(view)
-
-        enterTransition = createEnterTransition(view)
-        returnTransition = createReturnTransition(view)
+        sharedElementEnterTransition = MaterialContainerTransform()
+            .apply {
+            duration = 300
+        }
     }
-
-
-
 
 
     private fun setUpSharedElementTransition(view: View) {
@@ -148,16 +149,15 @@ class Fragment2_6ExpandCollapseDetails : Fragment() {
             .apply {
                 duration = 300
             }
-            val slide = Slide(Gravity.BOTTOM)
-                .apply {
-                    duration = 300
-                }
+        val slide = Slide(Gravity.BOTTOM)
+            .apply {
+                duration = 300
+            }
 
         transitionReturn.addTransition(fade)
         transitionReturn.addTransition(slide)
         return transitionReturn
     }
-
 
 
 }

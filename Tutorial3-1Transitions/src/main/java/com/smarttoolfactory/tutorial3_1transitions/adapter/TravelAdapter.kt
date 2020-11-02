@@ -78,7 +78,7 @@ class TravelViewHolder(
         binding.tvDate.text = model.date
         binding.tvBody.text = model.body
 
-        binding.ivAvatar.transitionName = "${model.id}"
+        binding.cardView.transitionName = "${model.id}"
 
         setUpHorizontalImageList(model)
 

@@ -39,7 +39,7 @@ object MockDataCreator {
 
         repeat(20) {
 
-            val images = if ( it % 5 == 0) {
+            val images = if ( it % 5 == 2) {
                 imageList
             } else {
                 null
