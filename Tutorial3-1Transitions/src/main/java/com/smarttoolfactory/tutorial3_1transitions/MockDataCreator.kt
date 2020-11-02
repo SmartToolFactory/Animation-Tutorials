@@ -64,7 +64,7 @@ object MockDataCreator {
         }
 
 
-        println("🤩 MockDataCreator data: $data")
+        println("🤩 MockDataCreator data: ${data.hashCode()}")
 
 
         return data

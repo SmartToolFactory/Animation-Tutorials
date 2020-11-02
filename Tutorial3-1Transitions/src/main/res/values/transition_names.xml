@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="transition_iv_avatar">transition_iv_avatar</string>
     <string name="transition_image_view">transition_image_view</string>
     <string name="transition_card_view">transition_card_view</string>
     <string name="transition_tv_title">transition_tv_title</string>

@@ -322,11 +322,10 @@ objects that are not shared in both fragments.
 of ***Transition*** start and end point to same value.
 
 #### Note: 
-🔥🔥🔥 In tutorial 2-4 and 2-5, having same background color for both fragments causing second fragment's **ENTER TRANSITION(CircularReveal and Slide.BOTTOM)** to not work.
-So when using **Transitions** that extend ```Visiblity``` class such as Slide, or Fade be careful about background color. This is only for **enterTransition** for destination and **reEnterTransition** for source fragments. **exitTransition** and **returnTransition** do not need visibility change.
+🔥🔥🔥 In tutorial 2-4 and 2-5, having same background color for both fragments causing second fragment's **ENTER TRANSITION(CircularReveal and Slide.BOTTOM)** to NOT work.
+So when using **Transitions** that extend ```Visiblity``` class such as Slide, or Fade be careful about background color. Having same background  only messes **enterTransition** for destination and **returnTransition** for source fragments.
 
 To prevent this use one of the solutions below:
-
 
 1-  Set callback and set start and end properties for starting and ending scenes with
 ```
@@ -362,13 +361,20 @@ To prevent this use one of the solutions below:
 
 2- Use **custom transitions** that extend either ```Transition``` or ```Visibility``` and force value changes.
 
-* ⚠️ Transitions that extend ```Visibility``` such as ```Slide```, ```Fade```,  or ```Explode``` depends on ***visibility*** of the view. If 
-visibility is changed from ```View.INVISIBLE``` to ```View.VISIBLE``` ```onAppear``` method of ```Visibility``` class is called, if visibility changes
-```View.VISIBLE``` to ```View.INVISIBLE``` ```onDisappear``` method is called. With difference between visibility of starting and ending scenes, or manual visibility change it's possible to play transitions
-from backwards.
+3- Use a separate view for the background, rather than on the root view because it is a  shared element. Otherwise it interferes with the window enter transition i.e. as it is resized for the shared element transition, many views are considered 'off-screen' so visibility transitions are not run.
 
-* ⚠️ When current transition is **EXIT** or **RETURN** transition  ```captureEndValues``` is not called, because of this use a transition that extends ```Visibility``` for ```exitTransition``` and ```returnTransition``` to start,
-and be aware that Animator from ```onDisAppear``` is called while current transition is exit or return.
+* ⚠️ Transitions that extend ```Visibility``` such as ```Slide```, ```Fade```,  or ```Explode``` depends on ***visibility*** of the view. If 
+visibility is changed from ```View.INVISIBLE``` to ```View.VISIBLE``` ```onAppear``` method of ```Visibility``` class is called, if visibility changes from
+```View.VISIBLE``` to ```View.INVISIBLE``` ```onDisappear``` method is called. With difference between visibility of starting and ending scenes, or manual visibility change it's possible to play transitions in reverse.
+
+* ⚠️ With **EXIT** or **RETURN** transitions  ```captureEndValues``` is not called, because of this use a transition that extends ```Visibility``` for ```exitTransition``` and ```returnTransition``` to start,
+and be aware that Animator from ```onDisAppear``` is called while current transition is exit or return. 
+
+#### Summary
+Enter, return transition are effected from background color, use transitions that extend ```Visibility``` and
+create visibility change from Invisible to Visible if enter or return transition **DO NOT START**.
+
+Exit, and reEnter transitions also require visibility change but from invisible to visible  should be the correct order.
 
 #### 🤩 Note: Breaker of chains — Transition Groups
 

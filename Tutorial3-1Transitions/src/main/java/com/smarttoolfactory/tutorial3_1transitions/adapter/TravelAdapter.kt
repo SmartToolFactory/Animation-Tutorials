@@ -78,27 +78,27 @@ class TravelViewHolder(
         binding.tvDate.text = model.date
         binding.tvBody.text = model.body
 
+        binding.ivAvatar.transitionName = "${model.id}"
+
         setUpHorizontalImageList(model)
 
         isExpanded = expandedIds.contains(model.id)
 
         val showExpandButton = model.images != null
 
-        println(
-            "🍏 TravelViewHolder id: ${model.id}, " +
-                    "position: $bindingAdapterPosition, " +
-                    "isExpanded: $isExpanded, " +
-                    "viewHolder: ${this.hashCode()}, " +
-                    "model: ${model.hashCode()}"
-        )
+//        println(
+//            "🍏 TravelViewHolder id: ${model.id}, " +
+//                    "position: $bindingAdapterPosition, " +
+//                    "isExpanded: $isExpanded, " +
+//                    "viewHolder: ${this.hashCode()}, " +
+//                    "model: ${model.hashCode()}"
+//        )
 
-
-
-        if (model.images == null) {
-            binding.ivExpand.visibility = View.INVISIBLE
+        if (showExpandButton) {
+            binding.ivExpand.visibility = View.VISIBLE
             binding.recyclerView.visibility = View.GONE
         } else {
-            binding.ivExpand.visibility = View.VISIBLE
+            binding.ivExpand.visibility = View.INVISIBLE
             binding.recyclerView.visibility = View.GONE
         }
 
@@ -129,6 +129,7 @@ class TravelViewHolder(
             onItemClick?.invoke(binding, model)
         }
 
+        setUpExpandedStatus()
         binding.executePendingBindings()
     }
 

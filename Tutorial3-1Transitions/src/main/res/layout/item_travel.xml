@@ -17,6 +17,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:scaleType="centerCrop"
+            android:transitionName="@string/transition_iv_avatar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/avatar_1_raster" />

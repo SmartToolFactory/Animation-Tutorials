@@ -10,14 +10,18 @@ import androidx.transition.Visibility
 
 /**
  *
- * * If for fragment's **enterTransition** or **returnTransition** does not start use [forceVisibilityChange]
+ * * If  fragment's **enterTransition** or **returnTransition** do not start, use [forceVisibilityChange]
  * to create visibility difference between starting and ending scenes. Starting with **View.VISIBLE**
  * returns [Animator] from [Visibility.onDisappear].
  *
- * * Do not use ```forceVisibilityChange``` in fragment's ```exitTransition``` or ```returnTransition```
- *  transitions, but you can set start visibility as **View.INVISIBLE** and end visibility as **View.VISIBLE**
- *  to have correct ending scene. Beware that transition will run from reverse in an endings scene so
- *  you might want to change start and end value(s)' ordering.
+ * * Do NOT use ```forceVisibilityChange``` by itself in fragment's ```exitTransition``` or ```returnTransition```
+ *  transitions because default values for this transition is from invisible to visible but
+ *  for ```exiTransition```and ```returnTransition``` it should go from visible to invisible
+ *  You ou can set start visibility as **View.INVISIBLE** and end visibility as **View.VISIBLE**
+ *  to have correct ending scenes for exit, and return transitions.
+ *
+ *  Beware that transition will run in reverse in an endings scene so
+ *  you might want to change start and end value(s)'.
  */
 class ScaleChange(
     private var startScaleX: Float = 1f,
