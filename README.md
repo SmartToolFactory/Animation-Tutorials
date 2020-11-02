@@ -313,17 +313,14 @@ findNavController().navigate(direction, extras)
 * 🔥🔥🔥 With transitions, it's required for start and end values to be different from each other to call
 ```createAnimator``` method. 
 
-- To make sure that  **ENTER** or **REENTER** transitions start, either set **captureStartValues**
-and **captureEndValues** manually, or in fragment transitioned to, create **setEnterSharedElementCallback**
+* To make sure that  **ENTER** or **RETURN** transitions start, either set **captureStartValues**
+and **captureEndValues** manually, or in destination fragment create **setEnterSharedElementCallback**
 and override **onSharedElementStart** and **onSharedElementEnd** methods and set properties of
-objects that are not shared in both fragments.
- 
- Without doing this enter or exit might not work because
-of ***Transition*** start and end point to same value.
+objects that are not shared transitions.
 
 #### Note: 
-🔥🔥🔥 In tutorial 2-4 and 2-5, having same background color for both fragments causing second fragment's **ENTER TRANSITION(CircularReveal and Slide.BOTTOM)** to NOT work.
-So when using **Transitions** that extend ```Visiblity``` class such as Slide, or Fade be careful about background color. Having same background  only messes **enterTransition** for destination and **returnTransition** for source fragments.
+🔥🔥🔥  In tutorial 2-4 and tutorial 2-5, having same background color for both fragments causing destination fragment's **ENTER TRANSITION(CircularReveal and Slide.BOTTOM)**, and REENTER(Explode) to NOT work.
+When using **Transitions** that extend ```Visiblity``` class such as Slide, or Fade be careful about background color. Having same background messes **enterTransition** for destination and **returnTransition** for source fragments.
 
 To prevent this use one of the solutions below:
 
@@ -363,18 +360,20 @@ To prevent this use one of the solutions below:
 
 3- Use a separate view for the background, rather than on the root view because it is a  shared element. Otherwise it interferes with the window enter transition i.e. as it is resized for the shared element transition, many views are considered 'off-screen' so visibility transitions are not run.
 
-* ⚠️ Transitions that extend ```Visibility``` such as ```Slide```, ```Fade```,  or ```Explode``` depends on ***visibility*** of the view. If 
-visibility is changed from ```View.INVISIBLE``` to ```View.VISIBLE``` ```onAppear``` method of ```Visibility``` class is called, if visibility changes from
-```View.VISIBLE``` to ```View.INVISIBLE``` ```onDisappear``` method is called. With difference between visibility of starting and ending scenes, or manual visibility change it's possible to play transitions in reverse.
+4- Set **transitionGroup=false.** on layout with background color
 
 * ⚠️ With **EXIT** or **RETURN** transitions  ```captureEndValues``` is not called, because of this use a transition that extends ```Visibility``` for ```exitTransition``` and ```returnTransition``` to start,
 and be aware that Animator from ```onDisAppear``` is called while current transition is exit or return. 
 
 #### Summary
-Enter, return transition are effected from background color, use transitions that extend ```Visibility``` and
-create visibility change from Invisible to Visible if enter or return transition **DO NOT START**.
+* For ```enterTransition``` and ```reEnterTransition``` either check for background color change and set **transitionGroup** to false
+or use transition that extends ```Visibility``` with change from INVISIBLE to VISIBLE.
+⚠️ With ```reEnterTransition``` even though ```Explode```  does not work without solving background issue, most of
+the classes extend ```Transition``` or ```Visibility``` work fine
 
-Exit, and reEnter transitions also require visibility change but from invisible to visible  should be the correct order.
+* For ```exitTransition``` and ```returnTransition``` make sure that visibility goes from VISIBLE to INVISIBLE
+
+* If ```addTarget``` does not work use ```excludeTarget(view,false)```
 
 #### 🤩 Note: Breaker of chains — Transition Groups
 

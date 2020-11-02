@@ -17,10 +17,7 @@ import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import androidx.transition.Transition
-import androidx.transition.TransitionInflater
-import androidx.transition.TransitionSet
-import androidx.transition.Visibility
+import androidx.transition.*
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.smarttoolfactory.tutorial3_1transitions.ImageData
@@ -35,7 +32,6 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.PostGridVi
 import com.smarttoolfactory.tutorial3_1transitions.transition.PropagatingTransition
 import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ExplodeFadeOut
 import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ForcedCircularReveal
-import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ForcedExplode
 import kotlin.math.abs
 import kotlin.math.hypot
 
@@ -111,16 +107,13 @@ class Fragment2_5ToolbarDetailAlt2 : Fragment() {
 
         val transitionSetEnter = TransitionSet()
 
-
         // save rect of view in screen coordinates
         val viewRect = Rect()
         view.getGlobalVisibleRect(viewRect)
 
         // create Explode transition with epicenter
-        // 🔥 Explode  does not work, we need visibility change for Enter or ReEnter transitions
         val explode =
-//            Explode()
-            ForcedExplode()
+            Explode()
                 .apply {
                     startDelay = 600
                     duration = 700
@@ -141,6 +134,7 @@ class Fragment2_5ToolbarDetailAlt2 : Fragment() {
             viewImageBackground.height.toDouble()
         ).toFloat()
 
+        // 🔥 Circular reveal does not work, we need visibility change for Enter or ReEnter transitions
         val circularReveal =
             ForcedCircularReveal(true, View.INVISIBLE, View.VISIBLE)
                 .apply {
@@ -166,7 +160,7 @@ class Fragment2_5ToolbarDetailAlt2 : Fragment() {
         val viewRect = Rect()
         recyclerView.getGlobalVisibleRect(viewRect)
 
-        val explode = ForcedExplode(View.VISIBLE, View.INVISIBLE)
+        val explode = Explode()
             .apply {
                 excludeTarget(appbar, true)
                 excludeTarget(view, true)
@@ -249,7 +243,6 @@ class Fragment2_5ToolbarDetailAlt2 : Fragment() {
             swipeRefreshLayout.isRefreshing = false
         }
     }
-
 
 
     private fun getImageData(): List<ImageModel> {

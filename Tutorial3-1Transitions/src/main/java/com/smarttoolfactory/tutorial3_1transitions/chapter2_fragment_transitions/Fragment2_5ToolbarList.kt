@@ -1,7 +1,6 @@
 package com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,10 +12,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.transition.Explode
 import androidx.transition.Fade
-import androidx.transition.Slide
-import androidx.transition.TransitionSet
 import com.google.android.material.appbar.AppBarLayout
 import com.smarttoolfactory.tutorial3_1transitions.ImageData
 import com.smarttoolfactory.tutorial3_1transitions.R
@@ -28,9 +25,6 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.HeaderView
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.MagazineListViewViewBinder
 import com.smarttoolfactory.tutorial3_1transitions.databinding.ItemMagazineBinding
-import com.smarttoolfactory.tutorial3_1transitions.transition.PropagatingTransition
-import com.smarttoolfactory.tutorial3_1transitions.transition.visibility.ForcedExplode
-import kotlinx.android.synthetic.main.activity_main.*
 
 /*
     🔥‼️ Added transition id to MagazineModel because giving same resource id as transition name to multiple
@@ -119,23 +113,6 @@ class Fragment2_5ToolbarList : Fragment() {
         recyclerView.doOnPreDraw {
             startPostponedEnterTransition()
         }
-
-        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefreshLayout)
-
-        // These are inside a refresh layout so we can easily "refresh" and see the transition again.
-        swipeRefreshLayout.setOnRefreshListener {
-            PropagatingTransition(
-                sceneRoot = constraintLayout,
-                startingView = recyclerView,
-                transition = TransitionSet()
-                    .addTransition(
-                        Fade(Fade.IN)
-                            .setInterpolator { (it - 0.5f) * 2 })
-                    .addTransition(Slide(Gravity.BOTTOM))
-            )
-                .start()
-            swipeRefreshLayout.isRefreshing = false
-        }
     }
 
     private fun prepareTransitions(view: View) {
@@ -153,9 +130,15 @@ class Fragment2_5ToolbarList : Fragment() {
                     addTarget(view)
                 }
 
-        // 🔥 Explode  does not work, we need visibility change for Enter or ReEnter transitions
+        /*
+            🔥 Explode does not work when android:transitionGroup="false" is not set,
+            or visibility hasn't changed for Enter or ReEnter transitions. But most of the
+            Transitions and Visibility work with reEnter flawlessly, but some don't
+
+            Either set android:transitionGroup="false", or use ForcedExplode
+         */
         reenterTransition =
-            ForcedExplode()
+            Explode()
                 .apply {
                     startDelay = 400
                     duration = 500

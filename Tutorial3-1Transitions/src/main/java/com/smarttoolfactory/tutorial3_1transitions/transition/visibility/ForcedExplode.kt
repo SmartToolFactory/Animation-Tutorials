@@ -32,7 +32,7 @@ class ForcedExplode(
      *
      * * Has public visibility to debug scenes with [debugMode], with and without forced values.
      */
-    var forceVisibiltyChange: Boolean = true
+    var forceVisibilityChange: Boolean = true
 
     /**
      * Logs lifecycle and parameters to console when set to true
@@ -41,7 +41,7 @@ class ForcedExplode(
 
     override fun captureStartValues(transitionValues: TransitionValues) {
 
-        if (forceVisibiltyChange) {
+        if (forceVisibilityChange) {
             transitionValues.view.visibility = startVisibility
         }
 
@@ -56,7 +56,7 @@ class ForcedExplode(
     }
 
     override fun captureEndValues(transitionValues: TransitionValues) {
-        if (forceVisibiltyChange) {
+        if (forceVisibilityChange) {
             transitionValues.view.visibility = endVisibility
         }
 

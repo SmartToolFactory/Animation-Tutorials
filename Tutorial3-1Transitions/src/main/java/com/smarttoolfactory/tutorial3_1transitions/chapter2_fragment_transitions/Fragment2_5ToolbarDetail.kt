@@ -116,8 +116,6 @@ class Fragment2_5ToolbarDetail : Fragment() {
 
         recyclerView.scaleX = 0f
         recyclerView.scaleY = 0f
-        recyclerView.requestLayout()
-
 
         val scaleAnimation = ScaleTransition(scaleX, scaleY, 1f, 1f, true)
             .apply {
