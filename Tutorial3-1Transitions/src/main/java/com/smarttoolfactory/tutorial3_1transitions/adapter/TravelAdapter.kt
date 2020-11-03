@@ -38,15 +38,10 @@ class TravelAdapter(
 
         val binding = parent.inflate<ItemTravelBinding>(R.layout.item_travel, false)
         val viewHolder = TravelViewHolder(recycledViewPool, binding, onItemClick)
-
-        println("🚀 onCreateViewHolder: $viewHolder")
-
         return viewHolder
     }
 
     override fun onBindViewHolder(holder: TravelViewHolder, position: Int) {
-        println("😂 onCreateViewHolder: position: $position, holder: $holder")
-
         holder.bind(currentList[position], expandedIds)
     }
 }
@@ -86,14 +81,6 @@ class TravelViewHolder(
 
         val showExpandButton = model.images != null
 
-//        println(
-//            "🍏 TravelViewHolder id: ${model.id}, " +
-//                    "position: $bindingAdapterPosition, " +
-//                    "isExpanded: $isExpanded, " +
-//                    "viewHolder: ${this.hashCode()}, " +
-//                    "model: ${model.hashCode()}"
-//        )
-
         if (showExpandButton) {
             binding.ivExpand.visibility = View.VISIBLE
             binding.recyclerView.visibility = View.GONE
@@ -121,8 +108,6 @@ class TravelViewHolder(
 
             setUpExpandedStatus()
             binding.executePendingBindings()
-
-
         }
 
         binding.root.setOnClickListener {

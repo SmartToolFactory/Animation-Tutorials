@@ -43,7 +43,7 @@ Tutorials about Shared Transitions from Activity to Activity, and from Fragment 
 
 |  Ch2-5/1 Nav Components | Ch2-5/2 Nav Components   | Ch2-3 Material Transitions |
 | ----------|----------------| --------|
-| <img src="./screenshots/transition_chapter2_5_2.gif"/> | <img src="./screenshots/transition_chapter2_5_3.gif"/> | <img src="./screenshots/transition_chapter2_6.gif"/> |
+| <img src="./screenshots/transition_chapter2_5_2.gif"/> | <img src="./screenshots/transition_chapter2_5_3.gif"/> | <img src="./screenshots/transition_chapter2_6_1.gif"/> |
 
 
 ## Physics Based Animations
