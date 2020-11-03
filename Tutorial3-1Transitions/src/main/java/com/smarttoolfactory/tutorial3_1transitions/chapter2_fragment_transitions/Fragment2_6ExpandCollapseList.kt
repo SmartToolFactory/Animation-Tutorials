@@ -63,9 +63,7 @@ class Fragment2_6ExpandCollapseList : Fragment() {
             }
 
 
-        recyclerView.apply {
-            adapter = listAdapter
-        }
+        recyclerView.adapter = listAdapter
 
         listAdapter.submitList(
             MockDataCreator.generateMockTravelData(requireContext()).toMutableList()

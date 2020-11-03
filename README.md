@@ -37,9 +37,13 @@ fragment transitions, image to ViewPager transitions and more.
 * [Tutorial3-1Shared Transitions](https://github.com/SmartToolFactory/Animation-Tutorials/tree/master/Tutorial3-1Transitions)
 Tutorials about Shared Transitions from Activity to Activity, and from Fragment to Fragment
 
-| Ch1-2 RV Transition | Ch1-4 RV to VP2 Transition   | Ch2-3 Nav Components |
+| Ch1-2 RV Transition | Ch1-4 RV to VP2 Transition   | Ch2-5/1 Nav Components |
 | ----------|----------------| --------|
-| <img src="./screenshots/transition_chapter1_2.gif"/> | <img src="./screenshots/transition_chapter1_4.gif"/> | <img src="./screenshots/transition_chapter2_3.gif"/> |
+| <img src="./screenshots/transition_chapter1_2.gif"/> | <img src="./screenshots/transition_chapter1_4.gif"/> | <img src="./screenshots/transition_chapter2_5_1.gif"/> |
+
+|  Ch2-5/1 Nav Components | Ch2-5/2 Nav Components   | Ch2-3 Material Transitions |
+| ----------|----------------| --------|
+| <img src="./screenshots/transition_chapter2_5_2.gif"/> | <img src="./screenshots/transition_chapter2_5_3.gif"/> | <img src="./screenshots/transition_chapter2_6.gif"/> |
 
 
 ## Physics Based Animations

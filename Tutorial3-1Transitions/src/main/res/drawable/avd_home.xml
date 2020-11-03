@@ -1,0 +1,44 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="vector"
+            android:width="24dp"
+            android:height="24dp"
+            android:viewportWidth="24"
+            android:viewportHeight="24">
+            <group
+                android:name="group"
+                android:pivotX="12"
+                android:pivotY="12">
+                <path
+                    android:name="path"
+                    android:pathData="M 10 20 L 10 14 L 14 14 L 14 20 L 19 20 L 19 12 L 22 12 L 12 3 L 2 12 L 5 12 L 5 20 Z"
+                    android:fillColor="#555555"
+                    android:strokeColor="#555555"/>
+            </group>
+            <group android:name="door_group">
+                <path
+                    android:name="door"
+                    android:pathData="M 10 20 L 10 14 L 14 14 L 14 20"
+                    android:fillColor="#555555"/>
+            </group>
+            <path
+                android:name="path_1"
+                android:pathData="M 10 14 L 10 20 L 10 20 L 10 15 L 10 14"
+                android:fillColor="#555555"/>
+        </vector>
+    </aapt:attr>
+    <target android:name="door">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="pathData"
+                android:duration="1000"
+                android:valueFrom="M 10 14 L 10 20 L 14 20 L 14 14 L 10 14"
+                android:valueTo="M 10 14 L 10 20 L 10 20 L 10 15 L 10 14"
+                android:valueType="pathType"
+                android:interpolator="@android:interpolator/fast_out_linear_in"/>
+        </aapt:attr>
+    </target>
+</animated-vector>

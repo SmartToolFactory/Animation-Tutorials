@@ -1,0 +1,63 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="heart_fill"
+            android:width="56dp"
+            android:height="56dp"
+            android:viewportWidth="56"
+            android:viewportHeight="56">
+            <group android:name="heart_group">
+                <path
+                    android:name="heart_empty"
+                    android:pathData="M 28 39 L 26.405 37.567 C 20.74 32.471 17 29.109 17 24.995 C 17 21.632 19.657 19 23.05 19 C 24.964 19 26.801 19.883 28 21.272 C 29.199 19.883 31.036 19 32.95 19 C 36.343 19 39 21.632 39 24.995 C 39 29.109 35.26 32.471 29.595 37.567 L 28 39 L 28 39 Z"
+                    android:strokeColor="#29b6f6"
+                    android:strokeWidth="2"/>
+            </group>
+            <group android:name="filled_group">
+                <clip-path
+                    android:name="clip"
+                    android:pathData="M 18 37 L 38 37 L 38 37 L 18 37 Z"/>
+                <path
+                    android:name="fill"
+                    android:pathData="M 28 39 L 26.405 37.567 C 20.74 32.471 17 29.109 17 24.995 C 17 21.632 19.657 19 23.05 19 C 24.964 19 26.801 19.883 28 21.272 C 29.199 19.883 31.036 19 32.95 19 C 36.343 19 39 21.632 39 24.995 C 39 29.109 35.26 32.471 29.595 37.567 L 28 39 L 28 39 Z"
+                    android:fillColor="#E91E63"
+                    android:strokeColor="#E91E63"/>
+            </group>
+        </vector>
+    </aapt:attr>
+    <target android:name="heart_empty">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="strokeColor"
+                android:duration="400"
+                android:valueFrom="#29b6f6"
+                android:valueTo="#e91e63"
+                android:valueType="colorType"
+                android:interpolator="@android:anim/accelerate_interpolator"/>
+        </aapt:attr>
+    </target>
+    <target android:name="clip">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="pathData"
+                    android:startOffset="400"
+                    android:duration="400"
+                    android:valueFrom="M 18 38 C 18 38 24 38 24 38 C 24 38 32 38 32 38 C 32 38 38 38 38 38 L 38 38 L 18 38 L 18 38 Z"
+                    android:valueTo="M 18 26 C 18 26 21 28 24 28 C 27 28 29 25 32 25 C 35 25 38 26 38 26 L 38 38 L 18 38 L 18 26 Z"
+                    android:valueType="pathType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="pathData"
+                    android:startOffset="800"
+                    android:duration="200"
+                    android:valueFrom="M 18 26 C 18 26 21 28 24 28 C 27 28 29 25 32 25 C 35 25 38 26 38 26 L 38 38 L 18 38 L 18 26 Z"
+                    android:valueTo="M 18 18 C 18 18 24 18 24 18 C 24 18 32 18 32 18 C 32 18 38 18 38 18 L 38 38 L 18 38 L 18 18 Z"
+                    android:valueType="pathType"
+                    android:interpolator="@android:anim/decelerate_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+</animated-vector>

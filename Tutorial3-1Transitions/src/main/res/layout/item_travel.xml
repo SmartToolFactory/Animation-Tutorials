@@ -9,11 +9,11 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="4dp"
         android:layout_marginVertical="2dp"
-        app:cardCornerRadius="0dp"
         android:clickable="true"
-        app:cardElevation="0dp"
         android:focusable="true"
         android:transitionName="@string/transition_card_view"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="0dp"
         app:cardPreventCornerOverlap="false">
 
 
@@ -91,6 +91,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:orientation="horizontal"
+                android:overScrollMode="never"
                 android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/checked"
+        android:drawable="@drawable/vd_dashboard_active"
+        android:state_checked="true" />
+
+    <item
+        android:id="@+id/unchecked"
+        android:drawable="@drawable/vd_dashboard_outlined" />
+
+    <transition
+        android:drawable="@drawable/avd_dashboard"
+        android:fromId="@id/unchecked"
+        android:toId="@id/checked" />
+</animated-selector>

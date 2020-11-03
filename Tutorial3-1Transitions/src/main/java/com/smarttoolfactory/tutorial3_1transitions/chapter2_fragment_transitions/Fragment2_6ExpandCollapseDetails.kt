@@ -11,6 +11,7 @@ import androidx.core.view.doOnNextLayout
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.transition.MaterialContainerTransform
@@ -53,6 +54,21 @@ class Fragment2_6ExpandCollapseDetails : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        val drawable = AnimatedVectorDrawableCompat.create(
+            requireContext(),
+            R.drawable.asl_heart_break
+        )
+
+        val ivLike = view.findViewById<ImageView>(R.id.ivLike)
+        ivLike.setImageDrawable(drawable)
+
+        ivLike.setOnClickListener {
+            ivLike.isSelected = !ivLike.isSelected
+            val stateSet =
+                intArrayOf(android.R.attr.state_checked * if (ivLike.isSelected) 1 else -1)
+            ivLike.setImageState(stateSet, true)
+        }
 
         view.doOnNextLayout {
             (it.parent as? ViewGroup)?.doOnPreDraw {
