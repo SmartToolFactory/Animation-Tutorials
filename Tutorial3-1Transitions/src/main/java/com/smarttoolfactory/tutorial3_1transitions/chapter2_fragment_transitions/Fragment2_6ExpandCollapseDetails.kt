@@ -1,12 +1,12 @@
 package com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
@@ -40,7 +40,7 @@ class Fragment2_6ExpandCollapseDetails : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment2_6detail, container, false)
+        val view = inflater.inflate(R.layout.fragment2_6expand_collapse_detail, container, false)
         bindViews(view)
 
         prepareSharedElementTransition(view)
@@ -63,7 +63,7 @@ class Fragment2_6ExpandCollapseDetails : Fragment() {
 
     private fun bindViews(view: View) {
 
-        val cardView = view.findViewById<CardView>(R.id.cardView)
+        val cardView = view.findViewById<View>(R.id.cardView)
         val ivAvatar = view.findViewById<ImageView>(R.id.ivAvatar)
         val tvTitle = view.findViewById<TextView>(R.id.tvTitle)
         val tvDate = view.findViewById<TextView>(R.id.tvDate)
@@ -106,22 +106,22 @@ class Fragment2_6ExpandCollapseDetails : Fragment() {
                     ImageModel(it)
                 }
 
-
-
                 listAdapter.submitList(imageModelList)
             }
 
         }
     }
 
-
     private fun prepareSharedElementTransition(view: View) {
-
-        val cardView = view.findViewById<CardView>(R.id.cardView)
 
         sharedElementEnterTransition = MaterialContainerTransform()
             .apply {
                 duration = 500
+                // Scope the transition to a view in the hierarchy so we know it will be added under
+                // the bottom app bar but over the elevation scale of the exiting HomeFragment.
+                drawingViewId = R.id.nav_host_fragment
+                scrimColor = Color.TRANSPARENT
+//                setAllContainerColors(requireContext().themeColor(R.attr.colorSurface))
             }
     }
 

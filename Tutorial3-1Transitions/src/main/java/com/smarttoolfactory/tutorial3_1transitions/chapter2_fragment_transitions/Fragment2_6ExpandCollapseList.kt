@@ -31,7 +31,7 @@ class Fragment2_6ExpandCollapseList : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment2_6list, container, false)
+        val view = inflater.inflate(R.layout.fragment2_6expand_collapse_list, container, false)
 
         prepareTransitions(view)
         postponeEnterTransition()
@@ -39,9 +39,6 @@ class Fragment2_6ExpandCollapseList : Fragment() {
     }
 
     private fun prepareTransitions(view: View) {
-
-//        allowReturnTransitionOverlap = false
-//        allowEnterTransitionOverlap = false
 
         exitTransition = MaterialElevationScale(false)
             .apply {
@@ -79,7 +76,6 @@ class Fragment2_6ExpandCollapseList : Fragment() {
                 startPostponedEnterTransition()
             }
         }
-
     }
 
     private fun goToDetailPage(binding: ItemTravelBinding, model: TravelModel) {
