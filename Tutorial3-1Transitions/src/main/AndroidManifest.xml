@@ -47,7 +47,7 @@
             android:theme="@style/Theme.App.NoActionBar" />
         <activity
             android:name=".chapter2_fragment_transitions.Activity2_6FragmentExpandCollapseTransitions"
-            android:theme="@style/Theme.App.NoActionBar" />
+            android:theme="@style/Theme.App.Expandable" />
     </application>
 
 </manifest>

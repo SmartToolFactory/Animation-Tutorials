@@ -5,20 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:colorBackground"
+    android:layout_margin="16dp"
     android:clipToPadding="false"
     android:fillViewport="true"
-    android:layout_marginHorizontal="4dp"
     android:paddingHorizontal="4dp"
-    android:paddingTop="2dp">
+    android:paddingTop="8dp"
+    tools:context=".chapter2_fragment_transitions.Activity2_6FragmentExpandCollapseTransitions">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:transitionName="@string/transition_card_view"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="0dp">
+        android:transitionName="@string/transition_card_view">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/menu_item_constraint_layout"
@@ -77,8 +75,6 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

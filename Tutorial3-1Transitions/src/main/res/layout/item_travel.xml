@@ -9,10 +9,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="4dp"
         android:layout_marginVertical="2dp"
-        android:background="?selectableItemBackground"
         app:cardCornerRadius="0dp"
         android:clickable="true"
-        android:elevation="0dp"
+        app:cardElevation="0dp"
         android:focusable="true"
         android:transitionName="@string/transition_card_view"
         app:cardPreventCornerOverlap="false">

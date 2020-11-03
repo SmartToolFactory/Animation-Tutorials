@@ -360,7 +360,7 @@ To prevent this use one of the solutions below:
 
 3- Use a separate view for the background, rather than on the root view because it is a  shared element. Otherwise it interferes with the window enter transition i.e. as it is resized for the shared element transition, many views are considered 'off-screen' so visibility transitions are not run.
 
-4- Set **transitionGroup=false.** on layout with background color
+4- Set **transitionGroup=false.** on layout with background color. ```transitionGroup``` sets whether or not this ViewGroup should be treated as a single entity when doing an Activity transition. Typically, the elements inside a ViewGroup are each transitioned from the scene individually. The default for a ViewGroup is false **unless it has a background**.
 
 * ⚠️ With **EXIT** or **RETURN** transitions  ```captureEndValues``` is not called, because of this use a transition that extends ```Visibility``` for ```exitTransition``` and ```returnTransition``` to start,
 and be aware that Animator from ```onDisAppear``` is called while current transition is exit or return. 

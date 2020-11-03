@@ -1,7 +1,6 @@
 package com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +10,17 @@ import androidx.cardview.widget.CardView
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
-import androidx.transition.*
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.transition.MaterialContainerTransform
 import com.smarttoolfactory.tutorial3_1transitions.R
+import com.smarttoolfactory.tutorial3_1transitions.adapter.SingleViewBinderListAdapter
+import com.smarttoolfactory.tutorial3_1transitions.adapter.layoutmanager.SpannedGridLayoutManager
+import com.smarttoolfactory.tutorial3_1transitions.adapter.model.ImageModel
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.TravelModel
+import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ImageTravelDetailViewBinder
+import com.smarttoolfactory.tutorial3_1transitions.adapter.viewholder.ItemBinder
 
 class Fragment2_6ExpandCollapseDetails : Fragment() {
 
@@ -81,6 +85,33 @@ class Fragment2_6ExpandCollapseDetails : Fragment() {
         tvTitle.text = travelModel.title
         tvDate.text = travelModel.date
         tvBody.text = travelModel.body
+
+        if (!travelModel.images.isNullOrEmpty()) {
+
+            val imageList = travelModel.images!!
+
+            view.findViewById<RecyclerView>(R.id.recyclerView).apply {
+
+                layoutManager = SpannedGridLayoutManager(3, 1f)
+
+                val imageTravelDetailViewBinder = ImageTravelDetailViewBinder()
+
+                val listAdapter =
+                    SingleViewBinderListAdapter(imageTravelDetailViewBinder as ItemBinder)
+
+                this.adapter = listAdapter
+                setHasFixedSize(true)
+
+                val imageModelList = imageList.map {
+                    ImageModel(it)
+                }
+
+
+
+                listAdapter.submitList(imageModelList)
+            }
+
+        }
     }
 
 
@@ -90,74 +121,8 @@ class Fragment2_6ExpandCollapseDetails : Fragment() {
 
         sharedElementEnterTransition = MaterialContainerTransform()
             .apply {
-            duration = 300
-        }
+                duration = 500
+            }
     }
-
-
-    private fun setUpSharedElementTransition(view: View) {
-
-        sharedElementReturnTransition =
-            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
-                .apply {
-                    duration = 300
-                }
-
-        // This is shared transition for imageView and title
-
-        val transitionSet = TransitionSet()
-        val moveTransition =
-            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
-                .apply {
-                    duration = 300
-                }
-
-        val fade = Fade(Fade.MODE_IN)
-            .apply {
-                duration = 300
-            }
-
-        transitionSet.addTransition(moveTransition)
-        transitionSet.addTransition(fade)
-        sharedElementEnterTransition = transitionSet
-    }
-
-    private fun createEnterTransition(view: View): Transition {
-
-        val transitionEnter = TransitionSet()
-
-        val fade = Fade(Fade.MODE_IN)
-            .apply {
-                duration = 300
-            }
-        val slide = Slide(Gravity.BOTTOM)
-            .apply {
-                duration = 300
-            }
-
-        transitionEnter.addTransition(fade)
-        transitionEnter.addTransition(slide)
-        return transitionEnter
-
-    }
-
-    private fun createReturnTransition(view: View): Transition {
-
-        val transitionReturn = TransitionSet()
-
-        val fade = Fade(Fade.MODE_OUT)
-            .apply {
-                duration = 300
-            }
-        val slide = Slide(Gravity.BOTTOM)
-            .apply {
-                duration = 300
-            }
-
-        transitionReturn.addTransition(fade)
-        transitionReturn.addTransition(slide)
-        return transitionReturn
-    }
-
 
 }
