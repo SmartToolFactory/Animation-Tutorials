@@ -10,6 +10,7 @@ import android.view.ViewPropertyAnimator
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Interpolator
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.dynamicanimation.animation.DynamicAnimation
 import androidx.dynamicanimation.animation.SpringAnimation
@@ -133,6 +134,21 @@ class Activity3_5ElasticScale : AppCompatActivity() {
 
         fab.setElasticTouchListener(duration = 300)
 
+        fab.setOnClickListener {
+            Toast.makeText(applicationContext, "TOAST", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+}
+
+fun View.setElasticOnClickListener(
+    grow: Boolean = false,
+    scaleBy: Float = 0.1f,
+    duration: Long = 200,
+    interpolator: Interpolator = LinearOutSlowInInterpolator()
+) {
+    setOnClickListener {
+        elasticAnimation(grow, scaleBy, duration, interpolator)
     }
 }
 
@@ -175,12 +191,12 @@ fun View.elasticAnimation(
                 scaleY = initialScaleY
                 viewPropertyAnimator.setListener(null)
             }
-
         })
 }
 
 @SuppressLint("ClickableViewAccessibility")
 fun View.setElasticTouchListener(
+    onTouchStart: (() -> Unit)? = null,
     grow: Boolean = false,
     scaleBy: Float = 0.1f,
     duration: Long = 200,
@@ -208,6 +224,8 @@ fun View.setElasticTouchListener(
         when (event.actionMasked) {
 
             MotionEvent.ACTION_DOWN -> {
+
+                onTouchStart?.invoke()
 
                 startPropertyAnimator = animate()
 
@@ -247,7 +265,6 @@ fun View.setElasticTouchListener(
                     })
             }
         }
-
-        true
+        false
     }
 }
