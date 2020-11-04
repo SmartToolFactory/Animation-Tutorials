@@ -30,6 +30,7 @@
         <activity android:name=".chapter2_animate_views.Activity2_7GradientAnimations" />
         <activity android:name=".chapter2_animate_views.Activity2_8CounterAnimation" />
         <activity android:name=".chapter2_animate_views.Activity2_9CounterSurfaceView" />
+        <activity android:name=".chapter3_physics.Activity3_5ElasticScale" />
 
         <activity android:name=".chapter3_physics.Activity3_1PhysicsBasics" />
         <activity android:name=".chapter3_physics.Activity3_2ScaleAndChainedAnimations" />

@@ -1,27 +1,23 @@
 package com.example.tutorial1_1basics
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tutorial1_1basics.adapter_chapter_selection.BaseAdapter
+import com.example.tutorial1_1basics.adapter_chapter_selection.ChapterSelectionAdapter
+import com.example.tutorial1_1basics.adapter_chapter_selection.model.ActivityClassModel
 import com.example.tutorial1_1basics.chapter1_basics.Activity1_1Basics
 import com.example.tutorial1_1basics.chapter1_basics.Activity1_2AnimatorInflater
 import com.example.tutorial1_1basics.chapter1_basics.Activity1_3TranslationVsPosition
-import com.example.tutorial1_1basics.chapter2_animate_views.*
-
-import com.example.tutorial1_1basics.adapter_chapter_selection.BaseAdapter
-import com.example.tutorial1_1basics.adapter_chapter_selection.ChapterSelectionAdapter
-import com.example.tutorial1_1basics.databinding.ActivityMainBinding
-import com.example.tutorial1_1basics.adapter_chapter_selection.model.ActivityClassModel
 import com.example.tutorial1_1basics.chapter1_basics.Activity1_4RotationTranslationPosition
-import com.example.tutorial1_1basics.chapter3_physics.Activity3_1PhysicsBasics
-import com.example.tutorial1_1basics.chapter3_physics.Activity3_2ScaleAndChainedAnimations
-import com.example.tutorial1_1basics.chapter3_physics.Activity3_3FlingAnimation
-import com.example.tutorial1_1basics.chapter3_physics.Activity3_4BNV_TabLayoutPhysics
-import java.util.ArrayList
+import com.example.tutorial1_1basics.chapter2_animate_views.*
+import com.example.tutorial1_1basics.chapter3_physics.*
+import com.example.tutorial1_1basics.databinding.ActivityMainBinding
+import java.util.*
 
 class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickListener {
 
@@ -157,6 +153,7 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
             )
         )
 
+
         activityClassModels.add(
             ActivityClassModel(
                 Activity3_1PhysicsBasics::class.java,
@@ -182,6 +179,13 @@ class MainActivity : AppCompatActivity(), BaseAdapter.OnRecyclerViewItemClickLis
             ActivityClassModel(
                 Activity3_4BNV_TabLayoutPhysics::class.java,
                 getString(R.string.activity3_4)
+            )
+        )
+
+        activityClassModels.add(
+            ActivityClassModel(
+                Activity3_5ElasticScale::class.java,
+                getString(R.string.activity3_5)
             )
         )
     }

@@ -41,7 +41,7 @@ Tutorials about Shared Transitions from Activity to Activity, and from Fragment 
 | ----------|----------------| --------|
 | <img src="./screenshots/transition_chapter1_2.gif"/> | <img src="./screenshots/transition_chapter1_4.gif"/> | <img src="./screenshots/transition_chapter2_5_1.gif"/> |
 
-|  Ch2-5/1 Nav Components | Ch2-5/2 Nav Components   | Ch2-3 Material Transitions |
+|  Ch2-5/2 Nav Components | Ch2-5/3 Nav Components   | Ch2-6/1 Material Transitions |
 | ----------|----------------| --------|
 | <img src="./screenshots/transition_chapter2_5_2.gif"/> | <img src="./screenshots/transition_chapter2_5_3.gif"/> | <img src="./screenshots/transition_chapter2_6_1.gif"/> |
 
@@ -410,6 +410,8 @@ But on the other hand, since the Items are “background-less” themselves, to 
 [Reveal Transition](https://halfthought.wordpress.com/2014/11/07/reveal-transition/)
 <br>
 [Motion-Material Design](https://material.io/develop/android/theming/motion)
+<br>
+[Material Components Android Examples](https://github.com/material-components/material-components-android-examples)
 <br>
 [Android — Inbox Material Transitions for RecyclerView](https://medium.com/workday-engineering/android-inbox-material-transitions-for-recyclerview-7ae3cb241aed)
 <br>
