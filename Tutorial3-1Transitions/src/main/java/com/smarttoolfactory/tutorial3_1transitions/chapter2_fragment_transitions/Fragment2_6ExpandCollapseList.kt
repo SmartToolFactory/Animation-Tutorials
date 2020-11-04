@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.doOnPreDraw
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -18,7 +19,7 @@ import com.smarttoolfactory.tutorial3_1transitions.adapter.TravelAdapter
 import com.smarttoolfactory.tutorial3_1transitions.adapter.model.TravelModel
 import com.smarttoolfactory.tutorial3_1transitions.databinding.ItemTravelBinding
 
-@Suppress("UNCHECKED_CAST")
+@Suppress("UNCHECKED_CAST", "DEPRECATION")
 class Fragment2_6ExpandCollapseList : Fragment() {
 
     private val recycledViewPool by lazy {
@@ -64,6 +65,16 @@ class Fragment2_6ExpandCollapseList : Fragment() {
 
 
         recyclerView.adapter = listAdapter
+
+        recyclerView.setOnApplyWindowInsetsListener { view, insets ->
+
+            view.updatePadding(
+                top = insets.systemWindowInsetTop,
+                bottom = insets.systemWindowInsetBottom
+            )
+            insets
+        }
+
 
         listAdapter.submitList(
             MockDataCreator.generateMockTravelData(requireContext()).toMutableList()

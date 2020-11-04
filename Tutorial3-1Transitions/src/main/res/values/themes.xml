@@ -47,7 +47,7 @@
         <!--        </item>-->
     </style>
 
-    <style name="Theme.App.Expandable" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.App.Expandable" parent="Theme.App.NoActionBar">
 
         <!--Color-->
         <item name="colorPrimary">@color/reply_blue_700</item>
@@ -64,8 +64,6 @@
         <item name="colorOnBackground">@color/reply_black_900</item>
         <item name="colorOnSurface">@color/reply_black_900</item>
         <item name="colorOnError">@color/reply_black_900</item>
-
-        <item name="scrimBackground">@color/reply_white_50_alpha_060</item>
         <item name="android:statusBarColor">@color/reply_blue_50_alpha_060</item>
         <item name="android:navigationBarColor">@color/nav_bar</item>
 
@@ -73,7 +71,6 @@
         <item name="bottomAppBarStyle">
             @style/Widget.MaterialComponents.BottomAppBar.PrimarySurface
         </item>
-        <item name="bottomSheetStyle">@style/Widget.MaterialComponents.BottomSheet.Modal</item>
 
         <!--System/Platform attributes-->
         <item name="android:windowBackground">?android:colorBackground</item>
