@@ -21,7 +21,7 @@ fragment transitions, image to ViewPager transitions and more.
 | ----------|----------------| --------|
 | <img src="./screenshots/chapter2_7gradient.gif"/> | <img src="./screenshots/chapter2_8counter_textview.gif"/> | <img src="./screenshots/chapter2_9_counter_surfaceview.gif"/> |
 
-| Ch3-1 Physics | Ch3-2 Scale and Chained   | Ch3-3 Fling | Ch3-4 BNV+TabLayout Physics| Ch3-4 BNV+TabLayout Physics|
+| Ch3-1 Physics | Ch3-2 Scale and Chained   | Ch3-3 Fling | Ch3-4 BNV+TabLayout Physics| Ch3-5 Elastic Scale|
 | ----------|----------------| --------| --------| --------|
 | <img src="./screenshots/chapter3_1physics_basics.gif"/> | <img src="./screenshots/chapter3_2scale_and_chain.gif"/> | <img src="./screenshots/chapter3_3fling_animation.gif"/> | <img src="./screenshots/chapter3_4bnv_tablayout_animation.gif"/> | <img src="./screenshots/chapter3_5elastic_scale.gif"/> |
 
