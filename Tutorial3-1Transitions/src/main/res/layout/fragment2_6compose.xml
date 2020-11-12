@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nested_scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:colorBackground"
+    android:clipToPadding="false"
+    android:fillViewport="true"
+    android:paddingHorizontal="@dimen/grid_0_5"
+    android:paddingTop="@dimen/grid_1">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/email_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/compose_constraint_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/grid_2">
+
+            <ImageButton
+                android:id="@+id/close_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/grid_1"
+                android:background="?attr/actionBarItemBackground"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_close" />
+
+            <EditText
+                android:id="@+id/subject_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/grid_2"
+                android:background="@android:color/transparent"
+                android:paddingVertical="@dimen/grid_1"
+                android:text="@{email.subject}"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                app:layout_constraintEnd_toStartOf="@+id/send_icon"
+                app:layout_constraintStart_toEndOf="@id/close_icon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/send_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/grid_1"
+                android:background="?attr/actionBarItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_twotone_send"
+                app:tint="?attr/colorPrimary" />
+
+
+            <ImageView
+                android:id="@+id/sender_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/grid_2"
+                android:layout_marginTop="@dimen/grid_0_5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/send_icon" />
+
+            <HorizontalScrollView
+                android:id="@+id/recipient_scroll_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/grid_1"
+                android:layout_marginEnd="@dimen/grid_2"
+                android:clipToPadding="false"
+                android:fadingEdgeLength="@dimen/grid_3"
+                android:minHeight="48dp"
+                android:overScrollMode="never"
+                android:paddingVertical="@dimen/grid_0_25"
+                android:requiresFadingEdge="horizontal"
+                android:scrollbars="none"
+                app:layout_constraintEnd_toStartOf="@id/recipient_add_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sender_divider">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/recipient_chip_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/grid_2"
+                    android:scrollbars="none"
+                    app:singleLine="true" />
+
+            </HorizontalScrollView>
+
+            <ImageButton
+                android:id="@+id/recipient_add_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/grid_1"
+                android:background="?attr/actionBarItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@id/recipient_scroll_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/recipient_scroll_view"
+                app:srcCompat="@drawable/ic_twotone_add_circle_outline" />
+
+            <ImageView
+                android:id="@+id/recipient_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/grid_2"
+                android:layout_marginTop="@dimen/grid_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recipient_scroll_view" />
+
+            <EditText
+                android:id="@+id/body_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/grid_2"
+                android:layout_marginTop="@dimen/grid_2"
+                android:background="@android:color/transparent"
+                android:gravity="top"
+                android:minHeight="250dp"
+                android:paddingBottom="@dimen/grid_4"
+                android:text="@{email.body}"
+                android:textAppearance="?attr/textAppearanceBody1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recipient_divider"
+                app:lineHeight="24sp" />
+
+            <!-- An invisible scrim that captures click events when a chip has been expanded.-->
+            <View
+                android:id="@+id/recipient_card_scrim"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/recipient_card_view"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/grid_2"
+                android:layout_marginTop="@dimen/grid_2"
+                android:layout_marginEnd="@dimen/grid_2"
+                android:visibility="invisible"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="8dp"
+                app:layout_constraintStart_toStartOf="@id/close_icon"
+                app:layout_constraintTop_toTopOf="@id/close_icon">
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.core.widget.NestedScrollView>

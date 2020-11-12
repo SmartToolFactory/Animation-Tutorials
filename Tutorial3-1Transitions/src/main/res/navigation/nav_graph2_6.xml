@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_fragment2_6ExpandCollapseList_to_fragment2_6ExpandCollapseDetails"
             app:destination="@id/fragment2_6ExpandCollapseDetails" />
+        <action
+            android:id="@+id/action_fragment2_6ExpandCollapseList_to_fragment2_6Compose"
+            app:destination="@id/fragment2_6Compose" />
     </fragment>
 
     <fragment
@@ -22,4 +25,8 @@
             android:name="travelArgs"
             app:argType="com.smarttoolfactory.tutorial3_1transitions.adapter.model.TravelModel" />
     </fragment>
+    <fragment
+        android:id="@+id/fragment2_6Compose"
+        android:name="com.smarttoolfactory.tutorial3_1transitions.chapter2_fragment_transitions.Fragment2_6Compose"
+        android:label="Fragment2_6Compose" />
 </navigation>

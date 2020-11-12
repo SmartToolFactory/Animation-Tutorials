@@ -372,6 +372,7 @@ and be aware that Animator from ```onDisAppear``` is called while current transi
 #### Summary
 * For ```enterTransition``` and ```reEnterTransition``` either check for background color change and set **transitionGroup** to false
 or use transition that extends ```Visibility``` with change from INVISIBLE to VISIBLE.
+
 ⚠️ With ```reEnterTransition``` even though ```Explode```  does not work without solving background issue, most of
 the classes extend ```Transition``` or ```Visibility``` work fine
 
@@ -383,6 +384,34 @@ the classes extend ```Transition``` or ```Visibility``` work fine
 
 By default all views under a parent/ancestor with a background set (even transparent ones) will be automatically deemed a group. If you need to break them up like we here with a RecyclerView as the shared-root-white-backgrounded layout with transparent child Item views. You’ll need to set the **layout with the background** to **transitionGroup=false.**
 But on the other hand, since the Items are “background-less” themselves, to prevent an out-of-body experience you’ll need to do the opposite and set transitionGroup=true on the Item layouts for all the child views in that Item to move together.
+
+#### Material Transitions
+
+[MaterialContainerTransform](https://material.io/develop/android/theming/motion#container-transform)
+
+The container transform pattern is designed for transitions between UI elements that include a container. This pattern creates a visible connection between two UI elements.
+
+MaterialContainerTransform is a shared element transition. Unlike traditional Android shared elements, it is not designed around a singular piece of shared content, such as an image, to be moved between two scenes. Instead, the shared element here refers to the bounding container of a start View or ViewGroup (e.g. the entire row layout of an item in a list) transforming its size and shape into that of an end View or ViewGroup (e.g. the root ViewGroup of a full screen Fragment). These start and end container Views are the “shared element” of a container transform. While these containers are being transformed, their contents are swapped to create the transition.
+
+*Examples of the container transform:*
+
+
+* A card into a details page
+* A list item into a details page
+* A FAB into a details page
+* A search bar into expanded search
+
+[MaterialSharedAxis](https://material.io/develop/android/theming/motion#shared-axis)
+
+The shared axis pattern is used for transitions between UI elements that have a spatial or navigational relationship. This pattern uses a shared transformation on the x, y, or z axis to reinforce the relationship between elements.
+
+[MaterialElevationScale]()
+
+* MaterialFadeThrough
+
+
+* MaterialArcMotion
+
 
 
 ### Resources and References
