@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.updatePadding
@@ -23,8 +22,6 @@ import com.smarttoolfactory.tutorial3_1transitions.R
 
 @Suppress("DEPRECATION")
 class Activity2_6FragmentExpandCollapseTransitions : AppCompatActivity() {
-
-    val viewModel: ExpandCollapseViewModel by viewModels<ExpandCollapseViewModel>()
 
     private lateinit var fab: FloatingActionButton
 

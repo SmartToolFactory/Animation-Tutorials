@@ -8,7 +8,6 @@ import androidx.core.view.doOnNextLayout
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
@@ -22,9 +21,6 @@ import com.smarttoolfactory.tutorial3_1transitions.databinding.ItemTravelBinding
 
 @Suppress("UNCHECKED_CAST", "DEPRECATION")
 class Fragment2_6ExpandCollapseList : Fragment() {
-
-    val viewModel by activityViewModels<ExpandCollapseViewModel>()
-
 
     private val recycledViewPool by lazy {
         RecyclerView.RecycledViewPool()
@@ -90,30 +86,12 @@ class Fragment2_6ExpandCollapseList : Fragment() {
             }
         }
 
-        viewModel.goToComposePage.observe(viewLifecycleOwner, {
-
-
-        })
-
     }
 
     private fun goToDetailPage(binding: ItemTravelBinding, model: TravelModel) {
 
         val direction: NavDirections = Fragment2_6ExpandCollapseListDirections
             .actionFragment26ExpandCollapseListToFragment26ExpandCollapseDetails(model)
-
-        val extras = FragmentNavigatorExtras(
-            binding.cardView to binding.cardView.transitionName
-        )
-
-        findNavController().navigate(direction, extras)
-
-    }
-
-    private fun goToComposePage(binding: ItemTravelBinding) {
-
-        val direction: NavDirections = Fragment2_6ExpandCollapseListDirections
-            .actionFragment26ExpandCollapseListToFragment26Compose()
 
         val extras = FragmentNavigatorExtras(
             binding.cardView to binding.cardView.transitionName
